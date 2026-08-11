@@ -515,6 +515,16 @@ window.switchLanguage = function(lang) {
             el.innerHTML = t[key];
         }
     });
+
+    // Update dynamic CV download link if present
+    const heroDownloadCv = document.getElementById('heroDownloadCv');
+    if (heroDownloadCv) {
+        if (lang === 'fr') {
+            heroDownloadCv.setAttribute('href', 'KOA_MARIE_GERVAIS_NELLY_CV%20FR.pdf');
+        } else {
+            heroDownloadCv.setAttribute('href', 'KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf');
+        }
+    }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
