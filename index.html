@@ -610,30 +610,30 @@
 
                     <details class="faq-item glass" style="padding: 1.2rem 1.6rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(15, 23, 42, 0.7); cursor: pointer;">
                         <summary style="font-weight: 700; color: #FFFFFF; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                            <span><i class="fa-solid fa-brain text-neon" style="margin-right: 0.7rem;"></i> Comment l'approche Neuro-Symbolique élimine-t-elle les hallucinations IA ?</span>
+                            <span><i class="fa-solid fa-brain text-neon" style="margin-right: 0.7rem;"></i> <span data-i18n="q2_title">Comment l'approche Neuro-Symbolique élimine-t-elle les hallucinations IA ?</span></span>
                             <i class="fa-solid fa-chevron-down text-neon"></i>
                         </summary>
-                        <div style="margin-top: 1rem; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 1rem;">
+                        <div style="margin-top: 1rem; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 1rem;" data-i18n="q2_desc">
                             Les grands modèles de langage (LLM) calculent par probabilité textuelle, ce qui risque d'engendrer des erreurs mortelles sur un chantier BTP. Dans <strong>Archi Cam AI</strong> et <strong>Sovereign.BI</strong>, le LLM ne calcule pas les prix ou les charges : il agit exclusivement en tant que parseur d'instructions et orchestrateur d'agents. Le calcul mathématique des devis (DQE Excel), la vérification des armatures BAEL 91 et les requêtes SQL/Cypher sont délégués à des moteurs physiques déterministes (IfcOpenShell, PostgreSQL, Python Sandbox). La marge d'erreur d'hallucination devient strictly nulle.
                         </div>
                     </details>
 
                     <details class="faq-item glass" style="padding: 1.2rem 1.6rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(15, 23, 42, 0.7); cursor: pointer;">
                         <summary style="font-weight: 700; color: #FFFFFF; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                            <span><i class="fa-solid fa-project-diagram text-neon" style="margin-right: 0.7rem;"></i> Quel est l'atout du GraphRAG (Neo4j N10S) vs VectorRAG classique ?</span>
+                            <span><i class="fa-solid fa-project-diagram text-neon" style="margin-right: 0.7rem;"></i> <span data-i18n="q3_title">Quel est l'atout du GraphRAG (Neo4j N10S) vs VectorRAG classique ?</span></span>
                             <i class="fa-solid fa-chevron-down text-neon"></i>
                         </summary>
-                        <div style="margin-top: 1rem; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 1rem;">
+                        <div style="margin-top: 1rem; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 1rem;" data-i18n="q3_desc">
                             Le VectorRAG linéaire fragmente les documents complexes en morceaux isolés, détruisant la hiérarchie des tableaux et les relations causales. En modélisant nos données sous forme de graphes de connaissances (Neo4j 5.20 / N10S), les concepts sont indexés en triplets ontologiques interconnectés (<code>Entité -&gt; [RELATION] -&gt; Indicateur</code>). L'agent traverse des graphes sémantiques complets avec une précision de recherche contextuelle de 100 %.
                         </div>
                     </details>
 
                     <details class="faq-item glass" style="padding: 1.2rem 1.6rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(15, 23, 42, 0.7); cursor: pointer;">
                         <summary style="font-weight: 700; color: #FFFFFF; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                            <span><i class="fa-solid fa-chart-area text-neon" style="margin-right: 0.7rem;"></i> De quelle manière est prévenue la dérive des modèles (Data Drift MLOps) ?</span>
+                            <span><i class="fa-solid fa-chart-area text-neon" style="margin-right: 0.7rem;"></i> <span data-i18n="q4_title">De quelle manière est prévenue la dérive des modèles (Data Drift MLOps) ?</span></span>
                             <i class="fa-solid fa-chevron-down text-neon"></i>
                         </summary>
-                        <div style="margin-top: 1rem; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 1rem;">
+                        <div style="margin-top: 1rem; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 1rem;" data-i18n="q4_desc">
                             Dans des environnements réels comme le Sahel (<strong>VigieSahel</strong>) ou l'évaluation d'entrepreneuriales, les distributions de variables (climat, démographie) dérivent dans le temps (*Concept Drift*). Nos pipelines d'intégration continue CI/CD (GitHub Actions) intègrent des scripts automatisés exécutant le test statistique de <strong>Kolmogorov-Smirnov (KS-Test)</strong> et le <strong>Population Stability Index (PSI)</strong> reliés au registre <strong>MLflow</strong>. Toute déviation déclenche une alerte de réentraînement et une vérification d'explicabilité par notre auditeur de théorie des jeux <strong>SHAP Sentinel</strong>.
                         </div>
                     </details>
