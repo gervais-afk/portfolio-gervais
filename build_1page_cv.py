@@ -127,7 +127,7 @@ def generate_exact_user_1page_cv():
     add_sb_t(c0, "✆  +237 695 35 34 02")
     add_sb_t(c0, "⌂  Douala / Ngaoundéré, CM")
     add_sb_t(c0, "🌐  github.com/gervais-afk")
-    add_sb_t(c0, "💼  linkedin.com/in/gervais-koa")
+    add_sb_t(c0, "💼  linkedin.com/in/marie-gervais-koa")
 
     add_sb_h(c0, "IA & LLM")
     add_sb_t(c0, "Google Gemma 4   ■ ■ ■ ■ ■")
