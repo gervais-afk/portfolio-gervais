@@ -85,7 +85,7 @@ const translations = {
 
         // Projects Section
         projects_title: 'Mes Projets <span class="text-neon">Phares</span>',
-        projects_subtitle: "Cinq applications concrètes alliant IA générative, prédiction scientifique, conformité et génie logiciel.",
+        projects_subtitle: "Six applications concrètes alliant IA générative, prédiction scientifique, conformité et génie logiciel.",
         podcast_hub_badge: "Google NotebookLM — Audio Overview Series",
         podcast_hub_counter: "6 Épisodes Audio",
         podcast_play_now: "Écouter cet épisode",
@@ -121,6 +121,7 @@ const translations = {
         p3_desc: "Usine MLOps autonome d'ingestion et Data Engineering ETL, d'audit de qualité avec tests automatisés (CI/CD Pytest / Great Expectations) et de gouvernance sémantique (Neo4j Knowledge Graph). Intègre l'observabilité du Data Drift (KS-test / PSI), l'orchestration Genkit avec Gemma-4 12B local, et le tracking MLflow.",
         p4_desc: "Application & Système de Conformité Sûreté Aéroportuaire pour la CCAA (Autorité Aéronautique du Cameroun). Développée en Streamlit & Python, elle automatise la génération des rapports mensuels normés V4 (.docx), le suivi analytique des KPIs d'inspection (PIF, ZSAR), la vérification des livrables d'audit et la simulation interactive d'auditions d'inspection Sûreté (AVSEC).",
         p5_desc: "Plateforme MLOps d'intelligence artificielle dédiée au Sahel réduisant les pertes agricoles de 35 % et anticipant les épidémies de méningite 2 semaines en avance. Combine le streaming en temps réel (MQTT / WebSockets) et le suivi spatio-temporel des poussières d'Harmattan (PM2.5) sous observabilité active (MLflow & Supabase Realtime).",
+        p6_desc: "Système Souverain d'IA Agentique, GraphRAG & Certification Scientifique pour le DMI (Université de Ngaoundéré). Valorise 28 ans de patrimoine scientifique (451 thèses, graphe Neo4j de 1 366 nœuds / 3 833 relations). Intègre une recherche hybride multi-stage (Dense HNSW + BM25 + RRF k=60), l'attesteur cryptographique OKF v0.2 SHA-256 sans hallucination, un auditeur bibliographique anti-citations fantômes et 68 tests automatisés (100% de succès).",
         btn_architecture: "Architecture",
         btn_github: "GitHub",
 
@@ -257,6 +258,11 @@ const translations = {
         cv_p3_company: "MLOps & IA Impact Climat",
         cv_p3_b1: "<strong>Dataset Automator</strong> : Usine MLOps avec surveillance automatisée du Data Drift (KS-test / PSI), Neo4j GraphRAG, MLflow et orchestration Genkit/Gemma 4.",
         cv_p3_b2: "<strong>VigieSahel</strong> : Plateforme décisionnelle réduisant de 35 % les échecs de semis et anticipant de 14 jours les risques d'épidémies (XGBoost R² > 94 %, Supabase, MLflow).",
+        cv_p4_title: "K1-MATHINFO (v2.5+)",
+        cv_p4_company: "IA Souveraine, GraphRAG & Certification Scientifique",
+        cv_p4_desc: "Système souverain d'IA et de GraphRAG pour le DMI (Université de Ngaoundéré), valorisant 28 ans de thèses (451 mémoires, graphe Neo4j de 1 366 nœuds / 3 833 relations).",
+        cv_p4_b1: "Recherche Hybride Multi-Stage (Dense HNSW + BM25 + RRF k=60), certification cryptographique OKF v0.2 SHA-256 sans hallucination.",
+        cv_p4_b2: "Auditeur bibliographique anti-citations fantômes (Waterfall DMI -> Semantic Scholar -> Crossref) et 68 tests automatisés (100% de succès).",
         cv_title_exp: '<i class="fa-solid fa-briefcase"></i> Parcours Professionnel',
         cv_j1_title: "Consultant IA & Data Science",
         cv_j1_date: "2025 - Présent",
@@ -362,7 +368,7 @@ const translations = {
 
         // Projects Section
         projects_title: 'Featured <span class="text-neon">Projects</span>',
-        projects_subtitle: "Five production applications combining generative AI, scientific forecasting, compliance, and software engineering.",
+        projects_subtitle: "Six production applications combining generative AI, scientific forecasting, compliance, and software engineering.",
         podcast_hub_badge: "Google NotebookLM — Audio Overview Series",
         podcast_hub_counter: "6 Audio Episodes",
         podcast_play_now: "Play This Episode",
@@ -398,6 +404,7 @@ const translations = {
         p3_desc: "Autonomous MLOps Data Engineering ETL factory featuring automated Data Drift monitoring (KS-test / PSI), semantic governance (Neo4j Knowledge Graph), Genkit orchestration with local Gemma-4 12B, and MLflow lifecycle tracking.",
         p4_desc: "Airport Security Compliance System engineered for CCAA (Cameroon Civil Aviation Authority). Built with Streamlit & Python, it automates monthly V4 Word compliance report generation (.docx), inspection KPI tracking (PIF, ZSAR), and interactive AVSEC inspection audit simulations.",
         p5_desc: "Sahel-focused predictive ML platform reducing crop sowing failures by 35% and anticipating meningitis outbreak risks 14 days in advance. Integrates real-time streaming (MQTT / WebSockets) and Harmattan PM2.5 dust tracking under active MLOps monitoring (MLflow & Supabase Realtime).",
+        p6_desc: "Sovereign Agentic AI, GraphRAG & Academic Certification System for the Dept. of Mathematics & Computer Science (University of Ngaoundéré). Indexes 28 years of scientific assets (451 theses & dissertations, 1,366-node / 3,833-edge Neo4j graph). Features multi-stage hybrid retrieval (Dense HNSW + Sparse BM25 + RRF k=60), OKF v0.2 SHA-256 zero-hallucination certification, automated phantom citation auditing, and 68 automated tests (100% passing).",
         btn_architecture: "Architecture",
         btn_github: "GitHub",
 
@@ -534,6 +541,11 @@ const translations = {
         cv_p3_company: "MLOps Pipeline & Climate AI Impact",
         cv_p3_b1: "<strong>Dataset Automator</strong>: MLOps engine with automated Data Drift monitoring (KS-test / PSI), Neo4j GraphRAG, MLflow, and Genkit/Gemma 4 orchestration.",
         cv_p3_b2: "<strong>VigieSahel</strong>: Predictive ML platform reducing crop sowing failures by 35% and anticipating health epidemic risks 14 days in advance (XGBoost R² > 94%, Supabase, MLflow).",
+        cv_p4_title: "K1-MATHINFO (v2.5+)",
+        cv_p4_company: "Sovereign AI, GraphRAG & Academic Certification",
+        cv_p4_desc: "Sovereign AI & GraphRAG infrastructure for the Dept. of Mathematics & Computer Science (Univ. of Ngaoundéré), indexing 28 years of scientific assets (451 theses, Neo4j graph of 1,366 nodes / 3,833 edges).",
+        cv_p4_b1: "Multi-stage Hybrid Retrieval (Dense HNSW + BM25 + RRF k=60), zero-hallucination OKF v0.2 SHA-256 cryptographic certification.",
+        cv_p4_b2: "Automated bibliographic hallucination auditor (Waterfall DMI -> Semantic Scholar -> Crossref) and 68 automated unit tests (100% passing).",
         cv_title_exp: '<i class="fa-solid fa-briefcase"></i> Professional Experience',
         cv_j1_title: "AI Lead & Data Science Consultant",
         cv_j1_date: "2025 - Present",

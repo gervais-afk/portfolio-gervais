@@ -235,6 +235,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 ],
                 techs: ["Streamlit", "Python ML", "Supabase", "Scikit-Learn", "Pandas", "PWA"],
                 github: "https://github.com/gervais-afk/VigieSahel"
+            },
+            'k1-mathinfo': {
+                badge: "IA Souveraine, GraphRAG & Certification Scientifique (DMI - Université de Ngaoundéré)",
+                title: "K1-MATHINFO (v2.5+) 🏛️",
+                subtitle: "Infrastructure souveraine d'IA académique, modélisation de 28 ans de recherche & certification déterministe.",
+                pipeline: [
+                    { num: "Étape 01", title: "Ingestion & Parseur Normalisé", desc: "Extraction et segmentation automatisée de 451 thèses, métadonnées Dublin Core, formules LaTeX et détection des tables." },
+                    { num: "Étape 02", title: "Graphe Topologique Neo4j & pgvector", desc: "Modélisation de 1 366 nœuds et 3 833 relations généalogiques (encadrements, jurys, algorithmes, théorèmes) + index HNSW 384d." },
+                    { num: "Étape 03", title: "Recherche Hybride Multi-Stage (RRF k=60)", desc: "Fusion réciproque dense/sparse (BM25 + pgvector), re-ranking Cross-Encoder et boost taxonomique DMI (β=0.35)." },
+                    { num: "Étape 04", title: "Certification OKF v0.2 & Auditeur Bibliographique", desc: "Attesteur Cypher SHA-256 No-LLM (Tier 1/2/3), audit anti-hallucination Waterfall (DMI -> Semantic Scholar -> Crossref) et interopérabilité OAI-PMH v2.0." }
+                ],
+                impacts: [
+                    "Élimination totale des hallucinations académiques grâce à la certification déterministe cryptographique OKF v0.2 SHA-256.",
+                    "Valorisation de 28 ans de patrimoine scientifique (1997–2025) : 451 thèses et mémoires et 18 projets d'application M1 indexés.",
+                    "Auditeur bibliographique en cascade détectant automatiquement les références fictives (« citations fantômes ») avec résolution DOI/arXiv en temps réel.",
+                    "Excellence logicielle & gouvernance : 68 tests automatisés (100% passés), cache Redis 7 (<3ms) et gouvernance symétrique (Quorum 4 Yeux KOA + AZIZ)."
+                ],
+                techs: ["FastAPI 0.115", "Neo4j 5.26 GraphRAG", "Redis 7 Lua", "PostgreSQL pgvector", "OKF v0.2 SHA-256", "LangGraph FSM", "Cross-Encoder", "OAI-PMH Dublin Core"],
+                github: "https://github.com/gervais-afk/k1-mathinfo"
             }
         },
         en: {
@@ -328,6 +347,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 ],
                 techs: ["Streamlit", "Python ML", "Supabase", "Scikit-Learn", "Pandas", "PWA"],
                 github: "https://github.com/gervais-afk/VigieSahel"
+            },
+            'k1-mathinfo': {
+                badge: "Sovereign AI, GraphRAG & Academic Certification (DMI - University of Ngaoundéré)",
+                title: "K1-MATHINFO (v2.5+) 🏛️",
+                subtitle: "Sovereign academic AI infrastructure, modeling 28 years of research & deterministic knowledge certification.",
+                pipeline: [
+                    { num: "Step 01", title: "Ingestion & Standardized Parser", desc: "Automated extraction and chunking of 451 theses, Dublin Core metadata, LaTeX formulas, and table detection." },
+                    { num: "Step 02", title: "Neo4j Knowledge Graph & pgvector", desc: "Modeling of 1,366 nodes and 3,833 genealogical relationships (advisors, juries, algorithms, theorems) + 384d HNSW index." },
+                    { num: "Step 03", title: "Multi-Stage Hybrid Search (RRF k=60)", desc: "Reciprocal Rank Fusion combining dense pgvector and sparse BM25, Cross-Encoder re-ranking, and DMI taxonomy boost (β=0.35)." },
+                    { num: "Step 04", title: "OKF v0.2 Certification & Citation Audit", desc: "No-LLM Cypher SHA-256 certifier (Tiers 1/2/3), Waterfall anti-hallucination auditor (DMI -> Semantic Scholar -> Crossref), and OAI-PMH v2.0 export." }
+                ],
+                impacts: [
+                    "Zero academic hallucination guaranteed by deterministic OKF v0.2 SHA-256 cryptographic certification.",
+                    "Capitalization of 28 years of scientific heritage (1997–2025): 451 theses and 18 M1 applied projects fully indexed.",
+                    "Waterfall bibliographic auditor automatically detecting fake/ghost citations with real-time DOI & arXiv resolution.",
+                    "Engineering excellence & governance: 68 automated unit tests (100% passed), Redis 7 fast cache (<3ms), and symmetric 4-eyes quorum security."
+                ],
+                techs: ["FastAPI 0.115", "Neo4j 5.26 GraphRAG", "Redis 7 Lua", "PostgreSQL pgvector", "OKF v0.2 SHA-256", "LangGraph FSM", "Cross-Encoder", "OAI-PMH Dublin Core"],
+                github: "https://github.com/gervais-afk/k1-mathinfo"
             }
         }
     };
