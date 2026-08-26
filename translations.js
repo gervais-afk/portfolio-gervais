@@ -18,7 +18,7 @@ const translations = {
         // Hero Section
         hero_tag: "Fondateur @ Archi Cam AI | Lead AI Engineer",
         hero_subtitle_prefix: "Je suis ",
-        hero_desc: "Ingénieur & Spécialiste en IA Appliquée, 5D BIM & Data Science (Master professionnel intelligence artificielle appliquée - Université de Ngaoundéré & Licence Génie Civil). Fondateur d'<strong>Archi Cam AI</strong> et candidat officiel au <strong>Google Africa Applied AI Lab</strong> (Accra, Ghana).",
+        hero_desc: "Ingénieur & Spécialiste en IA Appliquée, 5D BIM & Data Science (Master en IA Appliquée & Data Science - Université de Ngaoundéré & Spécialiste Génie Civil - IUC Douala). Membre du Google Developer Program, Fondateur d'<strong>Archi Cam AI</strong> et candidat officiel au <strong>Google Africa Applied AI Lab</strong> (Accra, Ghana).",
         btn_cv_web: "Consulter le CV Web",
         btn_cv_pdf: "Télécharger CV PDF",
         btn_projects: "Découvrir mes Projets",
@@ -295,7 +295,7 @@ const translations = {
         // Hero Section
         hero_tag: "Founder @ Archi Cam AI | Lead AI Engineer",
         hero_subtitle_prefix: "I am a ",
-        hero_desc: "Engineer & Applied AI, 5D BIM & Data Science Specialist (M.Sc. Applied Artificial Intelligence - University of Ngaoundéré & B.Sc. Civil Engineering). Founder of <strong>Archi Cam AI</strong> and official applicant for the <strong>Google Africa Applied AI Lab</strong> (Accra, Ghana).",
+        hero_desc: "Creator & Lead AI Engineer, 5D BIM & Applied Data Science Specialist (Master's Degree in Applied AI & Data Science - University of Ngaoundéré & Civil Engineering Specialist - IUC Douala). Google Developer Program Member, Founder of <strong>Archi Cam AI</strong> and official candidate for the <strong>Google Africa Applied AI Lab</strong> (Accra, Ghana).",
         btn_cv_web: "View Web Resume",
         btn_cv_pdf: "Download PDF Resume",
         btn_projects: "Explore My Projects",
