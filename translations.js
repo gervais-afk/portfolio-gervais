@@ -54,8 +54,8 @@ const translations = {
         about_m2_sub: "Architectures de Graphes & LLM",
         about_m3_title: "BIM 5D & BAEL 91",
         about_m3_sub: "Moteurs Sandbox Déterministes",
-        about_m4_title: "Sûreté Opérationnelle (AVSEC)",
-        about_m4_sub: "Analyse & Contrôle des Risques",
+        about_m4_title: "Google Cloud Hackathon",
+        about_m4_sub: "Candidature Officielle (#AllThingsAgentic)",
 
         about_badge_status: "En cours d'obtention",
         t1_title: "Master Professionnel en Intelligence Artificielle Appliquée",
@@ -337,8 +337,8 @@ const translations = {
         about_m2_sub: "Knowledge Graphs & LLM Pipelines",
         about_m3_title: "BIM 5D & BAEL 91",
         about_m3_sub: "Deterministic Math Engines",
-        about_m4_title: "Aviation Security (AVSEC)",
-        about_m4_sub: "Critical Threat Assessment & Risk",
+        about_m4_title: "Google Cloud Hackathon",
+        about_m4_sub: "Official Submission (#AllThingsAgentic)",
 
         about_badge_status: "In Progress",
         t1_title: "Master of Science in Applied Artificial Intelligence",
