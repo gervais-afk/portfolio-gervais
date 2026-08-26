@@ -567,9 +567,7 @@ window.switchLanguage = function(lang) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('preferredLang') || 'fr';
-    if (savedLang !== 'fr') {
-        window.switchLanguage(savedLang);
-    }
+    window.switchLanguage(savedLang);
 });
 
 
