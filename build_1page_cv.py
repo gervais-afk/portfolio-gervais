@@ -1,4 +1,5 @@
 import os
+import docx
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -39,16 +40,14 @@ def set_table_zero_indent(table):
 
 def generate_exact_user_1page_cv():
     doc = Document()
-
     for s in doc.sections:
         s.page_width  = Inches(8.27)
         s.page_height = Inches(11.69)
-        s.top_margin = s.bottom_margin = s.left_margin = s.right_margin = Inches(0)
+        s.top_margin = s.bottom_margin = s.left_margin = s.right_margin = 0
 
     doc.styles['Normal'].font.name = 'Segoe UI'
-    doc.styles['Normal'].font.size = Pt(8)
+    doc.styles['Normal'].font.size = Pt(8.2)
 
-    # Colors
     SIDEBAR_FILL = "0F172A"
     CYAN  = RGBColor(0x38, 0xBD, 0xF8)
     ICE   = RGBColor(0xF8, 0xFA, 0xFC)
@@ -63,59 +62,56 @@ def generate_exact_user_1page_cv():
     set_table_zero_indent(table)
     remove_table_borders(table)
 
-    # EXACT A4 height → sidebar fills full page bottom
     row = table.rows[0]
     trPr = row._tr.get_or_add_trPr()
-    trHeight = parse_xml(f'<w:trHeight {nsdecls("w")} w:val="16837" w:hRule="exact"/>')
-    trPr.append(trHeight)
+    trPr.append(parse_xml(f'<w:trHeight {nsdecls("w")} w:val="16200" w:hRule="atLeast"/>'))
 
     col_widths = [Inches(2.60), Inches(5.67)]
 
-    # ══════════════ SIDEBAR ══════════════
+    # ══════════════ SIDEBAR (LEFT) ══════════════
     c0 = table.cell(0, 0)
     c0.width = col_widths[0]
     set_cell_background(c0, SIDEBAR_FILL)
-    set_cell_margins(c0, top=220, bottom=220, left=560, right=460)
+    set_cell_margins(c0, top=260, bottom=240, left=560, right=440)
 
-    # Photo
     photo_path = r"c:\Users\HP\Desktop\portfolio-gervais\assets\images\profile_headshot_circular.jpeg"
     photo_box = c0.add_table(rows=1, cols=1)
     photo_box.alignment = WD_TABLE_ALIGNMENT.CENTER
     p_cell = photo_box.cell(0, 0)
     set_cell_background(p_cell, "1E3A5F")
-    set_cell_margins(p_cell, top=12, bottom=12, left=12, right=12)
+    set_cell_margins(p_cell, top=14, bottom=14, left=14, right=14)
     p_ph = p_cell.paragraphs[0]
     p_ph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_ph.paragraph_format.space_before = Pt(0)
     p_ph.paragraph_format.space_after  = Pt(0)
     if os.path.exists(photo_path):
         try:
-            p_ph.add_run().add_picture(photo_path, width=Inches(1.42))
+            p_ph.add_run().add_picture(photo_path, width=Inches(1.50))
         except:
-            r = p_ph.add_run("[ PHOTO ]"); r.font.size = Pt(7); r.font.color.rgb = CYAN
+            r = p_ph.add_run("[ PHOTO ]"); r.font.size = Pt(8); r.font.color.rgb = CYAN
     else:
-        r = p_ph.add_run("[ PHOTO ]"); r.font.size = Pt(7); r.font.color.rgb = CYAN
+        r = p_ph.add_run("[ PHOTO ]"); r.font.size = Pt(8); r.font.color.rgb = CYAN
 
     def sb_h(cell, text):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(5)
+        p.paragraph_format.space_before = Pt(6)
         p.paragraph_format.space_after  = Pt(0)
         r = p.add_run(text.upper())
         r.font.name = 'Segoe UI'; r.font.bold = True
-        r.font.size = Pt(7.8); r.font.color.rgb = CYAN
+        r.font.size = Pt(8.4); r.font.color.rgb = CYAN
         sep = cell.add_paragraph()
         sep.paragraph_format.space_before = Pt(0.5)
-        sep.paragraph_format.space_after  = Pt(2)
+        sep.paragraph_format.space_after  = Pt(2.5)
         rs = sep.add_run("━" * 20)
-        rs.font.size = Pt(4.5); rs.font.color.rgb = OCEAN
+        rs.font.size = Pt(5); rs.font.color.rgb = OCEAN
 
     def sb_t(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(1.4)
-        p.paragraph_format.line_spacing = 1.05
+        p.paragraph_format.space_after  = Pt(1.8)
+        p.paragraph_format.line_spacing = 1.10
         r = p.add_run(text)
-        r.font.size = Pt(7.3); r.font.color.rgb = ICE
+        r.font.size = Pt(7.8); r.font.color.rgb = ICE
 
     sb_h(c0, "Contact & Profils")
     sb_t(c0, "✉  magenel85@gmail.com")
@@ -165,74 +161,73 @@ def generate_exact_user_1page_cv():
     sb_t(c0, "◈ Gestion de crise & Sûreté (CCAA)")
     sb_t(c0, "◈ Rigueur mathématique & Guardrails")
 
-    # ══════════════ MAIN COLUMN ══════════════
+    # ══════════════ MAIN COLUMN (RIGHT) ══════════════
     c1 = table.cell(0, 1)
     c1.width = col_widths[1]
     set_cell_background(c1, "FFFFFF")
-    set_cell_margins(c1, top=240, bottom=220, left=260, right=280)
+    set_cell_margins(c1, top=280, bottom=240, left=280, right=300)
 
-    # Name block
     p_nm = c1.paragraphs[0]
     p_nm.paragraph_format.space_before = Pt(0)
-    p_nm.paragraph_format.space_after  = Pt(1)
+    p_nm.paragraph_format.space_after  = Pt(1.5)
     r = p_nm.add_run("KOA MARIE GERVAIS NELLY")
     r.font.name = 'Segoe UI'; r.font.bold = True
-    r.font.size = Pt(17); r.font.color.rgb = NAVY
+    r.font.size = Pt(18); r.font.color.rgb = NAVY
 
     p_sub = c1.add_paragraph()
     p_sub.paragraph_format.space_before = Pt(0)
-    p_sub.paragraph_format.space_after  = Pt(1)
+    p_sub.paragraph_format.space_after  = Pt(1.5)
     rs = p_sub.add_run("Lead AI Engineer & Consultant IA / Data   │   Fondateur @ Archi Cam AI")
-    rs.font.size = Pt(8.8); rs.font.bold = True; rs.font.color.rgb = OCEAN
+    rs.font.size = Pt(9.2); rs.font.bold = True; rs.font.color.rgb = OCEAN
 
     p_rule = c1.add_paragraph()
     p_rule.paragraph_format.space_before = Pt(0)
-    p_rule.paragraph_format.space_after  = Pt(3)
+    p_rule.paragraph_format.space_after  = Pt(4)
     rr = p_rule.add_run("─" * 70)
     rr.font.size = Pt(5.5); rr.font.color.rgb = OCEAN
 
     def mn_h(cell, title):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(5)
+        p.paragraph_format.space_before = Pt(6)
         p.paragraph_format.space_after  = Pt(0.5)
-        r1 = p.add_run("◈  "); r1.font.bold = True; r1.font.size = Pt(8); r1.font.color.rgb = OCEAN
+        r1 = p.add_run("◈  "); r1.font.bold = True; r1.font.size = Pt(8.5); r1.font.color.rgb = OCEAN
         r2 = p.add_run(title.upper())
         r2.font.name = 'Segoe UI'; r2.font.bold = True
-        r2.font.size = Pt(9.5); r2.font.color.rgb = NAVY
+        r2.font.size = Pt(10); r2.font.color.rgb = NAVY
         sep = cell.add_paragraph()
         sep.paragraph_format.space_before = Pt(0)
-        sep.paragraph_format.space_after  = Pt(2.5)
+        sep.paragraph_format.space_after  = Pt(3)
         rs = sep.add_run("─" * 60); rs.font.size = Pt(5); rs.font.color.rgb = LGRAY
 
     def entry(cell, title, badge):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(3)
-        p.paragraph_format.space_after  = Pt(0.5)
-        r1 = p.add_run(title); r1.font.bold = True; r1.font.size = Pt(8.8); r1.font.color.rgb = NAVY
+        p.paragraph_format.space_before = Pt(3.5)
+        p.paragraph_format.space_after  = Pt(0.8)
+        r1 = p.add_run(title); r1.font.bold = True; r1.font.size = Pt(9.2); r1.font.color.rgb = NAVY
         r2 = p.add_run(f"   —   {badge}")
-        r2.font.italic = True; r2.font.size = Pt(7.5); r2.font.color.rgb = OCEAN
+        r2.font.italic = True; r2.font.size = Pt(8.0); r2.font.color.rgb = OCEAN
 
     def company(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(0.5)
-        r = p.add_run(text); r.font.size = Pt(7.5); r.font.bold = True; r.font.color.rgb = MUTED
+        p.paragraph_format.space_after  = Pt(0.8)
+        r = p.add_run(text); r.font.size = Pt(8.0); r.font.bold = True; r.font.color.rgb = MUTED
 
     def bullet(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(1.2)
-        p.paragraph_format.line_spacing = 1.1
+        p.paragraph_format.space_after  = Pt(1.5)
+        p.paragraph_format.line_spacing = 1.14
         p.paragraph_format.left_indent  = Inches(0.10)
-        rb = p.add_run("▸  "); rb.font.bold = True; rb.font.size = Pt(7.5); rb.font.color.rgb = OCEAN
-        rt = p.add_run(text); rt.font.size = Pt(7.5); rt.font.color.rgb = BODY
+        rb = p.add_run("▸  "); rb.font.bold = True; rb.font.size = Pt(8.0); rb.font.color.rgb = OCEAN
+        rt = p.add_run(text); rt.font.size = Pt(8.0); rt.font.color.rgb = BODY
 
     def body(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(2.5)
-        p.paragraph_format.line_spacing = 1.15
-        r = p.add_run(text); r.font.size = Pt(8); r.font.color.rgb = BODY
+        p.paragraph_format.space_after  = Pt(3)
+        p.paragraph_format.line_spacing = 1.18
+        r = p.add_run(text); r.font.size = Pt(8.4); r.font.color.rgb = BODY
 
     # ── Résumé ──
     mn_h(c1, "Résumé Professionnel")
@@ -265,7 +260,7 @@ def generate_exact_user_1page_cv():
 
     entry(c1, "Agent de Sûreté Aéroportuaire (AVSEC)", "2018 – Présent")
     company(c1, "CCAA (Autorité Aéronautique du Cameroun)")
-    bullet(c1, "Analyse risques opérationnels, contrôle d'accès sécurisé, audits conformité (Annexe 17 OACI).")
+    bullet(c1, "Analyse risques opérationnels, contrôle d'accès sécurisé, audits de conformité (Annexe 17 OACI).")
 
     # ── Formation ──
     mn_h(c1, "Formation Académique")
@@ -283,22 +278,27 @@ def generate_exact_user_1page_cv():
 
     p_r = c1.add_paragraph()
     p_r.paragraph_format.space_before = Pt(0)
-    p_r.paragraph_format.space_after  = Pt(1.5)
-    p_r.paragraph_format.line_spacing = 1.15
+    p_r.paragraph_format.space_after  = Pt(0)
+    p_r.paragraph_format.line_spacing = 1.18
     r1 = p_r.add_run("◈ Google Africa Applied AI Lab (Accra, 2026) : ")
-    r1.font.bold = True; r1.font.size = Pt(8); r1.font.color.rgb = NAVY
+    r1.font.bold = True; r1.font.size = Pt(8.2); r1.font.color.rgb = NAVY
     r2 = p_r.add_run("Candidature officielle — plateforme Archi Cam AI.\n")
-    r2.font.size = Pt(8); r2.font.color.rgb = BODY
+    r2.font.size = Pt(8.2); r2.font.color.rgb = BODY
     r3 = p_r.add_run("◈ Hackathon Google Cloud #AllThingsAgentic : ")
-    r3.font.bold = True; r3.font.size = Pt(8); r3.font.color.rgb = NAVY
+    r3.font.bold = True; r3.font.size = Pt(8.2); r3.font.color.rgb = NAVY
     r4 = p_r.add_run("Dataset Automator v4.0 (Google Antigravity, TabFM, WIT, bigframes, MCT).")
-    r4.font.size = Pt(8); r4.font.color.rgb = BODY
+    r4.font.size = Pt(8.2); r4.font.color.rgb = BODY
 
-    # Trailing paragraph suppressed
-    for p in doc.paragraphs:
-        p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(0)
-        break
+    # ── Trailing 1pt paragraph (guarantees NO extra blank page in Word) ──
+    p_tail = doc.add_paragraph()
+    p_tail.paragraph_format.space_before = Pt(0)
+    p_tail.paragraph_format.space_after  = Pt(0)
+    p_tail.paragraph_format.line_spacing = Pt(1)
+    pPr = p_tail._p.get_or_add_pPr()
+    pPr.append(parse_xml(f'<w:spacing {nsdecls("w")} w:before="0" w:after="0" w:line="20" w:lineRule="exact"/>'))
+    pPr.append(parse_xml(f'<w:rPr {nsdecls("w")}><w:sz w:val="2"/><w:szCs w:val="2"/></w:rPr>'))
+    r_tail = p_tail.add_run()
+    r_tail.font.size = Pt(1)
 
     # Save DOCX
     f_docx = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_FR.docx"
@@ -306,23 +306,26 @@ def generate_exact_user_1page_cv():
         doc.save(f_docx)
         print(f"Saved: {f_docx}")
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Error saving {f_docx}: {e}")
 
-    # PDF via Word COM
+    # PDF export and 1-page verification via Word COM
     try:
         import win32com.client
         word = win32com.client.Dispatch("Word.Application")
-        word.Visible = False; word.DisplayAlerts = 0
+        word.Visible = False
+        word.DisplayAlerts = 0
         pdf = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV FR.pdf"
         if os.path.exists(f_docx):
             d = word.Documents.Open(os.path.abspath(f_docx))
+            pages = d.ComputeStatistics(2)
+            print(f"FR CV Page Count: {pages}")
             d.SaveAs(os.path.abspath(pdf), FileFormat=17)
             d.Close()
-            print(f"Exported PDF: {pdf}")
+            print(f"Exported PDF ({pages} page): {pdf}")
         word.Quit()
-        print("Done FR!")
+        print("FR generation completed successfully!")
     except Exception as ex:
-        print(f"Word COM note: {ex}")
+        print(f"Word COM error: {ex}")
 
 if __name__ == "__main__":
     generate_exact_user_1page_cv()
