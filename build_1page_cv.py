@@ -12,7 +12,7 @@ def set_cell_background(cell, fill_color):
     shd = parse_xml(f'<w:shd {nsdecls("w")} w:fill="{fill_color}"/>')
     tcPr.append(shd)
 
-def set_cell_margins(cell, top=140, bottom=140, left=140, right=140):
+def set_cell_margins(cell, top=180, bottom=140, left=320, right=160):
     tcPr = cell._tc.get_or_add_tcPr()
     tcMar = OxmlElement('w:tcMar')
     for m, val in [('top', top), ('bottom', bottom), ('left', left), ('right', right)]:
@@ -74,19 +74,20 @@ def generate_exact_user_1page_cv():
     set_table_zero_indent(table)
     remove_table_borders(table)
 
-    # Set row height to 16200 dxa to bleed to the bottom
+    # Set row height to 16100 dxa (exact maximum reaching the bottom on 1 single page)
     row = table.rows[0]
     trPr = row._tr.get_or_add_trPr()
-    trHeight = parse_xml(f'<w:trHeight {nsdecls("w")} w:val="16200" w:hRule="atLeast"/>')
+    trHeight = parse_xml(f'<w:trHeight {nsdecls("w")} w:val="16100" w:hRule="atLeast"/>')
     trPr.append(trHeight)
 
-    col_widths = [Inches(2.55), Inches(5.72)]
+    col_widths = [Inches(2.60), Inches(5.67)]
 
     # ==================== CELL 0 (SIDEBAR LEFT - FULL BLEED) ====================
     c0 = table.cell(0, 0)
     c0.width = col_widths[0]
     set_cell_background(c0, SIDEBAR_FILL)
-    set_cell_margins(c0, top=180, bottom=140, left=180, right=140)
+    # top=200 dxa (~0.14"), left=320 dxa (~0.22" / 5.6 mm generous margin!), right=160 dxa, bottom=140 dxa
+    set_cell_margins(c0, top=200, bottom=140, left=320, right=160)
 
     # Photo Box
     photo_path = r"c:\Users\HP\Desktop\portfolio-gervais\assets\images\profile_headshot_circular.jpeg"
@@ -95,7 +96,7 @@ def generate_exact_user_1page_cv():
     p_cell = photo_box.cell(0, 0)
     p_cell.width = Inches(1.35)
     set_cell_background(p_cell, "1E293B")
-    set_cell_margins(p_cell, top=25, bottom=25, left=25, right=25)
+    set_cell_margins(p_cell, top=20, bottom=20, left=20, right=20)
     
     p_ph = p_cell.paragraphs[0]
     p_ph.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -119,7 +120,7 @@ def generate_exact_user_1page_cv():
 
     def add_sb_h(cell, text):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(5)
+        p.paragraph_format.space_before = Pt(4.5)
         p.paragraph_format.space_after = Pt(1.2)
         r = p.add_run(text.upper())
         r.font.name = 'Segoe UI Semibold'
@@ -130,7 +131,7 @@ def generate_exact_user_1page_cv():
     def add_sb_t(cell, icon_txt):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after = Pt(1.0)
+        p.paragraph_format.space_after = Pt(0.9)
         p.paragraph_format.line_spacing = 1.05
         r = p.add_run(icon_txt)
         r.font.size = Pt(7.0)
@@ -146,6 +147,7 @@ def generate_exact_user_1page_cv():
     add_sb_t(c0, "🏅  Google Developer Program")
 
     add_sb_h(c0, "IA & LLM STACK")
+    add_sb_t(c0, "Google Antigravity IDE ■ ■ ■ ■ ■")
     add_sb_t(c0, "Google Gemma 4 (12B) ■ ■ ■ ■ ■")
     add_sb_t(c0, "Gemini 2.5 / 1.5 Pro ■ ■ ■ ■ ■")
     add_sb_t(c0, "Google TabFM (Tabular)■ ■ ■ ■ ■")
@@ -187,7 +189,8 @@ def generate_exact_user_1page_cv():
     c1 = table.cell(0, 1)
     c1.width = col_widths[1]
     set_cell_background(c1, MAIN_FILL)
-    set_cell_margins(c1, top=180, bottom=140, left=180, right=180)
+    # top=200 dxa, left=200 dxa, right=200 dxa, bottom=140 dxa
+    set_cell_margins(c1, top=200, bottom=140, left=200, right=200)
 
     p_m01 = c1.paragraphs[0]
     p_m01.paragraph_format.space_before = Pt(0)
@@ -215,7 +218,7 @@ def generate_exact_user_1page_cv():
 
     def add_mn_h(cell, title):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(4.5)
+        p.paragraph_format.space_before = Pt(4.2)
         p.paragraph_format.space_after = Pt(1.2)
         r1 = p.add_run("◈  ")
         r1.font.bold = True
@@ -231,18 +234,18 @@ def generate_exact_user_1page_cv():
     p_pr = c1.add_paragraph()
     p_pr.paragraph_format.space_before = Pt(0)
     p_pr.paragraph_format.space_after = Pt(2.5)
-    p_pr.paragraph_format.line_spacing = 1.06
+    p_pr.paragraph_format.line_spacing = 1.05
     r_pr = p_pr.add_run(
-        "Consultant IA & Lead AI Engineer (Google Developer Program Member), j'accompagne les organisations dans la transformation de leurs données complexes en leviers décisionnels à haute valeur ajoutée. Spécialiste des architectures Multi-Agents autonomes, du GraphRAG (Neo4j) et de la Business Intelligence souveraine, je déploie des solutions étanches, déterministes et sans hallucination. Fondateur d'Archi Cam AI (candidat Google Africa Applied AI Lab), j'allie méthodologie d'ingénieur, rigueur mathématique et vision produit."
+        "Consultant IA & Lead AI Engineer (Google Developer Program Member), j'utilise Google Antigravity pour concevoir et orchestrer des systèmes d'agents autonomes neuro-symboliques, du GraphRAG (Neo4j) et des plateformes MLOps souveraines. Spécialiste des architectures déterministes et explicables, je déploie des solutions étanches sans hallucination. Fondateur d'Archi Cam AI (candidat Google Africa Applied AI Lab), j'allie méthodologie d'ingénieur BTP, rigueur mathématique et vision produit."
     )
-    r_pr.font.size = Pt(7.4)
+    r_pr.font.size = Pt(7.3)
     r_pr.font.color.rgb = BODY_DARK
 
     add_mn_h(c1, "PROJETS IA MAJEURS")
 
     def add_proj_compact(cell, name, sub_badge, bullets):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(2.2)
+        p.paragraph_format.space_before = Pt(2.0)
         p.paragraph_format.space_after = Pt(0.4)
         r1 = p.add_run(name + "  ")
         r1.font.bold = True
@@ -257,7 +260,7 @@ def generate_exact_user_1page_cv():
         for b in bullets:
             bp = cell.add_paragraph()
             bp.paragraph_format.space_before = Pt(0)
-            bp.paragraph_format.space_after = Pt(0.6)
+            bp.paragraph_format.space_after = Pt(0.5)
             bp.paragraph_format.line_spacing = 1.04
             bp.paragraph_format.left_indent = Inches(0.08)
             rb_ico = bp.add_run("▸  ")
@@ -273,7 +276,7 @@ def generate_exact_user_1page_cv():
         "Archi Cam AI",
         "SaaS IA Agentique & 5D BIM",
         [
-            "Candidat officiel Google Africa Applied AI Lab. Chiffrage & BIM 5D BTP (Gemma 4 12B local, Gemini, BAEL 91 déterministe).",
+            "Candidat officiel Google Africa Applied AI Lab. Développé sous Google Antigravity (Gemma 4 12B, Gemini, BAEL 91).",
             "Génération DQE Excel en <45s (-99,2% temps, R²=0,9872 sous MLflow) et rendus 3D Imagen 3 + ControlNet."
         ]
     )
@@ -283,7 +286,7 @@ def generate_exact_user_1page_cv():
         "K1-MATHINFO (v3.0.0)",
         "IA Souveraine Multi-Agents & Certification OKF",
         [
-            "Système souverain DMI (Univ. Ngaoundéré) : 470 thèses, 19 projets M1, graphe Neo4j 1 366 nœuds / 3 833 relations.",
+            "Système souverain DMI (Univ. Ngaoundéré) sous Google Antigravity : 470 thèses, 19 projets M1, graphe Neo4j 1 366 nœuds.",
             "6 agents LangGraph, recherche hybride RRF k=60 + Cross-Encoder, attesteur SHA-256 No-LLM, 77/77 tests (100%)."
         ]
     )
@@ -303,7 +306,7 @@ def generate_exact_user_1page_cv():
         "Dataset Automator & VigieSahel",
         "MLOps & Impact Agro-Climatique",
         [
-            "Dataset Automator : Usine MLOps TabFM & BigQuery DataFrames avec surveillance Data Drift (KS/PSI) et conformité EU AI Act.",
+            "Dataset Automator : Usine MLOps sous Google Antigravity (TabFM, BigQuery DataFrames, Data Drift KS/PSI, EU AI Act).",
             "VigieSahel : Prédiction des épidémies et optimisation semis (-35% pertes, XGBoost R²>94%, Supabase)."
         ]
     )
@@ -312,7 +315,7 @@ def generate_exact_user_1page_cv():
 
     def add_job_compact(cell, title, period, company, bullets):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(2.2)
+        p.paragraph_format.space_before = Pt(2.0)
         p.paragraph_format.space_after = Pt(0.4)
         r1 = p.add_run(title + "  ")
         r1.font.bold = True
@@ -326,7 +329,7 @@ def generate_exact_user_1page_cv():
 
         p2 = cell.add_paragraph()
         p2.paragraph_format.space_before = Pt(0)
-        p2.paragraph_format.space_after = Pt(0.6)
+        p2.paragraph_format.space_after = Pt(0.5)
         r3 = p2.add_run(company)
         r3.font.bold = True
         r3.font.size = Pt(7.0)
@@ -335,7 +338,7 @@ def generate_exact_user_1page_cv():
         for b in bullets:
             bp = cell.add_paragraph()
             bp.paragraph_format.space_before = Pt(0)
-            bp.paragraph_format.space_after = Pt(0.6)
+            bp.paragraph_format.space_after = Pt(0.5)
             bp.paragraph_format.line_spacing = 1.04
             bp.paragraph_format.left_indent = Inches(0.08)
             rb_ico = bp.add_run("▸  ")
@@ -372,7 +375,7 @@ def generate_exact_user_1page_cv():
 
     def add_edu_compact(cell, degree, period, school, syllabus_desc, note=None):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(2.2)
+        p.paragraph_format.space_before = Pt(2.0)
         p.paragraph_format.space_after = Pt(0.4)
         r1 = p.add_run(degree + "  ")
         r1.font.bold = True
@@ -400,7 +403,7 @@ def generate_exact_user_1page_cv():
 
         p3 = cell.add_paragraph()
         p3.paragraph_format.space_before = Pt(0)
-        p3.paragraph_format.space_after = Pt(0.8)
+        p3.paragraph_format.space_after = Pt(0.6)
         p3.paragraph_format.line_spacing = 1.04
         r4 = p3.add_run(syllabus_desc)
         r4.font.size = Pt(6.8)
@@ -440,7 +443,7 @@ def generate_exact_user_1page_cv():
     r_r3.font.bold = True
     r_r3.font.size = Pt(7.0)
     r_r3.font.color.rgb = NAVY_TITLE
-    r_r4 = p_rec.add_run("Dataset Automator v4.0 (TabFM, WIT, bigframes, MCT).")
+    r_r4 = p_rec.add_run("Dataset Automator v4.0 conçu sous Google Antigravity (TabFM, WIT, bigframes, MCT).")
     r_r4.font.size = Pt(7.0)
     r_r4.font.color.rgb = BODY_DARK
 
