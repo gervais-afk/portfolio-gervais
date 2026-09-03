@@ -186,27 +186,29 @@
         .cv-body {
             display: grid;
             grid-template-columns: 1fr 2.1fr;
+            align-items: stretch;
         }
 
         /* Left Column (Sidebar) */
         .cv-sidebar {
             background: #0F172A;
             color: #F8FAFC;
-            padding: 1.6rem 1.5rem;
+            padding: 1.6rem 1.8rem 2rem 1.8rem;
             border-right: 1px solid #1E293B;
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
+            min-height: 100%;
         }
 
         .cv-photo-frame {
-            width: 145px;
-            height: 145px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            margin: 0 auto 0.5rem auto;
+            margin: 0 auto 0.8rem auto;
             overflow: hidden;
-            border: 3px solid #38BDF8;
-            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.3), 0 0 15px rgba(56, 189, 248, 0.2);
+            border: 4px solid #38BDF8;
+            box-shadow: 0 8px 28px rgba(0, 242, 254, 0.35), 0 0 20px rgba(56, 189, 248, 0.25);
             background: #1E293B;
             flex-shrink: 0;
         }
@@ -297,7 +299,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #E2E8F0;
         }
 
@@ -346,10 +348,10 @@
         }
 
         .item-desc {
-            font-size: 0.92rem;
+            font-size: 0.97rem;
             color: #475569;
             margin-top: 0.4rem;
-            line-height: 1.5;
+            line-height: 1.55;
         }
 
         .bullet-list {
@@ -363,7 +365,7 @@
         .bullet-list li {
             position: relative;
             padding-left: 1.2rem;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #334155;
         }
 
@@ -378,7 +380,7 @@
 
         /* Summary Text */
         .profile-summary {
-            font-size: 0.98rem;
+            font-size: 1.02rem;
             color: #334155;
             line-height: 1.6;
         }
@@ -387,12 +389,12 @@
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 0.6cm;
+                margin: 0.5cm;
             }
             body {
                 background: #FFFFFF !important;
                 padding: 0 !important;
-                font-size: 8.5pt !important;
+                font-size: 10pt !important;
             }
             .action-bar {
                 display: none !important;
@@ -406,44 +408,58 @@
             }
             .cv-header {
                 background: #0A1128 !important;
-                padding: 1.2rem 1.8rem !important;
+                padding: 1.4rem 2rem !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
             .cv-header h1 {
-                font-size: 1.8rem !important;
+                font-size: 2rem !important;
+            }
+            .cv-header .subtitle {
+                font-size: 1.05rem !important;
             }
             .cv-sidebar {
                 background: #0F172A !important;
                 color: #F8FAFC !important;
-                padding: 1.2rem 1.2rem !important;
+                padding: 1.4rem 1.8rem 2rem 1.8rem !important;
                 gap: 1.2rem !important;
+                min-height: 100% !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
-            .photo-placeholder {
-                height: 120px !important;
-                background: #1E293B !important;
-                border: 2px dashed #38BDF8 !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+            .cv-photo-frame {
+                width: 170px !important;
+                height: 170px !important;
             }
             .cv-main {
                 background: #FFFFFF !important;
-                padding: 1.2rem 1.5rem !important;
+                padding: 1.4rem 2rem !important;
                 gap: 1.2rem !important;
             }
             .main-title, .sidebar-title {
-                margin-bottom: 0.6rem !important;
-                font-size: 0.95rem !important;
+                margin-bottom: 0.7rem !important;
+                font-size: 1rem !important;
             }
             .timeline-item {
-                margin-bottom: 0.8rem !important;
+                margin-bottom: 1rem !important;
+            }
+            .item-title {
+                font-size: 1.05rem !important;
+            }
+            .bullet-list li {
+                font-size: 0.95rem !important;
+            }
+            .item-desc {
+                font-size: 0.95rem !important;
+            }
+            .profile-summary {
+                font-size: 1rem !important;
             }
             .skill-tag {
                 background: #1E293B !important;
                 color: #38BDF8 !important;
                 border: 1px solid rgba(56, 189, 248, 0.3) !important;
+                font-size: 0.82rem !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
@@ -451,6 +467,9 @@
                 border: 1px solid #00F2FE !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
+            }
+            .info-list {
+                font-size: 0.95rem !important;
             }
         }
 
@@ -527,16 +546,16 @@
 
                 <!-- Stack Technique & IA -->
                 <section>
-                    <h3 class="sidebar-title" data-i18n="cv_title_ai"><i class="fa-solid fa-microchip"></i> IA &amp; LLM</h3>
+                    <h3 class="sidebar-title" data-i18n="cv_title_ai"><i class="fa-solid fa-microchip"></i> IA &amp; LLM STACK</h3>
                     <div class="skill-group">
                         <div class="skill-tags">
-                            <span class="skill-tag" style="border-color: #38BDF8; color: #38BDF8; font-weight: 700;">Google Antigravity</span>
+                            <span class="skill-tag" style="border-color: #38BDF8; color: #38BDF8; font-weight: 700;">Google Antigravity IDE</span>
                             <span class="skill-tag">Google Gemma 4 (12B)</span>
                             <span class="skill-tag">Gemini 2.5 / 1.5 Pro</span>
                             <span class="skill-tag">Google TabFM (Tabular)</span>
                             <span class="skill-tag">LangGraph Multi-Agents</span>
                             <span class="skill-tag">Firebase Genkit</span>
-                            <span class="skill-tag">Neo4j GraphRAG (N10S)</span>
+                            <span class="skill-tag">Neo4j GraphRAG (N10S) — Agent K1</span>
                         </div>
                     </div>
                 </section>
@@ -573,7 +592,7 @@
                     <h3 class="sidebar-title"><i class="fa-solid fa-shield-halved"></i> Sécurité &amp; Audit</h3>
                     <div class="skill-group">
                         <div class="skill-tags">
-                            <span class="skill-tag">Quorum 4 Yeux (KOA+AZIZ)</span>
+                            <span class="skill-tag">Gouvernance Quorum 4 Yeux</span>
                             <span class="skill-tag">OKF v0.2 SHA-256 No-LLM</span>
                             <span class="skill-tag">EU AI Act (RSASSA-PSS)</span>
                             <span class="skill-tag">Cadre AVSEC (Annexe 17 OACI)</span>
@@ -752,7 +771,7 @@
             en: {
                 subtitle: "Lead AI Engineer & Data Architect | Founder @ Archi Cam AI",
                 badge: '<i class="fa-solid fa-award"></i> Official Applicant - Google Africa Applied AI Lab',
-                title_ai: '<i class="fa-solid fa-microchip"></i> AI & LLM Stack',
+                title_ai: '<i class="fa-solid fa-microchip"></i> AI &amp; LLM STACK',
                 title_data: '<i class="fa-solid fa-database"></i> Data & Graphs',
                 title_dev: '<i class="fa-solid fa-code"></i> Dev & MLOps',
                 title_lang: '<i class="fa-solid fa-language"></i> Languages',
