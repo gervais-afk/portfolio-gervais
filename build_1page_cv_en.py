@@ -12,7 +12,7 @@ def set_cell_background(cell, fill_color):
     shd = parse_xml(f'<w:shd {nsdecls("w")} w:fill="{fill_color}"/>')
     tcPr.append(shd)
 
-def set_cell_margins(cell, top=60, bottom=60, left=120, right=120):
+def set_cell_margins(cell, top=80, bottom=80, left=110, right=110):
     tcPr = cell._tc.get_or_add_tcPr()
     tcMar = OxmlElement('w:tcMar')
     for m, val in [('top', top), ('bottom', bottom), ('left', left), ('right', right)]:
@@ -39,12 +39,12 @@ def remove_table_borders(table):
 def generate_exact_user_1page_cv_en():
     doc = Document()
 
-    # Ultra-compact 1-page margins (0.2 inch / ~0.5 cm)
+    # Premium calibrated 1-page margins (0.28 inch / ~0.7 cm)
     for s in doc.sections:
-        s.top_margin = Inches(0.2)
-        s.bottom_margin = Inches(0.2)
-        s.left_margin = Inches(0.2)
-        s.right_margin = Inches(0.2)
+        s.top_margin = Inches(0.28)
+        s.bottom_margin = Inches(0.25)
+        s.left_margin = Inches(0.25)
+        s.right_margin = Inches(0.25)
 
     style_normal = doc.styles['Normal']
     style_normal.font.name = 'Segoe UI'
@@ -66,22 +66,22 @@ def generate_exact_user_1page_cv_en():
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     remove_table_borders(table)
 
-    col_widths = [Inches(2.3), Inches(5.3)]
+    col_widths = [Inches(2.35), Inches(5.35)]
 
     # ==================== CELL 0 (SIDEBAR LEFT) ====================
     c0 = table.cell(0, 0)
     c0.width = col_widths[0]
     set_cell_background(c0, SIDEBAR_FILL)
-    set_cell_margins(c0, top=100, bottom=100, left=120, right=120)
+    set_cell_margins(c0, top=90, bottom=90, left=110, right=90)
 
     # Photo Box
     photo_path = r"c:\Users\HP\Desktop\portfolio-gervais\assets\images\profile_headshot_circular.jpeg"
     photo_box = c0.add_table(rows=1, cols=1)
     photo_box.alignment = WD_TABLE_ALIGNMENT.CENTER
     p_cell = photo_box.cell(0, 0)
-    p_cell.width = Inches(1.4)
+    p_cell.width = Inches(1.35)
     set_cell_background(p_cell, "1E293B")
-    set_cell_margins(p_cell, top=40, bottom=40, left=40, right=40)
+    set_cell_margins(p_cell, top=35, bottom=35, left=35, right=35)
     
     p_ph = p_cell.paragraphs[0]
     p_ph.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -91,35 +91,35 @@ def generate_exact_user_1page_cv_en():
     if os.path.exists(photo_path):
         try:
             r_ph = p_ph.add_run()
-            r_ph.add_picture(photo_path, width=Inches(1.3))
+            r_ph.add_picture(photo_path, width=Inches(1.25))
         except Exception:
-            r_ph = p_ph.add_run("📷 CV PHOTO")
-            r_ph.font.size = Pt(7)
+            r_ph = p_ph.add_run("📷 PHOTO CV")
+            r_ph.font.size = Pt(7.5)
             r_ph.font.bold = True
             r_ph.font.color.rgb = CYAN_BLUE_HEADER
     else:
-        r_ph = p_ph.add_run("📷 CV PHOTO")
-        r_ph.font.size = Pt(7)
+        r_ph = p_ph.add_run("📷 PHOTO CV")
+        r_ph.font.size = Pt(7.5)
         r_ph.font.bold = True
         r_ph.font.color.rgb = CYAN_BLUE_HEADER
 
     def add_sb_h(cell, text):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(5)
-        p.paragraph_format.space_after = Pt(1)
+        p.paragraph_format.space_before = Pt(6.5)
+        p.paragraph_format.space_after = Pt(1.5)
         r = p.add_run(text.upper())
         r.font.name = 'Segoe UI Semibold'
         r.font.bold = True
-        r.font.size = Pt(8.5)
+        r.font.size = Pt(8)
         r.font.color.rgb = CYAN_BLUE_HEADER
 
     def add_sb_t(cell, icon_txt):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after = Pt(1)
+        p.paragraph_format.space_after = Pt(1.2)
         p.paragraph_format.line_spacing = 1.05
         r = p.add_run(icon_txt)
-        r.font.size = Pt(7.5)
+        r.font.size = Pt(7.2)
         r.font.color.rgb = ICE_WHITE_TEXT
 
     add_sb_h(c0, "CONTACT")
@@ -152,18 +152,18 @@ def generate_exact_user_1page_cv_en():
 
     add_sb_h(c0, "LANGUAGES")
     add_sb_t(c0, "French (Native)")
-    add_sb_t(c0, "English (Professional / Tech)")
+    add_sb_t(c0, "English (Technical / Pro)")
 
     add_sb_h(c0, "KEY ASSETS")
     add_sb_t(c0, "◈ Dual Competence AI & Civil Eng.")
-    add_sb_t(c0, "◈ Aviation Security & Risk (AVSEC)")
-    add_sb_t(c0, "◈ Strict Math Guardrails & 0 Hallucination")
+    add_sb_t(c0, "◈ Risk Management & AVSEC (CCAA)")
+    add_sb_t(c0, "◈ Math Rigor & Strict AI Guardrails")
 
     # ==================== CELL 1 (MAIN COLUMN RIGHT) ====================
     c1 = table.cell(0, 1)
     c1.width = col_widths[1]
     set_cell_background(c1, MAIN_FILL)
-    set_cell_margins(c1, top=100, bottom=100, left=140, right=100)
+    set_cell_margins(c1, top=90, bottom=90, left=130, right=70)
 
     p_m01 = c1.paragraphs[0]
     p_m01.paragraph_format.space_before = Pt(0)
@@ -176,9 +176,9 @@ def generate_exact_user_1page_cv_en():
 
     p_sub = c1.add_paragraph()
     p_sub.paragraph_format.space_before = Pt(0)
-    p_sub.paragraph_format.space_after = Pt(1)
+    p_sub.paragraph_format.space_after = Pt(1.5)
     r_sb = p_sub.add_run("Lead AI Engineer & Data Architect   │   Founder @ Archi Cam AI")
-    r_sb.font.size = Pt(8.5)
+    r_sb.font.size = Pt(8.2)
     r_sb.font.bold = True
     r_sb.font.color.rgb = OCEAN_BLUE
 
@@ -186,7 +186,7 @@ def generate_exact_user_1page_cv_en():
     p_dec.paragraph_format.space_before = Pt(0)
     p_dec.paragraph_format.space_after = Pt(3)
     r_d = p_dec.add_run("─── ◈ ────────────────────────────────────────────────────────── ◈ ───")
-    r_d.font.size = Pt(7)
+    r_d.font.size = Pt(6.5)
     r_d.font.color.rgb = OCEAN_BLUE
 
     def add_mn_h(cell, title):
@@ -195,23 +195,23 @@ def generate_exact_user_1page_cv_en():
         p.paragraph_format.space_after = Pt(1.5)
         r1 = p.add_run("◈  ")
         r1.font.bold = True
-        r1.font.size = Pt(8.5)
+        r1.font.size = Pt(8)
         r1.font.color.rgb = OCEAN_BLUE
         r2 = p.add_run(title.upper())
         r2.font.name = 'Segoe UI'
         r2.font.bold = True
-        r2.font.size = Pt(9)
+        r2.font.size = Pt(8.5)
         r2.font.color.rgb = NAVY_TITLE
 
     add_mn_h(c1, "EXECUTIVE SUMMARY")
     p_pr = c1.add_paragraph()
     p_pr.paragraph_format.space_before = Pt(0)
-    p_pr.paragraph_format.space_after = Pt(3)
-    p_pr.paragraph_format.line_spacing = 1.05
+    p_pr.paragraph_format.space_after = Pt(2.5)
+    p_pr.paragraph_format.line_spacing = 1.06
     r_pr = p_pr.add_run(
-        "Lead AI Engineer & Data Architect specializing in sovereign autonomous agents, Neo4j GraphRAG, and deterministic civil engineering software. Founder of Archi Cam AI (official applicant for Google Africa Applied AI Lab), bridging multi-agent orchestration with strict mathematical compliance (BAEL 91, ICAO Annex 17) and production MLOps."
+        "Lead AI Engineer & Data Architect specializing in sovereign autonomous agents, Neo4j GraphRAG, and deterministic civil engineering software. Founder of Archi Cam AI (official candidate for Google Africa Applied AI Lab), bridging multi-agent orchestration with strict mathematical compliance (BAEL 91, ICAO Annex 17) and production MLOps."
     )
-    r_pr.font.size = Pt(8)
+    r_pr.font.size = Pt(7.6)
     r_pr.font.color.rgb = BODY_DARK
 
     add_mn_h(c1, "FLAGSHIP AI PROJECTS")
@@ -222,25 +222,26 @@ def generate_exact_user_1page_cv_en():
         p.paragraph_format.space_after = Pt(0.5)
         r1 = p.add_run(name + "  ")
         r1.font.bold = True
-        r1.font.size = Pt(8.5)
+        r1.font.size = Pt(8)
         r1.font.color.rgb = NAVY_TITLE
         
         r2 = p.add_run("–  " + sub_badge)
         r2.font.italic = True
-        r2.font.size = Pt(7.5)
+        r2.font.size = Pt(7.2)
         r2.font.color.rgb = OCEAN_BLUE
 
         for b in bullets:
             bp = cell.add_paragraph()
             bp.paragraph_format.space_before = Pt(0)
-            bp.paragraph_format.space_after = Pt(0.5)
+            bp.paragraph_format.space_after = Pt(0.8)
+            bp.paragraph_format.line_spacing = 1.05
             bp.paragraph_format.left_indent = Inches(0.1)
             rb_ico = bp.add_run("▸  ")
             rb_ico.font.bold = True
-            rb_ico.font.size = Pt(7.5)
+            rb_ico.font.size = Pt(7.2)
             rb_ico.font.color.rgb = OCEAN_BLUE
             rb_txt = bp.add_run(b)
-            rb_txt.font.size = Pt(7.5)
+            rb_txt.font.size = Pt(7.2)
             rb_txt.font.color.rgb = BODY_DARK
 
     add_proj_compact(
@@ -248,9 +249,18 @@ def generate_exact_user_1page_cv_en():
         "Archi Cam AI",
         "Agentic AI & 5D BIM SaaS",
         [
-            "Official candidate for Google Africa Applied AI Lab (Accra, Ghana). Sovereign 5D BIM & BOQ estimation platform.",
-            "Combines local Google Gemma 4 12B QAT, Gemini 1.5 Pro, and deterministic Python Sandbox (IfcOpenShell, BAEL 91).",
-            "Automates 6-sheet NDA Excel BOQs in <45s (-99.2% time) and synthesizes 3D renders via Imagen 3.0 + ControlNet."
+            "Candidate Google Africa Applied AI Lab. 5D BIM & BOQ estimation (local Gemma 4 12B, Gemini, BAEL 91).",
+            "Automated Excel BOQs in <45s (-99.2% time, MLflow R²=0.9872) and 3D renders via Imagen 3 + ControlNet."
+        ]
+    )
+
+    add_proj_compact(
+        c1,
+        "K1-MATHINFO (v3.0.0)",
+        "Sovereign Multi-Agent AI & OKF Certification",
+        [
+            "Sovereign DMI system (Univ. of Ngaoundéré): 470 theses, 19 M1 projects, Neo4j graph of 1,366 nodes / 3,833 edges.",
+            "6-agent LangGraph network, hybrid retrieval (RRF k=60 + Cross-Encoder), SHA-256 No-LLM cert, 77/77 tests (100%)."
         ]
     )
 
@@ -259,9 +269,8 @@ def generate_exact_user_1page_cv_en():
         "Sovereign.BI Agentic",
         "Enterprise Security & Agentic BI",
         [
-            "Sovereign natural language query engine for complex enterprise SQL & Graph databases.",
-            "TypeScript Orchestrator architecture, Neo4j N10S (GraphRAG), and FastAPI/PostgreSQL backend.",
-            "Enforces dynamic ABAC guardrails and anti-hallucination explainability via SHAP Sentinel."
+            "Sovereign natural language query engine for enterprise SQL/Graph databases (PostgreSQL pgvector, Neo4j, <5s latency).",
+            "Enforces dynamic ABAC security guardrails and explainability certified via SHAP Sentinel game theory auditor."
         ]
     )
 
@@ -270,8 +279,8 @@ def generate_exact_user_1page_cv_en():
         "Dataset Automator & VigieSahel",
         "MLOps Pipeline & Climate AI Impact",
         [
-            "Dataset Automator: Time-series evaluation RAG pipeline (Neo4j, MLflow tracking, Firebase Genkit).",
-            "VigieSahel: Predictive ML platform for agro-climatic sowing optimization & health outbreak tracking (R² > 0.94)."
+            "Dataset Automator: Autonomous MLOps factory with continuous Data Drift tracking (KS-test / PSI), MLflow and Genkit.",
+            "VigieSahel: Predictive ML for epidemic forecasting & crop sowing optimization (-35% loss, XGBoost R²>94%, Supabase)."
         ]
     )
 
@@ -283,33 +292,34 @@ def generate_exact_user_1page_cv_en():
         p.paragraph_format.space_after = Pt(0.5)
         r1 = p.add_run(title + "  ")
         r1.font.bold = True
-        r1.font.size = Pt(8.5)
+        r1.font.size = Pt(8)
         r1.font.color.rgb = NAVY_TITLE
 
         r2 = p.add_run(f"({period})")
         r2.font.italic = True
-        r2.font.size = Pt(7.5)
+        r2.font.size = Pt(7.2)
         r2.font.color.rgb = OCEAN_BLUE
 
         p2 = cell.add_paragraph()
         p2.paragraph_format.space_before = Pt(0)
-        p2.paragraph_format.space_after = Pt(0.5)
+        p2.paragraph_format.space_after = Pt(0.8)
         r3 = p2.add_run(company)
         r3.font.bold = True
-        r3.font.size = Pt(7.5)
+        r3.font.size = Pt(7.2)
         r3.font.color.rgb = SUBTLE_TEXT
 
         for b in bullets:
             bp = cell.add_paragraph()
             bp.paragraph_format.space_before = Pt(0)
-            bp.paragraph_format.space_after = Pt(0.5)
+            bp.paragraph_format.space_after = Pt(0.8)
+            bp.paragraph_format.line_spacing = 1.05
             bp.paragraph_format.left_indent = Inches(0.1)
             rb_ico = bp.add_run("▸  ")
             rb_ico.font.bold = True
-            rb_ico.font.size = Pt(7.5)
+            rb_ico.font.size = Pt(7.2)
             rb_ico.font.color.rgb = OCEAN_BLUE
             rb_txt = bp.add_run(b)
-            rb_txt.font.size = Pt(7.5)
+            rb_txt.font.size = Pt(7.2)
             rb_txt.font.color.rgb = BODY_DARK
 
     add_job_compact(
@@ -318,10 +328,8 @@ def generate_exact_user_1page_cv_en():
         "2025 – Present",
         "Independent Projects & Enterprises  │  Douala, CM",
         [
-            "Guiding enterprises in deploying sovereign local AI agents and private data processing pipelines.",
-            "Exploratory data analysis and preprocessing of high-dimensional complex datasets.",
-            "Knowledge graph modeling (Neo4j Cypher) and end-to-end GraphRAG pipeline development.",
-            "Designing PostgreSQL relational schema and interactive executive reporting dashboards."
+            "Guiding enterprises in deploying sovereign private AI agents, Neo4j GraphRAG pipelines, and PostgreSQL databases.",
+            "High-dimensional exploratory data analysis, predictive modeling, and executive interactive decision dashboards."
         ]
     )
 
@@ -331,45 +339,45 @@ def generate_exact_user_1page_cv_en():
         "2018 – Present",
         "CCAA (Cameroon Civil Aviation Authority)",
         [
-            "Critical threat assessment, security inspections, and access control management (ICAO Annex 17).",
-            "Drafting regulatory security compliance reports and coordinating operational field emergency response."
+            "Operational threat assessment, secure access control, and regulatory compliance audits (ICAO Annex 17).",
+            "Critical aviation security reporting and field emergency operational crisis response coordination."
         ]
     )
 
     add_mn_h(c1, "EDUCATION & CERTIFICATIONS")
 
-    def add_edu_compact(cell, degree, period, school, note=""):
+    def add_edu_compact(cell, degree, period, school, note=None):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(1.5)
+        p.paragraph_format.space_before = Pt(2.5)
         p.paragraph_format.space_after = Pt(0.5)
         r1 = p.add_run(degree + "  ")
         r1.font.bold = True
-        r1.font.size = Pt(8.5)
+        r1.font.size = Pt(8)
         r1.font.color.rgb = NAVY_TITLE
 
         r2 = p.add_run(f"({period})")
         r2.font.italic = True
-        r2.font.size = Pt(7.5)
+        r2.font.size = Pt(7.2)
         r2.font.color.rgb = OCEAN_BLUE
 
         if note:
-            r_nt = p.add_run(f"   [{note}]")
+            r_nt = p.add_run(f"  [{note}]")
             r_nt.font.bold = True
-            r_nt.font.size = Pt(7.5)
+            r_nt.font.size = Pt(6.8)
             r_nt.font.color.rgb = OCEAN_BLUE
 
         p2 = cell.add_paragraph()
         p2.paragraph_format.space_before = Pt(0)
-        p2.paragraph_format.space_after = Pt(0.5)
+        p2.paragraph_format.space_after = Pt(0.8)
         r3 = p2.add_run(school)
-        r3.font.size = Pt(7.5)
+        r3.font.size = Pt(7.2)
         r3.font.color.rgb = SUBTLE_TEXT
 
     add_edu_compact(
         c1,
         "Master of Science in Applied Artificial Intelligence",
         "2025 – 2027",
-        "University of Ngaoundéré  │  Graph Modeling (Neo4j), MLOps, Prompt Engineering & LLM Architecture",
+        "University of Ngaoundéré  │  Knowledge Graphs (Neo4j), MLOps, Prompt Engineering & LLM Architecture",
         note="In Progress"
     )
     
@@ -377,45 +385,32 @@ def generate_exact_user_1page_cv_en():
         c1,
         "Bachelor of Science in Civil Engineering (Building Option)",
         "2015 – 2016",
-        "ISTDI / IUC Douala  │  Structural Calculations (BAEL 91), Quantity Surveying & Construction Project Management"
+        "ISTDI / IUC Douala  │  Structural Calculations (BAEL 91), Quantity Surveying & Construction Management"
     )
 
-    # Word output paths
-    f_exec_docx = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EXECUTIVE_EN.docx"
-    f_main_docx = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EN.docx"
+    # Output paths
+    f_en_docx = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EN.docx"
     
     try:
-        doc.save(f_exec_docx)
+        doc.save(f_en_docx)
+        print(f"Saved: {f_en_docx}")
     except Exception as e:
-        print(f"Exec docx save error: {e}")
-
-    try:
-        doc.save(f_main_docx)
-    except Exception as e:
-        print(f"Main docx save error: {e}")
-
-    print(f"Generated English Word CVs successfully.")
+        print(f"Error saving {f_en_docx}: {e}")
 
     # Export to PDF via Word COM
     try:
         import win32com.client
         word = win32com.client.Dispatch("Word.Application")
         word.Visible = False
-        
-        pdf_exec = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EXECUTIVE_EN.pdf"
-        pdf_main = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf"
+        word.DisplayAlerts = 0
 
-        # Export EXECUTIVE
-        if os.path.exists(f_exec_docx):
-            doc_com = word.Documents.Open(f_exec_docx)
-            doc_com.SaveAs(pdf_exec, FileFormat=17) # 17 = wdFormatPDF
-            doc_com.Close()
+        pdf_en = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf"
 
-        # Export MAIN
-        if os.path.exists(f_main_docx):
-            doc_com = word.Documents.Open(f_main_docx)
-            doc_com.SaveAs(pdf_main, FileFormat=17)
+        if os.path.exists(f_en_docx):
+            doc_com = word.Documents.Open(os.path.abspath(f_en_docx))
+            doc_com.SaveAs(os.path.abspath(pdf_en), FileFormat=17) # 17 = wdFormatPDF
             doc_com.Close()
+            print(f"Exported PDF: {pdf_en}")
 
         word.Quit()
         print("Generated English PDF files successfully via Word COM!")

@@ -237,22 +237,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 github: "https://github.com/gervais-afk/VigieSahel"
             },
             'k1-mathinfo': {
-                badge: "IA Souveraine, GraphRAG & Certification Scientifique (DMI - Université de Ngaoundéré)",
-                title: "K1-MATHINFO (v2.5+) 🏛️",
-                subtitle: "Infrastructure souveraine d'IA académique, modélisation de 28 ans de recherche & certification déterministe.",
+                badge: "IA Souveraine Multi-Agents, GraphRAG & Certification OKF (DMI - Université de Ngaoundéré)",
+                title: "K1-MATHINFO (v3.0.0) 🏛️",
+                subtitle: "Infrastructure souveraine d'IA multi-agents académique, valorisant 28 ans de recherche & certification déterministe No-LLM.",
                 pipeline: [
-                    { num: "Étape 01", title: "Ingestion & Parseur Normalisé", desc: "Extraction et segmentation automatisée de 451 thèses, métadonnées Dublin Core, formules LaTeX et détection des tables." },
-                    { num: "Étape 02", title: "Graphe Topologique Neo4j & pgvector", desc: "Modélisation de 1 366 nœuds et 3 833 relations généalogiques (encadrements, jurys, algorithmes, théorèmes) + index HNSW 384d." },
-                    { num: "Étape 03", title: "Recherche Hybride Multi-Stage (RRF k=60)", desc: "Fusion réciproque dense/sparse (BM25 + pgvector), re-ranking Cross-Encoder et boost taxonomique DMI (β=0.35)." },
-                    { num: "Étape 04", title: "Certification OKF v0.2 & Auditeur Bibliographique", desc: "Attesteur Cypher SHA-256 No-LLM (Tier 1/2/3), audit anti-hallucination Waterfall (DMI -> Semantic Scholar -> Crossref) et interopérabilité OAI-PMH v2.0." }
+                    { num: "Étape 01", title: "Ingestion Streaming SSE (5 Étapes)", desc: "Visualiseur d'ingestion en temps réel avec Stepper animé, console terminal de logs et découpage normatif de 470 thèses et 19 projets M1." },
+                    { num: "Étape 02", title: "Graphe Topologique Neo4j & pgvector", desc: "Modélisation de 1 366 nœuds et 3 833 relations généalogiques (encadrements, jurys, algorithmes, théorèmes) + index dense HNSW 384d." },
+                    { num: "Étape 03", title: "Recherche Hybride Multi-Stage (RRF k=60)", desc: "Fusion réciproque dense/sparse (BM25 + pgvector), re-ranking Cross-Encoder et boost taxonomique DMI (β=0.35) sous <450 tokens." },
+                    { num: "Étape 04", title: "Certification OKF v0.2 & Auditeur Bibliographique", desc: "Attesteur Cypher SHA-256 No-LLM (Tier 1/2/3), audit anti-citations fantômes Waterfall (DMI -> Semantic Scholar -> Crossref) et interopérabilité OAI-PMH." },
+                    { num: "Étape 05", title: "Réseau Multi-Agents & Quorum 4 Yeux", desc: "Orchestration LangGraph de 6 agents spécialisés (Superviseur, GraphRAG, Math, Biblio, OKF, FactChecker) sous gouvernance symétrique KOA + AZIZ." }
                 ],
                 impacts: [
-                    "Élimination totale des hallucinations académiques grâce à la certification déterministe cryptographique OKF v0.2 SHA-256.",
-                    "Valorisation de 28 ans de patrimoine scientifique (1997–2025) : 451 thèses et mémoires et 18 projets d'application M1 indexés.",
-                    "Auditeur bibliographique en cascade détectant automatiquement les références fictives (« citations fantômes ») avec résolution DOI/arXiv en temps réel.",
-                    "Excellence logicielle & gouvernance : 68 tests automatisés (100% passés), cache Redis 7 (<3ms) et gouvernance symétrique (Quorum 4 Yeux KOA + AZIZ)."
+                    "Élimination absolue des hallucinations académiques par empreinte cryptographique SHA-256 (OKF v0.2 No-LLM).",
+                    "Valorisation intégrale de 28 ans de patrimoine scientifique (1997–2026) : 470 thèses et mémoires et 19 projets d'application M1 indexés.",
+                    "Auditeur bibliographique en cascade avec vérification instantanée DOI/arXiv pour éradiquer les citations fantômes.",
+                    "Gouvernance sécurisée & fiabilité logicielle : 77 tests automatisés (100% de succès), cache Redis 7 (<3ms) et Quorum de sécurité 4 Yeux (KOA + AZIZ)."
                 ],
-                techs: ["FastAPI 0.115", "Neo4j 5.26 GraphRAG", "Redis 7 Lua", "PostgreSQL pgvector", "OKF v0.2 SHA-256", "LangGraph FSM", "Cross-Encoder", "OAI-PMH Dublin Core"],
+                techs: ["FastAPI 0.115", "LangGraph Multi-Agents", "Neo4j 5.26 GraphRAG", "Redis 7 Lua (<3ms)", "OKF v0.2 SHA-256", "PostgreSQL pgvector", "Cross-Encoder", "OAI-PMH Dublin Core"],
                 github: "https://github.com/gervais-afk/k1-mathinfo"
             }
         },
@@ -349,22 +350,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 github: "https://github.com/gervais-afk/VigieSahel"
             },
             'k1-mathinfo': {
-                badge: "Sovereign AI, GraphRAG & Academic Certification (DMI - University of Ngaoundéré)",
-                title: "K1-MATHINFO (v2.5+) 🏛️",
-                subtitle: "Sovereign academic AI infrastructure, modeling 28 years of research & deterministic knowledge certification.",
+                badge: "Sovereign Multi-Agent AI, GraphRAG & Academic Certification (DMI - University of Ngaoundéré)",
+                title: "K1-MATHINFO (v3.0.0) 🏛️",
+                subtitle: "Sovereign multi-agent academic AI infrastructure, modeling 28 years of scientific research & deterministic No-LLM certification.",
                 pipeline: [
-                    { num: "Step 01", title: "Ingestion & Standardized Parser", desc: "Automated extraction and chunking of 451 theses, Dublin Core metadata, LaTeX formulas, and table detection." },
-                    { num: "Step 02", title: "Neo4j Knowledge Graph & pgvector", desc: "Modeling of 1,366 nodes and 3,833 genealogical relationships (advisors, juries, algorithms, theorems) + 384d HNSW index." },
-                    { num: "Step 03", title: "Multi-Stage Hybrid Search (RRF k=60)", desc: "Reciprocal Rank Fusion combining dense pgvector and sparse BM25, Cross-Encoder re-ranking, and DMI taxonomy boost (β=0.35)." },
-                    { num: "Step 04", title: "OKF v0.2 Certification & Citation Audit", desc: "No-LLM Cypher SHA-256 certifier (Tiers 1/2/3), Waterfall anti-hallucination auditor (DMI -> Semantic Scholar -> Crossref), and OAI-PMH v2.0 export." }
+                    { num: "Step 01", title: "5-Stage SSE Streaming Ingestion", desc: "Real-time ingestion visualizer with animated stepper, live terminal logs console, and chunking across 470 theses and 19 M1 applied projects." },
+                    { num: "Step 02", title: "Neo4j Knowledge Graph & pgvector", desc: "Modeling 1,366 nodes and 3,833 genealogical relationships (advisors, juries, algorithms, theorems) + 384d HNSW dense index." },
+                    { num: "Step 03", title: "Multi-Stage Hybrid Search (RRF k=60)", desc: "Reciprocal Rank Fusion combining dense pgvector and sparse BM25, Cross-Encoder re-ranking, and DMI taxonomy boost (β=0.35) under <450 tokens." },
+                    { num: "Step 04", title: "OKF v0.2 Certification & Citation Audit", desc: "No-LLM Cypher SHA-256 certifier (Tiers 1/2/3), Waterfall anti-hallucination auditor (DMI -> Semantic Scholar -> Crossref), and OAI-PMH export." },
+                    { num: "Step 05", title: "Multi-Agent Network & 4-Eyes Quorum", desc: "LangGraph orchestration of 6 specialized agents (Supervisor, GraphRAG, Math, Biblio, OKF, FactChecker) under symmetric KOA + AZIZ quorum security." }
                 ],
                 impacts: [
-                    "Zero academic hallucination guaranteed by deterministic OKF v0.2 SHA-256 cryptographic certification.",
-                    "Capitalization of 28 years of scientific heritage (1997–2025): 451 theses and 18 M1 applied projects fully indexed.",
-                    "Waterfall bibliographic auditor automatically detecting fake/ghost citations with real-time DOI & arXiv resolution.",
-                    "Engineering excellence & governance: 68 automated unit tests (100% passed), Redis 7 fast cache (<3ms), and symmetric 4-eyes quorum security."
+                    "Absolute elimination of academic hallucinations through deterministic OKF v0.2 SHA-256 cryptographic verification.",
+                    "Capitalization of 28 years of scientific heritage (1997–2026): 470 theses & dissertations and 19 M1 applied projects indexed.",
+                    "Waterfall bibliographic auditor detecting fake/ghost references with real-time DOI & arXiv verification.",
+                    "Engineering excellence & rigorous governance: 77 automated unit tests (100% passing), Redis 7 fast cache (<3ms), and 4-eyes quorum security."
                 ],
-                techs: ["FastAPI 0.115", "Neo4j 5.26 GraphRAG", "Redis 7 Lua", "PostgreSQL pgvector", "OKF v0.2 SHA-256", "LangGraph FSM", "Cross-Encoder", "OAI-PMH Dublin Core"],
+                techs: ["FastAPI 0.115", "LangGraph Multi-Agents", "Neo4j 5.26 GraphRAG", "Redis 7 Lua (<3ms)", "OKF v0.2 SHA-256", "PostgreSQL pgvector", "Cross-Encoder", "OAI-PMH Dublin Core"],
                 github: "https://github.com/gervais-afk/k1-mathinfo"
             }
         }
