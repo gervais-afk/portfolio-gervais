@@ -280,11 +280,13 @@ const translations = {
         cv_e1_title: 'Master professionnel intelligence artificielle appliquée <small style="color: #0284C7; font-weight: 700; background: rgba(2,132,199,0.1); padding: 0.15rem 0.5rem; border-radius: 6px; margin-left: 0.4rem;">(En cours d\'obtention)</small>',
         cv_e1_date: "2025 - 2027",
         cv_e1_school: "Université de Ngaoundéré",
-        cv_e1_desc: "Spécialisation en Modélisation de Graphes (Neo4j), MLOps, Prompt Engineering & LLM.",
+        cv_e1_desc: "Programme d'Excellence (5 Blocs) : Machine Learning & Statistique Bayésienne, Ingénierie des Données & Graphes Neo4j, Vision par Ordinateur & Robotique/IHM, Cybersécurité & Blockchain, Projets MLOps Souverains & Déploiement Production.",
         cv_e2_title: "Licence & BTS Génie Civil (Option Bâtiment)",
         cv_e2_date: "2015 - 2016",
         cv_e2_school: "ISTDI / IUC Douala",
-        cv_e2_desc: "Dimensionnement de structures (BAEL 91), calculs de métrés et gestion de projets BTP."
+        cv_e2_desc: "Dimensionnement de structures (BAEL 91), calculs de métrés et gestion de projets BTP.",
+        cv_title_honors: '<i class="fa-solid fa-award"></i> Reconnaissances & Candidatures',
+        cv_h1_text: "<strong>◈ Google Africa Applied AI Lab (Accra, 2026) :</strong> Candidature officielle portée par la plateforme Archi Cam AI.<br><strong>◈ Hackathon Google Cloud #AllThingsAgentic :</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT)."
     },
 
     en: {
@@ -563,10 +565,12 @@ const translations = {
         cv_e1_title: 'Master of Science in Applied Artificial Intelligence <small style="color: #0284C7; font-weight: 700; background: rgba(2,132,199,0.1); padding: 0.15rem 0.5rem; border-radius: 6px; margin-left: 0.4rem;">(In Progress)</small>',
         cv_e1_date: "2025 - 2027",
         cv_e1_school: "University of Ngaoundéré",
-        cv_e1_desc: "Graph Modeling (Neo4j), MLOps, Prompt Engineering & LLM Architecture.",
+        cv_e1_desc: "Excellence Curriculum (5 Blocs): Machine Learning & Bayesian Statistics, Data Engineering & Neo4j Knowledge Graphs, Computer Vision & Robotics/HCI, Cybersecurity & Blockchain, Production Sovereign MLOps Deployment.",
         cv_e2_title: "Bachelor of Science in Civil Engineering (Building Option)",
         cv_e2_date: "2015 - 2016",
         cv_e2_school: "ISTDI / IUC Douala",
-        cv_e2_desc: "Structural Calculations (BAEL 91), Quantity Surveying & Construction Project Management."
+        cv_e2_desc: "Structural Calculations (BAEL 91), Quantity Surveying & Construction Project Management.",
+        cv_title_honors: '<i class="fa-solid fa-award"></i> Honors & Applied AI Recognitions',
+        cv_h1_text: "<strong>◈ Google Africa Applied AI Lab (Accra, 2026):</strong> Official candidacy supported by Archi Cam AI platform.<br><strong>◈ Google Cloud #AllThingsAgentic Hackathon:</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT)."
     }
 };

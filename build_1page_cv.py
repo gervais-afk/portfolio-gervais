@@ -12,7 +12,7 @@ def set_cell_background(cell, fill_color):
     shd = parse_xml(f'<w:shd {nsdecls("w")} w:fill="{fill_color}"/>')
     tcPr.append(shd)
 
-def set_cell_margins(cell, top=80, bottom=80, left=110, right=110):
+def set_cell_margins(cell, top=140, bottom=140, left=140, right=140):
     tcPr = cell._tc.get_or_add_tcPr()
     tcMar = OxmlElement('w:tcMar')
     for m, val in [('top', top), ('bottom', bottom), ('left', left), ('right', right)]:
@@ -36,15 +36,22 @@ def remove_table_borders(table):
     )
     tblPr.append(tblBorders)
 
+def set_table_zero_indent(table):
+    tblPr = table._tbl.tblPr
+    tblInd = parse_xml(f'<w:tblInd {nsdecls("w")} w:w="0" w:type="dxa"/>')
+    tblPr.append(tblInd)
+
 def generate_exact_user_1page_cv():
     doc = Document()
 
-    # Premium calibrated 1-page margins (0.28 inch / ~0.7 cm)
+    # FULL-BLEED A4 SETUP: Margins set to 0 on Left, Top, Right, Bottom
     for s in doc.sections:
-        s.top_margin = Inches(0.28)
-        s.bottom_margin = Inches(0.25)
-        s.left_margin = Inches(0.25)
-        s.right_margin = Inches(0.25)
+        s.page_width = Inches(8.27)    # Standard A4 width (210 mm)
+        s.page_height = Inches(11.69)  # Standard A4 height (297 mm)
+        s.top_margin = Inches(0)
+        s.bottom_margin = Inches(0)
+        s.left_margin = Inches(0)
+        s.right_margin = Inches(0)
 
     style_normal = doc.styles['Normal']
     style_normal.font.name = 'Segoe UI'
@@ -61,18 +68,25 @@ def generate_exact_user_1page_cv():
     BODY_DARK = RGBColor(0x33, 0x41, 0x55)          # Slate Text Body
     SUBTLE_TEXT = RGBColor(0x64, 0x74, 0x8B)        # Muted Slate
 
-    # STRICT SINGLE ROW (1 ROW x 2 COLUMNS) -> Fits on exactly 1 page
+    # STRICT SINGLE ROW (1 ROW x 2 COLUMNS)
     table = doc.add_table(rows=1, cols=2)
-    table.alignment = WD_TABLE_ALIGNMENT.CENTER
+    table.alignment = WD_TABLE_ALIGNMENT.LEFT
+    set_table_zero_indent(table)
     remove_table_borders(table)
 
-    col_widths = [Inches(2.35), Inches(5.35)]
+    # Set row height to 16200 dxa to bleed to the bottom
+    row = table.rows[0]
+    trPr = row._tr.get_or_add_trPr()
+    trHeight = parse_xml(f'<w:trHeight {nsdecls("w")} w:val="16200" w:hRule="atLeast"/>')
+    trPr.append(trHeight)
 
-    # ==================== CELL 0 (SIDEBAR LEFT) ====================
+    col_widths = [Inches(2.55), Inches(5.72)]
+
+    # ==================== CELL 0 (SIDEBAR LEFT - FULL BLEED) ====================
     c0 = table.cell(0, 0)
     c0.width = col_widths[0]
     set_cell_background(c0, SIDEBAR_FILL)
-    set_cell_margins(c0, top=90, bottom=90, left=110, right=90)
+    set_cell_margins(c0, top=180, bottom=140, left=180, right=140)
 
     # Photo Box
     photo_path = r"c:\Users\HP\Desktop\portfolio-gervais\assets\images\profile_headshot_circular.jpeg"
@@ -81,7 +95,7 @@ def generate_exact_user_1page_cv():
     p_cell = photo_box.cell(0, 0)
     p_cell.width = Inches(1.35)
     set_cell_background(p_cell, "1E293B")
-    set_cell_margins(p_cell, top=35, bottom=35, left=35, right=35)
+    set_cell_margins(p_cell, top=25, bottom=25, left=25, right=25)
     
     p_ph = p_cell.paragraphs[0]
     p_ph.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -91,7 +105,7 @@ def generate_exact_user_1page_cv():
     if os.path.exists(photo_path):
         try:
             r_ph = p_ph.add_run()
-            r_ph.add_picture(photo_path, width=Inches(1.25))
+            r_ph.add_picture(photo_path, width=Inches(1.22))
         except Exception:
             r_ph = p_ph.add_run("📷 PHOTO CV")
             r_ph.font.size = Pt(7.5)
@@ -105,65 +119,75 @@ def generate_exact_user_1page_cv():
 
     def add_sb_h(cell, text):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(6.5)
-        p.paragraph_format.space_after = Pt(1.5)
+        p.paragraph_format.space_before = Pt(5)
+        p.paragraph_format.space_after = Pt(1.2)
         r = p.add_run(text.upper())
         r.font.name = 'Segoe UI Semibold'
         r.font.bold = True
-        r.font.size = Pt(8)
+        r.font.size = Pt(7.8)
         r.font.color.rgb = CYAN_BLUE_HEADER
 
     def add_sb_t(cell, icon_txt):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after = Pt(1.2)
+        p.paragraph_format.space_after = Pt(1.0)
         p.paragraph_format.line_spacing = 1.05
         r = p.add_run(icon_txt)
-        r.font.size = Pt(7.2)
+        r.font.size = Pt(7.0)
         r.font.color.rgb = ICE_WHITE_TEXT
 
-    add_sb_h(c0, "CONTACT")
+    add_sb_h(c0, "CONTACT & PROFILS")
     add_sb_t(c0, "✉  magenel85@gmail.com")
     add_sb_t(c0, "✆  +237 695 35 34 02")
     add_sb_t(c0, "⌂  Douala / Ngaoundéré, CM")
     add_sb_t(c0, "🌐  github.com/gervais-afk")
     add_sb_t(c0, "💼  linkedin.com/in/marie-gervais-koa")
+    add_sb_t(c0, "⚡  devpost.com/magenel85")
+    add_sb_t(c0, "🏅  Google Developer Program")
 
-    add_sb_h(c0, "IA & LLM")
-    add_sb_t(c0, "Google Gemma 4   ■ ■ ■ ■ ■")
-    add_sb_t(c0, "Gemini 1.5 Pro   ■ ■ ■ ■ ■")
-    add_sb_t(c0, "CrewAI/LangGraph ■ ■ ■ ■ ■")
-    add_sb_t(c0, "Firebase Genkit  ■ ■ ■ ■ ■")
-    add_sb_t(c0, "RAG / GraphRAG   ■ ■ ■ ■ ■")
+    add_sb_h(c0, "IA & LLM STACK")
+    add_sb_t(c0, "Google Gemma 4 (12B) ■ ■ ■ ■ ■")
+    add_sb_t(c0, "Gemini 2.5 / 1.5 Pro ■ ■ ■ ■ ■")
+    add_sb_t(c0, "Google TabFM (Tabular)■ ■ ■ ■ ■")
+    add_sb_t(c0, "LangGraph Multi-Agents■ ■ ■ ■ ■")
+    add_sb_t(c0, "Firebase Genkit      ■ ■ ■ ■ ■")
+    add_sb_t(c0, "Neo4j GraphRAG (N10S)■ ■ ■ ■ ■")
 
     add_sb_h(c0, "DATA & GRAPHES")
-    add_sb_t(c0, "Neo4j / Cypher      ■ ■ ■ ■ ■")
-    add_sb_t(c0, "PostgreSQL / SQL    ■ ■ ■ ■ ■")
-    add_sb_t(c0, "Supabase           ■ ■ ■ ■ □")
-    add_sb_t(c0, "Firebase Emulator  ■ ■ ■ ■ □")
-    add_sb_t(c0, "Pandas / NumPy     ■ ■ ■ ■ ■")
+    add_sb_t(c0, "Neo4j / Cypher Graph ■ ■ ■ ■ ■")
+    add_sb_t(c0, "PostgreSQL / pgvector■ ■ ■ ■ ■")
+    add_sb_t(c0, "Google BigQuery Data ■ ■ ■ ■ □")
+    add_sb_t(c0, "Supabase Realtime    ■ ■ ■ ■ □")
+    add_sb_t(c0, "Pandas / NumPy ETL   ■ ■ ■ ■ ■")
 
     add_sb_h(c0, "DEV & MLOPS")
-    add_sb_t(c0, "Python (BAEL 91)   ■ ■ ■ ■ ■")
-    add_sb_t(c0, "IfcOpenShell (5D)  ■ ■ ■ ■ □")
-    add_sb_t(c0, "FastAPI / Next.js  ■ ■ ■ ■ □")
-    add_sb_t(c0, "MLflow (MLOps)     ■ ■ ■ ■ □")
-    add_sb_t(c0, "Streamlit / Docker ■ ■ ■ ■ ■")
+    add_sb_t(c0, "Python (3.11+ MLOps) ■ ■ ■ ■ ■")
+    add_sb_t(c0, "FastAPI / Next.js 14 ■ ■ ■ ■ □")
+    add_sb_t(c0, "MLflow & Data Drift  ■ ■ ■ ■ □")
+    add_sb_t(c0, "SHAP Sentinel Audit  ■ ■ ■ ■ ■")
+    add_sb_t(c0, "Docker & Streamlit   ■ ■ ■ ■ ■")
+    add_sb_t(c0, "IfcOpenShell (5D BIM)■ ■ ■ ■ □")
+
+    add_sb_h(c0, "SÉCURITÉ & AUDIT")
+    add_sb_t(c0, "◈ Quorum 4 Yeux (KOA+AZIZ)")
+    add_sb_t(c0, "◈ OKF v0.2 SHA-256 No-LLM")
+    add_sb_t(c0, "◈ EU AI Act (RSASSA-PSS)")
+    add_sb_t(c0, "◈ Cadre AVSEC (Annexe 17 OACI)")
 
     add_sb_h(c0, "LANGUES")
-    add_sb_t(c0, "Français (Courant)")
-    add_sb_t(c0, "Anglais (Technique / Pro)")
+    add_sb_t(c0, "Français (Courant / Natif)")
+    add_sb_t(c0, "Anglais (Technique & Pro)")
 
     add_sb_h(c0, "ATOUTS CLÉS")
-    add_sb_t(c0, "◈ Double compétence IA & Génie Civil")
-    add_sb_t(c0, "◈ Sûreté & Gestion risques (AVSEC)")
-    add_sb_t(c0, "◈ Rigueur de calcul & Guardrails IA")
+    add_sb_t(c0, "◈ Double compétence IA & BTP")
+    add_sb_t(c0, "◈ Gestion de crise & Sûreté (CCAA)")
+    add_sb_t(c0, "◈ Rigueur mathématique & Guardrails")
 
-    # ==================== CELL 1 (MAIN COLUMN RIGHT) ====================
+    # ==================== CELL 1 (MAIN COLUMN RIGHT - WHITE) ====================
     c1 = table.cell(0, 1)
     c1.width = col_widths[1]
     set_cell_background(c1, MAIN_FILL)
-    set_cell_margins(c1, top=90, bottom=90, left=130, right=70)
+    set_cell_margins(c1, top=180, bottom=140, left=180, right=180)
 
     p_m01 = c1.paragraphs[0]
     p_m01.paragraph_format.space_before = Pt(0)
@@ -184,18 +208,18 @@ def generate_exact_user_1page_cv():
 
     p_dec = c1.add_paragraph()
     p_dec.paragraph_format.space_before = Pt(0)
-    p_dec.paragraph_format.space_after = Pt(3)
+    p_dec.paragraph_format.space_after = Pt(2.5)
     r_d = p_dec.add_run("─── ◈ ────────────────────────────────────────────────────────── ◈ ───")
     r_d.font.size = Pt(6.5)
     r_d.font.color.rgb = OCEAN_BLUE
 
     def add_mn_h(cell, title):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(5)
-        p.paragraph_format.space_after = Pt(1.5)
+        p.paragraph_format.space_before = Pt(4.5)
+        p.paragraph_format.space_after = Pt(1.2)
         r1 = p.add_run("◈  ")
         r1.font.bold = True
-        r1.font.size = Pt(8)
+        r1.font.size = Pt(7.8)
         r1.font.color.rgb = OCEAN_BLUE
         r2 = p.add_run(title.upper())
         r2.font.name = 'Segoe UI'
@@ -209,20 +233,20 @@ def generate_exact_user_1page_cv():
     p_pr.paragraph_format.space_after = Pt(2.5)
     p_pr.paragraph_format.line_spacing = 1.06
     r_pr = p_pr.add_run(
-        "Consultant IA & Lead AI Engineer, j'accompagne les entreprises dans la transformation de leurs données complexes en leviers décisionnels à forte valeur ajoutée. Spécialiste des Agents autonomes, du GraphRAG et de la Business Intelligence souveraine, je déploie des solutions étanches, déterministes et explicables. Fondateur d'Archi Cam AI (candidat Google Africa Applied AI Lab), j'allie rigueur d'ingénieur et vision produit."
+        "Consultant IA & Lead AI Engineer (Google Developer Program Member), j'accompagne les organisations dans la transformation de leurs données complexes en leviers décisionnels à haute valeur ajoutée. Spécialiste des architectures Multi-Agents autonomes, du GraphRAG (Neo4j) et de la Business Intelligence souveraine, je déploie des solutions étanches, déterministes et sans hallucination. Fondateur d'Archi Cam AI (candidat Google Africa Applied AI Lab), j'allie méthodologie d'ingénieur, rigueur mathématique et vision produit."
     )
-    r_pr.font.size = Pt(7.6)
+    r_pr.font.size = Pt(7.4)
     r_pr.font.color.rgb = BODY_DARK
 
     add_mn_h(c1, "PROJETS IA MAJEURS")
 
     def add_proj_compact(cell, name, sub_badge, bullets):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(2.5)
-        p.paragraph_format.space_after = Pt(0.5)
+        p.paragraph_format.space_before = Pt(2.2)
+        p.paragraph_format.space_after = Pt(0.4)
         r1 = p.add_run(name + "  ")
         r1.font.bold = True
-        r1.font.size = Pt(8)
+        r1.font.size = Pt(8.0)
         r1.font.color.rgb = NAVY_TITLE
         
         r2 = p.add_run("–  " + sub_badge)
@@ -233,15 +257,15 @@ def generate_exact_user_1page_cv():
         for b in bullets:
             bp = cell.add_paragraph()
             bp.paragraph_format.space_before = Pt(0)
-            bp.paragraph_format.space_after = Pt(0.8)
-            bp.paragraph_format.line_spacing = 1.05
-            bp.paragraph_format.left_indent = Inches(0.1)
+            bp.paragraph_format.space_after = Pt(0.6)
+            bp.paragraph_format.line_spacing = 1.04
+            bp.paragraph_format.left_indent = Inches(0.08)
             rb_ico = bp.add_run("▸  ")
             rb_ico.font.bold = True
-            rb_ico.font.size = Pt(7.2)
+            rb_ico.font.size = Pt(7.0)
             rb_ico.font.color.rgb = OCEAN_BLUE
             rb_txt = bp.add_run(b)
-            rb_txt.font.size = Pt(7.2)
+            rb_txt.font.size = Pt(7.0)
             rb_txt.font.color.rgb = BODY_DARK
 
     add_proj_compact(
@@ -279,7 +303,7 @@ def generate_exact_user_1page_cv():
         "Dataset Automator & VigieSahel",
         "MLOps & Impact Agro-Climatique",
         [
-            "Dataset Automator : Usine MLOps avec surveillance du Data Drift (KS-test / PSI), tracking MLflow et Genkit.",
+            "Dataset Automator : Usine MLOps TabFM & BigQuery DataFrames avec surveillance Data Drift (KS/PSI) et conformité EU AI Act.",
             "VigieSahel : Prédiction des épidémies et optimisation semis (-35% pertes, XGBoost R²>94%, Supabase)."
         ]
     )
@@ -288,11 +312,11 @@ def generate_exact_user_1page_cv():
 
     def add_job_compact(cell, title, period, company, bullets):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(2.5)
-        p.paragraph_format.space_after = Pt(0.5)
+        p.paragraph_format.space_before = Pt(2.2)
+        p.paragraph_format.space_after = Pt(0.4)
         r1 = p.add_run(title + "  ")
         r1.font.bold = True
-        r1.font.size = Pt(8)
+        r1.font.size = Pt(8.0)
         r1.font.color.rgb = NAVY_TITLE
 
         r2 = p.add_run(f"({period})")
@@ -302,24 +326,24 @@ def generate_exact_user_1page_cv():
 
         p2 = cell.add_paragraph()
         p2.paragraph_format.space_before = Pt(0)
-        p2.paragraph_format.space_after = Pt(0.8)
+        p2.paragraph_format.space_after = Pt(0.6)
         r3 = p2.add_run(company)
         r3.font.bold = True
-        r3.font.size = Pt(7.2)
+        r3.font.size = Pt(7.0)
         r3.font.color.rgb = SUBTLE_TEXT
 
         for b in bullets:
             bp = cell.add_paragraph()
             bp.paragraph_format.space_before = Pt(0)
-            bp.paragraph_format.space_after = Pt(0.8)
-            bp.paragraph_format.line_spacing = 1.05
-            bp.paragraph_format.left_indent = Inches(0.1)
+            bp.paragraph_format.space_after = Pt(0.6)
+            bp.paragraph_format.line_spacing = 1.04
+            bp.paragraph_format.left_indent = Inches(0.08)
             rb_ico = bp.add_run("▸  ")
             rb_ico.font.bold = True
-            rb_ico.font.size = Pt(7.2)
+            rb_ico.font.size = Pt(7.0)
             rb_ico.font.color.rgb = OCEAN_BLUE
             rb_txt = bp.add_run(b)
-            rb_txt.font.size = Pt(7.2)
+            rb_txt.font.size = Pt(7.0)
             rb_txt.font.color.rgb = BODY_DARK
 
     add_job_compact(
@@ -346,13 +370,13 @@ def generate_exact_user_1page_cv():
 
     add_mn_h(c1, "FORMATION ACADÉMIQUE")
 
-    def add_edu_compact(cell, degree, period, school, note=None):
+    def add_edu_compact(cell, degree, period, school, syllabus_desc, note=None):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(2.5)
-        p.paragraph_format.space_after = Pt(0.5)
+        p.paragraph_format.space_before = Pt(2.2)
+        p.paragraph_format.space_after = Pt(0.4)
         r1 = p.add_run(degree + "  ")
         r1.font.bold = True
-        r1.font.size = Pt(8)
+        r1.font.size = Pt(8.0)
         r1.font.color.rgb = NAVY_TITLE
 
         r2 = p.add_run(f"({period})")
@@ -363,21 +387,31 @@ def generate_exact_user_1page_cv():
         if note:
             r_nt = p.add_run(f"  [{note}]")
             r_nt.font.bold = True
-            r_nt.font.size = Pt(6.8)
+            r_nt.font.size = Pt(6.6)
             r_nt.font.color.rgb = OCEAN_BLUE
 
         p2 = cell.add_paragraph()
         p2.paragraph_format.space_before = Pt(0)
-        p2.paragraph_format.space_after = Pt(0.8)
+        p2.paragraph_format.space_after = Pt(0.4)
         r3 = p2.add_run(school)
-        r3.font.size = Pt(7.2)
+        r3.font.bold = True
+        r3.font.size = Pt(7.0)
         r3.font.color.rgb = SUBTLE_TEXT
+
+        p3 = cell.add_paragraph()
+        p3.paragraph_format.space_before = Pt(0)
+        p3.paragraph_format.space_after = Pt(0.8)
+        p3.paragraph_format.line_spacing = 1.04
+        r4 = p3.add_run(syllabus_desc)
+        r4.font.size = Pt(6.8)
+        r4.font.color.rgb = BODY_DARK
 
     add_edu_compact(
         c1,
         "Master Professionnel en Intelligence Artificielle Appliquée",
         "2025 – 2027",
-        "Université de Ngaoundéré  │  Graphes Neo4j, MLOps, Prompt Engineering & Architectures LLM",
+        "Université de Ngaoundéré",
+        "Programme d'Excellence (5 Blocs) : Machine Learning & Statistique Bayésienne, Ingénierie des Données & Graphes Neo4j, Vision par Ordinateur & Robotique/IHM, Cybersécurité & Blockchain, Projets MLOps Souverains & Déploiement Production.",
         note="En cours d'obtention"
     )
     
@@ -385,10 +419,41 @@ def generate_exact_user_1page_cv():
         c1,
         "Licence & BTS Génie Civil (Option Bâtiment)",
         "2015 – 2016",
-        "ISTDI / IUC Douala  │  Dimensionnement structures (BAEL 91), métrés & gestion projets BTP"
+        "ISTDI / IUC Douala",
+        "Dimensionnement de structures (BAEL 91), métrés & gestion de projets de construction BTP."
     )
 
-    # Output paths
+    add_mn_h(c1, "RECONNAISSANCES & CANDIDATURES")
+    p_rec = c1.add_paragraph()
+    p_rec.paragraph_format.space_before = Pt(0)
+    p_rec.paragraph_format.space_after = Pt(0.5)
+    p_rec.paragraph_format.line_spacing = 1.04
+    r_r1 = p_rec.add_run("◈ Google Africa Applied AI Lab (Accra, 2026) : ")
+    r_r1.font.bold = True
+    r_r1.font.size = Pt(7.0)
+    r_r1.font.color.rgb = NAVY_TITLE
+    r_r2 = p_rec.add_run("Candidature officielle portée par Archi Cam AI.\n")
+    r_r2.font.size = Pt(7.0)
+    r_r2.font.color.rgb = BODY_DARK
+    
+    r_r3 = p_rec.add_run("◈ Hackathon Google Cloud #AllThingsAgentic : ")
+    r_r3.font.bold = True
+    r_r3.font.size = Pt(7.0)
+    r_r3.font.color.rgb = NAVY_TITLE
+    r_r4 = p_rec.add_run("Dataset Automator v4.0 (TabFM, WIT, bigframes, MCT).")
+    r_r4.font.size = Pt(7.0)
+    r_r4.font.color.rgb = BODY_DARK
+
+    # Minimize trailing paragraph after table
+    if len(doc.paragraphs) > 0:
+        p_after = doc.paragraphs[-1]
+        p_after.paragraph_format.space_before = Pt(0)
+        p_after.paragraph_format.space_after = Pt(0)
+        p_after.paragraph_format.line_spacing = Pt(1)
+        r = p_after.add_run("")
+        r.font.size = Pt(1)
+
+    # Output path
     f_fr_docx = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_FR.docx"
     
     try:
