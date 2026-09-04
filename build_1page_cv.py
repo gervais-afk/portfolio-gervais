@@ -179,40 +179,39 @@ def generate_exact_user_1page_cv():
     # ══════════════ MAIN COLUMN (RIGHT — WHITE) ══════════════
     c1 = table.cell(0, 1)
     c1.width = col_widths[1]
-    set_cell_background(c1, "FFFFFF")
-    set_cell_margins(c1, top=260, bottom=230, left=280, right=300)
+    set_cell_margins(c1, top=240, bottom=180, left=260, right=280)
 
     # Name block — 21 pt bold
     p_nm = c1.paragraphs[0]
     p_nm.paragraph_format.space_before = Pt(0)
-    p_nm.paragraph_format.space_after  = Pt(1.5)
+    p_nm.paragraph_format.space_after  = Pt(1.0)
     r = p_nm.add_run("KOA MARIE GERVAIS NELLY")
     r.font.name = 'Segoe UI'; r.font.bold = True
     r.font.size = Pt(21); r.font.color.rgb = NAVY
 
     p_sub = c1.add_paragraph()
     p_sub.paragraph_format.space_before = Pt(0)
-    p_sub.paragraph_format.space_after  = Pt(1.5)
+    p_sub.paragraph_format.space_after  = Pt(1.0)
     rs = p_sub.add_run("Lead AI Engineer & Consultant IA / Data   │   Fondateur @ Archi Cam AI")
     rs.font.size = Pt(9.5); rs.font.bold = True; rs.font.color.rgb = OCEAN
 
     p_rule = c1.add_paragraph()
     p_rule.paragraph_format.space_before = Pt(0)
-    p_rule.paragraph_format.space_after  = Pt(3.5)
+    p_rule.paragraph_format.space_after  = Pt(2.5)
     rr = p_rule.add_run("─" * 70)
     rr.font.size = Pt(5.5); rr.font.color.rgb = OCEAN
 
     def mn_h(cell, title):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(3.8)
-        p.paragraph_format.space_after  = Pt(0.4)
+        p.paragraph_format.space_before = Pt(3.2)
+        p.paragraph_format.space_after  = Pt(0.2)
         r1 = p.add_run("◈  "); r1.font.bold = True; r1.font.size = Pt(8.5); r1.font.color.rgb = OCEAN
         r2 = p.add_run(title.upper())
         r2.font.name = 'Segoe UI'; r2.font.bold = True
-        r2.font.size = Pt(10.2); r2.font.color.rgb = NAVY
+        r2.font.size = Pt(10.0); r2.font.color.rgb = NAVY
         sep = cell.add_paragraph()
         sep.paragraph_format.space_before = Pt(0)
-        sep.paragraph_format.space_after  = Pt(1.8)
+        sep.paragraph_format.space_after  = Pt(1.4)
         rs1 = sep.add_run("━" * 18)
         rs1.font.size = Pt(4.5); rs1.font.color.rgb = OCEAN
         rs2 = sep.add_run("─" * 44)
@@ -220,48 +219,48 @@ def generate_exact_user_1page_cv():
 
     def entry(cell, title, badge):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(2.5)
-        p.paragraph_format.space_after  = Pt(0.3)
+        p.paragraph_format.space_before = Pt(2.2)
+        p.paragraph_format.space_after  = Pt(0.2)
         r1 = p.add_run(title); r1.font.bold = True; r1.font.size = Pt(9.3); r1.font.color.rgb = NAVY
         r2 = p.add_run(f"   —   {badge}")
-        r2.font.italic = True; r2.font.size = Pt(7.9); r2.font.color.rgb = OCEAN
+        r2.font.italic = True; r2.font.size = Pt(8.0); r2.font.color.rgb = OCEAN
 
     def company(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(0.3)
-        r = p.add_run(text); r.font.size = Pt(7.9); r.font.bold = True; r.font.color.rgb = MUTED
+        p.paragraph_format.space_after  = Pt(0.2)
+        r = p.add_run(text); r.font.size = Pt(8.0); r.font.bold = True; r.font.color.rgb = MUTED
 
     def bullet(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(0.7)
-        p.paragraph_format.line_spacing = 1.10
+        p.paragraph_format.space_after  = Pt(0.6)
+        p.paragraph_format.line_spacing = 1.08
         p.paragraph_format.left_indent  = Inches(0.10)
-        rb = p.add_run("▸  "); rb.font.bold = True; rb.font.size = Pt(7.9); rb.font.color.rgb = OCEAN
-        rt = p.add_run(text); rt.font.size = Pt(7.9); rt.font.color.rgb = BODY
+        rb = p.add_run("▸  "); rb.font.bold = True; rb.font.size = Pt(8.0); rb.font.color.rgb = OCEAN
+        rt = p.add_run(text); rt.font.size = Pt(8.0); rt.font.color.rgb = BODY
 
     def body(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(1.6)
-        p.paragraph_format.line_spacing = 1.13
-        r = p.add_run(text); r.font.size = Pt(8.3); r.font.color.rgb = BODY
+        p.paragraph_format.space_after  = Pt(1.5)
+        p.paragraph_format.line_spacing = 1.10
+        r = p.add_run(text); r.font.size = Pt(8.4); r.font.color.rgb = BODY
 
     def award(cell, title, detail):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(1.0)
-        p.paragraph_format.space_after  = Pt(0.6)
-        p.paragraph_format.line_spacing = 1.10
+        p.paragraph_format.space_before = Pt(0.8)
+        p.paragraph_format.space_after  = Pt(0.4)
+        p.paragraph_format.line_spacing = 1.08
         p.paragraph_format.left_indent  = Inches(0.08)
-        r1 = p.add_run("◈ "); r1.font.bold = True; r1.font.size = Pt(8.2); r1.font.color.rgb = OCEAN
-        r2 = p.add_run(title); r2.font.bold = True; r2.font.size = Pt(8.2); r2.font.color.rgb = NAVY
+        r1 = p.add_run("◈ "); r1.font.bold = True; r1.font.size = Pt(8.1); r1.font.color.rgb = OCEAN
+        r2 = p.add_run(title); r2.font.bold = True; r2.font.size = Pt(8.1); r2.font.color.rgb = NAVY
         r3 = p.add_run(f"  —  {detail}")
         r3.font.size = Pt(8.0); r3.font.color.rgb = BODY
 
     # ── Résumé Professionnel ──
     mn_h(c1, "Résumé Professionnel")
-    body(c1, "Consultant IA & Lead AI Engineer (Google Developer Program Member), je conçois des architectures d'agents autonomes neuro-symboliques, GraphRAG (Neo4j) et pipelines MLOps souverains avec Google Antigravity. Expert en éthique de l'IA : transparence SHAP, conformité EU AI Act et modèles zéro-hallucination. Fondateur d'Archi Cam AI (candidature Google Africa Applied AI Lab 2026), j'allie rigueur mathématique, vision produit et double expertise IA / Génie Civil.")
+    body(c1, "Consultant IA & Lead AI Engineer (Google Developer Program Member), je conçois des architectures d'agents autonomes neuro-symboliques, GraphRAG (Neo4j) et pipelines MLOps souverains avec Google Antigravity. Expert en éthique de l'IA : transparence SHAP, conformité EU AI Act et modèles déterministes zéro-hallucination. Fondateur d'Archi Cam AI (candidature Google Africa Applied AI Lab 2026), j'allie rigueur mathématique, vision produit et double expertise IA / Génie Civil.")
 
     # ── Projets IA Majeurs ──
     mn_h(c1, "Projets IA Majeurs")
@@ -269,6 +268,7 @@ def generate_exact_user_1page_cv():
     entry(c1, "Archi Cam AI", "SaaS IA Agentique & 5D BIM")
     bullet(c1, "Candidature officielle Google Africa Applied AI Lab. Développé sous Google Antigravity (Gemma 4 12B, Gemini 2.5, BAEL 91).")
     bullet(c1, "Génération DQE Excel <45s (–99,2% temps, R²=0,9872 MLflow) et rendus 3D Imagen 3 + ControlNet.")
+    bullet(c1, "Intégration IfcOpenShell pour maquettes BIM 5D : coûts et planning automatisés via agents LangGraph.")
 
     entry(c1, "K1-MATHINFO (v3.0.0)", "IA Souveraine Multi-Agents, WikiSkills & Certification OKF")
     bullet(c1, "Système souverain DMI (Univ. Ngaoundéré) : 470 thèses, 19 projets M1, graphe Neo4j 1 366 nœuds.")
@@ -276,6 +276,7 @@ def generate_exact_user_1page_cv():
 
     entry(c1, "Sovereign.BI Agentic", "Business Intelligence & NL-to-SQL/Cypher")
     bullet(c1, "Moteur NL-to-SQL/Graph (PostgreSQL pgvector + Neo4j N10S, latence <5s) avec guardrails ABAC et SHAP Sentinel Audit.")
+    bullet(c1, "Tableaux de bord exécutifs interactifs via Streamlit & FastAPI — déployés sur cloud souverain Docker.")
 
     entry(c1, "Dataset Automator & VigieSahel", "MLOps & IA Impact Agro-Climatique")
     bullet(c1, "Dataset Automator : usine MLOps Antigravity (TabFM, BigQuery DataFrames, Data Drift KS/PSI, EU AI Act).")
@@ -286,11 +287,13 @@ def generate_exact_user_1page_cv():
 
     entry(c1, "Consultant IA & Data Science", "2025 – Présent")
     company(c1, "Projets Indépendants & Entreprises  │  Douala, CM")
-    bullet(c1, "IA souveraines éthiques, pipelines RAG/GraphRAG Neo4j, EDA haute dimension et reporting décisionnel exécutif.")
+    bullet(c1, "Conception de systèmes IA souverains éthiques : GraphRAG Neo4j, EDA haute dimension, pipelines RAG multi-sources.")
+    bullet(c1, "Reporting décisionnel exécutif, dashboards KPI automatisés et audit explicabilité SHAP pour PME camerounaises.")
 
     entry(c1, "Agent de Sûreté Aéroportuaire (AVSEC)", "2018 – Présent")
     company(c1, "CCAA — Autorité Aéronautique du Cameroun  │  Douala, CM")
-    bullet(c1, "Évaluation des menaces, contrôle d'accès sécurisé, audits de conformité réglementaire ICAO Annex 17.")
+    bullet(c1, "Évaluation des menaces, contrôle d'accès sécurisé, conformité réglementaire ICAO Annex 17.")
+    bullet(c1, "Gestion de crises opérationnelles : coordination d'équipes en situation d'urgence, protocoles anti-intrusion.")
 
     # ── Formation Académique ──
     mn_h(c1, "Formation Académique")
@@ -298,6 +301,7 @@ def generate_exact_user_1page_cv():
     entry(c1, "Master Professionnel — Intelligence Artificielle Appliquée", "2025 – 2027  [En cours]")
     company(c1, "Université de Ngaoundéré  │  Cameroun")
     bullet(c1, "ML & Stats Bayésienne, Data Engineering Neo4j, Vision & Robotique, Éthique & Cybersécurité, MLOps Souverains.")
+    bullet(c1, "Projet de recherche : système K1-MATHINFO v3 — agent multi-sources certifié OKF v0.2 (SHA-256 No-LLM).")
 
     entry(c1, "Licence & BTS Génie Civil (Option Bâtiment)", "2015 – 2016")
     company(c1, "ISTDI / IUC Douala  │  Cameroun")
@@ -306,18 +310,9 @@ def generate_exact_user_1page_cv():
     # ── Reconnaissances ──
     mn_h(c1, "Reconnaissances & Distinctions")
 
-    p_r = c1.add_paragraph()
-    p_r.paragraph_format.space_before = Pt(0)
-    p_r.paragraph_format.space_after  = Pt(0)
-    p_r.paragraph_format.line_spacing = 1.10
-    r1 = p_r.add_run("◈ Google Africa Applied AI Lab (Accra, 2026) : ")
-    r1.font.bold = True; r1.font.size = Pt(8.2); r1.font.color.rgb = NAVY
-    r2 = p_r.add_run("Candidature officielle — plateforme Archi Cam AI (5D BIM + GenAI).\n")
-    r2.font.size = Pt(8.0); r2.font.color.rgb = BODY
-    r3 = p_r.add_run("◈ Google Cloud #AllThingsAgentic Hackathon : ")
-    r3.font.bold = True; r3.font.size = Pt(8.2); r3.font.color.rgb = NAVY
-    r4 = p_r.add_run("Dataset Automator v4.0 (Google Antigravity, TabFM, bigframes, WIT, MCT).")
-    r4.font.size = Pt(8.0); r4.font.color.rgb = BODY
+    award(c1, "Google Africa Applied AI Lab (Accra, 2026)", "Candidature officielle — plateforme Archi Cam AI (5D BIM + GenAI).")
+    award(c1, "Google Cloud #AllThingsAgentic Hackathon", "Dataset Automator v4.0 (Google Antigravity, TabFM, BigQuery DataFrames, WIT).")
+    award(c1, "Google Developer Program · Devpost", "Membre actif — contributions open-source IA, hackathons & programme ambassadeur.")
 
     # ── Trailing 1pt paragraph (guarantees NO extra blank page in Word) ──
     p_tail = doc.add_paragraph()
