@@ -9,14 +9,14 @@ from docx.oxml.ns import nsdecls
 def create_undp_cover_letter():
     doc = docx.Document()
 
-    # A4 Dimensions with balanced margins to fill the page
+    # A4 Dimensions: balanced margins to occupy the full page harmoniously
     for section in doc.sections:
         section.page_width = Inches(8.27)
         section.page_height = Inches(11.69)
-        section.top_margin = Inches(0.55)
-        section.bottom_margin = Inches(0.55)
-        section.left_margin = Inches(0.70)
-        section.right_margin = Inches(0.70)
+        section.top_margin = Inches(0.52)
+        section.bottom_margin = Inches(0.52)
+        section.left_margin = Inches(0.68)
+        section.right_margin = Inches(0.68)
 
     NAVY  = RGBColor(0x0A, 0x11, 0x28)
     OCEAN = RGBColor(0x02, 0x84, 0xC7)
@@ -31,7 +31,7 @@ def create_undp_cover_letter():
     r_nm = p_name.add_run("KOA MARIE GERVAIS NELLY")
     r_nm.font.name = 'Segoe UI'
     r_nm.font.bold = True
-    r_nm.font.size = Pt(19)
+    r_nm.font.size = Pt(21)
     r_nm.font.color.rgb = NAVY
 
     p_title = doc.add_paragraph()
@@ -40,24 +40,24 @@ def create_undp_cover_letter():
     r_ti = p_title.add_run("Lead AI Engineer & Data Architect   │   M.Sc. Candidate in Applied AI")
     r_ti.font.name = 'Segoe UI'
     r_ti.font.bold = True
-    r_ti.font.size = Pt(10.0)
+    r_ti.font.size = Pt(10.5)
     r_ti.font.color.rgb = OCEAN
 
     p_contact = doc.add_paragraph()
     p_contact.paragraph_format.space_before = Pt(0)
-    p_contact.paragraph_format.space_after  = Pt(4)
-    r_co = p_contact.add_run("Douala / Ngaoundéré, Cameroon   •   magenel85@gmail.com   •   +237 695 35 34 02   •   linkedin.com/in/marie-gervais-koa")
+    p_contact.paragraph_format.space_after  = Pt(4.5)
+    r_co = p_contact.add_run("Douala / Ngaoundéré, Cameroon   •   magenel85@gmail.com   •   +237 695 35 34 02   •   github.com/gervais-afk   •   linkedin.com/in/marie-gervais-koa")
     r_co.font.name = 'Segoe UI'
-    r_co.font.size = Pt(8.8)
+    r_co.font.size = Pt(8.6)
     r_co.font.color.rgb = MUTED
 
     # Dual-tone divider line
     p_div = doc.add_paragraph()
     p_div.paragraph_format.space_before = Pt(0)
-    p_div.paragraph_format.space_after  = Pt(6)
-    r_d1 = p_div.add_run("━" * 25)
+    p_div.paragraph_format.space_after  = Pt(7)
+    r_d1 = p_div.add_run("━" * 26)
     r_d1.font.size = Pt(4.5); r_d1.font.color.rgb = OCEAN
-    r_d2 = p_div.add_run("─" * 45)
+    r_d2 = p_div.add_run("─" * 46)
     r_d2.font.size = Pt(4.5); r_d2.font.color.rgb = CYAN
 
     # Date
@@ -67,14 +67,14 @@ def create_undp_cover_letter():
     r_dt = p_date.add_run("September 4, 2026")
     r_dt.font.name = 'Segoe UI'
     r_dt.font.bold = True
-    r_dt.font.size = Pt(9.2)
+    r_dt.font.size = Pt(9.8)
     r_dt.font.color.rgb = NAVY
 
     # Recipient
     p_rec = doc.add_paragraph()
     p_rec.paragraph_format.space_before = Pt(0)
-    p_rec.paragraph_format.space_after  = Pt(4.5)
-    p_rec.paragraph_format.line_spacing = 1.14
+    p_rec.paragraph_format.space_after  = Pt(5)
+    p_rec.paragraph_format.line_spacing = 1.15
     r_r1 = p_rec.add_run("To: Selection Committee\n")
     r_r1.font.bold = True
     r_r2 = p_rec.add_run("Digital, AI and Innovation (DAI) Hub  │  Bureau for Policy and Programme Support (BPPS)\n")
@@ -83,62 +83,62 @@ def create_undp_cover_letter():
     r_r4.font.italic = True
     for r in [r_r1, r_r2, r_r3, r_r4]:
         r.font.name = 'Segoe UI'
-        r.font.size = Pt(9.0)
+        r.font.size = Pt(9.4)
         r.font.color.rgb = NAVY
 
     # Subject line
     p_subj = doc.add_paragraph()
     p_subj.paragraph_format.space_before = Pt(2)
-    p_subj.paragraph_format.space_after  = Pt(4.5)
+    p_subj.paragraph_format.space_after  = Pt(5)
     r_sb = p_subj.add_run("SUBJECT: Application for Digital, AI and Innovation Internship (Home-Based) — Job ID: 33001")
     r_sb.font.name = 'Segoe UI'
     r_sb.font.bold = True
-    r_sb.font.size = Pt(9.8)
+    r_sb.font.size = Pt(10.2)
     r_sb.font.color.rgb = OCEAN
 
     # Salutation
     p_sal = doc.add_paragraph()
     p_sal.paragraph_format.space_before = Pt(0)
-    p_sal.paragraph_format.space_after  = Pt(3.5)
+    p_sal.paragraph_format.space_after  = Pt(4)
     r_sl = p_sal.add_run("Dear Members of the Selection Committee,")
     r_sl.font.name = 'Segoe UI'
-    r_sl.font.size = Pt(9.4)
+    r_sl.font.size = Pt(9.8)
     r_sl.font.color.rgb = NAVY
 
-    def add_p(text, before=0, after=4.5, space=1.15):
+    def add_p(text, before=0, after=5.5, space=1.18):
         p = doc.add_paragraph()
         p.paragraph_format.space_before = Pt(before)
         p.paragraph_format.space_after  = Pt(after)
         p.paragraph_format.line_spacing = space
         r = p.add_run(text)
         r.font.name = 'Segoe UI'
-        r.font.size = Pt(9.3)
+        r.font.size = Pt(9.8)
         r.font.color.rgb = BODY
         return p
 
     def add_bullet(bold_head, text):
         p = doc.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(3.2)
-        p.paragraph_format.line_spacing = 1.13
-        p.paragraph_format.left_indent  = Inches(0.15)
+        p.paragraph_format.space_after  = Pt(4.5)
+        p.paragraph_format.line_spacing = 1.16
+        p.paragraph_format.left_indent  = Inches(0.18)
         
-        # Clean bullet
+        # Clean bullet symbol
         rb = p.add_run("▪  ")
         rb.font.name = 'Segoe UI'
         rb.font.bold = True
-        rb.font.size = Pt(9.3)
+        rb.font.size = Pt(9.8)
         rb.font.color.rgb = OCEAN
 
         rh = p.add_run(bold_head + ": ")
         rh.font.name = 'Segoe UI'
         rh.font.bold = True
-        rh.font.size = Pt(9.3)
+        rh.font.size = Pt(9.8)
         rh.font.color.rgb = NAVY
 
         rt = p.add_run(text)
         rt.font.name = 'Segoe UI'
-        rt.font.size = Pt(9.3)
+        rt.font.size = Pt(9.8)
         rt.font.color.rgb = BODY
 
     # Introduction
@@ -174,15 +174,15 @@ def create_undp_cover_letter():
         "with technical rigor, intercultural agility, and high dedication."
     )
 
-    add_p("Thank you very much for your consideration. I look forward to the opportunity to discuss my application with you.", after=4)
+    add_p("Thank you very much for your consideration. I look forward to the opportunity to discuss my application with you.", after=5.5)
 
     # Sign-off
     p_sign = doc.add_paragraph()
     p_sign.paragraph_format.space_before = Pt(0)
-    p_sign.paragraph_format.space_after  = Pt(1)
+    p_sign.paragraph_format.space_after  = Pt(1.5)
     r_sg = p_sign.add_run("Sincerely,")
     r_sg.font.name = 'Segoe UI'
-    r_sg.font.size = Pt(9.4)
+    r_sg.font.size = Pt(9.8)
     r_sg.font.color.rgb = NAVY
 
     p_author = doc.add_paragraph()
@@ -191,7 +191,7 @@ def create_undp_cover_letter():
     r_au = p_author.add_run("KOA MARIE GERVAIS NELLY")
     r_au.font.name = 'Segoe UI'
     r_au.font.bold = True
-    r_au.font.size = Pt(10.5)
+    r_au.font.size = Pt(11.0)
     r_au.font.color.rgb = NAVY
 
     p_sub_au = doc.add_paragraph()
@@ -199,7 +199,7 @@ def create_undp_cover_letter():
     p_sub_au.paragraph_format.space_after  = Pt(0)
     r_sau = p_sub_au.add_run("Lead AI Engineer & Master's Candidate in Applied AI  │  Founder @ Archi Cam AI")
     r_sau.font.name = 'Segoe UI'
-    r_sau.font.size = Pt(8.8)
+    r_sau.font.size = Pt(9.0)
     r_sau.font.color.rgb = OCEAN
 
     # Trailing 1pt paragraph
