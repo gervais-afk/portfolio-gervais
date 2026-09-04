@@ -55,7 +55,6 @@ def generate_exact_user_1page_cv_en():
     OCEAN = RGBColor(0x02, 0x84, 0xC7)
     BODY  = RGBColor(0x33, 0x41, 0x55)
     MUTED = RGBColor(0x64, 0x74, 0x8B)
-    LGRAY = RGBColor(0xCB, 0xD5, 0xE1)
 
     table = doc.add_table(rows=1, cols=2)
     table.alignment = WD_TABLE_ALIGNMENT.LEFT
@@ -168,12 +167,13 @@ def generate_exact_user_1page_cv_en():
     set_cell_background(c1, "FFFFFF")
     set_cell_margins(c1, top=260, bottom=230, left=280, right=300)
 
+    # Name block — 21 pt bold
     p_nm = c1.paragraphs[0]
     p_nm.paragraph_format.space_before = Pt(0)
     p_nm.paragraph_format.space_after  = Pt(1.5)
     r = p_nm.add_run("KOA MARIE GERVAIS NELLY")
     r.font.name = 'Segoe UI'; r.font.bold = True
-    r.font.size = Pt(19); r.font.color.rgb = NAVY
+    r.font.size = Pt(21); r.font.color.rgb = NAVY
 
     p_sub = c1.add_paragraph()
     p_sub.paragraph_format.space_before = Pt(0)
@@ -187,6 +187,7 @@ def generate_exact_user_1page_cv_en():
     rr = p_rule.add_run("─" * 70)
     rr.font.size = Pt(5.5); rr.font.color.rgb = OCEAN
 
+    # Dual-tone blue separator under each section
     def mn_h(cell, title):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(5.5)
@@ -194,11 +195,15 @@ def generate_exact_user_1page_cv_en():
         r1 = p.add_run("◈  "); r1.font.bold = True; r1.font.size = Pt(8.5); r1.font.color.rgb = OCEAN
         r2 = p.add_run(title.upper())
         r2.font.name = 'Segoe UI'; r2.font.bold = True
-        r2.font.size = Pt(10.0); r2.font.color.rgb = NAVY
+        r2.font.size = Pt(10.2); r2.font.color.rgb = NAVY
+        
         sep = cell.add_paragraph()
         sep.paragraph_format.space_before = Pt(0)
         sep.paragraph_format.space_after  = Pt(2.5)
-        rs = sep.add_run("─" * 60); rs.font.size = Pt(5); rs.font.color.rgb = LGRAY
+        rs1 = sep.add_run("━" * 18)
+        rs1.font.size = Pt(4.5); rs1.font.color.rgb = OCEAN
+        rs2 = sep.add_run("─" * 44)
+        rs2.font.size = Pt(4.5); rs2.font.color.rgb = CYAN
 
     def entry(cell, title, badge):
         p = cell.add_paragraph()
@@ -217,7 +222,7 @@ def generate_exact_user_1page_cv_en():
     def bullet(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(1.4)
+        p.paragraph_format.space_after  = Pt(1.3)
         p.paragraph_format.line_spacing = 1.12
         p.paragraph_format.left_indent  = Inches(0.10)
         rb = p.add_run("▸  "); rb.font.bold = True; rb.font.size = Pt(8.0); rb.font.color.rgb = OCEAN
@@ -280,7 +285,7 @@ def generate_exact_user_1page_cv_en():
     p_r = c1.add_paragraph()
     p_r.paragraph_format.space_before = Pt(0)
     p_r.paragraph_format.space_after  = Pt(0)
-    p_r.paragraph_format.line_spacing = 1.16
+    p_r.paragraph_format.line_spacing = 1.12
     r1 = p_r.add_run("◈ Google Africa Applied AI Lab (Accra, 2026): ")
     r1.font.bold = True; r1.font.size = Pt(8.2); r1.font.color.rgb = NAVY
     r2 = p_r.add_run("Official candidacy — Archi Cam AI platform.\n")
