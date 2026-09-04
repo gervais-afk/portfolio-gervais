@@ -71,51 +71,38 @@ def generate_exact_user_1page_cv_en():
     c0 = table.cell(0, 0)
     c0.width = col_widths[0]
     set_cell_background(c0, SIDEBAR_FILL)
-    set_cell_margins(c0, top=250, bottom=230, left=560, right=440)
+    set_cell_margins(c0, top=260, bottom=230, left=500, right=420)
 
     photo_path = r"c:\Users\HP\Desktop\portfolio-gervais\assets\images\profile_headshot_circular.jpeg"
 
-    # ── Photo Frame: single table with OCEAN BLUE XML border ──
-    photo_box = c0.add_table(rows=1, cols=1)
-    photo_box.alignment = WD_TABLE_ALIGNMENT.CENTER
-    p_cell = photo_box.cell(0, 0)
-    set_cell_background(p_cell, "0F172A")
-    set_cell_margins(p_cell, top=10, bottom=10, left=10, right=10)
-    tcPr = p_cell._tc.get_or_add_tcPr()
-    tcPr.append(parse_xml(
-        f'<w:tcBorders {nsdecls("w")}>'
-        f'<w:top w:val="single" w:sz="18" w:color="0284C7"/>'
-        f'<w:left w:val="single" w:sz="18" w:color="0284C7"/>'
-        f'<w:bottom w:val="single" w:sz="18" w:color="0284C7"/>'
-        f'<w:right w:val="single" w:sz="18" w:color="0284C7"/>'
-        f'</w:tcBorders>'
-    ))
-    p_ph = p_cell.paragraphs[0]
+    # ── Photo Headshot: Clean large circular photo starting at top aligned with name ──
+    p_ph = c0.paragraphs[0]
     p_ph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_ph.paragraph_format.space_before = Pt(0)
     p_ph.paragraph_format.space_after  = Pt(0)
     if os.path.exists(photo_path):
         try:
-            p_ph.add_run().add_picture(photo_path, width=Inches(1.48))
+            p_ph.add_run().add_picture(photo_path, width=Inches(1.60))
         except:
             r = p_ph.add_run("K G"); r.font.size = Pt(22); r.font.bold = True; r.font.color.rgb = CYAN
     else:
         r = p_ph.add_run("K G"); r.font.size = Pt(22); r.font.bold = True; r.font.color.rgb = CYAN
 
+    # Badge label under photo
     p_badge = c0.add_paragraph()
     p_badge.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p_badge.paragraph_format.space_before = Pt(3)
+    p_badge.paragraph_format.space_before = Pt(3.5)
     p_badge.paragraph_format.space_after  = Pt(0)
     rb = p_badge.add_run("◈  LEAD AI ENGINEER")
     rb.font.name = 'Segoe UI'; rb.font.bold = True
-    rb.font.size = Pt(6.8); rb.font.color.rgb = CYAN
+    rb.font.size = Pt(7.0); rb.font.color.rgb = CYAN
 
     p_sub_badge = c0.add_paragraph()
     p_sub_badge.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_sub_badge.paragraph_format.space_before = Pt(0)
-    p_sub_badge.paragraph_format.space_after  = Pt(1.5)
-    rs2 = p_sub_badge.add_run("Founder  ·  Archi Cam AI")  # gender-neutral ✓
-    rs2.font.size = Pt(6.3); rs2.font.color.rgb = MUTED
+    p_sub_badge.paragraph_format.space_after  = Pt(2)
+    rs2 = p_sub_badge.add_run("Founder  ·  Archi Cam AI")
+    rs2.font.size = Pt(6.5); rs2.font.color.rgb = MUTED
 
     def sb_h(cell, text):
         p = cell.add_paragraph()
