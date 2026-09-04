@@ -112,7 +112,7 @@ def generate_exact_user_1page_cv_en():
     p_sub_badge.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_sub_badge.paragraph_format.space_before = Pt(0)
     p_sub_badge.paragraph_format.space_after  = Pt(2)
-    rs2 = p_sub_badge.add_run("Founder  ·  Archi Cam AI")
+    rs2 = p_sub_badge.add_run("Founder  ·  Archi Cam AI")  # gender-neutral ✓
     rs2.font.size = Pt(6.5); rs2.font.color.rgb = MUTED
 
     def sb_h(cell, text):

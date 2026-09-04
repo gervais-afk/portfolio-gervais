@@ -115,7 +115,7 @@ def generate_exact_user_1page_cv():
     p_sub_badge.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_sub_badge.paragraph_format.space_before = Pt(0)
     p_sub_badge.paragraph_format.space_after  = Pt(2)
-    rs2 = p_sub_badge.add_run("Fondatrice  ·  Archi Cam AI")
+    rs2 = p_sub_badge.add_run("Fondateur  ·  Archi Cam AI")
     rs2.font.size = Pt(6.5); rs2.font.color.rgb = MUTED
 
     def sb_h(cell, text):
@@ -205,7 +205,7 @@ def generate_exact_user_1page_cv():
     p_sub = c1.add_paragraph()
     p_sub.paragraph_format.space_before = Pt(0)
     p_sub.paragraph_format.space_after  = Pt(1.5)
-    rs = p_sub.add_run("Lead AI Engineer & Consultant IA / Data   │   Fondatrice @ Archi Cam AI")
+    rs = p_sub.add_run("Lead AI Engineer & Consultant IA / Data   │   Fondateur @ Archi Cam AI")
     rs.font.size = Pt(9.5); rs.font.bold = True; rs.font.color.rgb = OCEAN
 
     p_rule = c1.add_paragraph()
@@ -273,7 +273,7 @@ def generate_exact_user_1page_cv():
 
     # ── Résumé Professionnel ──
     mn_h(c1, "Résumé Professionnel")
-    body(c1, "Consultant IA & Lead AI Engineer (Google Developer Program Member), je conçois des architectures d'agents autonomes neuro-symboliques, GraphRAG (Neo4j) et pipelines MLOps souverains avec Google Antigravity. Experte en éthique de l'IA : transparence, explicabilité SHAP, conformité EU AI Act et modèles déterministes zéro-hallucination. Fondatrice d'Archi Cam AI (candidature Google Africa Applied AI Lab 2026), j'allie rigueur mathématique, vision produit et double expertise IA / Génie Civil.")
+    body(c1, "Consultant IA & Lead AI Engineer (Google Developer Program Member), je conçois des architectures d'agents autonomes neuro-symboliques, GraphRAG (Neo4j) et pipelines MLOps souverains avec Google Antigravity. Expert en éthique de l'IA : transparence, explicabilité SHAP, conformité EU AI Act et modèles déterministes zéro-hallucination. Fondateur d'Archi Cam AI (candidature Google Africa Applied AI Lab 2026), j'allie rigueur mathématique, vision produit et double expertise IA / Génie Civil.")
 
     # ── Projets IA Majeurs ──
     mn_h(c1, "Projets IA Majeurs")
