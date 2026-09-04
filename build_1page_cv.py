@@ -49,19 +49,20 @@ def generate_exact_user_1page_cv():
     doc.styles['Normal'].font.size = Pt(8.2)
 
     SIDEBAR_FILL = "0F172A"
-    CYAN  = RGBColor(0x38, 0xBD, 0xF8)   # Electric Cyan Blue
-    ICE   = RGBColor(0xF8, 0xFA, 0xFC)
-    NAVY  = RGBColor(0x0A, 0x11, 0x28)
-    OCEAN = RGBColor(0x02, 0x84, 0xC7)   # Vibrant Ocean Blue Accent
-    BODY  = RGBColor(0x33, 0x41, 0x55)
-    MUTED = RGBColor(0x64, 0x74, 0x8B)
+    CYAN   = RGBColor(0x38, 0xBD, 0xF8)
+    ICE    = RGBColor(0xF8, 0xFA, 0xFC)
+    NAVY   = RGBColor(0x0A, 0x11, 0x28)
+    OCEAN  = RGBColor(0x02, 0x84, 0xC7)
+    BODY   = RGBColor(0x33, 0x41, 0x55)
+    MUTED  = RGBColor(0x64, 0x74, 0x8B)
+    GOLD   = RGBColor(0xF5, 0xA6, 0x23)   # Accent for badge / awards
+    WHITE  = RGBColor(0xFF, 0xFF, 0xFF)
 
     table = doc.add_table(rows=1, cols=2)
     table.alignment = WD_TABLE_ALIGNMENT.LEFT
     set_table_zero_indent(table)
     remove_table_borders(table)
 
-    # 16300 dxa: pulls the blue sidebar right to the bottom border without overflowing
     row = table.rows[0]
     trPr = row._tr.get_or_add_trPr()
     trPr.append(parse_xml(f'<w:trHeight {nsdecls("w")} w:val="16300" w:hRule="atLeast"/>'))
@@ -75,22 +76,47 @@ def generate_exact_user_1page_cv():
     set_cell_margins(c0, top=250, bottom=230, left=560, right=440)
 
     photo_path = r"c:\Users\HP\Desktop\portfolio-gervais\assets\images\profile_headshot_circular.jpeg"
-    photo_box = c0.add_table(rows=1, cols=1)
-    photo_box.alignment = WD_TABLE_ALIGNMENT.CENTER
-    p_cell = photo_box.cell(0, 0)
-    set_cell_background(p_cell, "1E3A5F")
-    set_cell_margins(p_cell, top=14, bottom=14, left=14, right=14)
-    p_ph = p_cell.paragraphs[0]
+
+    # ── Premium Photo Frame: outer ring table in OCEAN BLUE, inner cell navy ──
+    photo_outer = c0.add_table(rows=1, cols=1)
+    photo_outer.alignment = WD_TABLE_ALIGNMENT.CENTER
+    outer_cell = photo_outer.cell(0, 0)
+    # Outer border ring: gradient-like OCEAN BLUE frame
+    set_cell_background(outer_cell, "0284C7")
+    set_cell_margins(outer_cell, top=8, bottom=8, left=8, right=8)
+
+    photo_inner = outer_cell.add_table(rows=1, cols=1)
+    photo_inner.alignment = WD_TABLE_ALIGNMENT.CENTER
+    inner_cell = photo_inner.cell(0, 0)
+    set_cell_background(inner_cell, "0F172A")
+    set_cell_margins(inner_cell, top=4, bottom=4, left=4, right=4)
+    p_ph = inner_cell.paragraphs[0]
     p_ph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_ph.paragraph_format.space_before = Pt(0)
     p_ph.paragraph_format.space_after  = Pt(0)
     if os.path.exists(photo_path):
         try:
-            p_ph.add_run().add_picture(photo_path, width=Inches(1.50))
+            p_ph.add_run().add_picture(photo_path, width=Inches(1.44))
         except:
-            r = p_ph.add_run("[ PHOTO ]"); r.font.size = Pt(8); r.font.color.rgb = CYAN
+            r = p_ph.add_run("K G"); r.font.size = Pt(22); r.font.bold = True; r.font.color.rgb = CYAN
     else:
-        r = p_ph.add_run("[ PHOTO ]"); r.font.size = Pt(8); r.font.color.rgb = CYAN
+        r = p_ph.add_run("K G"); r.font.size = Pt(22); r.font.bold = True; r.font.color.rgb = CYAN
+
+    # Photo badge label: "LEAD AI ENGINEER"
+    p_badge = c0.add_paragraph()
+    p_badge.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p_badge.paragraph_format.space_before = Pt(4)
+    p_badge.paragraph_format.space_after  = Pt(1)
+    rb = p_badge.add_run("◈  LEAD AI ENGINEER")
+    rb.font.name = 'Segoe UI'; rb.font.bold = True
+    rb.font.size = Pt(7.0); rb.font.color.rgb = CYAN
+
+    p_sub_badge = c0.add_paragraph()
+    p_sub_badge.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p_sub_badge.paragraph_format.space_before = Pt(0)
+    p_sub_badge.paragraph_format.space_after  = Pt(2)
+    rs2 = p_sub_badge.add_run("Fondatrice  ·  Archi Cam AI")
+    rs2.font.size = Pt(6.5); rs2.font.color.rgb = MUTED
 
     def sb_h(cell, text):
         p = cell.add_paragraph()
@@ -168,7 +194,7 @@ def generate_exact_user_1page_cv():
     set_cell_background(c1, "FFFFFF")
     set_cell_margins(c1, top=260, bottom=230, left=280, right=300)
 
-    # Name block — 21 pt bold as requested!
+    # Name block — 21 pt bold
     p_nm = c1.paragraphs[0]
     p_nm.paragraph_format.space_before = Pt(0)
     p_nm.paragraph_format.space_after  = Pt(1.5)
@@ -179,27 +205,23 @@ def generate_exact_user_1page_cv():
     p_sub = c1.add_paragraph()
     p_sub.paragraph_format.space_before = Pt(0)
     p_sub.paragraph_format.space_after  = Pt(1.5)
-    rs = p_sub.add_run("Lead AI Engineer & Consultant IA / Data   │   Fondateur @ Archi Cam AI")
+    rs = p_sub.add_run("Lead AI Engineer & Consultant IA / Data   │   Fondatrice @ Archi Cam AI")
     rs.font.size = Pt(9.5); rs.font.bold = True; rs.font.color.rgb = OCEAN
 
-    # Top separator in ocean blue
     p_rule = c1.add_paragraph()
     p_rule.paragraph_format.space_before = Pt(0)
     p_rule.paragraph_format.space_after  = Pt(3.5)
     rr = p_rule.add_run("─" * 70)
     rr.font.size = Pt(5.5); rr.font.color.rgb = OCEAN
 
-    # Modern dual-tone BLUE separator under each section!
     def mn_h(cell, title):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(5.5)
+        p.paragraph_format.space_before = Pt(5.0)
         p.paragraph_format.space_after  = Pt(0.5)
         r1 = p.add_run("◈  "); r1.font.bold = True; r1.font.size = Pt(8.5); r1.font.color.rgb = OCEAN
         r2 = p.add_run(title.upper())
         r2.font.name = 'Segoe UI'; r2.font.bold = True
         r2.font.size = Pt(10.2); r2.font.color.rgb = NAVY
-        
-        # Dual-tone blue decorative separator line
         sep = cell.add_paragraph()
         sep.paragraph_format.space_before = Pt(0)
         sep.paragraph_format.space_after  = Pt(2.5)
@@ -210,93 +232,100 @@ def generate_exact_user_1page_cv():
 
     def entry(cell, title, badge):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(3.5)
-        p.paragraph_format.space_after  = Pt(0.6)
+        p.paragraph_format.space_before = Pt(3.2)
+        p.paragraph_format.space_after  = Pt(0.5)
         r1 = p.add_run(title); r1.font.bold = True; r1.font.size = Pt(9.3); r1.font.color.rgb = NAVY
         r2 = p.add_run(f"   —   {badge}")
-        r2.font.italic = True; r2.font.size = Pt(8.0); r2.font.color.rgb = OCEAN
+        r2.font.italic = True; r2.font.size = Pt(7.9); r2.font.color.rgb = OCEAN
 
     def company(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(0.6)
-        r = p.add_run(text); r.font.size = Pt(8.0); r.font.bold = True; r.font.color.rgb = MUTED
+        p.paragraph_format.space_after  = Pt(0.5)
+        r = p.add_run(text); r.font.size = Pt(7.9); r.font.bold = True; r.font.color.rgb = MUTED
 
     def bullet(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(1.3)
+        p.paragraph_format.space_after  = Pt(1.2)
         p.paragraph_format.line_spacing = 1.12
         p.paragraph_format.left_indent  = Inches(0.10)
-        rb = p.add_run("▸  "); rb.font.bold = True; rb.font.size = Pt(8.0); rb.font.color.rgb = OCEAN
-        rt = p.add_run(text); rt.font.size = Pt(8.0); rt.font.color.rgb = BODY
+        rb = p.add_run("▸  "); rb.font.bold = True; rb.font.size = Pt(7.9); rb.font.color.rgb = OCEAN
+        rt = p.add_run(text); rt.font.size = Pt(7.9); rt.font.color.rgb = BODY
 
     def body(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
         p.paragraph_format.space_after  = Pt(2.5)
         p.paragraph_format.line_spacing = 1.16
-        r = p.add_run(text); r.font.size = Pt(8.4); r.font.color.rgb = BODY
+        r = p.add_run(text); r.font.size = Pt(8.3); r.font.color.rgb = BODY
 
-    # ── Résumé ──
+    def award(cell, title, detail):
+        p = cell.add_paragraph()
+        p.paragraph_format.space_before = Pt(1.5)
+        p.paragraph_format.space_after  = Pt(1.0)
+        p.paragraph_format.line_spacing = 1.12
+        p.paragraph_format.left_indent  = Inches(0.08)
+        r1 = p.add_run("◈ "); r1.font.bold = True; r1.font.size = Pt(8.2); r1.font.color.rgb = OCEAN
+        r2 = p.add_run(title); r2.font.bold = True; r2.font.size = Pt(8.2); r2.font.color.rgb = NAVY
+        r3 = p.add_run(f"  —  {detail}")
+        r3.font.size = Pt(8.0); r3.font.color.rgb = BODY
+
+    # ── Résumé Professionnel ──
     mn_h(c1, "Résumé Professionnel")
-    body(c1, "Consultant IA & Lead AI Engineer (Google Developer Program Member), j'utilise Google Antigravity pour concevoir des architectures d'agents autonomes neuro-symboliques, GraphRAG (Neo4j) et MLOps souverains. Expert en éthique de l'IA (transparence, explicabilité SHAP, conformité EU AI Act et modèles déterministes sans hallucination). Fondateur d'Archi Cam AI (candidat Google Africa Applied AI Lab), j'allie rigueur mathématique et vision produit.")
+    body(c1, "Consultant IA & Lead AI Engineer (Google Developer Program Member), je conçois des architectures d'agents autonomes neuro-symboliques, GraphRAG (Neo4j) et pipelines MLOps souverains avec Google Antigravity. Experte en éthique de l'IA : transparence, explicabilité SHAP, conformité EU AI Act et modèles déterministes zéro-hallucination. Fondatrice d'Archi Cam AI (candidature Google Africa Applied AI Lab 2026), j'allie rigueur mathématique, vision produit et double expertise IA / Génie Civil.")
 
-    # ── Projets ──
+    # ── Projets IA Majeurs ──
     mn_h(c1, "Projets IA Majeurs")
 
     entry(c1, "Archi Cam AI", "SaaS IA Agentique & 5D BIM")
-    bullet(c1, "Candidat officiel Google Africa Applied AI Lab. Développé sous Google Antigravity (Gemma 4 12B, Gemini, BAEL 91).")
+    bullet(c1, "Candidature officielle Google Africa Applied AI Lab. Développé sous Google Antigravity (Gemma 4 12B, Gemini 2.5, BAEL 91).")
     bullet(c1, "Génération DQE Excel <45s (–99,2% temps, R²=0,9872 MLflow) et rendus 3D Imagen 3 + ControlNet.")
+    bullet(c1, "Intégration IfcOpenShell pour maquettes BIM 5D : coûts + planning automatisés via agents LangGraph.")
 
     entry(c1, "K1-MATHINFO (v3.0.0)", "IA Souveraine Multi-Agents, WikiSkills & Certification OKF")
     bullet(c1, "Système souverain DMI (Univ. Ngaoundéré) : 470 thèses, 19 projets M1, graphe Neo4j 1 366 nœuds.")
-    bullet(c1, "6 agents LangGraph orchestrés via WikiSkills (skills critic anti-hallucination, Cypher optimizer), RRF k=60, SHA-256 No-LLM (100%).")
+    bullet(c1, "6 agents LangGraph orchestrés via WikiSkills (critic anti-hallucination, Cypher optimizer), RRF k=60, SHA-256 No-LLM (100%).")
 
     entry(c1, "Sovereign.BI Agentic", "Business Intelligence & NL-to-SQL/Cypher")
-    bullet(c1, "Moteur NL-to-SQL/Graph (PostgreSQL pgvector, Neo4j N10S, latence <5s) avec guardrails ABAC + SHAP Sentinel.")
+    bullet(c1, "Moteur NL-to-SQL/Graph (PostgreSQL pgvector + Neo4j N10S, latence <5s) avec guardrails ABAC et SHAP Sentinel Audit.")
+    bullet(c1, "Tableaux de bord exécutifs interactifs via Streamlit & FastAPI — déployés sur cloud souverain Docker.")
 
     entry(c1, "Dataset Automator & VigieSahel", "MLOps & IA Impact Agro-Climatique")
-    bullet(c1, "Dataset Automator : Usine MLOps Antigravity (TabFM, BigQuery DataFrames, Data Drift KS/PSI, EU AI Act).")
+    bullet(c1, "Dataset Automator : usine MLOps Antigravity (TabFM, BigQuery DataFrames, Data Drift KS/PSI, EU AI Act).")
     bullet(c1, "VigieSahel : –35% pertes semis, anticipation épidémies +14j (XGBoost R²>94%, Supabase, MLflow).")
 
-    # ── Parcours ──
+    # ── Parcours Professionnel ──
     mn_h(c1, "Parcours Professionnel")
 
     entry(c1, "Consultant IA & Data Science", "2025 – Présent")
-    company(c1, "Projets Indépendants & Entreprises  │  Douala")
-    bullet(c1, "IA souveraines éthiques, pipelines RAG/GraphRAG Neo4j, bases SQL, EDA massive et reporting décisionnel exécutif.")
+    company(c1, "Projets Indépendants & Entreprises  │  Douala, CM")
+    bullet(c1, "Conception de systèmes IA souverains éthiques : GraphRAG Neo4j, EDA haute dimension, pipelines RAG multi-sources.")
+    bullet(c1, "Reporting décisionnel exécutif, dashboards KPI automatisés et audit explicabilité SHAP pour PME camerounaises.")
 
     entry(c1, "Agent de Sûreté Aéroportuaire (AVSEC)", "2018 – Présent")
-    company(c1, "CCAA (Autorité Aéronautique du Cameroun)")
-    bullet(c1, "Analyse risques opérationnels, contrôle d'accès sécurisé, audits de conformité (Annexe 17 OACI).")
+    company(c1, "CCAA — Autorité Aéronautique du Cameroun  │  Douala, CM")
+    bullet(c1, "Évaluation des menaces, contrôle d'accès sécurisé, conformité réglementaire ICAO Annex 17.")
+    bullet(c1, "Gestion de crises opérationnelles : coordination d'équipes en situation d'urgence, protocoles anti-intrusion.")
 
-    # ── Formation ──
+    # ── Formation Académique ──
     mn_h(c1, "Formation Académique")
 
-    entry(c1, "Master Professionnel en Intelligence Artificielle Appliquée", "2025 – 2027  [En cours]")
-    company(c1, "Université de Ngaoundéré")
-    bullet(c1, "ML & Stats Bayésienne, Data Eng. & Neo4j, Vision & Robotique, Éthique & Cybersécurité, MLOps Souverains.")
+    entry(c1, "Master Professionnel — Intelligence Artificielle Appliquée", "2025 – 2027  [En cours]")
+    company(c1, "Université de Ngaoundéré  │  Cameroun")
+    bullet(c1, "ML & Stats Bayésienne, Data Engineering Neo4j, Vision & Robotique, Éthique & Cybersécurité, MLOps Souverains.")
+    bullet(c1, "Projet de recherche : système K1-MATHINFO v3 — agent multi-sources certifié OKF v0.2 (SHA-256 No-LLM).")
 
     entry(c1, "Licence & BTS Génie Civil (Option Bâtiment)", "2015 – 2016")
-    company(c1, "ISTDI / IUC Douala")
-    bullet(c1, "Dimensionnement structures (BAEL 91), métrés & gestion de projets BTP.")
+    company(c1, "ISTDI / IUC Douala  │  Cameroun")
+    bullet(c1, "Dimensionnement structures BAEL 91, métrés & gestion de projets BTP — base de l'IA appliquée à l'estimation.")
 
-    # ── Reconnaissances ──
-    mn_h(c1, "Reconnaissances & Candidatures")
+    # ── Reconnaissances & Distinctions ──
+    mn_h(c1, "Reconnaissances & Distinctions")
 
-    p_r = c1.add_paragraph()
-    p_r.paragraph_format.space_before = Pt(0)
-    p_r.paragraph_format.space_after  = Pt(0)
-    p_r.paragraph_format.line_spacing = 1.12
-    r1 = p_r.add_run("◈ Google Africa Applied AI Lab (Accra, 2026) : ")
-    r1.font.bold = True; r1.font.size = Pt(8.2); r1.font.color.rgb = NAVY
-    r2 = p_r.add_run("Candidature officielle — plateforme Archi Cam AI.\n")
-    r2.font.size = Pt(8.2); r2.font.color.rgb = BODY
-    r3 = p_r.add_run("◈ Hackathon Google Cloud #AllThingsAgentic : ")
-    r3.font.bold = True; r3.font.size = Pt(8.2); r3.font.color.rgb = NAVY
-    r4 = p_r.add_run("Dataset Automator v4.0 (Google Antigravity, TabFM, WIT, bigframes, MCT).")
-    r4.font.size = Pt(8.2); r4.font.color.rgb = BODY
+    award(c1, "Google Africa Applied AI Lab — Accra 2026", "Candidature officielle — plateforme Archi Cam AI (5D BIM + GenAI).")
+    award(c1, "Google Cloud #AllThingsAgentic Hackathon", "Dataset Automator v4.0 — Google Antigravity, TabFM, bigframes, WIT, MCT.")
+    award(c1, "Google Developer Program  ·  Devpost", "Membre actif — contributions open-source IA, hackathons & programme ambassadeur.")
 
     # ── Trailing 1pt paragraph (guarantees NO extra blank page in Word) ──
     p_tail = doc.add_paragraph()
