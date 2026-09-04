@@ -140,13 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 item.classList.add('active');
             }
         });
-    });
-
-    // 6. Interactive Architecture Modals System
+    });    // 6. Interactive Architecture Modals System
     const projectsData = {
         fr: {
             'archi-cam-ai': {
-                badge: "SaaS IA Agentique & 5D BIM (Candidat Google Africa Applied AI Lab)",
+                badge: "SaaS IA Agentique & 5D BIM Souverain",
                 title: "Archi Cam AI 🏛️",
                 subtitle: "Plateforme IA souveraine de modélisation BIM 5D & génération automatisée de métrés normés pour le BTP africain.",
                 pipeline: [
@@ -158,78 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 impacts: [
                     "Accélération de +99,2% : génération des devis estimatifs (DQE) en <45 secondes (contre 3 à 7 jours manuellement).",
                     "Zéro Hallucination & Conformité Légale : moteur déterministe Python BAEL 91 + ontologies Neo4j GraphRAG (MINMAP 2026).",
-                    "Résilience Hybride Cloud/Edge : Gemini 2.5/1.5 Flash en cloud avec basculement automatique sur Gemma 4 12B QAT local (LM Studio).",
-                    "Précision MLOps (R² = 0.9872) : modèle d'estimation entraîné et évalué sous MLflow sur 400 projets de construction africains."
-                ],
-                techs: ["Next.js 14", "Firebase Genkit", "Google Gemma 4 12B", "Gemini 2.5/1.5 Flash", "Neo4j GraphRAG", "IfcOpenShell", "Python BAEL 91", "MLflow MLOps", "Imagen 3.0 + ControlNet"],
-                github: "https://github.com/gervais-afk/archi-cam-ai"
-            },
-            'sovereign-bi': {
-                badge: "Agentic Business Intelligence & Security",
-                title: "Sovereign.BI Agentic 📊",
-                subtitle: "Moteur autonome d'analyse de données d'entreprise permettant d’interroger des bases SQL complexes en langage naturel.",
-                pipeline: [
-                    { num: "Étape 01", title: "NL Query & Guardrail", desc: "Interrogation utilisateur filtrée par des seuils de sécurité dynamiques." },
-                    { num: "Étape 02", title: "Orchestrateur TS", desc: "Cartographie du schéma PostgreSQL via Neo4j GraphRAG (N10S)." },
-                    { num: "Étape 03", title: "Génération & Audit SQL", desc: "Traduction SQL optimisée + audit SHAP Sentinel contre toute anomalie." },
-                    { num: "Étape 04", title: "Visualisation & Insights", desc: "Restitution graphique HTML/React & synthèses exécutives Markdown." }
-                ],
-                impacts: [
-                    "Interrogation instantanée de bases de données volumineuses sans compétences SQL requises.",
-                    "Système de guardrails dynamiques évitant toute injection SQL ou altération de données.",
-                    "Audits SHAP intégrés pour expliquer en toute transparence le raisonnement des agents."
-                ],
-                techs: ["React", "FastAPI", "TypeScript Orchestrator", "PostgreSQL", "Neo4j GraphRAG", "Gemini AI", "Docker", "SHAP Auditor"],
-                github: "https://github.com/gervais-afk/sovereign-bi-agentic"
-            },
-            'dataset-automator': {
-                badge: "Plateforme MLOps Agentique & Usine d'Ingénierie de Datasets",
-                title: "Dataset Automator ⚙️",
-                subtitle: "Usine MLOps autonome d'ingestion, d'audit de qualité, de gouvernance sémantique (Neo4j) et d'entraînement automatisé.",
-                pipeline: [
-                    { num: "Étape 01", title: "Profilage & Data Drift (KS/PSI)", desc: "Analyse Python, détection des types réels et surveillance continue des dérives de distribution (KS-test / PSI > 30%)." },
-                    { num: "Étape 02", title: "GraphRAG & Curation Sémantique", desc: "Modélisation dans le Knowledge Graph Neo4j, mappings métiers et auto-correction (Self-Healing) des échecs passés." },
-                    { num: "Étape 03", title: "Genkit & MLflow Tracking", desc: "Orchestration TypeScript avec Gemma-4 12B local (LM Studio), validation HITL et tracking complet sur MLflow UI." },
-                    { num: "Étape 04", title: "Streamlit Dashboard & Notebook Factory", desc: "Exploration du graphe 2D/3D, audits SHAP et génération automatique de Notebooks Jupyter MLOps (.ipynb) certifiés." }
-                ],
-                impacts: [
-                    "Automatisation complète du cycle de préparation de données et d'entraînement MLOps.",
-                    "Détection précoce des dérives de modèles (Data Drift) avec génération automatique d'alertes dans Neo4j.",
-                    "Exports instantanés de Notebooks Jupyter documentés et d'interfaces de suivi MLflow / Genkit."
-                ],
-                techs: ["TypeScript Genkit", "Neo4j GraphRAG", "MLflow", "Google Gemma 4 (LM Studio)", "Streamlit", "Firebase Firestore", "Python MLOps"],
-                github: "https://github.com/gervais-afk/dataset-automator"
-            },
-            'asu-audit-ready': {
-                badge: "Conformité Sûreté Aéroportuaire CCAA & Reporting",
-                title: "ASU-Audit-Ready 🛡️",
-                subtitle: "Tableau de Bord de Conformité Sûreté, Génération de Rapports d'Audit V4 & Simulateur d'Audition pour Agents CCAA.",
-                pipeline: [
-                    { num: "Étape 01", title: "Tableau de Bord & KPIs Sûreté", desc: "Suivi mensuel des 7 objectifs critiques d'inspection aéronautique (Taux global, PIF, conformité ZSAR)." },
-                    { num: "Étape 02", title: "Génération de Rapports Word V4", desc: "Compilation automatique des rapports d'activités mensuels (.docx) selon le Modèle V4 CCAA avec directives et remédiations." },
-                    { num: "Étape 03", title: "Vérificateur de Livrables Audit", desc: "Contrôle automatisé de l'exhaustivité et de la conformité des pièces requises pour les audits officiels." },
-                    { num: "Étape 04", title: "Simulateur d'Audition AVSEC", desc: "Entraînement interactif et simulation d'audition d'inspection pour la préparation des agents de sûreté." }
-                ],
-                impacts: [
-                    "Digitalisation complète et gain de temps massif dans la rédaction des rapports de sûreté mensuels.",
-                    "Garantie de conformité à 100% avec les exigences réglementaires de la CCAA (Autorité Aéronautique du Cameroun).",
-                    "Entraînement continu des agents de sûreté aéroportuaire aux scénarios d'inspection d'audit."
-                ],
-                techs: ["Streamlit", "Python Engine", "python-docx (Modèle V4)", "ChartBuilder", "AuditChecker", "AuditSimulator", "Matplotlib / Seaborn"],
-                github: "https://github.com/gervais-afk/ASU-Audit-Ready"
-            },
-            'vigie-sahel': {
-                badge: "IA Impact Climat & Santé Publique",
-                title: "VigieSahel 🌾",
-                subtitle: "Système prédictif pour l'optimisation agricole et l'anticipation des risques sanitaires dans la région du Sahel.",
-                pipeline: [
-                    { num: "Étape 01", title: "Collecte Multi-sources", desc: "Ingestion des données météo, satellite & capteurs de qualité de l'air PM2.5." },
-                    { num: "Étape 02", title: "Modélisation ML", desc: "Algorithmes de prédiction des dates optimales de semis et propagation épidémique." },
-                    { num: "Étape 03", title: "Stockage Supabase", desc: "Base de données cloud synchronisée en temps réel." },
-                    { num: "Étape 04", title: "PWA Offline-First", desc: "Interface Streamlit PWA accessible même avec faible connectivité internet." }
-                ],
-                impacts: [
-                    "Optimisation des rendements de la culture du coton face aux variations pluviométriques.",
                     "Système d'alerte précoce pour les pics de pollution (PM2.5) et les risques de méningite.",
                     "Solution conçue sur-mesure pour les coopératives et décideurs du Sahel."
                 ],
@@ -259,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         en: {
             'archi-cam-ai': {
-                badge: "Agentic AI & 5D BIM SaaS (Google Africa Applied AI Lab Candidate)",
+                badge: "Sovereign 5D BIM & Agentic AI SaaS",
                 title: "Archi Cam AI 🏛️",
                 subtitle: "Sovereign 5D BIM & Agentic AI platform for automated quantity surveying in African construction.",
                 pipeline: [

@@ -259,13 +259,13 @@ def generate_exact_user_1page_cv_en():
 
     # ── Executive Summary ──
     mn_h(c1, "Executive Summary")
-    body(c1, "Lead AI Engineer & Data Architect (Google Developer Program Member), leveraging Google Antigravity to design neuro-symbolic multi-agent architectures, Neo4j GraphRAG, and sovereign MLOps pipelines. Expert in AI ethics: SHAP transparency, EU AI Act compliance, and deterministic zero-hallucination models. Founder of Archi Cam AI (official Google Africa Applied AI Lab applicant 2026), bridging civil engineering methodology, mathematical rigor, and product vision.")
+    body(c1, "Lead AI Engineer & Data Architect (Google Developer Program Member), leveraging Google Antigravity to design neuro-symbolic multi-agent architectures, Neo4j GraphRAG, and sovereign MLOps pipelines. Expert in AI ethics: SHAP transparency, EU AI Act compliance, and deterministic zero-hallucination models. Founder & Architect of Archi Cam AI (Agentic AI SaaS & 5D BIM), bridging civil engineering methodology, mathematical rigor, and product vision.")
 
     # ── Flagship AI Projects ──
     mn_h(c1, "Flagship AI Projects")
 
     entry(c1, "Archi Cam AI", "Agentic AI SaaS & 5D BIM")
-    bullet(c1, "Official Applicant Google Africa Applied AI Lab. Built with Google Antigravity (Gemma 4 12B, Gemini 2.5, BAEL 91).")
+    bullet(c1, "Sovereign 5D BIM & BOQ estimation platform engineered with Google Antigravity (Gemma 4 12B, Gemini 2.5, BAEL 91).")
     bullet(c1, "Automated Excel BOQs in <45s (–99.2% time, MLflow R²=0.9872) and 3D renders via Imagen 3 + ControlNet.")
     bullet(c1, "IfcOpenShell integration for 5D BIM models: automated costing & scheduling via LangGraph agents.")
 
@@ -309,9 +309,9 @@ def generate_exact_user_1page_cv_en():
     # ── Honors ──
     mn_h(c1, "Honors & Applied AI Distinctions")
 
-    award(c1, "Google Africa Applied AI Lab (Accra, 2026)", "Official candidacy — Archi Cam AI platform (5D BIM + GenAI).")
+    award(c1, "CCAA Certificate of Excellence & Integrity (2023)", "Awarded by the Director General for outstanding operational performance & ethics.")
     award(c1, "Google Cloud #AllThingsAgentic Hackathon", "Dataset Automator v4.0 (Google Antigravity, TabFM, BigQuery DataFrames, WIT).")
-    award(c1, "Google Developer Program · Devpost", "Active member — AI open-source contributions, hackathons & ambassador track.")
+    award(c1, "Google Developer Program · Devpost", "Active member — AI open-source contributions, hackathons & sovereign AI architect.")
 
     # ── Trailing 1pt paragraph (guarantees NO extra blank page in Word) ──
     p_tail = doc.add_paragraph()

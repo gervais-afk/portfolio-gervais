@@ -260,13 +260,13 @@ def generate_exact_user_1page_cv():
 
     # ── Résumé Professionnel ──
     mn_h(c1, "Résumé Professionnel")
-    body(c1, "Consultant IA & Lead AI Engineer (Google Developer Program Member), je conçois des architectures d'agents autonomes neuro-symboliques, GraphRAG (Neo4j) et pipelines MLOps souverains avec Google Antigravity. Expert en éthique de l'IA : transparence SHAP, conformité EU AI Act et modèles déterministes zéro-hallucination. Fondateur d'Archi Cam AI (candidature Google Africa Applied AI Lab 2026), j'allie rigueur mathématique, vision produit et double expertise IA / Génie Civil.")
+    body(c1, "Consultant IA & Lead AI Engineer (Google Developer Program Member), je conçois des architectures d'agents autonomes neuro-symboliques, GraphRAG (Neo4j) et pipelines MLOps souverains avec Google Antigravity. Expert en éthique de l'IA : transparence SHAP, conformité EU AI Act et modèles déterministes zéro-hallucination. Fondateur & Architecte d'Archi Cam AI (SaaS IA & 5D BIM), j'allie rigueur mathématique, vision produit et double expertise IA / Génie Civil.")
 
     # ── Projets IA Majeurs ──
     mn_h(c1, "Projets IA Majeurs")
 
     entry(c1, "Archi Cam AI", "SaaS IA Agentique & 5D BIM")
-    bullet(c1, "Candidature officielle Google Africa Applied AI Lab. Développé sous Google Antigravity (Gemma 4 12B, Gemini 2.5, BAEL 91).")
+    bullet(c1, "Plateforme souveraine d'estimation BIM 5D développée sous Google Antigravity (Gemma 4 12B, Gemini 2.5, BAEL 91).")
     bullet(c1, "Génération DQE Excel <45s (–99,2% temps, R²=0,9872 MLflow) et rendus 3D Imagen 3 + ControlNet.")
     bullet(c1, "Intégration IfcOpenShell pour maquettes BIM 5D : coûts et planning automatisés via agents LangGraph.")
 
@@ -310,9 +310,9 @@ def generate_exact_user_1page_cv():
     # ── Reconnaissances ──
     mn_h(c1, "Reconnaissances & Distinctions")
 
-    award(c1, "Google Africa Applied AI Lab (Accra, 2026)", "Candidature officielle — plateforme Archi Cam AI (5D BIM + GenAI).")
+    award(c1, "Certificat d'Excellence & Intégrité CCAA (2023)", "Décerné par le Directeur Général pour performance et déontologie opérationnelle.")
     award(c1, "Google Cloud #AllThingsAgentic Hackathon", "Dataset Automator v4.0 (Google Antigravity, TabFM, BigQuery DataFrames, WIT).")
-    award(c1, "Google Developer Program · Devpost", "Membre actif — contributions open-source IA, hackathons & programme ambassadeur.")
+    award(c1, "Google Developer Program · Devpost", "Membre actif — contributions open-source IA, hackathons & architecture souveraine.")
 
     # ── Trailing 1pt paragraph (guarantees NO extra blank page in Word) ──
     p_tail = doc.add_paragraph()
