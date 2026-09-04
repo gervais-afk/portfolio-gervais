@@ -285,7 +285,7 @@ def generate_exact_user_1page_cv():
     # ── Parcours Professionnel ──
     mn_h(c1, "Parcours Professionnel")
 
-    entry(c1, "Consultant IA & Data Science", "2025 – Présent")
+    entry(c1, "Consultant IA & Data Science", "Mars 2026 – Présent")
     company(c1, "Projets Indépendants & Entreprises  │  Douala, CM")
     bullet(c1, "Conception de systèmes IA souverains éthiques : GraphRAG Neo4j, EDA haute dimension, pipelines RAG multi-sources.")
     bullet(c1, "Reporting décisionnel exécutif, dashboards KPI automatisés et audit explicabilité SHAP pour PME camerounaises.")
@@ -298,7 +298,7 @@ def generate_exact_user_1page_cv():
     # ── Formation Académique ──
     mn_h(c1, "Formation Académique")
 
-    entry(c1, "Master Professionnel — Intelligence Artificielle Appliquée", "2025 – 2027  [En cours]")
+    entry(c1, "Master Professionnel — Intelligence Artificielle Appliquée", "Déc. 2025 – 2027  [En cours]")
     company(c1, "Université de Ngaoundéré  │  Cameroun")
     bullet(c1, "ML & Stats Bayésienne, Data Engineering Neo4j, Vision & Robotique, Éthique & Cybersécurité, MLOps Souverains.")
     bullet(c1, "Projet de recherche : système K1-MATHINFO v3 — agent multi-sources certifié OKF v0.2 (SHA-256 No-LLM).")

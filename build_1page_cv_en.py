@@ -284,7 +284,7 @@ def generate_exact_user_1page_cv_en():
     # ── Professional Experience ──
     mn_h(c1, "Professional Experience")
 
-    entry(c1, "AI Lead & Data Science Consultant", "2025 – Present")
+    entry(c1, "AI Lead & Data Science Consultant", "March 2026 – Present")
     company(c1, "Independent Projects & Enterprises  │  Douala, CM")
     bullet(c1, "Ethical sovereign AI systems: GraphRAG Neo4j pipelines, high-dimensional EDA, multi-source RAG architectures.")
     bullet(c1, "Executive decision reporting, automated KPI dashboards, and SHAP explainability audits for African SMEs.")
@@ -297,7 +297,7 @@ def generate_exact_user_1page_cv_en():
     # ── Education ──
     mn_h(c1, "Education & Certifications")
 
-    entry(c1, "M.Sc. in Applied Artificial Intelligence", "2025 – 2027  [In Progress]")
+    entry(c1, "M.Sc. in Applied Artificial Intelligence", "Dec. 2025 – 2027  [In Progress]")
     company(c1, "University of Ngaoundéré  │  Cameroon")
     bullet(c1, "ML & Bayesian Statistics, Data Engineering & Neo4j, Computer Vision & Robotics, Ethics & Cybersecurity, Production MLOps.")
     bullet(c1, "Research project: K1-MATHINFO v3 sovereign system — multi-source agent certified OKF v0.2 (SHA-256 No-LLM).")
