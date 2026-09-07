@@ -126,13 +126,13 @@ def generate_exact_user_1page_cv_en():
         r.font.size = Pt(7.8); r.font.color.rgb = ICE
 
     sb_h(c0, "Contact & Profiles")
-    sb_t(c0, "✉  magenel85@gmail.com")
+    sb_t(c0, "✉  contact@archicam-ai.com")
     sb_t(c0, "✆  +237 695 35 34 02")
     sb_t(c0, "⌂  Douala / Ngaoundéré, CM")
-    sb_t(c0, "🌐  github.com/gervais-afk")
+    sb_t(c0, "🌐  archicam-ai.com")
     sb_t(c0, "💼  linkedin.com/in/marie-gervais-koa")
-    sb_t(c0, "⚡  devpost.com/magenel85")
-    sb_t(c0, "🏅  Google Developer Program")
+    sb_t(c0, "⚡  github.com/gervais-afk")
+    sb_t(c0, "🏅  Google Dev & AICC Member")
 
     sb_h(c0, "AI & LLM Stack")
     sb_t(c0, "Google Antigravity IDE  ■ ■ ■ ■ ■")
@@ -311,7 +311,7 @@ def generate_exact_user_1page_cv_en():
 
     award(c1, "CCAA Certificate of Excellence & Integrity (2023)", "Awarded by the Director General for outstanding operational performance & ethics.")
     award(c1, "Google Cloud #AllThingsAgentic Hackathon", "Dataset Automator v4.0 (Google Antigravity, TabFM, BigQuery DataFrames, WIT).")
-    award(c1, "Google Developer Program · Devpost", "Active member — AI open-source contributions, hackathons & sovereign AI architect.")
+    award(c1, "Google Developer Program · AICC Accra", "Active member · Accra AI Community Centre & Google for Startups Accelerator Network.")
 
     # ── Trailing 1pt paragraph (guarantees NO extra blank page in Word) ──
     p_tail = doc.add_paragraph()

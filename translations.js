@@ -18,7 +18,7 @@ const translations = {
         // Hero Section
         hero_tag: "Fondateur @ Archi Cam AI | Lead AI Engineer",
         hero_subtitle_prefix: "Je suis ",
-        hero_desc: "Ingénieur & Spécialiste en IA Appliquée, 5D BIM & Data Science (Master en IA Appliquée & Data Science - Université de Ngaoundéré & Spécialiste Génie Civil - IUC Douala). Membre du Google Developer Program, Fondateur & Architecte d'<strong>Archi Cam AI</strong> (SaaS IA Souverain & 5D BIM).",
+        hero_desc: "Ingénieur & Spécialiste en IA Appliquée, 5D BIM & Data Science (Master en IA Appliquée & Data Science - Université de Ngaoundéré & Spécialiste Génie Civil - IUC Douala). Membre du Google Developer Program & de l'Accra AI Community Centre (AICC), Fondateur & Architecte d'<strong>Archi Cam AI</strong> (SaaS IA Souverain & 5D BIM - <a href='https://archicam-ai.com' target='_blank' style='color:var(--neon); text-decoration:underline;'>archicam-ai.com</a>).",
         btn_cv_web: "Consulter le CV Web",
         btn_cv_pdf: "Télécharger CV PDF",
         btn_projects: "Découvrir mes Projets",
@@ -286,7 +286,7 @@ const translations = {
         cv_e2_school: "ISTDI / IUC Douala",
         cv_e2_desc: "Dimensionnement de structures (BAEL 91), calculs de métrés et gestion de projets BTP.",
         cv_title_honors: '<i class="fa-solid fa-award"></i> Reconnaissances & Engagements',
-        cv_h1_text: "<strong>◈ Hackathon Google Cloud #AllThingsAgentic :</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ Google Developer Program :</strong> Membre actif & Architecte IA (Archi Cam AI, VigieSahel)."
+        cv_h1_text: "<strong>◈ Hackathon Google Cloud #AllThingsAgentic :</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ Google Developer Program & AICC Accra :</strong> Membre actif · Accra AI Community Centre & Google for Startups Accelerator Network (Archi Cam AI)."
     },
 
     en: {
@@ -303,7 +303,7 @@ const translations = {
         // Hero Section
         hero_tag: "Founder @ Archi Cam AI | Lead AI Engineer",
         hero_subtitle_prefix: "I am a ",
-        hero_desc: "Creator & Lead AI Engineer, 5D BIM & Applied Data Science Specialist (Master's Degree in Applied AI & Data Science - University of Ngaoundéré & Civil Engineering Specialist - IUC Douala). Google Developer Program Member, Founder & Architect of <strong>Archi Cam AI</strong> (Sovereign Agentic AI & 5D BIM).",
+        hero_desc: "Creator & Lead AI Engineer, 5D BIM & Applied Data Science Specialist (Master's Degree in Applied AI & Data Science - University of Ngaoundéré & Civil Engineering Specialist - IUC Douala). Google Developer Program & Accra AI Community Centre (AICC) Member, Founder & Architect of <strong>Archi Cam AI</strong> (Sovereign Agentic AI & 5D BIM - <a href='https://archicam-ai.com' target='_blank' style='color:var(--neon); text-decoration:underline;'>archicam-ai.com</a>).",
         btn_cv_web: "View Web Resume",
         btn_cv_pdf: "Download PDF Resume",
         btn_projects: "Explore My Projects",
@@ -571,6 +571,6 @@ const translations = {
         cv_e2_school: "ISTDI / IUC Douala",
         cv_e2_desc: "Structural Calculations (BAEL 91), Quantity Surveying & Construction Project Management.",
         cv_title_honors: '<i class="fa-solid fa-award"></i> Honors & Applied AI Engagements',
-        cv_h1_text: "<strong>◈ Google Cloud #AllThingsAgentic Hackathon:</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ Google Developer Program:</strong> Active Member & AI Architect (Archi Cam AI, VigieSahel)."
+        cv_h1_text: "<strong>◈ Google Cloud #AllThingsAgentic Hackathon:</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ Google Developer Program & AICC Accra:</strong> Active Member · Accra AI Community Centre & Google for Startups Accelerator Network (Archi Cam AI)."
     }
 };
