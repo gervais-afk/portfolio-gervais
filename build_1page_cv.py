@@ -133,23 +133,20 @@ def generate_exact_user_1page_cv():
     sb_t(c0, "⌂  Douala / Ngaoundéré, CM")
     sb_t(c0, "🌐  archicam-ai.com")
     sb_t(c0, "💼  linkedin.com/in/marie-gervais-koa")
-    sb_t(c0, "⚡  github.com/gervais-afk")
-    sb_t(c0, "🏅  Google Dev & AICC Member")
-
     sb_h(c0, "IA & LLM Stack")
     sb_t(c0, "Google Antigravity IDE  ■ ■ ■ ■ ■")
-    sb_t(c0, "LangGraph & WikiSkills  ■ ■ ■ ■ ■")
+    sb_t(c0, "LangGraph & CrewAI      ■ ■ ■ ■ ■")
     sb_t(c0, "Google Gemma 4 (12B)    ■ ■ ■ ■ ■")
     sb_t(c0, "Gemini 2.5 / 1.5 Pro    ■ ■ ■ ■ ■")
     sb_t(c0, "Google TabFM (Tabular)  ■ ■ ■ ■ ■")
-    sb_t(c0, "Firebase Genkit         ■ ■ ■ ■ ■")
+    sb_t(c0, "FastMCP & Genkit        ■ ■ ■ ■ ■")
     sb_t(c0, "Neo4j GraphRAG — Agent K1")
 
     sb_h(c0, "Data & Graphes")
     sb_t(c0, "Neo4j / Cypher Graph    ■ ■ ■ ■ ■")
     sb_t(c0, "PostgreSQL / pgvector   ■ ■ ■ ■ ■")
-    sb_t(c0, "Google BigQuery         ■ ■ ■ ■ □")
-    sb_t(c0, "Supabase Realtime       ■ ■ ■ ■ □")
+    sb_t(c0, "Apache AGE & DuckDB     ■ ■ ■ ■ □")
+    sb_t(c0, "BigQuery DataFrames     ■ ■ ■ ■ □")
     sb_t(c0, "Pandas / NumPy ETL      ■ ■ ■ ■ ■")
 
     sb_h(c0, "Dev & MLOps")
@@ -157,24 +154,19 @@ def generate_exact_user_1page_cv():
     sb_t(c0, "FastAPI / Next.js 14    ■ ■ ■ ■ □")
     sb_t(c0, "MLflow & Data Drift     ■ ■ ■ ■ □")
     sb_t(c0, "SHAP Sentinel Audit     ■ ■ ■ ■ ■")
-    sb_t(c0, "Docker & Streamlit      ■ ■ ■ ■ ■")
-    sb_t(c0, "IfcOpenShell (5D BIM)   ■ ■ ■ ■ □")
+    sb_t(c0, "IfcOpenShell & Shapely  ■ ■ ■ ■ □")
+    sb_t(c0, "Docker & Pytest         ■ ■ ■ ■ ■")
 
     sb_h(c0, "Éthique, Sûreté & Audit")
+    sb_t(c0, "◈ Certificat Excellence CCAA (2023)")
+    sb_t(c0, "◈ Agent AVSEC (Annexe 17 OACI)")
     sb_t(c0, "◈ Éthique IA & Anti-Hallucination")
-    sb_t(c0, "◈ Gouvernance Quorum 4 Yeux")
     sb_t(c0, "◈ OKF v0.2 SHA-256 No-LLM")
     sb_t(c0, "◈ Conformité EU AI Act (RSASSA)")
-    sb_t(c0, "◈ Cadre AVSEC (Annexe 17 OACI)")
 
     sb_h(c0, "Langues")
     sb_t(c0, "Français  —  Courant / Natif")
     sb_t(c0, "Anglais   —  Bases fonctionnelles (outils & doc.")
-
-    sb_h(c0, "Atouts Clés")
-    sb_t(c0, "◈ Double compétence IA & BTP")
-    sb_t(c0, "◈ Gestion de crise & Sûreté (CCAA)")
-    sb_t(c0, "◈ Rigueur mathématique & Guardrails")
 
     # ══════════════ MAIN COLUMN (RIGHT — WHITE) ══════════════
     c1 = table.cell(0, 1)
@@ -213,7 +205,7 @@ def generate_exact_user_1page_cv():
         sep.paragraph_format.space_before = Pt(0)
         sep.paragraph_format.space_after  = Pt(1.4)
         rs1 = sep.add_run("━" * 18)
-        rs1.font.size = Pt(4.5); rs1.font.color.rgb = OCEAN
+        rs1.font.size = Pt(5.0); rs1.font.color.rgb = OCEAN
         rs2 = sep.add_run("─" * 44)
         rs2.font.size = Pt(4.5); rs2.font.color.rgb = CYAN
 
@@ -266,20 +258,20 @@ def generate_exact_user_1page_cv():
     mn_h(c1, "Projets IA Majeurs")
 
     entry(c1, "Archi Cam AI", "SaaS IA Agentique & 5D BIM")
-    bullet(c1, "Plateforme souveraine d'estimation BIM 5D développée sous Google Antigravity (Gemma 4 12B, Gemini 2.5, BAEL 91).")
-    bullet(c1, "Génération DQE Excel <45s (–99,2% temps, R²=0,9872 MLflow) et rendus 3D Imagen 3 + ControlNet.")
-    bullet(c1, "Intégration IfcOpenShell pour maquettes BIM 5D : coûts et planning automatisés via agents LangGraph.")
+    bullet(c1, "Plateforme souveraine BIM 5D (YOLO, Shapely, IfcOpenShell, BAEL 91, Gemma 4, Gemini 2.5).")
+    bullet(c1, "Génération DQE Excel <45s (–99,2% temps, R²=0,9872 MLflow), teasers 3D Veo 3 / Fal.ai.")
+    bullet(c1, "Maquettes IFC 5D : métrés et planning automatisés sans risque d'hallucination (normes POS / ONAC).")
 
     entry(c1, "K1-MATHINFO (v3.0.0)", "IA Souveraine Multi-Agents, WikiSkills & Certification OKF")
     bullet(c1, "Système souverain DMI (Univ. Ngaoundéré) : 470 thèses, 19 projets M1, graphe Neo4j 1 366 nœuds.")
     bullet(c1, "6 agents LangGraph orchestrés via WikiSkills (critic anti-hallucination, Cypher optimizer), RRF k=60, SHA-256 No-LLM (100%).")
 
     entry(c1, "Sovereign.BI Agentic", "Business Intelligence & NL-to-SQL/Cypher")
-    bullet(c1, "Moteur NL-to-SQL/Graph (PostgreSQL pgvector + Neo4j N10S, latence <5s) avec guardrails ABAC et SHAP Sentinel Audit.")
-    bullet(c1, "Tableaux de bord exécutifs interactifs via Streamlit & FastAPI — déployés sur cloud souverain Docker.")
+    bullet(c1, "Moteur NL-to-SQL/Graph (PostgreSQL pgvector, Neo4j N10S, Apache AGE, latence <5s).")
+    bullet(c1, "FastMCP Gateway, garde-fous Zod, contrôle ABAC, CrewAI et auditeur SHAP Sentinel.")
 
     entry(c1, "Dataset Automator & VigieSahel", "MLOps & IA Impact Agro-Climatique")
-    bullet(c1, "Dataset Automator : usine MLOps Antigravity (TabFM, BigQuery DataFrames, Data Drift KS/PSI, EU AI Act).")
+    bullet(c1, "Dataset Automator : TabFM, PAIR WIT, bigframes, 55 cellules CRISP-ML(Q) et EU AI Act.")
     bullet(c1, "VigieSahel : –35% pertes semis, anticipation épidémies +14j (XGBoost R²>94%, Supabase, MLflow).")
 
     # ── Parcours Professionnel ──

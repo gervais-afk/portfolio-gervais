@@ -359,16 +359,20 @@
                         <div class="project-icon"><i class="fa-solid fa-building-user text-neon"></i></div>
                     </div>
                     <p class="project-description" data-i18n="p1_desc">
-                        SaaS souverain d'IA Agentique &amp; BIM 5D pour le BTP en Afrique. Allie l'IA multimodale de Google (Gemini 2.5/1.5 Flash &amp; Gemma 4 12B QAT local via LM Studio) et un moteur déterministe Python Sandbox (IfcOpenShell, BAEL 91, déductions &gt;0,50m²) pour générer des métrés/DQE Excel en &lt;45s (réduction de 99,2% du temps, R² = 0,9872 évalué sous MLflow sur 400 projets).
+                        SaaS souverain d'IA Agentique &amp; BIM 5D pour le BTP africain articulé en 7 microservices découplés : segmentation sémantique YOLO (port 8000), reconstruction géométrique polygonale Shapely (VIM port 8001, tolérance 15cm), cotation CAD automatisée PIL (port 8002), orchestrateur spatial ADK SCoT (port 8080, normes POS &amp; ONAC), GraphRAG Neo4j 5.20 (mercuriales MINMAP 2026), et moteur déterministe Python Sandbox (IfcOpenShell, BAEL 91, déductions &gt;0,50m²). Génère des DQE Excel normés 6 onglets en &lt;45s (–99,2% de temps, R² = 0,9872 sous MLflow sur 400 projets), des teasers vidéo 3D (Veo 3 / Fal.ai) et un horodatage EXIF SHA-256 conforme EU AI Act.
                     </p>
                     <div class="project-tags">
                         <span style="color:var(--neon); border-color:rgba(0,242,254,0.4);"><i class="fa-solid fa-globe"></i> archicam-ai.com</span>
                         <span style="color:#60A5FA; border-color:rgba(96,165,250,0.4);"><i class="fa-brands fa-google"></i> Google Startups &amp; AICC</span>
                         <span>Next.js 14</span>
-                        <span>Firebase Genkit</span>
-                        <span>Google Gemma 4 / Gemini</span>
+                        <span>IfcOpenShell BIM 5D</span>
+                        <span>Shapely (VIM Topology)</span>
+                        <span>YOLO Vision</span>
+                        <span>ADK SCoT Orchestrator</span>
+                        <span>BAEL 91 Sandbox</span>
                         <span>Neo4j GraphRAG</span>
-                        <span>Python BAEL 91</span>
+                        <span>Fal.ai &amp; Veo 3</span>
+                        <span>DuckDB &amp; Prisma</span>
                         <span>MLflow MLOps</span>
                     </div>
                     <div class="project-links project-links-row">
@@ -386,16 +390,18 @@
                         <div class="project-icon"><i class="fa-solid fa-chart-line text-neon"></i></div>
                     </div>
                     <p class="project-description" data-i18n="p2_desc">
-                        Moteur de Business Intelligence piloté par des Agents IA permettant aux décideurs d'interroger un <strong>Data Warehouse</strong> complexe en langage naturel (PostgreSQL pgvector &amp; Neo4j N10S, latence &lt;5s). Intègre un pipeline <strong>ETL sécurisé</strong>, des garde-fous ABAC dynamiques, la sanitation PII et une observabilité complète via un auditeur d'explicabilité <strong>SHAP Sentinel</strong>.
+                        Moteur décisionnel d'IA Agentique souveraine permettant aux décideurs d'interroger un Data Warehouse d'entreprise en langage naturel avec zéro fuite de données (latence &lt;5s). Architecture découplée intégrant un orchestrateur TypeScript Genkit avec Gateway FastMCP (Model Context Protocol), garde-fous de schéma Zod, contrôle d'accès multi-tenant ABAC, moteur Hybride Dual RAG (Neo4j 5.20 avec ontologies RDF n10s + Apache AGE et PostgreSQL 16 pgvector HNSW), sandbox REPL Python FastAPI avec CrewAI, anonymisation PII et auditeur de théorie des jeux SHAP Sentinel couplé au LLM local souverain Gemma 12B QAT.
                     </p>
                     <div class="project-tags">
-                        <span>React + Vite</span>
+                        <span>React 18 + Vite</span>
                         <span>TypeScript Genkit</span>
-                        <span>Neo4j GraphRAG</span>
-                        <span>Postgres pgvector</span>
-                        <span>ETL &amp; Data Warehouse</span>
-                        <span>SHAP Sentinel</span>
-                        <span>Gemma 12B QAT</span>
+                        <span>FastMCP Gateway</span>
+                        <span>Neo4j N10S (GraphRAG)</span>
+                        <span>Apache AGE &amp; pgvector</span>
+                        <span>CrewAI Multi-Agents</span>
+                        <span>SHAP Sentinel Audit</span>
+                        <span>Gemma 12B QAT (Offline)</span>
+                        <span>Zod Guardrails &amp; ABAC</span>
                     </div>
                     <div class="project-links project-links-row">
                         <button class="btn btn-primary open-modal-btn" data-project="sovereign-bi"><i class="fa-solid fa-layer-group"></i> <span data-i18n="btn_architecture">Architecture</span></button>
@@ -411,16 +417,18 @@
                         <div class="project-icon"><i class="fa-solid fa-diagram-project text-neon"></i></div>
                     </div>
                     <p class="project-description" data-i18n="p3_desc">
-                        Usine MLOps autonome d'ingestion et <strong>Data Engineering ETL</strong>, d'audit de qualité avec <strong>tests automatisés (CI/CD Pytest / Great Expectations)</strong> et de gouvernance sémantique (Neo4j Knowledge Graph). Intègre l'observabilité du Data Drift (KS-test / PSI), l'orchestration Genkit avec Gemma-4 12B local, et le tracking MLflow.
+                        Usine MLOps autonome d'ingestion et d'ingénierie de données développée pour le Hackathon Google Cloud #AllThingsAgentic. Intègre Google TabFM (modèle de fondation tabulaire zero-shot), l'outil Google PAIR What-If Tool (WIT) pour l'audit d'équité et de parité démographique, le Model Card Toolkit (MCT) de Google, et le profiling statistique Zero-ETL en &lt;48ms via BigQuery DataFrames (bigframes). Comprend un visualiseur DAG GPU SVG 60 FPS, un routeur cascade adaptatif (arbitrage 125x de tokens), un générateur forensique de 55 cellules CRISP-ML(Q) (score 100/100) et des signatures cryptographiques RSASSA-PSS-SHA256 conformes EU AI Act (Art. 12 &amp; 26).
                     </p>
                     <div class="project-tags">
-                        <span>TypeScript Genkit</span>
-                        <span>Neo4j GraphRAG</span>
+                        <span style="color:#60A5FA; border-color:rgba(96,165,250,0.4);"><i class="fa-brands fa-google"></i> Google Cloud Hackathon</span>
+                        <span>Google TabFM</span>
+                        <span>PAIR What-If Tool (WIT)</span>
+                        <span>Model Card Toolkit (MCT)</span>
+                        <span>BigQuery DataFrames</span>
+                        <span>RSASSA-PSS (EU AI Act)</span>
+                        <span>CRISP-ML(Q) 55 Cells</span>
+                        <span>Data Drift (KS / PSI)</span>
                         <span>MLflow Tracking</span>
-                        <span>Google Gemma 4</span>
-                        <span>Data Drift (KS/PSI)</span>
-                        <span>Pytest / Automated QA</span>
-                        <span>Streamlit Dashboard</span>
                     </div>
                     <div class="project-links project-links-row">
                         <button class="btn btn-primary open-modal-btn" data-project="dataset-automator"><i class="fa-solid fa-layer-group"></i> <span data-i18n="btn_architecture">Architecture</span></button>
@@ -697,25 +705,30 @@
             <p class="section-subtitle text-center" data-i18n="stack_subtitle">Stack de production validée en conditions réelles — Edge AI souverain, zéro dépendance Cloud.</p>
 
             <div class="techstack-grid">
-                <!-- Catégorie 1 -->
+                <!-- Catégorie 1: IA & LLM -->
                 <div class="techstack-category glass animate-on-scroll">
                     <div class="techstack-cat-header">
                         <i class="fa-solid fa-brain text-neon"></i>
                         <h4>IA &amp; LLM</h4>
                     </div>
                     <div class="tech-pills-grid">
-                        <span class="tech-pill">Google Gemma 4</span>
+                        <span class="tech-pill">Google Gemma 4 (12B QAT)</span>
                         <span class="tech-pill">Gemini 1.5 Pro</span>
+                        <span class="tech-pill">Google TabFM</span>
                         <span class="tech-pill">Qwen 2.5</span>
                         <span class="tech-pill">LangChain</span>
                         <span class="tech-pill">LangGraph</span>
                         <span class="tech-pill">CrewAI</span>
+                        <span class="tech-pill">Firebase Genkit</span>
+                        <span class="tech-pill">FastMCP (MCP Gateway)</span>
                         <span class="tech-pill">LM Studio</span>
                         <span class="tech-pill">Ollama</span>
+                        <span class="tech-pill">Fal.ai (ControlNet)</span>
+                        <span class="tech-pill">Google Veo 3</span>
                     </div>
                 </div>
 
-                <!-- Catégorie 2 -->
+                <!-- Catégorie 2: Data & GraphRAG -->
                 <div class="techstack-category glass animate-on-scroll">
                     <div class="techstack-cat-header">
                         <i class="fa-solid fa-diagram-project text-neon"></i>
@@ -724,16 +737,21 @@
                     <div class="tech-pills-grid">
                         <span class="tech-pill">Neo4j 5.x</span>
                         <span class="tech-pill">GraphRAG N10S</span>
-                        <span class="tech-pill">PostgreSQL</span>
-                        <span class="tech-pill">pgvector</span>
+                        <span class="tech-pill">Apache AGE</span>
+                        <span class="tech-pill">PostgreSQL 16</span>
+                        <span class="tech-pill">pgvector (HNSW)</span>
+                        <span class="tech-pill">BigQuery DataFrames</span>
                         <span class="tech-pill">Supabase</span>
+                        <span class="tech-pill">DuckDB</span>
+                        <span class="tech-pill">Prisma ORM</span>
                         <span class="tech-pill">SPARQL / OWL</span>
                         <span class="tech-pill">MQTT</span>
                         <span class="tech-pill">Pydantic V2</span>
+                        <span class="tech-pill">Zod Guardrails</span>
                     </div>
                 </div>
 
-                <!-- Catégorie 3 -->
+                <!-- Catégorie 3: MLOps & Infra -->
                 <div class="techstack-category glass animate-on-scroll">
                     <div class="techstack-cat-header">
                         <i class="fa-solid fa-gears text-neon"></i>
@@ -742,29 +760,40 @@
                     <div class="tech-pills-grid">
                         <span class="tech-pill">MLflow</span>
                         <span class="tech-pill">SHAP Sentinel</span>
+                        <span class="tech-pill">Google PAIR WIT</span>
+                        <span class="tech-pill">Model Card Toolkit (MCT)</span>
                         <span class="tech-pill">KS-Test / PSI</span>
+                        <span class="tech-pill">RSASSA-PSS-SHA256</span>
+                        <span class="tech-pill">SKOPS</span>
                         <span class="tech-pill">Docker</span>
                         <span class="tech-pill">GitHub Actions</span>
                         <span class="tech-pill">Pytest</span>
                         <span class="tech-pill">XGBoost</span>
                         <span class="tech-pill">Python 3.11</span>
+                        <span class="tech-pill">TypeScript / Node.js</span>
                     </div>
                 </div>
 
-                <!-- Catégorie 4 -->
+                <!-- Catégorie 4: Métier, BTP & AVSEC -->
                 <div class="techstack-category glass animate-on-scroll">
                     <div class="techstack-cat-header">
                         <i class="fa-solid fa-building text-neon"></i>
-                        <h4>Métier &amp; BTP</h4>
+                        <h4>Métier &amp; BTP / AVSEC</h4>
                     </div>
                     <div class="tech-pills-grid">
                         <span class="tech-pill">BIM 5D</span>
                         <span class="tech-pill">BAEL 91</span>
-                        <span class="tech-pill">IfcOpenShell</span>
-                        <span class="tech-pill">python-docx V4</span>
+                        <span class="tech-pill">IfcOpenShell C++</span>
+                        <span class="tech-pill">Shapely (Geometry)</span>
+                        <span class="tech-pill">YOLO Vision</span>
+                        <span class="tech-pill">VIM Topology</span>
                         <span class="tech-pill">OACI Annexe 17</span>
+                        <span class="tech-pill">CCAA V4 Audit</span>
+                        <span class="tech-pill">python-docx V4</span>
                         <span class="tech-pill">Streamlit</span>
                         <span class="tech-pill">FastAPI</span>
+                        <span class="tech-pill">Next.js 14</span>
+                        <span class="tech-pill">React 18 + Vite</span>
                         <span class="tech-pill">docxtpl</span>
                     </div>
                 </div>
@@ -783,9 +812,19 @@
                     <div class="cert-icon"><i class="fa-solid fa-trophy"></i></div>
                     <div class="cert-body">
                         <span class="cert-badge" data-i18n="c1_date">2026</span>
-                        <h4 data-i18n="c1_title">Architecte &amp; Fondateur</h4>
-                        <p data-i18n="c1_sub">Archi Cam AI (SaaS IA &amp; 5D BIM)</p>
-                        <small data-i18n="c1_desc">SaaS souverain d'estimation BTP combinant Gemma 4 12B, Gemini &amp; sandbox déterministe BAEL 91</small>
+                        <h4 data-i18n="c1_title">Architecte IA &amp; Fondateur</h4>
+                        <p data-i18n="c1_sub">Archi Cam AI (archicam-ai.com)</p>
+                        <small data-i18n="c1_desc">SaaS souverain BIM 5D &amp; Multi-Agents BTP · Programme Google for Startups Cloud &amp; AICC Accra</small>
+                    </div>
+                </div>
+
+                <div class="cert-card glass animate-on-scroll" style="border-color: rgba(245, 166, 35, 0.4); background: linear-gradient(145deg, rgba(15, 23, 42, 0.8), rgba(245, 166, 35, 0.08));">
+                    <div class="cert-icon" style="color: #F5A623;"><i class="fa-solid fa-medal"></i></div>
+                    <div class="cert-body">
+                        <span class="cert-badge" style="background: rgba(245, 166, 35, 0.15); color: #F5A623; border: 1px solid rgba(245, 166, 35, 0.3);" data-i18n="c5_date">Avril 2023</span>
+                        <h4 data-i18n="c5_title">Certificat d'Excellence &amp; Intégrité</h4>
+                        <p data-i18n="c5_sub">Directeur Général · CCAA (Cameroon Civil Aviation Authority)</p>
+                        <small data-i18n="c5_desc">Décerné pour la performance opérationnelle exceptionnelle, la gestion de crise et la déontologie exemplaire dans le secteur de la sûreté aéroportuaire.</small>
                     </div>
                 </div>
 
@@ -802,10 +841,10 @@
                 <div class="cert-card glass animate-on-scroll">
                     <div class="cert-icon"><i class="fa-solid fa-plane-circle-check"></i></div>
                     <div class="cert-body">
-                        <span class="cert-badge" data-i18n="c3_date">8 ans · 2017 – 2025</span>
-                        <h4 data-i18n="c3_title">Cadre AVSEC Certifié OACI</h4>
+                        <span class="cert-badge" data-i18n="c3_date">8 ans · 2018 – Présent</span>
+                        <h4 data-i18n="c3_title">Agent de Sûreté AVSEC Certifié OACI</h4>
                         <p data-i18n="c3_sub">CCAA · Cameroon Civil Aviation Authority</p>
-                        <small data-i18n="c3_desc">Annexe 17 · Audits 100 points · Sûreté aéroportuaire internationale</small>
+                        <small data-i18n="c3_desc">Annexe 17 OACI · Audits de sûreté, inspections réglementaires &amp; protocoles anti-intrusion</small>
                     </div>
                 </div>
 

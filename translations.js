@@ -116,9 +116,9 @@ const translations = {
         pod_t6_desc: "Focus en anglais sur l'application de l'IA souveraine déconnectée à la sûreté aéroportuaire OACI / CCAA (ASU-Audit-Ready).",
 
         // Projects Cards
-        p1_desc: "SaaS souverain d'IA Agentique & BIM 5D pour le BTP en Afrique. Allie l'IA multimodale de Google (Gemini 2.5/1.5 Flash & Gemma 4 12B QAT local via LM Studio) et un moteur déterministe Python Sandbox (IfcOpenShell, BAEL 91, déductions >0,50m²) pour générer des métrés/DQE Excel en <45s (réduction de 99,2% du temps, R² = 0,9872 évalué sous MLflow sur 400 projets).",
-        p2_desc: "Moteur de Business Intelligence piloté par des Agents IA permettant aux décideurs d'interroger un Data Warehouse complexe en langage naturel (PostgreSQL pgvector & Neo4j N10S, latence <5s). Intègre un pipeline ETL sécurisé, des garde-fous ABAC dynamiques, la sanitation PII et une observabilité complète via un auditeur d'explicabilité SHAP Sentinel.",
-        p3_desc: "Usine MLOps autonome d'ingestion et Data Engineering ETL, d'audit de qualité avec tests automatisés (CI/CD Pytest / Great Expectations) et de gouvernance sémantique (Neo4j Knowledge Graph). Intègre l'observabilité du Data Drift (KS-test / PSI), l'orchestration Genkit avec Gemma-4 12B local, et le tracking MLflow.",
+        p1_desc: "SaaS souverain d'IA Agentique & BIM 5D pour le BTP africain articulé en 7 microservices découplés : segmentation sémantique YOLO (port 8000), reconstruction géométrique polygonale Shapely (VIM port 8001, tolérance 15cm), cotation CAD automatisée PIL (port 8002), orchestrateur spatial ADK SCoT (port 8080, normes POS & ONAC), GraphRAG Neo4j 5.20 (mercuriales MINMAP 2026), et moteur déterministe Python Sandbox (IfcOpenShell, BAEL 91, déductions >0,50m²). Génère des DQE Excel normés 6 onglets en <45s (–99,2% de temps, R² = 0,9872 sous MLflow sur 400 projets), des teasers vidéo 3D (Veo 3 / Fal.ai) et un horodatage EXIF SHA-256 conforme EU AI Act.",
+        p2_desc: "Moteur décisionnel d'IA Agentique souveraine permettant aux décideurs d'interroger un Data Warehouse d'entreprise en langage naturel avec zéro fuite de données (latence <5s). Architecture découplée intégrant un orchestrateur TypeScript Genkit avec Gateway FastMCP (Model Context Protocol), garde-fous de schéma Zod, contrôle d'accès multi-tenant ABAC, moteur Hybride Dual RAG (Neo4j 5.20 avec ontologies RDF n10s + Apache AGE et PostgreSQL 16 pgvector HNSW), sandbox REPL Python FastAPI avec CrewAI, anonymisation PII et auditeur de théorie des jeux SHAP Sentinel couplé au LLM local souverain Gemma 12B QAT.",
+        p3_desc: "Usine MLOps autonome d'ingestion et d'ingénierie de données développée pour le Hackathon Google Cloud #AllThingsAgentic. Intègre Google TabFM (modèle de fondation tabulaire zero-shot), l'outil Google PAIR What-If Tool (WIT) pour l'audit d'équité et de parité démographique, le Model Card Toolkit (MCT) de Google, et le profiling statistique Zero-ETL en <48ms via BigQuery DataFrames (bigframes). Comprend un visualiseur DAG GPU SVG 60 FPS, un routeur cascade adaptatif (arbitrage 125x de tokens), un générateur forensique de 55 cellules CRISP-ML(Q) (score 100/100) et des signatures cryptographiques RSASSA-PSS-SHA256 conformes EU AI Act (Art. 12 & 26).",
         p4_desc: "Application & Système de Conformité Sûreté Aéroportuaire pour la CCAA (Autorité Aéronautique du Cameroun). Développée en Streamlit & Python, elle automatise la génération des rapports mensuels normés V4 (.docx), le suivi analytique des KPIs d'inspection (PIF, ZSAR), la vérification des livrables d'audit et la simulation interactive d'auditions d'inspection Sûreté (AVSEC).",
         p5_desc: "Plateforme MLOps d'intelligence artificielle dédiée au Sahel réduisant les pertes agricoles de 35 % et anticipant les épidémies de méningite 2 semaines en avance. Combine le streaming en temps réel (MQTT / WebSockets) et le suivi spatio-temporel des poussières d'Harmattan (PM2.5) sous observabilité active (MLflow & Supabase Realtime).",
         p6_desc: "Système Souverain d'IA Agentique Multi-Agents, GraphRAG & Certification Scientifique pour le DMI (Université de Ngaoundéré), valorisant 28 ans de patrimoine (470 thèses Ph.D. & Masters, 19 projets M1, 1 366 nœuds / 3 833 relations Neo4j). Articulé autour de 4 piliers d'ingénierie : 1) Recherche Hybride Multi-Stage (Dense HNSW + BM25 + RRF k=60 + Cross-Encoder) & Deep Research (<450 tokens) ; 2) Explorateur de Graphe 3D/2D (Barnes-Hut, Hiérarchique, Radial) & Copilot Cypher ; 3) Advisor Matcher Neuro-Symbolique (Recommandation de directeurs et labos LARI, LAMAP, LAMEX, LASE avec score d'affinité IA %) ; 4) Certification Déterministe OKF v0.2 SHA-256 No-LLM & Auditeur Bibliographique Waterfall (DOI/arXiv/Crossref). Intègre la méta-mémoire K1-WikiSkill (Google Research 2026), la validation formelle de modèles SEIR/Caputo, l'interopérabilité FAIR OAI-PMH v2.0 / BibTeX, un cache Redis 7 (<20ms) et un Quorum de sécurité symétrique à 4 Yeux (KOA + AZIZ) sous supervision du Pr. DAYANG PAUL (77 tests à 100%).",
@@ -186,24 +186,29 @@ const translations = {
         certif_title: 'Certifications & <span class="text-neon">Distinctions</span>',
         certif_subtitle: "Reconnaissances académiques, institutionnelles et industrielles.",
         c1_date: "2026",
-        c1_title: "Architecte & Fondateur",
-        c1_sub: "Archi Cam AI (SaaS IA & 5D BIM)",
-        c1_desc: "SaaS souverain d'estimation BTP combinant Gemma 4 12B, Gemini & sandbox déterministe BAEL 91",
+        c1_title: "Architecte IA & Fondateur",
+        c1_sub: "Archi Cam AI (archicam-ai.com)",
+        c1_desc: "SaaS souverain BIM 5D & Multi-Agents BTP · Programme Google for Startups Cloud & AICC Accra",
 
         c2_date: "2025 – 2027 · En cours d'obtention",
         c2_title: "Master Professionnel en IA Appliquée",
         c2_sub: "Université de Ngaoundéré",
         c2_desc: "Spécialisation en Modélisation de Graphes (Neo4j), MLOps, Prompt Engineering & LLM.",
 
-        c3_date: "8 ans · 2017 – 2025",
-        c3_title: "Cadre AVSEC Certifié OACI",
+        c3_date: "8 ans · 2018 – Présent",
+        c3_title: "Agent de Sûreté AVSEC Certifié OACI",
         c3_sub: "CCAA · Cameroon Civil Aviation Authority",
-        c3_desc: "Annexe 17 · Audits 100 points · Sûreté aéroportuaire internationale",
+        c3_desc: "Annexe 17 OACI · Audits de sûreté, inspections réglementaires & protocoles anti-intrusion",
 
         c4_date: "2015 – 2016",
         c4_title: "Diplôme d'Ingénieur Génie Civil",
         c4_sub: "Institut Universitaire de la Côte (IUC)",
         c4_desc: "Normes BAEL 91 · BIM 5D · Calcul de structures",
+
+        c5_date: "Avril 2023",
+        c5_title: "Certificat d'Excellence & Intégrité",
+        c5_sub: "Directeur Général · CCAA (Cameroon Civil Aviation Authority)",
+        c5_desc: "Décerné pour la performance opérationnelle exceptionnelle, la gestion de crise et la déontologie exemplaire dans le secteur de la sûreté aéroportuaire.",
 
         // Contact Section
         contact_title: 'Me <span class="text-neon">Contacter & Collaborer</span>',
@@ -286,7 +291,7 @@ const translations = {
         cv_e2_school: "ISTDI / IUC Douala",
         cv_e2_desc: "Dimensionnement de structures (BAEL 91), calculs de métrés et gestion de projets BTP.",
         cv_title_honors: '<i class="fa-solid fa-award"></i> Reconnaissances & Engagements',
-        cv_h1_text: "<strong>◈ Hackathon Google Cloud #AllThingsAgentic :</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ Google Developer Program & AICC Accra :</strong> Membre actif · Accra AI Community Centre & Google for Startups Accelerator Network (Archi Cam AI)."
+        cv_h1_text: "<strong>◈ Certificat d'Excellence & Intégrité CCAA (Avril 2023) :</strong> Décerné par le Directeur Général de la Cameroon Civil Aviation Authority pour performance opérationnelle et déontologie exemplaire.<br><strong>◈ Hackathon Google Cloud #AllThingsAgentic :</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ Google Developer Program & AICC Accra :</strong> Membre actif · Accra AI Community Centre & Google for Startups Accelerator Network (Archi Cam AI)."
     },
 
     en: {
@@ -401,9 +406,9 @@ const translations = {
         pod_t6_desc: "Focus in English on air-gapped sovereign AI applied to ICAO / CCAA aviation security inspection systems (ASU-Audit-Ready).",
 
         // Projects Cards
-        p1_desc: "Sovereign 5D BIM & Agentic AI SaaS for African construction. Combines Google multimodal AI (Gemini 2.5/1.5 Flash & local Gemma 4 12B QAT via LM Studio) with a deterministic Python Sandbox (IfcOpenShell, BAEL 91) to generate bankable Excel BOQs in <45s (-99.2% time, R² = 0.9872 evaluated under MLflow across 400 projects).",
-        p2_desc: "AI-driven Business Intelligence engine empowering executives to query complex relational Data Warehouses using natural language (PostgreSQL pgvector & Neo4j N10S, <5s latency). Features secure ETL ingestion, dynamic ABAC guardrails, PII masking, and full explainability audit via SHAP Sentinel.",
-        p3_desc: "Automated MLOps ingestion & ETL data engineering platform with automated test suites (Pytest / Great Expectations) and semantic knowledge graph governance (Neo4j). Features Data Drift observability (KS-test / PSI), Genkit agent orchestration with local Gemma-4 12B, and MLflow experiment tracking.",
+        p1_desc: "Sovereign 5D BIM & Spatial Multi-Agent platform for African construction structured around 7 decoupled microservices: YOLO semantic segmentation (port 8000), Shapely geometric polygon reconstruction (VIM port 8001, 15cm tolerance), automated CAD annotator & title block with PIL (port 8002), ADK SCoT spatial orchestrator (port 8080, enforcing POS & ONAC regulations), Neo4j 5.20 GraphRAG (MINMAP 2026 pricing mercurials), and deterministic Python Sandbox (IfcOpenShell, BAEL 91, >0.50m² deductions). Generates 6-sheet standardized Excel BOQs in <45s (-99.2% time, R² = 0.9872 under MLflow across 400 projects), 3D drone teaser videos (Veo 3 / Fal.ai), and cryptographic SHA-256 EXIF watermarking compliant with EU AI Act.",
+        p2_desc: "Sovereign Agentic Business Intelligence engine empowering executives to query enterprise Data Warehouses in natural language with zero data leakage (<5s latency). Decoupled architecture featuring TypeScript Genkit orchestrator with FastMCP Gateway (Model Context Protocol), Zod schema guardrails, dynamic multi-tenant ABAC access control, Hybrid Dual RAG engine (Neo4j 5.20 with neosemantics n10s RDF ontologies + Apache AGE and PostgreSQL 16 pgvector HNSW), sandboxed Python FastAPI REPL with CrewAI multi-agents, PII data masking, and game-theoretic SHAP Sentinel Risk Auditor coupled with offline sovereign Google Gemma 12B QAT.",
+        p3_desc: "Production-grade autonomous MLOps ingestion and data engineering factory built for the Google Cloud #AllThingsAgentic Hackathon. Features Google TabFM (tabular foundation model for zero-shot in-context learning), Google PAIR What-If Tool (WIT) for fairness and demographic parity audits, Google Model Card Toolkit (MCT), and serverless Zero-ETL statistical profiling in <48ms via BigQuery DataFrames (bigframes). Includes 60 FPS GPU SVG DAG canvas, adaptive cascade router (125x token arbitrage), 55-cell CRISP-ML(Q) automated forensic notebook generator (100/100 score), and cryptographic RSASSA-PSS-SHA256 signatures for EU AI Act compliance (Articles 12 & 26).",
         p4_desc: "Aviation Security Compliance & Inspection Analytics system engineered for CCAA (Cameroon Civil Aviation Authority). Built with Python & Streamlit, it automates standard V4 monthly audit reports (.docx), tracks airport security checkpoint KPIs (PIF, ZSAR), validates inspection deliverables, and simulates live AVSEC oral exams.",
         p5_desc: "Predictive MLOps climate intelligence platform built for the Sahel, cutting agricultural seeding losses by 35% and forecasting meningitis outbreaks 2 weeks in advance. Combines real-time IoT streaming (MQTT / WebSockets) and spatial tracking of Harmattan desert dust (PM2.5) with active observability (MLflow & Supabase Realtime).",
         p6_desc: "Sovereign Multi-Agent AI System, GraphRAG & Scientific Certification Platform for the Dept. of Mathematics & Computer Science (Univ. of Ngaoundéré), unlocking 28 years of scientific assets (470 Ph.D. & Master's theses, 19 M1 projects, 1,366 nodes / 3,833 relations in Neo4j). Structured across 4 engineering pillars: 1) Multi-Stage Hybrid Retrieval (Dense HNSW + BM25 + RRF k=60 + Cross-Encoder) & Deep Research (<450 tokens); 2) 3D/2D Graph Explorer (Barnes-Hut, Hierarchical, Radial) & Autonomous Cypher Copilot; 3) Neuro-Symbolic Advisor Matcher (Thesis supervisor & lab recommendation across LARI, LAMAP, LAMEX, LASE with AI affinity score %); 4) Deterministic OKF v0.2 SHA-256 No-LLM Certification & Waterfall Citation Audit (DOI/arXiv/Crossref). Features K1-WikiSkill procedural meta-memory (Google Research 2026), formal SEIR/Caputo mathematical modeling, FAIR OAI-PMH v2.0 / BibTeX exports, Redis 7 caching (<20ms), and 4-Eyes symmetric quorum security (KOA + AZIZ) under supervision of Prof. DAYANG PAUL (77 automated tests, 100% pass rate).",
@@ -472,23 +477,28 @@ const translations = {
         certif_subtitle: "Academic, institutional, and industrial recognitions.",
         c1_date: "2026",
         c1_title: "Lead AI Architect & Founder",
-        c1_sub: "Archi Cam AI (5D BIM & AI SaaS)",
-        c1_desc: "Sovereign construction estimation platform combining Gemma 4 12B, Gemini & BAEL 91 sandbox",
+        c1_sub: "Archi Cam AI (archicam-ai.com)",
+        c1_desc: "Sovereign 5D BIM & Agentic AI SaaS · Google for Startups Cloud Program & AICC Accra",
 
         c2_date: "2025 – 2027 · In Progress",
         c2_title: "Master of Science in Applied AI",
         c2_sub: "University of Ngaoundéré",
         c2_desc: "Specialization in Knowledge Graph Modeling (Neo4j), MLOps, Prompt Engineering & LLM Architecture.",
 
-        c3_date: "8 Years · 2017 – 2025",
+        c3_date: "8 Years · 2018 – Present",
         c3_title: "ICAO Certified AVSEC Officer",
         c3_sub: "CCAA · Cameroon Civil Aviation Authority",
-        c3_desc: "Annex 17 · 100-Point Audits · International Airport Security",
+        c3_desc: "Annex 17 · Security audits, regulatory inspections & anti-intrusion protocols",
 
         c4_date: "2015 – 2016",
         c4_title: "Bachelor of Science in Civil Engineering",
         c4_sub: "Institut Universitaire de la Côte (IUC)",
         c4_desc: "BAEL 91 Concrete Standards · 5D BIM · Structural Analysis",
+
+        c5_date: "April 2023",
+        c5_title: "Certificate of Excellence & Operational Integrity",
+        c5_sub: "Director General · CCAA (Cameroon Civil Aviation Authority)",
+        c5_desc: "Awarded for outstanding operational performance, crisis readiness, and exemplary public-service ethics in civil aviation security.",
 
         // Contact Section
         contact_title: 'Get In Touch & <span class="text-neon">Collaborate</span>',
@@ -571,6 +581,6 @@ const translations = {
         cv_e2_school: "ISTDI / IUC Douala",
         cv_e2_desc: "Structural Calculations (BAEL 91), Quantity Surveying & Construction Project Management.",
         cv_title_honors: '<i class="fa-solid fa-award"></i> Honors & Applied AI Engagements',
-        cv_h1_text: "<strong>◈ Google Cloud #AllThingsAgentic Hackathon:</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ Google Developer Program & AICC Accra:</strong> Active Member · Accra AI Community Centre & Google for Startups Accelerator Network (Archi Cam AI)."
+        cv_h1_text: "<strong>◈ CCAA Certificate of Excellence & Operational Integrity (April 2023):</strong> Awarded by the Director General of the Cameroon Civil Aviation Authority for outstanding performance, crisis readiness, and exemplary public-service ethics.<br><strong>◈ Google Cloud #AllThingsAgentic Hackathon:</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ Google Developer Program & AICC Accra:</strong> Active Member · Accra AI Community Centre & Google for Startups Accelerator Network (Archi Cam AI)."
     }
 };

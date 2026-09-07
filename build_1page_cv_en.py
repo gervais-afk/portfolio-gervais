@@ -136,18 +136,18 @@ def generate_exact_user_1page_cv_en():
 
     sb_h(c0, "AI & LLM Stack")
     sb_t(c0, "Google Antigravity IDE  ■ ■ ■ ■ ■")
-    sb_t(c0, "LangGraph & WikiSkills  ■ ■ ■ ■ ■")
+    sb_t(c0, "LangGraph & CrewAI      ■ ■ ■ ■ ■")
     sb_t(c0, "Google Gemma 4 (12B)    ■ ■ ■ ■ ■")
     sb_t(c0, "Gemini 2.5 / 1.5 Pro    ■ ■ ■ ■ ■")
     sb_t(c0, "Google TabFM (Tabular)  ■ ■ ■ ■ ■")
-    sb_t(c0, "Firebase Genkit         ■ ■ ■ ■ ■")
+    sb_t(c0, "FastMCP & Genkit        ■ ■ ■ ■ ■")
     sb_t(c0, "Neo4j GraphRAG — Agent K1")
 
     sb_h(c0, "Data & Graphs")
     sb_t(c0, "Neo4j / Cypher Graph    ■ ■ ■ ■ ■")
     sb_t(c0, "PostgreSQL / pgvector   ■ ■ ■ ■ ■")
-    sb_t(c0, "Google BigQuery         ■ ■ ■ ■ □")
-    sb_t(c0, "Supabase Realtime       ■ ■ ■ ■ □")
+    sb_t(c0, "Apache AGE & DuckDB     ■ ■ ■ ■ □")
+    sb_t(c0, "BigQuery DataFrames     ■ ■ ■ ■ □")
     sb_t(c0, "Pandas / NumPy ETL      ■ ■ ■ ■ ■")
 
     sb_h(c0, "Dev & MLOps")
@@ -155,15 +155,15 @@ def generate_exact_user_1page_cv_en():
     sb_t(c0, "FastAPI / Next.js 14    ■ ■ ■ ■ □")
     sb_t(c0, "MLflow & Data Drift     ■ ■ ■ ■ □")
     sb_t(c0, "SHAP Sentinel Audit     ■ ■ ■ ■ ■")
-    sb_t(c0, "Docker & Streamlit      ■ ■ ■ ■ ■")
-    sb_t(c0, "IfcOpenShell (5D BIM)   ■ ■ ■ ■ □")
+    sb_t(c0, "IfcOpenShell & Shapely  ■ ■ ■ ■ □")
+    sb_t(c0, "Docker & Pytest         ■ ■ ■ ■ ■")
 
     sb_h(c0, "Ethics, Security & Audit")
+    sb_t(c0, "◈ CCAA Excellence Award (2023)")
+    sb_t(c0, "◈ AVSEC Officer (ICAO Annex 17)")
     sb_t(c0, "◈ AI Ethics & Anti-Hallucination")
-    sb_t(c0, "◈ Quorum 4-Eyes Governance")
     sb_t(c0, "◈ OKF v0.2 SHA-256 No-LLM")
     sb_t(c0, "◈ EU AI Act Compliance (RSASSA)")
-    sb_t(c0, "◈ AVSEC (ICAO Annex 17)")
 
     sb_h(c0, "Languages")
     sb_t(c0, "French   —  Native / Fluent")
@@ -212,7 +212,7 @@ def generate_exact_user_1page_cv_en():
         sep.paragraph_format.space_before = Pt(0)
         sep.paragraph_format.space_after  = Pt(1.4)
         rs1 = sep.add_run("━" * 18)
-        rs1.font.size = Pt(4.5); rs1.font.color.rgb = OCEAN
+        rs1.font.size = Pt(5.0); rs1.font.color.rgb = OCEAN
         rs2 = sep.add_run("─" * 44)
         rs2.font.size = Pt(4.5); rs2.font.color.rgb = CYAN
 
@@ -265,20 +265,20 @@ def generate_exact_user_1page_cv_en():
     mn_h(c1, "Flagship AI Projects")
 
     entry(c1, "Archi Cam AI", "Agentic AI SaaS & 5D BIM")
-    bullet(c1, "Sovereign 5D BIM & BOQ estimation platform engineered with Google Antigravity (Gemma 4 12B, Gemini 2.5, BAEL 91).")
-    bullet(c1, "Automated Excel BOQs in <45s (–99.2% time, MLflow R²=0.9872) and 3D renders via Imagen 3 + ControlNet.")
-    bullet(c1, "IfcOpenShell integration for 5D BIM models: automated costing & scheduling via LangGraph agents.")
+    bullet(c1, "Sovereign 5D BIM platform (YOLO, Shapely, IfcOpenShell, BAEL 91, Gemma 4, Gemini 2.5).")
+    bullet(c1, "Automated Excel BOQs in <45s (–99.2% time, MLflow R²=0.9872), 3D teasers via Veo 3 / Fal.ai.")
+    bullet(c1, "5D IFC models: automated costing & scheduling without hallucination risk (POS / ONAC standards).")
 
     entry(c1, "K1-MATHINFO (v3.0.0)", "Sovereign Multi-Agent AI, WikiSkills & OKF Certification")
     bullet(c1, "Sovereign DMI system (Univ. of Ngaoundéré): 470 theses, 19 M1 projects, 1,366 Neo4j nodes.")
     bullet(c1, "6 LangGraph agents orchestrated via WikiSkills (critic anti-hallucination, Cypher optimizer), RRF k=60, SHA-256 No-LLM (100%).")
 
     entry(c1, "Sovereign.BI Agentic", "Enterprise Security & Agentic BI")
-    bullet(c1, "NL-to-SQL/Graph engine (PostgreSQL pgvector, Neo4j N10S, <5s latency) with ABAC guardrails + SHAP Sentinel.")
-    bullet(c1, "Interactive executive dashboards via Streamlit & FastAPI — deployed on sovereign Docker cloud.")
+    bullet(c1, "NL-to-SQL/Graph engine (PostgreSQL pgvector, Neo4j N10S, Apache AGE, latency <5s).")
+    bullet(c1, "FastMCP Gateway, Zod schema guardrails, ABAC access control, CrewAI, and SHAP Sentinel.")
 
     entry(c1, "Dataset Automator & VigieSahel", "MLOps Pipeline & Climate AI Impact")
-    bullet(c1, "Dataset Automator: Google Antigravity (Google Cloud Hackathon) — TabFM, BigQuery DataFrames, EU AI Act.")
+    bullet(c1, "Dataset Automator: TabFM, PAIR WIT, bigframes, 55-cell CRISP-ML(Q) and EU AI Act.")
     bullet(c1, "VigieSahel: –35% crop loss, +14d epidemic forecast (XGBoost R²>94%, Supabase, MLflow).")
 
     # ── Professional Experience ──

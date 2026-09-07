@@ -144,22 +144,99 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectsData = {
         fr: {
             'archi-cam-ai': {
-                badge: "SaaS IA Agentique & 5D BIM Souverain",
+                badge: "Plateforme Souveraine BIM 5D & Multi-Agents BTP",
                 title: "Archi Cam AI 🏛️",
-                subtitle: "Plateforme IA souveraine de modélisation BIM 5D & génération automatisée de métrés normés pour le BTP africain.",
+                subtitle: "Plateforme IA souveraine de modélisation BIM 5D, calcul de structures & devis estimatifs normés pour le BTP africain (7 microservices découplés).",
                 pipeline: [
-                    { num: "Étape 01", title: "Entrée Multimodale", desc: "Scan 2D/3D, fichiers DWG/PDF, maquettes IFC & prompts vocaux/texte de l'ingénieur." },
-                    { num: "Étape 02", title: "Agentic RAG & Graph", desc: "Neo4j 5.20 GraphRAG + Gemma 4 12B QAT local & Gemini 2.5/1.5 Flash." },
-                    { num: "Étape 03", title: "Python Sandbox BIM", desc: "Calculs déterministes BAEL 91, déductions >0.50m² & IfcOpenShell sans hallucination." },
-                    { num: "Étape 04", title: "Livrables BIM 5D", desc: "Fichiers IFC 3D, devis Excel normés (DQE 6 onglets) & rendus Imagen 3.0 + ControlNet." }
+                    { num: "Étape 01", title: "Entrée Multimodale & YOLO FastAPI (port 8000)", desc: "Scan 2D/3D, plans DWG/PDF, maquettes IFC et requêtes vocales. Segmentation sémantique par YOLO pour détecter murs, ouvertures et pièces." },
+                    { num: "Étape 02", title: "VIM TopologyBuilder (port 8001) & CAD Annotator (port 8002)", desc: "Reconstruction géométrique polygonale via Shapely (snapping 15cm tolérance, calcul des surfaces exactes en m²), cotations architecturales CAD et cartouche automatisé sous Pillow/PIL." },
+                    { num: "Étape 03", title: "ADK SCoT Orchestrator (port 8080) & Neo4j 5.20 GraphRAG", desc: "Chain-of-Thought spatial appliquant les normes réglementaires POS et ONAC. RAG de connaissances sur les mercuriales MINMAP 2026 et prix des matériaux." },
+                    { num: "Étape 04", title: "Sandbox Déterministe BAEL 91 & BIM 5D", desc: "Calculs d'ingénierie BAEL 91 (armatures, charges), déductions d'ouvertures >0.50m² et exports IFC C++ via IfcOpenShell sans risque d'hallucination." },
+                    { num: "Étape 05", title: "Génération Visuelle 3D & Livrables Conformes EU AI Act", desc: "Rendus photoréalistes Fal.ai (SDXL/ControlNet), teasers vidéo drone Veo 3, DQE Excel 6 onglets en <45s, et horodatage cryptographique EXIF SHA-256." }
                 ],
                 impacts: [
-                    "Accélération de +99,2% : génération des devis estimatifs (DQE) en <45 secondes (contre 3 à 7 jours manuellement).",
-                    "Zéro Hallucination & Conformité Légale : moteur déterministe Python BAEL 91 + ontologies Neo4j GraphRAG (MINMAP 2026).",
-                    "Système d'alerte précoce pour les pics de pollution (PM2.5) et les risques de méningite.",
-                    "Solution conçue sur-mesure pour les coopératives et décideurs du Sahel."
+                    "Accélération de +99,2% : génération complète des devis estimatifs (DQE 6 onglets) en <45 secondes (contre 3 à 7 jours manuellement).",
+                    "Zéro Hallucination & Conformité Légale : isolation neuro-symbolique stricte (LLM orchestrateur, calculs déterministes Python BAEL 91 + mercuriales MINMAP 2026).",
+                    "Reconstruction Topologique Robuste : snapping Shapely à tolérance 15cm fermant automatiquement les lignes brisées et calculant les surfaces en m².",
+                    "Haute Précision MLOps (R² = 0,9872) : modèles d'estimation entraînés et surveillés sous MLflow sur plus de 400 projets réels de construction."
                 ],
-                techs: ["Streamlit", "Python ML", "Supabase", "Scikit-Learn", "Pandas", "PWA"],
+                techs: ["Next.js 14", "FastAPI (ports 8000/8001/8002/8080)", "IfcOpenShell C++", "Shapely (Geometry)", "YOLO Vision", "Neo4j 5.20 GraphRAG", "Python BAEL 91", "Fal.ai / Veo 3", "DuckDB & Prisma", "MLflow MLOps", "EU AI Act SHA-256"],
+                github: "https://github.com/gervais-afk/archi-cam-ai"
+            },
+            'sovereign-bi': {
+                badge: "Business Intelligence Agentique & Gouvernance Souveraine",
+                title: "Sovereign.BI Agentic 📊",
+                subtitle: "Moteur décisionnel d'IA Agentique souveraine permettant d'interroger un Data Warehouse d'entreprise en langage naturel sans aucune fuite de données.",
+                pipeline: [
+                    { num: "Étape 01", title: "Requête NL, FastMCP Gateway & Garde-fous Zod", desc: "Interface React 18 + Vite transmettant les requêtes exécutives au Gateway FastMCP (Model Context Protocol). Validation stricte des schémas via Zod et contrôle d'accès multi-tenant ABAC." },
+                    { num: "Étape 02", title: "Moteur Hybride Dual RAG (Neo4j N10S + pgvector)", desc: "Graphe de connaissances Neo4j 5.20 enrichi d'ontologies RDF (neosemantics n10s) et requêtes hybrides couplées à Apache AGE et PostgreSQL 16 pgvector HNSW (<5s)." },
+                    { num: "Étape 03", title: "Moteur Analytique Python FastAPI & CrewAI", desc: "Sandbox REPL isolée exécutant le code d'agrégation statistique, assainissement et masquage automatique des données à caractère personnel (PII)." },
+                    { num: "Étape 04", title: "Auditeur de Risque SHAP Sentinel (Théorie des Jeux)", desc: "Attribution d'importance des variables selon les valeurs de Shapley (sentinel_rules.yaml), détection proactive des anomalies de calcul et des injections." },
+                    { num: "Étape 05", title: "Inférence Locale Google Gemma 12B QAT (Air-Gapped)", desc: "Exécution 100% hors-ligne via LM Studio / Ollama (port 1234), zéro fuite de données vers des tiers, et synchronisation contextuelle OKF." }
+                ],
+                impacts: [
+                    "Interrogation instantanée (<5s) de Data Warehouses massifs sans exiger de compétences en programmation SQL ou Cypher.",
+                    "Étanchéité Souveraine Absolue : données confidentielles traitées en mémoire locale sans transit vers des serveurs externes.",
+                    "Auditabilité et Transparence Totale : chaque chiffre et KPI est retracé mathématiquement par l'auditeur d'explicabilité SHAP Sentinel.",
+                    "Architecture Découplée & Modulaire : passerelle FastMCP et règles ABAC garantissant l'étanchéité multi-tenant pour les grandes organisations."
+                ],
+                techs: ["React 18 + Vite", "FastAPI Python", "TypeScript Genkit", "FastMCP Gateway", "Neo4j 5.20 N10S", "Apache AGE", "PostgreSQL pgvector", "CrewAI", "Google Gemma 12B QAT", "SHAP Sentinel", "Zod & ABAC"],
+                github: "https://github.com/gervais-afk/-sovereign-bi-agentic"
+            },
+            'dataset-automator': {
+                badge: "Usine MLOps Autonome & Dataset Engineering Factory (Google Cloud Hackathon)",
+                title: "Dataset Automator ⚙️",
+                subtitle: "Plateforme MLOps d'ingestion Zero-ETL, modélisation tabulaire de fondation, audits d'équité et gouvernance EU AI Act.",
+                pipeline: [
+                    { num: "Étape 01", title: "Ingestion Serverless & Zero-ETL Profiling (<48ms)", desc: "BigQuery DataFrames (bigframes) pour le profiling statistique haute vitesse, typage réel automatisé, détection d'asymétrie et de valeurs manquantes." },
+                    { num: "Étape 02", title: "Google TabFM & Adaptive Cascade Router", desc: "Modèle de fondation tabulaire TabFM (inférence zero-shot in-context learning) couplé à un routeur cascade (arbitrage de tokens 125x : TabFM -> SLM local 152ms -> Gemini 3.5 Flash)." },
+                    { num: "Étape 03", title: "Audit d'Équité Google PAIR What-If Tool (WIT)", desc: "Exploration contre-factuelle multidimensionnelle, analyse de sensibilité et contrôle de la parité démographique entre sous-populations." },
+                    { num: "Étape 04", title: "Observabilité MLOps & Détection de Dérive (KS/PSI)", desc: "Tests statistiques continus de Kolmogorov-Smirnov et Population Stability Index (PSI > 30%), alertes automatisées et versionnage complet sous MLflow UI." },
+                    { num: "Étape 05", title: "Gouvernance Model Card Toolkit (MCT) & Signatures RSASSA-PSS", desc: "Génération de fiches modèles Material Design, export de notebooks forensiques CRISP-ML(Q) de 55 cellules (score 100/100) et signature cryptographique EU AI Act Art. 12 & 26." }
+                ],
+                impacts: [
+                    "Automatisation de bout en bout du cycle de vie des données : de l'ingestion brute à la production de notebooks de qualité certifiée.",
+                    "Arbitrage de Coûts Énergétiques et Tokens (125x) grâce au routage adaptatif et à l'exploitation du modèle tabulaire TabFM.",
+                    "Conformité Légale Garantie pour l'EU AI Act : fiches de gouvernance MCT et empreintes cryptographiques RSASSA-PSS-SHA256 infalsifiables.",
+                    "Visualiseur Spatial DAG GPU SVG 60 FPS permettant de suivre visuellement en temps réel chaque nœud d'exécution de la pipeline."
+                ],
+                techs: ["Google TabFM", "PAIR What-If Tool (WIT)", "Model Card Toolkit (MCT)", "BigQuery DataFrames", "TypeScript Genkit", "Neo4j GraphRAG", "MLflow", "RSASSA-PSS-SHA256", "CRISP-ML(Q)", "Streamlit", "Pytest"],
+                github: "https://github.com/gervais-afk/dataset-automator"
+            },
+            'asu-audit-ready': {
+                badge: "Conformité Sûreté Aéroportuaire CCAA & Reporting",
+                title: "ASU-Audit-Ready 🛡️",
+                subtitle: "Tableau de bord de conformité sûreté, générateur de rapports d'audit V4 et simulateur d'interviews pour les cadres AVSEC de la CCAA.",
+                pipeline: [
+                    { num: "Étape 01", title: "Dashboard Sûreté & KPIs", desc: "Suivi mensuel des 7 cibles d'inspection critiques de l'aviation civile (Taux global, conformité PIF, ZSAR)." },
+                    { num: "Étape 02", title: "Génération de Rapports Word V4", desc: "Compilation automatisée des rapports mensuels d'activité (.docx) conformes au canevas officiel CCAA V4 avec directives correctives." },
+                    { num: "Étape 03", title: "Validateur de Livrables d'Audit", desc: "Vérification automatisée de complétude et de conformité documentaire avant les audits officiels OACI." },
+                    { num: "Étape 04", title: "Simulateur d'Auditions AVSEC", desc: "Module interactif d'entraînement aux auditions d'inspection sûreté pour la préparation des agents opérationnels." }
+                ],
+                impacts: [
+                    "Numérisation intégrale et gain de temps massif dans la rédaction des rapports mensuels de sûreté.",
+                    "Garantie de conformité réglementaire à 100% avec les normes de l'Autorité Aéronautique du Cameroun (CCAA / OACI Annexe 17).",
+                    "Entraînement continu des agents de sûreté aéroportuaire grâce à des scénarios d'audit simulés ultra-réalistes."
+                ],
+                techs: ["Streamlit", "Moteur Python", "python-docx (Modèle V4)", "ChartBuilder", "AuditChecker", "AuditSimulator", "Matplotlib / Seaborn"],
+                github: "https://github.com/gervais-afk/ASU-Audit-Ready"
+            },
+            'vigie-sahel': {
+                badge: "Impact Climat & Santé Publique par l'IA",
+                title: "VigieSahel 🌾",
+                subtitle: "Système prédictif pour l'optimisation agricole et l'anticipation d'épidémies dans la région du Sahel.",
+                pipeline: [
+                    { num: "Étape 01", title: "Collecte Multi-Sources", desc: "Ingestion de données météo, d'imagerie satellite et de capteurs de qualité de l'air PM2.5." },
+                    { num: "Étape 02", title: "Modélisation Machine Learning", desc: "Algorithmes prédictifs pour les dates optimales de semis et la propagation de maladies épidémiques (méningite)." },
+                    { num: "Étape 03", title: "Stockage Supabase Realtime", desc: "Base de données cloud synchronisée en temps réel avec observabilité active sous MLflow." },
+                    { num: "Étape 04", title: "PWA Offline-First", desc: "Interface Streamlit PWA accessible même en zone sahélienne sous faible connectivité réseau." }
+                ],
+                impacts: [
+                    "Optimisation des rendements des cultures de coton face aux variations pluviométriques.",
+                    "Système d'alerte précoce pour les pics de pollution (PM2.5) et les risques d'épidémies.",
+                    "Solution conçue sur-mesure pour les coopératives agricoles et décideurs du Sahel."
+                ],
+                techs: ["Streamlit", "Python ML", "Supabase", "Scikit-Learn", "Pandas", "PWA", "MLflow"],
                 github: "https://github.com/gervais-afk/VigieSahel"
             },
             'k1-mathinfo': {
@@ -188,56 +265,61 @@ document.addEventListener('DOMContentLoaded', () => {
             'archi-cam-ai': {
                 badge: "Sovereign 5D BIM & Agentic AI SaaS",
                 title: "Archi Cam AI 🏛️",
-                subtitle: "Sovereign 5D BIM & Agentic AI platform for automated quantity surveying in African construction.",
+                subtitle: "Sovereign 5D BIM & Agentic AI platform for automated structural engineering & quantity surveying in African construction (7 decoupled microservices).",
                 pipeline: [
-                    { num: "Step 01", title: "Multimodal Input", desc: "2D/3D scans, DWG/PDF files, IFC models & vocal/text prompts from the engineer." },
-                    { num: "Step 02", title: "Agentic RAG & Graph", desc: "Neo4j 5.20 GraphRAG + local Gemma 4 12B QAT & Gemini 2.5/1.5 Flash." },
-                    { num: "Step 03", title: "Python Sandbox BIM", desc: "Deterministic BAEL 91 structural calculations, >0.50m² deductions & IfcOpenShell with zero hallucination." },
-                    { num: "Step 04", title: "5D BIM Deliverables", desc: "3D IFC files, standardized Excel BOQs (6-tab DQE) & Imagen 3.0 + ControlNet renders." }
+                    { num: "Step 01", title: "Multimodal Input & YOLO FastAPI (port 8000)", desc: "2D/3D scans, DWG/PDF drawings, IFC models & vocal prompts. Semantic segmentation via YOLO to detect walls, openings, and spaces." },
+                    { num: "Step 02", title: "VIM TopologyBuilder (port 8001) & CAD Annotator (port 8002)", desc: "Geometric polygon reconstruction via Shapely (snapping with 15cm tolerance, computing exact room areas in m²), automated CAD dimensioning and title block via Pillow/PIL." },
+                    { num: "Step 03", title: "ADK SCoT Orchestrator (port 8080) & Neo4j 5.20 GraphRAG", desc: "Spatial Chain-of-Thought agent enforcing POS and ONAC regulations. Knowledge graph for MINMAP 2026 pricing mercurials and construction materials." },
+                    { num: "Step 04", title: "Deterministic Python Sandbox BAEL 91 & 5D BIM", desc: "Deterministic BAEL 91 structural calculations (rebar, load bearing), >0.50m² opening deductions, and IFC C++ exports via IfcOpenShell with zero hallucination." },
+                    { num: "Step 05", title: "3D Visual Synthesis & EU AI Act Compliance", desc: "Photorealistic Fal.ai renders (SDXL/ControlNet), Veo 3 3D drone teaser videos, 6-sheet Excel BOQs in <45s, and SHA-256 EXIF cryptographic watermarking." }
                 ],
                 impacts: [
-                    "99.2% speedup: Bill of Quantities (BOQ/DQE) generated in <45 seconds (down from 3 to 7 days manually).",
-                    "Zero Hallucination & Regulatory Compliance: deterministic Python BAEL 91 math engine + Neo4j GraphRAG ontologies (MINMAP 2026).",
-                    "Hybrid Cloud/Edge Resilience: cloud-based Gemini 2.5/1.5 Flash with automatic failover to local Gemma 4 12B QAT (LM Studio).",
-                    "MLOps Accuracy (R² = 0.9872): estimating model trained and evaluated under MLflow on 400 African construction projects."
+                    "99.2% speedup: Complete Bill of Quantities (6-sheet BOQs) generated in <45 seconds (down from 3 to 7 days manually).",
+                    "Zero Hallucination & Regulatory Compliance: strict neuro-symbolic isolation (LLM orchestrator + deterministic BAEL 91 Python engine + MINMAP 2026).",
+                    "Robust Topological Reconstruction: Shapely snapping with 15cm tolerance automatically closing broken lines and computing exact room areas.",
+                    "MLOps Production Precision (R² = 0.9872): estimating model trained and evaluated under MLflow across 400 African construction projects."
                 ],
-                techs: ["Next.js 14", "Firebase Genkit", "Google Gemma 4 12B", "Gemini 2.5/1.5 Flash", "Neo4j GraphRAG", "IfcOpenShell", "Python BAEL 91", "MLflow MLOps", "Imagen 3.0 + ControlNet"],
+                techs: ["Next.js 14", "FastAPI (ports 8000/8001/8002/8080)", "IfcOpenShell C++", "Shapely (Geometry)", "YOLO Vision", "Neo4j 5.20 GraphRAG", "Python BAEL 91", "Fal.ai / Veo 3", "DuckDB & Prisma", "MLflow MLOps", "EU AI Act SHA-256"],
                 github: "https://github.com/gervais-afk/archi-cam-ai"
             },
             'sovereign-bi': {
                 badge: "Agentic Business Intelligence & Security",
                 title: "Sovereign.BI Agentic 📊",
-                subtitle: "Autonomous enterprise data analysis engine allowing users to query complex SQL databases in natural language.",
+                subtitle: "Sovereign agentic enterprise BI engine empowering executives to query massive Data Warehouses in natural language with zero data leakage.",
                 pipeline: [
-                    { num: "Step 01", title: "NL Query & Guardrail", desc: "User natural language query filtered by dynamic security guardrails." },
-                    { num: "Step 02", title: "TS Orchestrator", desc: "PostgreSQL schema mapping via Neo4j GraphRAG (N10S)." },
-                    { num: "Step 03", title: "SQL Generation & Audit", desc: "Optimized SQL translation + SHAP Sentinel audit against any query anomaly." },
-                    { num: "Step 04", title: "Visualization & Insights", desc: "HTML/React graphic rendering & executive Markdown summaries." }
+                    { num: "Step 01", title: "NL Query, FastMCP Gateway & Zod Guardrails", desc: "React 18 + Vite interface routing executive queries through FastMCP Gateway (Model Context Protocol). Strict schema validation via Zod and multi-tenant ABAC permissions." },
+                    { num: "Step 02", title: "Hybrid Dual RAG Engine (Neo4j N10S + pgvector)", desc: "Neo4j 5.20 knowledge graph enriched with RDF ontologies (neosemantics n10s) and hybrid queries coupled with Apache AGE and PostgreSQL 16 pgvector HNSW (<5s)." },
+                    { num: "Step 03", title: "Python FastAPI Analytics Engine & CrewAI", desc: "Sandboxed REPL environment executing analytical statistical aggregations, automated PII sanitization, and data masking." },
+                    { num: "Step 04", title: "SHAP Sentinel Risk Auditor (Game Theory)", desc: "Feature importance attribution via Shapley values (sentinel_rules.yaml), proactive detection of query anomalies, and injection defense." },
+                    { num: "Step 05", title: "Local Sovereign Google Gemma 12B QAT (Air-Gapped)", desc: "100% offline local inference via LM Studio / Ollama (port 1234), zero third-party data leakage, and OKF contextual synchrony." }
                 ],
                 impacts: [
-                    "Instant querying of massive datasets without requiring SQL programming expertise.",
-                    "Dynamic guardrail system preventing SQL injection attacks or unauthorized data modification.",
-                    "Integrated SHAP explainability audits to clarify autonomous agent reasoning with full transparency."
+                    "Instant querying (<5s) of massive Data Warehouses without requiring SQL or Cypher programming expertise.",
+                    "Absolute Sovereign Security: confidential enterprise data processed in local memory with zero external transmission.",
+                    "Complete Auditability & Transparency: every number and KPI mathematically verified by the SHAP Sentinel explainability auditor.",
+                    "Decoupled & Modular Architecture: FastMCP gateway and ABAC policies enforcing strict multi-tenant data isolation."
                 ],
-                techs: ["React", "FastAPI", "TypeScript Orchestrator", "PostgreSQL", "Neo4j GraphRAG", "Gemini AI", "Docker", "SHAP Auditor"],
-                github: "https://github.com/gervais-afk/sovereign-bi-agentic"
+                techs: ["React 18 + Vite", "FastAPI Python", "TypeScript Genkit", "FastMCP Gateway", "Neo4j 5.20 N10S", "Apache AGE", "PostgreSQL pgvector", "CrewAI", "Google Gemma 12B QAT", "SHAP Sentinel", "Zod & ABAC"],
+                github: "https://github.com/gervais-afk/-sovereign-bi-agentic"
             },
             'dataset-automator': {
-                badge: "Agentic MLOps Platform & Dataset Engineering Factory",
+                badge: "Agentic MLOps Platform & Dataset Engineering Factory (Google Cloud Hackathon)",
                 title: "Dataset Automator ⚙️",
-                subtitle: "Autonomous MLOps factory for data ingestion, quality auditing, semantic governance (Neo4j), and automated training.",
+                subtitle: "Autonomous MLOps factory for Zero-ETL data ingestion, foundation tabular modeling, fairness auditing, and EU AI Act governance.",
                 pipeline: [
-                    { num: "Step 01", title: "Profiling & Data Drift (KS/PSI)", desc: "Python analysis, real data type detection and continuous monitoring of distribution drift (KS-test / PSI > 30%)." },
-                    { num: "Step 02", title: "GraphRAG & Semantic Curation", desc: "Modeling within Neo4j Knowledge Graph, business mappings and self-healing auto-correction of historical failures." },
-                    { num: "Step 03", title: "Genkit & MLflow Tracking", desc: "TypeScript orchestration with local Gemma-4 12B (LM Studio), HITL validation and complete tracking on MLflow UI." },
-                    { num: "Step 04", title: "Streamlit Dashboard & Notebook Factory", desc: "2D/3D graph visualization, SHAP audits and automated generation of certified Jupyter MLOps notebooks (.ipynb)." }
+                    { num: "Step 01", title: "Serverless Ingestion & Zero-ETL Profiling (<48ms)", desc: "BigQuery DataFrames (bigframes) for high-speed statistical profiling, automated real-data typing, skewness detection, and missing-value analysis." },
+                    { num: "Step 02", title: "Google TabFM & Adaptive Cascade Router", desc: "Tabular foundation model TabFM (zero-shot in-context learning) paired with an adaptive cascade router (125x token arbitrage: TabFM -> local SLM @ 152ms -> Gemini 3.5 Flash)." },
+                    { num: "Step 03", title: "Fairness Audit via Google PAIR What-If Tool (WIT)", desc: "Multidimensional counterfactual exploration, sensitivity analysis, and demographic parity verification across sub-populations." },
+                    { num: "Step 04", title: "MLOps Observability & Drift Tracking (KS/PSI)", desc: "Continuous statistical Kolmogorov-Smirnov and Population Stability Index (PSI > 30%) drift tests, automated alerts, and MLflow tracking." },
+                    { num: "Step 05", title: "Model Card Toolkit (MCT) Governance & RSASSA-PSS", desc: "Automated Material Design governance cards, 55-cell forensic CRISP-ML(Q) notebook generator (100/100 score), and EU AI Act Art. 12 & 26 signatures." }
                 ],
                 impacts: [
-                    "End-to-end automation of data preparation cycles and MLOps training workflows.",
-                    "Early detection of model drift (Data Drift) with automatic alert generation inside Neo4j.",
-                    "Instant exports of fully documented Jupyter notebooks and MLflow / Genkit tracking interfaces."
+                    "End-to-end automation of data preparation cycles, quality audits, and certified MLOps notebook generation.",
+                    "125x Token & Energy Cost Arbitrage leveraging adaptive routing and Google's TabFM foundation tabular model.",
+                    "Guaranteed Regulatory Compliance for EU AI Act: MCT governance cards and tamper-proof RSASSA-PSS-SHA256 signatures.",
+                    "60 FPS GPU SVG DAG Spatial Visualizer enabling real-time animated tracking of every execution step across the pipeline."
                 ],
-                techs: ["TypeScript Genkit", "Neo4j GraphRAG", "MLflow", "Google Gemma 4 (LM Studio)", "Streamlit", "Firebase Firestore", "Python MLOps"],
+                techs: ["Google TabFM", "PAIR What-If Tool (WIT)", "Model Card Toolkit (MCT)", "BigQuery DataFrames", "TypeScript Genkit", "Neo4j GraphRAG", "MLflow", "RSASSA-PSS-SHA256", "CRISP-ML(Q)", "Streamlit", "Pytest"],
                 github: "https://github.com/gervais-afk/dataset-automator"
             },
             'asu-audit-ready': {
@@ -252,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ],
                 impacts: [
                     "Complete digitization and massive time savings in drafting monthly security compliance reports.",
-                    "100% compliance guarantee with the regulatory standards of the CCAA (Cameroon Civil Aviation Authority).",
+                    "100% compliance guarantee with the regulatory standards of the CCAA (Cameroon Civil Aviation Authority / ICAO Annex 17).",
                     "Continuous training of airport security officers through realistic simulated audit scenarios."
                 ],
                 techs: ["Streamlit", "Python Engine", "python-docx (Modèle V4)", "ChartBuilder", "AuditChecker", "AuditSimulator", "Matplotlib / Seaborn"],
@@ -265,15 +347,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 pipeline: [
                     { num: "Step 01", title: "Multi-source Data Collection", desc: "Ingestion of weather, satellite imagery & PM2.5 air quality sensor data." },
                     { num: "Step 02", title: "ML Modeling", desc: "Predictive algorithms for optimal crop sowing dates and epidemic disease propagation." },
-                    { num: "Step 03", title: "Supabase Realtime Storage", desc: "Cloud database synchronized in real-time." },
-                    { num: "Step 04", title: "Offline-First PWA", desc: "Streamlit PWA interface accessible even under low network connectivity." }
+                    { num: "Step 03", title: "Supabase Realtime Storage", desc: "Cloud database synchronized in real-time with active MLflow observability." },
+                    { num: "Step 04", title: "Offline-First PWA", desc: "Streamlit PWA interface accessible even under low network connectivity in the Sahel." }
                 ],
                 impacts: [
                     "Cotton crop yield optimization relative to fluctuating rainfall patterns.",
                     "Early warning system for air pollution peaks (PM2.5) and meningitis outbreak risks.",
                     "Tailor-made solution built for agricultural cooperatives and decision-makers in the Sahel."
                 ],
-                techs: ["Streamlit", "Python ML", "Supabase", "Scikit-Learn", "Pandas", "PWA"],
+                techs: ["Streamlit", "Python ML", "Supabase", "Scikit-Learn", "Pandas", "PWA", "MLflow"],
                 github: "https://github.com/gervais-afk/VigieSahel"
             },
             'k1-mathinfo': {
