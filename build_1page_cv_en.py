@@ -309,7 +309,7 @@ def generate_exact_user_1page_cv_en():
     # ── Honors ──
     mn_h(c1, "Honors & Applied AI Distinctions")
 
-    award(c1, "CCAA Certificate of Excellence & Integrity (2023)", "Awarded by the Director General for outstanding operational performance & ethics.")
+    award(c1, "CCAA Attestation of Excellence & Integrity (2023)", "Awarded by the Director General for outstanding operational performance & ethics.")
     award(c1, "Google Cloud #AllThingsAgentic Hackathon", "Dataset Automator v4.0 (Google Antigravity, TabFM, BigQuery DataFrames, WIT).")
     award(c1, "Google Developer Program · AICC Accra", "Active member · Accra AI Community Centre & Google for Startups Accelerator Network.")
 

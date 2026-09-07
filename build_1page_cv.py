@@ -302,7 +302,7 @@ def generate_exact_user_1page_cv():
     # ── Reconnaissances ──
     mn_h(c1, "Reconnaissances & Distinctions")
 
-    award(c1, "Certificat d'Excellence & Intégrité CCAA (2023)", "Décerné par le Directeur Général pour performance et déontologie opérationnelle.")
+    award(c1, "Attestation d'Excellence & Intégrité CCAA (2023)", "Décernée par le Directeur Général pour performance et déontologie opérationnelle.")
     award(c1, "Google Cloud #AllThingsAgentic Hackathon", "Dataset Automator v4.0 (Google Antigravity, TabFM, BigQuery DataFrames, WIT).")
     award(c1, "Google Developer Program · AICC Accra", "Membre actif · Accra AI Community Centre & Google for Startups Accelerator Network.")
 
