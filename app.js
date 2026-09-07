@@ -163,23 +163,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 github: "https://github.com/gervais-afk/VigieSahel"
             },
             'k1-mathinfo': {
-                badge: "IA Souveraine Multi-Agents, GraphRAG & Certification OKF (DMI - Université de Ngaoundéré)",
-                title: "K1-MATHINFO (v3.0.0) 🏛️",
-                subtitle: "Infrastructure souveraine d'IA multi-agents académique, valorisant 28 ans de recherche & certification déterministe No-LLM.",
+                badge: "Système Souverain d'IA Multi-Agents, GraphRAG, Advisor Matcher & Certification OKF (DMI - Univ. Ngaoundéré)",
+                title: "K1-MATHINFO (v3.2.0) 🏛️",
+                subtitle: "Infrastructure souveraine académique : 4 Piliers, 8 agents LangGraph, graphe Neo4j (1 366 nœuds), recommandation de directeurs et auto-apprentissage continu WikiSkill.",
+                infographic: "assets/images/k1_mathinfo_infographie_pro.png",
                 pipeline: [
-                    { num: "Étape 01", title: "Ingestion Streaming SSE (5 Étapes)", desc: "Visualiseur d'ingestion en temps réel avec Stepper animé, console terminal de logs et découpage normatif de 470 thèses et 19 projets M1." },
-                    { num: "Étape 02", title: "Graphe Topologique Neo4j & pgvector", desc: "Modélisation de 1 366 nœuds et 3 833 relations généalogiques (encadrements, jurys, algorithmes, théorèmes) + index dense HNSW 384d." },
-                    { num: "Étape 03", title: "Recherche Hybride Multi-Stage (RRF k=60)", desc: "Fusion réciproque dense/sparse (BM25 + pgvector), re-ranking Cross-Encoder et boost taxonomique DMI (β=0.35) sous <450 tokens." },
-                    { num: "Étape 04", title: "Certification OKF v0.2 & Auditeur Bibliographique", desc: "Attesteur Cypher SHA-256 No-LLM (Tier 1/2/3), audit anti-citations fantômes Waterfall (DMI -> Semantic Scholar -> Crossref) et interopérabilité OAI-PMH." },
-                    { num: "Étape 05", title: "Réseau Multi-Agents & Quorum 4 Yeux", desc: "Orchestration LangGraph de 6 agents spécialisés (Superviseur, GraphRAG, Math, Biblio, OKF, FactChecker) sous gouvernance symétrique KOA + AZIZ." }
+                    { num: "Pilier 01", title: "Ingestion Streaming SSE & Deep Research", desc: "Visualiseur d'ingestion en temps réel (Stepper 5 étapes, logs console) et découpage normatif de 470 thèses & 19 projets M1. Deep Research matriciel compact limitant la bande passante à <450 tokens." },
+                    { num: "Pilier 02", title: "Graphe Topologique Neo4j & Explorateur 3D", desc: "1 366 nœuds et 3 833 relations (encadrements, jurys, algorithmes, théorèmes). Dispose de 3 modes physiques (Barnes-Hut, Hiérarchique Top-Down, Radial) et d'un Copilot autonome générant du Cypher sans code." },
+                    { num: "Pilier 03", title: "Advisor Matcher (Directeur de Thèse Idéal)", desc: "Moteur de recommandation neuro-symbolique couplant similarité cosinus dense du sujet et co-occurrence ontologique Neo4j. Fiches directeurs enrichies parmi les 4 labos DMI (LARI, LAMAP, LAMEX, LASE) avec score d'affinité IA % et actions 1-clic." },
+                    { num: "Pilier 04", title: "Certification OKF v0.2 & Auditeur Bibliographique", desc: "Attesteur Cypher SHA-256 No-LLM (Tiers 1/2/3 inviolables) et audit bibliographique Waterfall (DMI -> Semantic Scholar -> Crossref, DOI/arXiv O(1)). Interopérabilité FAIR OAI-PMH v2.0 (Dublin Core, ETD-MS) et exports BibTeX/Zotero." },
+                    { num: "Pilier 05", title: "LangGraph 8 Agents, K1-WikiSkill & Quorum 4 Yeux", desc: "Réseau de 8 agents (Superviseur, GraphRAG, Advisor, Math SEIR/Caputo, Biblio, OKF, Critic Q17, WikiSkill). Auto-amélioration continue par méta-compétences (Google Research 2026) et Quorum symétrique (KOA + AZIZ) sous supervision du Pr. DAYANG PAUL." }
                 ],
                 impacts: [
-                    "Élimination absolue des hallucinations académiques par empreinte cryptographique SHA-256 (OKF v0.2 No-LLM).",
-                    "Valorisation intégrale de 28 ans de patrimoine scientifique (1997–2026) : 470 thèses et mémoires et 19 projets d'application M1 indexés.",
-                    "Auditeur bibliographique en cascade avec vérification instantanée DOI/arXiv pour éradiquer les citations fantômes.",
-                    "Gouvernance sécurisée & fiabilité logicielle : 77 tests automatisés (100% de succès), cache Redis 7 (<3ms) et Quorum de sécurité 4 Yeux (KOA + AZIZ)."
+                    "Élimination absolue des hallucinations académiques par empreinte cryptographique déterministe SHA-256 (OKF v0.2 No-LLM Tiers 1/2/3).",
+                    "Advisor Matcher Intelligent : orientation optimale des étudiants vers les directeurs et laboratoires (LARI, LAMAP, LAMEX, LASE) avec justification explicable.",
+                    "Explorateur 3D/2D Barnes-Hut & Requêtes Cypher en langage naturel pour naviguer dans 28 ans de patrimoine scientifique (470 thèses, 19 projets M1).",
+                    "Auto-Amélioration Continue K1-WikiSkill & Gouvernance Symétrique : 77 tests automatisés (100% succès), cache Redis 7 (<20ms) et Quorum de sécurité 4 Yeux."
                 ],
-                techs: ["FastAPI 0.115", "LangGraph Multi-Agents", "Neo4j 5.26 GraphRAG", "Redis 7 Lua (<3ms)", "OKF v0.2 SHA-256", "PostgreSQL pgvector", "Cross-Encoder", "OAI-PMH Dublin Core"],
+                techs: ["FastAPI 0.115", "LangGraph 8 Agents", "Neo4j 5.26 GraphRAG", "Advisor Matcher", "Barnes-Hut 3D", "OKF v0.2 SHA-256", "K1-WikiSkill", "Redis 7 Lua (<20ms)", "PostgreSQL pgvector", "OAI-PMH Dublin Core"],
                 github: "https://github.com/gervais-afk/k1-mathinfo"
             }
         },
@@ -276,23 +277,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 github: "https://github.com/gervais-afk/VigieSahel"
             },
             'k1-mathinfo': {
-                badge: "Sovereign Multi-Agent AI, GraphRAG & Academic Certification (DMI - University of Ngaoundéré)",
-                title: "K1-MATHINFO (v3.0.0) 🏛️",
-                subtitle: "Sovereign multi-agent academic AI infrastructure, modeling 28 years of scientific research & deterministic No-LLM certification.",
+                badge: "Sovereign Multi-Agent AI System, GraphRAG, Advisor Matcher & Academic Certification (DMI - Univ. of Ngaoundéré)",
+                title: "K1-MATHINFO (v3.2.0) 🏛️",
+                subtitle: "Sovereign academic AI infrastructure: 4 Engineering Pillars, 8 LangGraph agents, Neo4j graph (1,366 nodes), advisor recommendation, and continuous self-evolution via WikiSkill.",
+                infographic: "assets/images/k1_mathinfo_infographie_pro.png",
                 pipeline: [
-                    { num: "Step 01", title: "5-Stage SSE Streaming Ingestion", desc: "Real-time ingestion visualizer with animated stepper, live terminal logs console, and chunking across 470 theses and 19 M1 applied projects." },
-                    { num: "Step 02", title: "Neo4j Knowledge Graph & pgvector", desc: "Modeling 1,366 nodes and 3,833 genealogical relationships (advisors, juries, algorithms, theorems) + 384d HNSW dense index." },
-                    { num: "Step 03", title: "Multi-Stage Hybrid Search (RRF k=60)", desc: "Reciprocal Rank Fusion combining dense pgvector and sparse BM25, Cross-Encoder re-ranking, and DMI taxonomy boost (β=0.35) under <450 tokens." },
-                    { num: "Step 04", title: "OKF v0.2 Certification & Citation Audit", desc: "No-LLM Cypher SHA-256 certifier (Tiers 1/2/3), Waterfall anti-hallucination auditor (DMI -> Semantic Scholar -> Crossref), and OAI-PMH export." },
-                    { num: "Step 05", title: "Multi-Agent Network & 4-Eyes Quorum", desc: "LangGraph orchestration of 6 specialized agents (Supervisor, GraphRAG, Math, Biblio, OKF, FactChecker) under symmetric KOA + AZIZ quorum security." }
+                    { num: "Pillar 01", title: "5-Stage SSE Streaming Ingestion & Deep Research", desc: "Real-time ingestion visualizer (5-stage animated stepper, live terminal console) and normative chunking of 470 theses & 19 M1 projects. Compact matrix Deep Research keeping bandwidth <450 tokens." },
+                    { num: "Pillar 02", title: "Topological Neo4j Graph & 3D Explorer", desc: "1,366 nodes and 3,833 relationships (supervision genealogy, juries, algorithms, theorems). Features 3 physical rendering modes (Barnes-Hut, Hierarchical Top-Down, Radial) and autonomous no-code Cypher Copilot." },
+                    { num: "Pillar 03", title: "Advisor Matcher (Ideal Thesis Supervisor)", desc: "Neuro-symbolic recommendation engine combining dense cosine topic similarity and Neo4j ontological co-occurrence. Rich advisor profiles across DMI's 4 laboratories (LARI, LAMAP, LAMEX, LASE) with AI affinity score % and 1-click actions." },
+                    { num: "Pillar 04", title: "OKF v0.2 Certification & Waterfall Citation Audit", desc: "No-LLM Cypher SHA-256 certifier (tamper-proof Tiers 1/2/3) and Waterfall anti-hallucination auditor (DMI -> Semantic Scholar -> Crossref, DOI/arXiv O(1)). FAIR OAI-PMH v2.0 (Dublin Core, ETD-MS) and BibTeX/Zotero exports." },
+                    { num: "Pillar 05", title: "8-Agent LangGraph Network, K1-WikiSkill & Quorum", desc: "8 specialized agents (Supervisor, GraphRAG, Advisor, Math SEIR/Caputo, Biblio, OKF, Critic Q17, WikiSkill). Continuous self-evolution via procedural meta-skills (Google Research 2026) and 4-Eyes symmetric quorum under supervision of Prof. DAYANG PAUL." }
                 ],
                 impacts: [
-                    "Absolute elimination of academic hallucinations through deterministic OKF v0.2 SHA-256 cryptographic verification.",
-                    "Capitalization of 28 years of scientific heritage (1997–2026): 470 theses & dissertations and 19 M1 applied projects indexed.",
-                    "Waterfall bibliographic auditor detecting fake/ghost references with real-time DOI & arXiv verification.",
-                    "Engineering excellence & rigorous governance: 77 automated unit tests (100% passing), Redis 7 fast cache (<3ms), and 4-eyes quorum security."
+                    "Absolute elimination of academic hallucinations via deterministic OKF v0.2 SHA-256 No-LLM cryptographic verification.",
+                    "Intelligent Advisor Matcher: optimal guidance matching students with supervisors and laboratories (LARI, LAMAP, LAMEX, LASE) with explainable rationale.",
+                    "Interactive 3D/2D Barnes-Hut Visualizer & Natural Language Cypher queries to navigate 28 years of scientific assets (470 theses, 19 M1 projects).",
+                    "Continuous Self-Evolution via K1-WikiSkill & High Reliability: 77 automated unit tests (100% pass rate), Redis 7 fast cache (<20ms), and 4-Eyes security quorum."
                 ],
-                techs: ["FastAPI 0.115", "LangGraph Multi-Agents", "Neo4j 5.26 GraphRAG", "Redis 7 Lua (<3ms)", "OKF v0.2 SHA-256", "PostgreSQL pgvector", "Cross-Encoder", "OAI-PMH Dublin Core"],
+                techs: ["FastAPI 0.115", "LangGraph 8 Agents", "Neo4j 5.26 GraphRAG", "Advisor Matcher", "Barnes-Hut 3D", "OKF v0.2 SHA-256", "K1-WikiSkill", "Redis 7 Lua (<20ms)", "PostgreSQL pgvector", "OAI-PMH Dublin Core"],
                 github: "https://github.com/gervais-afk/k1-mathinfo"
             }
         }
@@ -351,8 +353,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const activeHeader = headers[lang] || headers.fr;
 
+        const infographicHTML = project.infographic ? `
+            <div class="arch-section" style="grid-column: 1 / -1; margin-bottom: 0.8rem;">
+                <h4><i class="fa-solid fa-image"></i> ${lang === 'fr' ? 'Infographie Officielle — Vue Globale du Système' : 'Official Infographic — Global System Overview'}</h4>
+                <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 242, 254, 0.35); background: rgba(0,0,0,0.5); text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
+                    <a href="${project.infographic}" target="_blank" title="${lang === 'fr' ? 'Cliquer pour agrandir' : 'Click to enlarge'}">
+                        <img src="${project.infographic}" alt="Infographie ${project.title}" style="width: 100%; max-height: 480px; object-fit: contain; display: block; margin: 0 auto; transition: transform 0.3s ease;">
+                    </a>
+                    <div style="padding: 0.5rem; font-size: 0.8rem; color: var(--text-muted); background: rgba(10, 15, 30, 0.7);">
+                        <i class="fa-solid fa-magnifying-glass-plus text-neon"></i> ${lang === 'fr' ? 'Cliquer sur l\'image pour afficher en pleine résolution HD' : 'Click image to open high-resolution HD view'}
+                    </div>
+                </div>
+            </div>
+        ` : '';
+
         modalContent.innerHTML = `
             <div class="modal-grid">
+                ${infographicHTML}
                 <div class="arch-section">
                     <h4><i class="fa-solid fa-diagram-project"></i> ${activeHeader.arch}</h4>
                     <div class="pipeline-flow">
