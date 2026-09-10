@@ -16,21 +16,23 @@ const translations = {
         nav_contact: "Contact",
 
         // Hero Section
-        hero_tag: "Fondateur @ Archi Cam AI | Lead AI Engineer",
+        hero_tag: "Architecte IA Souveraine · Systèmes Autonomes & Edge",
         hero_subtitle_prefix: "Je suis ",
-        hero_desc: "Ingénieur & Spécialiste en IA Appliquée, 5D BIM & Data Science (Master en IA Appliquée & Data Science - Université de Ngaoundéré & Spécialiste Génie Civil - IUC Douala). Membre du Google Developer Program & de l'Accra AI Community Centre (AICC), Fondateur & Architecte d'<strong>Archi Cam AI</strong> (SaaS IA Souverain & 5D BIM - <a href='https://archicam-ai.com' target='_blank' style='color:var(--neon); text-decoration:underline;'>archicam-ai.com</a>).",
+        hero_desc: "Je conçois des architectures d'intelligence artificielle déterministes et auditables, calibrées pour les environnements à haute exigence. En combinant la rigueur structurelle du génie civil et la modélisation de données avancée, j'automatise les processus décisionnels complexes et garantis des résultats sans hallucination, mesurables et souverains.",
+        hero_pill_1: "Zéro-Hallucination Garanti",
+        hero_pill_2: "Algorithmes BAEL 91 & BIM 5D",
+        hero_pill_3: "Google Dev Program & AICC",
         btn_cv_web: "Consulter le CV Web",
         btn_cv_pdf: "Télécharger CV PDF",
         btn_projects: "Découvrir mes Projets",
-        status_badge: "Disponible pour missions",
+        status_badge: "Disponible pour missions & consulting",
 
         // Typewriter Strings
         typewriter_roles: [
-            "Lead AI Engineer",
-            "Data Architect & Specialist GraphRAG",
-            "Fondateur @ Archi Cam AI",
-            "Spécialiste BIM 5D & BAEL 91",
-            "Cadre Sûreté Aviation (AVSEC / CCAA)"
+            "Architecte Multi-Agents & GraphRAG (Neo4j)",
+            "Concepteur de Systèmes IA Zéro-Hallucination",
+            "Expert Chiffrage BTP & Moteurs 5D BIM",
+            "Fondateur @ Archi Cam AI · Membre Google Dev"
         ],
 
         // Stats Counter
@@ -307,21 +309,23 @@ const translations = {
         nav_contact: "Contact",
 
         // Hero Section
-        hero_tag: "Founder @ Archi Cam AI | Lead AI Engineer",
+        hero_tag: "Sovereign AI Architect · Autonomous & Edge Systems",
         hero_subtitle_prefix: "I am a ",
-        hero_desc: "Creator & Lead AI Engineer, 5D BIM & Applied Data Science Specialist (Master's Degree in Applied AI & Data Science - University of Ngaoundéré & Civil Engineering Specialist - IUC Douala). Google Developer Program & Accra AI Community Centre (AICC) Member, Founder & Architect of <strong>Archi Cam AI</strong> (Sovereign Agentic AI & 5D BIM - <a href='https://archicam-ai.com' target='_blank' style='color:var(--neon); text-decoration:underline;'>archicam-ai.com</a>).",
+        hero_desc: "I build auditable, deterministic artificial intelligence architectures engineered for mission-critical operations. By uniting civil engineering structural rigor with advanced data modeling, I automate complex decision workflows and deliver zero-hallucination, sovereign, and measurable business outcomes.",
+        hero_pill_1: "Guaranteed Zero-Hallucination",
+        hero_pill_2: "BAEL 91 & 5D BIM Algorithms",
+        hero_pill_3: "Google Dev Program & AICC",
         btn_cv_web: "View Web Resume",
         btn_cv_pdf: "Download PDF Resume",
         btn_projects: "Explore My Projects",
-        status_badge: "Available for missions",
+        status_badge: "Available for missions & consulting",
 
         // Typewriter Strings
         typewriter_roles: [
-            "Lead AI Engineer",
-            "Data Architect & GraphRAG Specialist",
-            "Founder @ Archi Cam AI",
-            "5D BIM & BAEL 91 Engineering Specialist",
-            "Aviation Security Officer (AVSEC / CCAA)"
+            "Multi-Agent & GraphRAG Architect (Neo4j)",
+            "Zero-Hallucination AI System Designer",
+            "BTP Costing & 5D BIM Engine Expert",
+            "Founder @ Archi Cam AI · Google Dev Member"
         ],
 
         // Stats Counter

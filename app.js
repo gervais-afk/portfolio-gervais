@@ -4,22 +4,40 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Typewriter Effect
-    const words = [
-        "Consultant IA & Data",
-        "Spécialiste MLOps & RAG",
-        "Ingénieur Graphes de Connaissances"
-    ];
+    // 1. Typewriter Effect (Dynamically localized)
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
     const typewriterElement = document.getElementById('typewriter');
-    const typingSpeed = 100;
-    const deletingSpeed = 50;
-    const delayBetweenWords = 2000;
+    const typingSpeed = 90;
+    const deletingSpeed = 45;
+    const delayBetweenWords = 2200;
+
+    window.resetTypewriter = function() {
+        wordIndex = 0;
+        charIndex = 0;
+        isDeleting = false;
+        if (typewriterElement) typewriterElement.textContent = '';
+    };
+
+    function getActiveRoles() {
+        const lang = window.currentAppLang || localStorage.getItem('preferredLang') || 'fr';
+        if (typeof translations !== 'undefined' && translations[lang] && translations[lang].typewriter_roles) {
+            return translations[lang].typewriter_roles;
+        }
+        return [
+            "Architecte Multi-Agents & GraphRAG (Neo4j)",
+            "Concepteur de Systèmes IA Zéro-Hallucination",
+            "Expert Chiffrage BTP & Moteurs 5D BIM",
+            "Fondateur @ Archi Cam AI · Membre Google Dev"
+        ];
+    }
 
     function type() {
-        const currentWord = words[wordIndex];
+        const roles = getActiveRoles();
+        if (!roles || roles.length === 0) return;
+        if (wordIndex >= roles.length) wordIndex = 0;
+        const currentWord = roles[wordIndex];
         
         if (isDeleting) {
             typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
@@ -36,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
             isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-            currentSpeed = 500;
+            wordIndex = (wordIndex + 1) % roles.length;
+            currentSpeed = 400;
         }
 
         setTimeout(type, currentSpeed);
@@ -597,6 +615,11 @@ window.switchLanguage = function(lang) {
         } else {
             heroDownloadCv.setAttribute('href', 'KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf');
         }
+    }
+
+    // Reset typewriter with new language roles immediately
+    if (typeof window.resetTypewriter === 'function') {
+        window.resetTypewriter();
     }
 };
 

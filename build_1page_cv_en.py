@@ -97,17 +97,10 @@ def generate_exact_user_1page_cv_en():
     p_badge = c0.add_paragraph()
     p_badge.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_badge.paragraph_format.space_before = Pt(3.0)
-    p_badge.paragraph_format.space_after  = Pt(0)
-    rb = p_badge.add_run("◈  LEAD AI ENGINEER")
+    p_badge.paragraph_format.space_after  = Pt(1.5)
+    rb = p_badge.add_run("Founder  ·  Archi Cam AI")
     rb.font.name = 'Segoe UI'; rb.font.bold = True
     rb.font.size = Pt(6.8); rb.font.color.rgb = CYAN
-
-    p_sub_badge = c0.add_paragraph()
-    p_sub_badge.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p_sub_badge.paragraph_format.space_before = Pt(0)
-    p_sub_badge.paragraph_format.space_after  = Pt(1.5)
-    rs2 = p_sub_badge.add_run("Founder  ·  Archi Cam AI")
-    rs2.font.size = Pt(6.4); rs2.font.color.rgb = MUTED
 
     def sb_h(cell, text):
         p = cell.add_paragraph()
@@ -137,7 +130,7 @@ def generate_exact_user_1page_cv_en():
     sb_t(c0, "✉  contact@archicam-ai.com")
     sb_t(c0, "✆  +237 695 35 34 02")
     sb_t(c0, "⌂  Douala / Ngaoundéré, CM")
-    sb_t(c0, "🌐  archicam-ai.com")
+    sb_t(c0, "🐙  github.com/gervais-afk")
     sb_t(c0, "💼  linkedin.com/in/marie-gervais-koa")
 
     sb_h(c0, "AI & LLM Stack")
@@ -260,7 +253,7 @@ def generate_exact_user_1page_cv_en():
 
     # ── Executive Summary ──
     mn_h(c1, "Executive Summary")
-    body(c1, "Lead AI Engineer & Data Architect (Google Developer Program Member), leveraging Google Antigravity to design neuro-symbolic multi-agent architectures, Neo4j GraphRAG, and sovereign MLOps pipelines. Expert in AI ethics: SHAP transparency, EU AI Act compliance, and deterministic zero-hallucination models. Founder & Architect of Archi Cam AI (Agentic AI SaaS & 5D BIM), bridging civil engineering methodology, mathematical rigor, and product vision.")
+    body(c1, "Applied AI Engineer & Specialist, I design zero-hallucination autonomous agent systems — sovereign, deterministic, and fully explainable. Member of the Google Developer Program and the AICC Accra community, I transform complex data into reliable decisions by leveraging my dual background in civil engineering and data science to build high-impact operational solutions. Founder of Archi Cam AI (Sovereign AI SaaS & 5D BIM), I embody a rigorous, auditable, and results-driven African AI.")
 
     # ── Flagship AI Projects ──
     mn_h(c1, "Flagship AI Projects")
@@ -325,32 +318,39 @@ def generate_exact_user_1page_cv_en():
     r_tail = p_tail.add_run()
     r_tail.font.size = Pt(1)
 
-    # Save DOCX
+    # ── Save DOCX ──
     f_docx = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EN.docx"
     try:
         doc.save(f_docx)
-        print(f"Saved: {f_docx}")
+        print(f"[OK] DOCX saved: {f_docx}")
     except Exception as e:
-        print(f"Error saving {f_docx}: {e}")
+        print(f"[ERROR] saving DOCX: {e}")
+        return
 
-    # PDF export and 1-page verification via Word COM
+    # ── PDF export via Word COM ──
     try:
+        import pythoncom
         import win32com.client
+
+        pythoncom.CoInitialize()
         word = win32com.client.Dispatch("Word.Application")
         word.Visible = False
         word.DisplayAlerts = 0
-        pdf = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf"
-        if os.path.exists(f_docx):
-            d = word.Documents.Open(os.path.abspath(f_docx))
-            pages = d.ComputeStatistics(2)
-            print(f"EN CV Page Count: {pages}")
-            d.SaveAs(os.path.abspath(pdf), FileFormat=17)
-            d.Close()
-            print(f"Exported PDF ({pages} page): {pdf}")
+
+        pdf_path = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf"
+
+        d = word.Documents.Open(os.path.abspath(f_docx), ReadOnly=True)
+        pages = d.ComputeStatistics(2)
+        print(f"[EN] Page Count: {pages}")
+        d.SaveAs(os.path.abspath(pdf_path), FileFormat=17)
+        d.Close(False)
         word.Quit()
-        print("EN generation completed successfully!")
+
+        print(f"[OK] PDF saved ({pages} page): {pdf_path}")
     except Exception as ex:
-        print(f"Word COM error: {ex}")
+        print(f"[ERROR] Word COM export: {ex}")
+
+    print("EN generation completed!")
 
 if __name__ == "__main__":
     generate_exact_user_1page_cv_en()
