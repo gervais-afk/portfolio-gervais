@@ -7,25 +7,50 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import qn, nsdecls
 
-def set_cell_background(cell, fill_color):
-    tcPr = cell._tc.get_or_add_tcPr()
-    shd = parse_xml(f'<w:shd {nsdecls("w")} w:fill="{fill_color}"/>')
-    tcPr.append(shd)
+def generate_exact_user_1page_cv_en():
+    doc = Document()
+    for s in doc.sections:
+        s.page_width  = Inches(8.27)
+        s.page_height = Inches(11.69)
+        s.top_margin = s.bottom_margin = s.left_margin = s.right_margin = 0
+        s.header_distance = 0
+        s.footer_distance = 0
 
-def set_cell_margins(cell, top=180, left=440, bottom=140, right=200):
-    tcPr = cell._tc.get_or_add_tcPr()
-    tcMar = parse_xml(
-        f'<w:tcMar {nsdecls("w")}>'
-        f'<w:top w:w="{top}" w:type="dxa"/>'
-        f'<w:left w:w="{left}" w:type="dxa"/>'
-        f'<w:bottom w:w="{bottom}" w:type="dxa"/>'
-        f'<w:right w:w="{right}" w:type="dxa"/>'
-        f'</w:tcMar>'
-    )
-    tcPr.append(tcMar)
+    doc.styles['Normal'].font.name = 'Segoe UI'
+    doc.styles['Normal'].font.size = Pt(8.2)
 
-def remove_table_borders(table):
+    SIDEBAR_FILL = "0F172A"
+    CYAN   = RGBColor(0x38, 0xBD, 0xF8)
+    ICE    = RGBColor(0xF8, 0xFA, 0xFC)
+    NAVY   = RGBColor(0x0A, 0x11, 0x28)
+    OCEAN  = RGBColor(0x02, 0x84, 0xC7)
+    BODY   = RGBColor(0x33, 0x41, 0x55)
+    MUTED  = RGBColor(0x64, 0x74, 0x8B)
+
+    table = doc.add_table(rows=1, cols=2)
+    table.alignment = WD_TABLE_ALIGNMENT.LEFT
+    
+    # helper functions
+    def set_cell_background(cell, fill_color):
+        tcPr = cell._tc.get_or_add_tcPr()
+        shd = parse_xml(f'<w:shd {nsdecls("w")} w:fill="{fill_color}"/>')
+        tcPr.append(shd)
+
+    def set_cell_margins(cell, top=140, left=400, bottom=0, right=160):
+        tcPr = cell._tc.get_or_add_tcPr()
+        tcMar = parse_xml(
+            f'<w:tcMar {nsdecls("w")}>'
+            f'<w:top w:w="{top}" w:type="dxa"/>'
+            f'<w:left w:w="{left}" w:type="dxa"/>'
+            f'<w:bottom w:w="{bottom}" w:type="dxa"/>'
+            f'<w:right w:w="{right}" w:type="dxa"/>'
+            f'</w:tcMar>'
+        )
+        tcPr.append(tcMar)
+
     tblPr = table._tbl.tblPr
+    tblInd = parse_xml(f'<w:tblInd {nsdecls("w")} w:w="0" w:type="dxa"/>')
+    tblPr.append(tblInd)
     tblBorders = parse_xml(
         f'<w:tblBorders {nsdecls("w")}>'
         f'<w:top w:val="none"/><w:left w:val="none"/>'
@@ -35,96 +60,58 @@ def remove_table_borders(table):
     )
     tblPr.append(tblBorders)
 
-def set_table_zero_indent(table):
-    tblPr = table._tbl.tblPr
-    tblInd = parse_xml(f'<w:tblInd {nsdecls("w")} w:w="0" w:type="dxa"/>')
-    tblPr.append(tblInd)
-
-def generate_exact_user_1page_cv_en():
-    doc = Document()
-    for s in doc.sections:
-        s.page_width  = Inches(8.27)
-        s.page_height = Inches(11.69)
-        s.top_margin = s.bottom_margin = s.left_margin = s.right_margin = 0
-
-    doc.styles['Normal'].font.name = 'Segoe UI'
-    doc.styles['Normal'].font.size = Pt(8.0)
-
-    SIDEBAR_FILL = "0F172A"
-    CYAN   = RGBColor(0x38, 0xBD, 0xF8)
-    ICE    = RGBColor(0xF8, 0xFA, 0xFC)
-    NAVY   = RGBColor(0x0A, 0x11, 0x28)
-    OCEAN  = RGBColor(0x02, 0x84, 0xC7)
-    BODY   = RGBColor(0x33, 0x41, 0x55)
-    MUTED  = RGBColor(0x64, 0x74, 0x8B)
-    GOLD   = RGBColor(0xF5, 0xA6, 0x23)
-    WHITE  = RGBColor(0xFF, 0xFF, 0xFF)
-
-    table = doc.add_table(rows=1, cols=2)
-    table.alignment = WD_TABLE_ALIGNMENT.LEFT
-    set_table_zero_indent(table)
-    remove_table_borders(table)
-
     row = table.rows[0]
     trPr = row._tr.get_or_add_trPr()
     trPr.append(parse_xml(f'<w:cantSplit {nsdecls("w")}/>'))
-    trPr.append(parse_xml(f'<w:trHeight {nsdecls("w")} w:val="15400" w:hRule="atLeast"/>'))
+    trPr.append(parse_xml(f'<w:trHeight {nsdecls("w")} w:val="16550" w:hRule="atLeast"/>'))
 
-    col_widths = [Inches(2.58), Inches(5.69)]
+    col_widths = [Inches(2.62), Inches(5.65)]
 
-    # ══════════════ SIDEBAR (LEFT — DEEP SLATE NAVY) ══════════════
+    # ── SIDEBAR ──
     c0 = table.cell(0, 0)
     c0.width = col_widths[0]
     set_cell_background(c0, SIDEBAR_FILL)
-    set_cell_margins(c0, top=180, left=440, bottom=140, right=180)
+    set_cell_margins(c0, top=140, left=400, bottom=0, right=160)
 
     photo_path = r"c:\Users\HP\Desktop\portfolio-gervais\assets\images\profile_headshot_circular.jpeg"
-
-    # ── Photo Headshot ──
     p_ph = c0.paragraphs[0]
     p_ph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_ph.paragraph_format.space_before = Pt(0)
     p_ph.paragraph_format.space_after  = Pt(0)
     if os.path.exists(photo_path):
-        try:
-            p_ph.add_run().add_picture(photo_path, width=Inches(1.42))
-        except:
-            r = p_ph.add_run("K G"); r.font.size = Pt(20); r.font.bold = True; r.font.color.rgb = CYAN
-    else:
-        r = p_ph.add_run("K G"); r.font.size = Pt(20); r.font.bold = True; r.font.color.rgb = CYAN
+        p_ph.add_run().add_picture(photo_path, width=Inches(1.48))
 
-    # Badge label under photo
     p_badge = c0.add_paragraph()
     p_badge.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_badge.paragraph_format.space_before = Pt(3.0)
     p_badge.paragraph_format.space_after  = Pt(1.5)
     rb = p_badge.add_run("Founder  ·  Archi Cam AI")
     rb.font.name = 'Segoe UI'; rb.font.bold = True
-    rb.font.size = Pt(6.8); rb.font.color.rgb = CYAN
+    rb.font.size = Pt(7.4); rb.font.color.rgb = CYAN
 
     def sb_h(cell, text):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(4.2)
+        p.paragraph_format.space_before = Pt(9.2)
         p.paragraph_format.space_after  = Pt(0)
-        p.paragraph_format.left_indent  = Pt(6)
+        p.paragraph_format.left_indent  = Pt(5)
         r = p.add_run(text.upper())
         r.font.name = 'Segoe UI'; r.font.bold = True
-        r.font.size = Pt(8.2); r.font.color.rgb = CYAN
+        r.font.size = Pt(9.2); r.font.color.rgb = CYAN
         sep = cell.add_paragraph()
         sep.paragraph_format.space_before = Pt(0.2)
-        sep.paragraph_format.space_after  = Pt(1.2)
-        sep.paragraph_format.left_indent  = Pt(6)
-        rs = sep.add_run("━" * 17)
+        sep.paragraph_format.space_after  = Pt(1.8)
+        sep.paragraph_format.left_indent  = Pt(5)
+        rs = sep.add_run("━" * 18)
         rs.font.size = Pt(4.5); rs.font.color.rgb = OCEAN
 
     def sb_t(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(1.0)
-        p.paragraph_format.line_spacing = 1.05
-        p.paragraph_format.left_indent  = Pt(6)
+        p.paragraph_format.space_after  = Pt(2.5)
+        p.paragraph_format.line_spacing = 1.08
+        p.paragraph_format.left_indent  = Pt(5)
         r = p.add_run(text)
-        r.font.size = Pt(7.6); r.font.color.rgb = ICE
+        r.font.size = Pt(8.3); r.font.color.rgb = ICE
 
     sb_h(c0, "Contact & Profiles")
     sb_t(c0, "✉  contact@archicam-ai.com")
@@ -166,42 +153,41 @@ def generate_exact_user_1page_cv_en():
 
     sb_h(c0, "Languages")
     sb_t(c0, "French   —  Native / Fluent")
-    sb_t(c0, "English  —  Professional / Tech.")
+    sb_t(c0, "English  —  Tech & Written / Spoken Interm.")
 
-    # ══════════════ MAIN COLUMN (RIGHT — WHITE) ══════════════
+    # ── MAIN COLUMN ──
     c1 = table.cell(0, 1)
     c1.width = col_widths[1]
     set_cell_background(c1, "FFFFFF")
-    set_cell_margins(c1, top=180, left=200, bottom=100, right=220)
+    set_cell_margins(c1, top=140, left=180, bottom=0, right=190)
 
-    # Name block
     p_nm = c1.paragraphs[0]
     p_nm.paragraph_format.space_before = Pt(0)
-    p_nm.paragraph_format.space_after  = Pt(0.5)
+    p_nm.paragraph_format.space_after  = Pt(0.4)
     r = p_nm.add_run("KOA MARIE GERVAIS NELLY")
     r.font.name = 'Segoe UI'; r.font.bold = True
-    r.font.size = Pt(20); r.font.color.rgb = NAVY
+    r.font.size = Pt(20.5); r.font.color.rgb = NAVY
 
     p_sub = c1.add_paragraph()
     p_sub.paragraph_format.space_before = Pt(0)
-    p_sub.paragraph_format.space_after  = Pt(0.8)
+    p_sub.paragraph_format.space_after  = Pt(0.6)
     rs = p_sub.add_run("Lead AI Engineer & Data Architect   │   Founder @ Archi Cam AI")
-    rs.font.size = Pt(9.2); rs.font.bold = True; rs.font.color.rgb = OCEAN
+    rs.font.size = Pt(9.4); rs.font.bold = True; rs.font.color.rgb = OCEAN
 
     p_rule = c1.add_paragraph()
     p_rule.paragraph_format.space_before = Pt(0)
-    p_rule.paragraph_format.space_after  = Pt(2.0)
+    p_rule.paragraph_format.space_after  = Pt(1.5)
     rr = p_rule.add_run("─" * 70)
     rr.font.size = Pt(5.0); rr.font.color.rgb = OCEAN
 
     def mn_h(cell, title):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(2.6)
+        p.paragraph_format.space_before = Pt(2.2)
         p.paragraph_format.space_after  = Pt(0.1)
-        r1 = p.add_run("◈  "); r1.font.bold = True; r1.font.size = Pt(8.2); r1.font.color.rgb = OCEAN
+        r1 = p.add_run("◈  "); r1.font.bold = True; r1.font.size = Pt(8.0); r1.font.color.rgb = OCEAN
         r2 = p.add_run(title.upper())
         r2.font.name = 'Segoe UI'; r2.font.bold = True
-        r2.font.size = Pt(9.6); r2.font.color.rgb = NAVY
+        r2.font.size = Pt(9.8); r2.font.color.rgb = NAVY
         sep = cell.add_paragraph()
         sep.paragraph_format.space_before = Pt(0)
         sep.paragraph_format.space_after  = Pt(1.0)
@@ -212,48 +198,54 @@ def generate_exact_user_1page_cv_en():
 
     def entry(cell, title, badge):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(1.8)
+        p.paragraph_format.space_before = Pt(1.6)
         p.paragraph_format.space_after  = Pt(0.1)
-        r1 = p.add_run(title); r1.font.bold = True; r1.font.size = Pt(9.0); r1.font.color.rgb = NAVY
+        r1 = p.add_run(title); r1.font.bold = True; r1.font.size = Pt(9.4); r1.font.color.rgb = NAVY
         r2 = p.add_run(f"   —   {badge}")
-        r2.font.italic = True; r2.font.size = Pt(7.8); r2.font.color.rgb = OCEAN
+        r2.font.italic = True; r2.font.size = Pt(8.1); r2.font.color.rgb = OCEAN
 
     def company(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
         p.paragraph_format.space_after  = Pt(0.1)
-        r = p.add_run(text); r.font.size = Pt(7.8); r.font.bold = True; r.font.color.rgb = MUTED
+        r = p.add_run(text)
+        r.font.italic = True; r.font.size = Pt(8.1); r.font.color.rgb = MUTED
 
     def bullet(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
         p.paragraph_format.space_after  = Pt(0.4)
         p.paragraph_format.line_spacing = 1.05
-        p.paragraph_format.left_indent  = Inches(0.08)
-        rb = p.add_run("▸  "); rb.font.bold = True; rb.font.size = Pt(7.8); rb.font.color.rgb = OCEAN
-        rt = p.add_run(text); rt.font.size = Pt(7.8); rt.font.color.rgb = BODY
+        p.paragraph_format.left_indent  = Pt(10)
+        rb = p.add_run("▸  ")
+        rb.font.bold = True; rb.font.size = Pt(7.5); rb.font.color.rgb = OCEAN
+        rt = p.add_run(text)
+        rt.font.size = Pt(8.2); rt.font.color.rgb = BODY
 
     def body(cell, text):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(0)
+        p.paragraph_format.space_before = Pt(0.4)
         p.paragraph_format.space_after  = Pt(1.0)
-        p.paragraph_format.line_spacing = 1.06
-        r = p.add_run(text); r.font.size = Pt(8.2); r.font.color.rgb = BODY
+        p.paragraph_format.line_spacing = 1.05
+        r = p.add_run(text)
+        r.font.size = Pt(8.5); r.font.color.rgb = BODY
 
     def award(cell, title, detail):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(0.6)
-        p.paragraph_format.space_after  = Pt(0.3)
+        p.paragraph_format.space_before = Pt(1.2)
+        p.paragraph_format.space_after  = Pt(0.4)
         p.paragraph_format.line_spacing = 1.05
-        p.paragraph_format.left_indent  = Inches(0.08)
-        r1 = p.add_run("◈ "); r1.font.bold = True; r1.font.size = Pt(7.8); r1.font.color.rgb = OCEAN
-        r2 = p.add_run(title); r2.font.bold = True; r2.font.size = Pt(7.8); r2.font.color.rgb = NAVY
-        r3 = p.add_run(f"  —  {detail}")
-        r3.font.size = Pt(7.7); r3.font.color.rgb = BODY
+        p.paragraph_format.left_indent  = Pt(10)
+        r1 = p.add_run("◆  ")
+        r1.font.bold = True; r1.font.size = Pt(7.5); r1.font.color.rgb = OCEAN
+        r2 = p.add_run(f"{title}  —  ")
+        r2.font.name = 'Segoe UI'; r2.font.bold = True; r2.font.size = Pt(8.2); r2.font.color.rgb = NAVY
+        r3 = p.add_run(detail)
+        r3.font.name = 'Segoe UI'; r3.font.size = Pt(8.2); r3.font.color.rgb = BODY
 
     # ── Executive Summary ──
     mn_h(c1, "Executive Summary")
-    body(c1, "Applied AI Engineer & Specialist, I design zero-hallucination autonomous agent systems — sovereign, deterministic, and fully explainable. Member of the Google Developer Program and the AICC Accra community, I transform complex data into reliable decisions by leveraging my dual background in civil engineering and data science to build high-impact operational solutions. Founder of Archi Cam AI (Sovereign AI SaaS & 5D BIM), I embody a rigorous, auditable, and results-driven African AI.")
+    body(c1, "Applied AI Engineer specializing in autonomous agent architectures, I design deterministic, explainable, and sovereign zero-hallucination systems. Member of the Google Developer Program, I bridge civil engineering rigor with advanced data science to solve complex operational challenges. Founder of Archi Cam AI (5D BIM SaaS & predictive estimation), I build auditable, robust, and high-impact AI solutions.")
 
     # ── Flagship AI Projects ──
     mn_h(c1, "Flagship AI Projects")
@@ -263,9 +255,9 @@ def generate_exact_user_1page_cv_en():
     bullet(c1, "Instant generation of standardized BOQ estimates in <45s (99.2% time savings) and 3D architectural renders.")
     bullet(c1, "Deterministic zero-hallucination structural concrete validation enforcing strict compliance with urban planning codes.")
 
-    entry(c1, "K1-MATHINFO (v3.0.0)", "Sovereign Academic Research & Asset Platform")
-    bullet(c1, "Preservation, indexing, and semantic exploration across 28 years of university scientific research (470 Ph.D. theses).")
-    bullet(c1, "Intelligent student-to-advisor recommendation (Advisor Matcher) and cryptographic certification of research integrity.")
+    entry(c1, "K1-MATHINFO (v3.2.0)", "Sovereign Academic Research & Asset Platform")
+    bullet(c1, "Preservation, indexing, and semantic exploration across 28 years of research (471 Ph.D. & Master's docs, 4,494 relations).")
+    bullet(c1, "Neuro-symbolic Advisor Matcher, high availability with Circuit Breaker, and 192 automated unit/integration tests (100%).")
 
     entry(c1, "Sovereign.BI Agentic", "Enterprise Business Intelligence & Strategic Decision Engine")
     bullet(c1, "Executive decision enablement: querying complex corporate data warehouses directly in natural language in under 5 seconds.")
@@ -288,19 +280,19 @@ def generate_exact_user_1page_cv_en():
     bullet(c1, "Threat assessment, secure access control, and regulatory compliance audits (ICAO Annex 17).")
     bullet(c1, "Operational crisis management: emergency team coordination, anti-intrusion protocols.")
 
-    # ── Education ──
+    # ── Education & Certifications ──
     mn_h(c1, "Education & Certifications")
 
     entry(c1, "M.Sc. in Applied Artificial Intelligence", "Dec. 2025 – 2027  [In Progress]")
     company(c1, "University of Ngaoundéré  │  Cameroon")
     bullet(c1, "ML & Bayesian Statistics, Data Engineering & Neo4j, Computer Vision & Robotics, Ethics & Cybersecurity, Production MLOps.")
-    bullet(c1, "Research project: K1-MATHINFO v3 sovereign system — multi-source agent certified OKF v0.2 (SHA-256 No-LLM).")
+    bullet(c1, "Research project: K1-MATHINFO v3.2 sovereign system — multi-source agent certified OKF v0.2 (SHA-256 No-LLM, 192 tests).")
 
     entry(c1, "B.Sc. in Civil Engineering (Building Option)", "2015 – 2016")
     company(c1, "ISTDI / IUC Douala  │  Cameroon")
     bullet(c1, "Structural calculations (BAEL 91), quantity surveying, construction project management — AI-applied estimation base.")
 
-    # ── Honors ──
+    # ── Honors & Distinctions ──
     mn_h(c1, "Honors & Applied AI Distinctions")
 
     award(c1, "CCAA Attestation of Excellence & Integrity (2023)", "Awarded by the Director General for outstanding operational performance & ethics.")
@@ -318,14 +310,9 @@ def generate_exact_user_1page_cv_en():
     r_tail = p_tail.add_run()
     r_tail.font.size = Pt(1)
 
-    # ── Save DOCX ──
-    f_docx = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EN.docx"
-    try:
-        doc.save(f_docx)
-        print(f"[OK] DOCX saved: {f_docx}")
-    except Exception as e:
-        print(f"[ERROR] saving DOCX: {e}")
-        return
+    docx_path = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EN.docx"
+    doc.save(docx_path)
+    print(f"[OK] DOCX saved: {docx_path}")
 
     # ── PDF export via Word COM ──
     try:
@@ -339,18 +326,20 @@ def generate_exact_user_1page_cv_en():
 
         pdf_path = r"c:\Users\HP\Desktop\portfolio-gervais\KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf"
 
-        d = word.Documents.Open(os.path.abspath(f_docx), ReadOnly=True)
+        d = word.Documents.Open(os.path.abspath(docx_path), ReadOnly=True)
         pages = d.ComputeStatistics(2)
         print(f"[EN] Page Count: {pages}")
         d.SaveAs(os.path.abspath(pdf_path), FileFormat=17)
         d.Close(False)
         word.Quit()
 
-        print(f"[OK] PDF saved ({pages} page): {pdf_path}")
-    except Exception as ex:
-        print(f"[ERROR] Word COM export: {ex}")
-
-    print("EN generation completed!")
+        if pages == 1:
+            print(f"[OK] PDF saved (1 page): {pdf_path}")
+        else:
+            print(f"[WARN] Multi-page detected ({pages} pages)!")
+    except Exception as e:
+        print(f"[WARN] Word COM export: {e}")
 
 if __name__ == "__main__":
     generate_exact_user_1page_cv_en()
+    print("EN generation completed!")

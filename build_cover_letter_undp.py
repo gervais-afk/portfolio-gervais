@@ -154,7 +154,7 @@ def create_undp_cover_letter():
     # Core Value Pillars (Bullets)
     add_bullet(
         "AI Product Build & Systems Innovation",
-        "As founder and architect of Archi Cam AI (Agentic AI SaaS & 5D BIM), I built an agentic platform combining Gemma and Gemini LLMs with 5D BIM standards to automate construction estimation and planning in <45s (R²=0.9872). Furthermore, as an applied Master 1 research project, I engineered K1-MATHINFO v3, a sovereign multi-agent GraphRAG architecture indexing 470 academic theses with Neo4j and LangGraph, incorporating Open Knowledge Framework (OKF) zero-hallucination verification."
+        "As founder and architect of Archi Cam AI (Agentic AI SaaS & 5D BIM), I built an agentic platform combining Gemma and Gemini LLMs with 5D BIM standards to automate construction estimation and planning in <45s (R²=0.9872). Furthermore, as an applied Master 1 research project, I engineered K1-MATHINFO v3.2, a sovereign multi-agent GraphRAG architecture indexing 471 academic theses and documents with Neo4j and LangGraph, incorporating Open Knowledge Framework (OKF) zero-hallucination verification, high availability, and 192 automated tests."
     )
 
     add_bullet(

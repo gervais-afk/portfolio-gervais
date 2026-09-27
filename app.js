@@ -262,24 +262,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 github: "https://github.com/gervais-afk/VigieSahel"
             },
             'k1-mathinfo': {
-                badge: "Système Souverain d'IA Multi-Agents, GraphRAG, Advisor Matcher & Certification OKF (DMI - Univ. Ngaoundéré)",
+                badge: "Système Souverain d'IA Multi-Agents, GraphRAG, Advisor Matcher, Certification OKF & Haute Disponibilité (DMI - Univ. Ngaoundéré)",
                 title: "K1-MATHINFO (v3.2.0) 🏛️",
-                subtitle: "Infrastructure souveraine académique : 4 Piliers, 8 agents LangGraph, graphe Neo4j (1 366 nœuds), recommandation de directeurs et auto-apprentissage continu WikiSkill.",
-                infographic: "assets/images/k1_mathinfo_infographie_pro.png",
+                subtitle: "Infrastructure souveraine académique haute disponibilité : 5 Piliers d'ingénierie, réseau LangGraph Stateless (7 agents), graphe Neo4j 5.26 (471 documents, 4 494 relations), Circuit Breaker résilient, observabilité triple et 192 tests validés (100%).",
+                infographic: "assets/images/k1_mathinfo_architecture_hd.png",
+                article: "https://dev.to/gervais_marie/building-a-zero-hallucination-academic-graphrag-1379-nodes-multi-agent-orchestration-local-4mfo",
                 pipeline: [
-                    { num: "Pilier 01", title: "Ingestion Streaming SSE & Deep Research", desc: "Visualiseur d'ingestion en temps réel (Stepper 5 étapes, logs console) et découpage normatif de 470 thèses & 19 projets M1. Deep Research matriciel compact limitant la bande passante à <450 tokens." },
-                    { num: "Pilier 02", title: "Graphe Topologique Neo4j & Explorateur 3D", desc: "1 366 nœuds et 3 833 relations (encadrements, jurys, algorithmes, théorèmes). Dispose de 3 modes physiques (Barnes-Hut, Hiérarchique Top-Down, Radial) et d'un Copilot autonome générant du Cypher sans code." },
-                    { num: "Pilier 03", title: "Advisor Matcher (Directeur de Thèse Idéal)", desc: "Moteur de recommandation neuro-symbolique couplant similarité cosinus dense du sujet et co-occurrence ontologique Neo4j. Fiches directeurs enrichies parmi les 4 labos DMI (LARI, LAMAP, LAMEX, LASE) avec score d'affinité IA % et actions 1-clic." },
-                    { num: "Pilier 04", title: "Certification OKF v0.2 & Auditeur Bibliographique", desc: "Attesteur Cypher SHA-256 No-LLM (Tiers 1/2/3 inviolables) et audit bibliographique Waterfall (DMI -> Semantic Scholar -> Crossref, DOI/arXiv O(1)). Interopérabilité FAIR OAI-PMH v2.0 (Dublin Core, ETD-MS) et exports BibTeX/Zotero." },
-                    { num: "Pilier 05", title: "LangGraph 8 Agents, K1-WikiSkill & Quorum 4 Yeux", desc: "Réseau de 8 agents (Superviseur, GraphRAG, Advisor, Math SEIR/Caputo, Biblio, OKF, Critic Q17, WikiSkill). Auto-amélioration continue par méta-compétences (Google Research 2026) et Quorum symétrique (KOA + AZIZ) sous supervision du Pr. DAYANG PAUL." }
+                    { num: "Pilier 01", title: "Ingestion Hybride, Streaming SSE & Deep Research", desc: "Parseur OLE2/CLX pure Python pour archives historiques .doc (Word 97-2003) et visualiseur temps réel SSE en 5 étapes pour PDF contemporains. Projection matricielle compacte Deep Research limitant la bande passante à <450 tokens." },
+                    { num: "Pilier 02", title: "Graphe Topologique Neo4j 5.26 & Explorateur 3D", desc: "471 documents certifiés, 434 auteurs, 81 directeurs/co-directeurs et 4 494 relations actives. 3 modes physiques de disposition (Barnes-Hut, Hiérarchique Top-Down, Radial LR) et Copilot Cypher autonome sans code." },
+                    { num: "Pilier 03", title: "Advisor Matcher Neuro-Symbolique (Directeur Idéal)", desc: "Recommandation couplant similarité cosinus dense et co-occurrences ontologiques Neo4j. Fiches directeurs enrichies parmi les 4 labos DMI (LARI, LAMAP, LAMEX, LASE) avec score d'affinité IA % et actions 1-clic." },
+                    { num: "Pilier 04", title: "Certification OKF v0.2 SHA-256 No-LLM & Audit Bibliographique", desc: "Attesteur Cypher SHA-256 No-LLM (Tiers 1/2/3 inviolables) et audit bibliographique Waterfall (DMI -> Semantic Scholar -> Crossref, DOI/arXiv O(1)). Interopérabilité FAIR OAI-PMH v2.0 (Dublin Core, ETD-MS) et exports BibTeX." },
+                    { num: "Pilier 05", title: "Haute Disponibilité, Résilience & Observabilité Triple", desc: "Circuit Breaker 3 états avec repli déterministe OKF, Admission Control par rôles, Redis Streams durable avec DLQ, checkpoints persistants PostgreSQL 16, spans OpenTelemetry vers Jaeger (:16686), métriques Prometheus (:9090) et Quorum symétrique 4 Yeux (KOA + AZIZ) validé sur 192 tests (100%)." }
                 ],
                 impacts: [
-                    "Élimination absolue des hallucinations académiques par empreinte cryptographique déterministe SHA-256 (OKF v0.2 No-LLM Tiers 1/2/3).",
-                    "Advisor Matcher Intelligent : orientation optimale des étudiants vers les directeurs et laboratoires (LARI, LAMAP, LAMEX, LASE) avec justification explicable.",
-                    "Explorateur 3D/2D Barnes-Hut & Requêtes Cypher en langage naturel pour naviguer dans 28 ans de patrimoine scientifique (470 thèses, 19 projets M1).",
-                    "Auto-Amélioration Continue K1-WikiSkill & Gouvernance Symétrique : 77 tests automatisés (100% succès), cache Redis 7 (<20ms) et Quorum de sécurité 4 Yeux."
+                    "100% de tests réussis : suite complète de 192 tests automatisés couvrant résilience, concurrence, observabilité et intégrité ontologique.",
+                    "Éradication absolue des hallucinations académiques par empreinte cryptographique déterministe SHA-256 (OKF v0.2 No-LLM Tiers 1/2/3) et repli immédiat par Circuit Breaker.",
+                    "Advisor Matcher Intelligent : orientation optimale et explicable des étudiants vers directeurs et laboratoires (LARI, LAMAP, LAMEX, LASE) avec justification d'affinité IA %.",
+                    "Valorisation exhaustive de 28 ans de patrimoine scientifique : 471 documents certifiés, 4 494 relations actives, visualiseur 3D Barnes-Hut et publication technique internationale sur DEV Community (Dev.to)."
                 ],
-                techs: ["FastAPI 0.115", "LangGraph 8 Agents", "Neo4j 5.26 GraphRAG", "Advisor Matcher", "Barnes-Hut 3D", "OKF v0.2 SHA-256", "K1-WikiSkill", "Redis 7 Lua (<20ms)", "PostgreSQL pgvector", "OAI-PMH Dublin Core"],
+                techs: ["FastAPI 0.115+", "LangGraph Stateless", "Neo4j 5.26 (4 494 rel)", "PostgreSQL 16 pgvector", "Redis 7 Streams & DLQ", "Circuit Breaker 3-State", "Nginx 1.27 SSE", "OpenTelemetry & Jaeger", "Prometheus", "OKF v0.2 SHA-256", "Advisor Matcher", "192 Tests (100%)", "Quorum 4 Yeux"],
                 github: "https://github.com/gervais-afk/k1-mathinfo"
             }
         },
@@ -385,24 +386,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 github: "https://github.com/gervais-afk/VigieSahel"
             },
             'k1-mathinfo': {
-                badge: "Sovereign Multi-Agent AI System, GraphRAG, Advisor Matcher & Academic Certification (DMI - Univ. of Ngaoundéré)",
+                badge: "Sovereign Multi-Agent AI System, GraphRAG, Advisor Matcher, OKF Certification & High Availability (DMI - Univ. of Ngaoundéré)",
                 title: "K1-MATHINFO (v3.2.0) 🏛️",
-                subtitle: "Sovereign academic AI infrastructure: 4 Engineering Pillars, 8 LangGraph agents, Neo4j graph (1,366 nodes), advisor recommendation, and continuous self-evolution via WikiSkill.",
-                infographic: "assets/images/k1_mathinfo_infographie_pro.png",
+                subtitle: "High-availability sovereign academic AI infrastructure: 5 Engineering Pillars, LangGraph Stateless network (7 agents), Neo4j 5.26 graph (471 documents, 4,494 relationships), resilient Circuit Breaker, triple observability, and 192 tests passed (100%).",
+                infographic: "assets/images/k1_mathinfo_architecture_hd.png",
+                article: "https://dev.to/gervais_marie/building-a-zero-hallucination-academic-graphrag-1379-nodes-multi-agent-orchestration-local-4mfo",
                 pipeline: [
-                    { num: "Pillar 01", title: "5-Stage SSE Streaming Ingestion & Deep Research", desc: "Real-time ingestion visualizer (5-stage animated stepper, live terminal console) and normative chunking of 470 theses & 19 M1 projects. Compact matrix Deep Research keeping bandwidth <450 tokens." },
-                    { num: "Pillar 02", title: "Topological Neo4j Graph & 3D Explorer", desc: "1,366 nodes and 3,833 relationships (supervision genealogy, juries, algorithms, theorems). Features 3 physical rendering modes (Barnes-Hut, Hierarchical Top-Down, Radial) and autonomous no-code Cypher Copilot." },
-                    { num: "Pillar 03", title: "Advisor Matcher (Ideal Thesis Supervisor)", desc: "Neuro-symbolic recommendation engine combining dense cosine topic similarity and Neo4j ontological co-occurrence. Rich advisor profiles across DMI's 4 laboratories (LARI, LAMAP, LAMEX, LASE) with AI affinity score % and 1-click actions." },
-                    { num: "Pillar 04", title: "OKF v0.2 Certification & Waterfall Citation Audit", desc: "No-LLM Cypher SHA-256 certifier (tamper-proof Tiers 1/2/3) and Waterfall anti-hallucination auditor (DMI -> Semantic Scholar -> Crossref, DOI/arXiv O(1)). FAIR OAI-PMH v2.0 (Dublin Core, ETD-MS) and BibTeX/Zotero exports." },
-                    { num: "Pillar 05", title: "8-Agent LangGraph Network, K1-WikiSkill & Quorum", desc: "8 specialized agents (Supervisor, GraphRAG, Advisor, Math SEIR/Caputo, Biblio, OKF, Critic Q17, WikiSkill). Continuous self-evolution via procedural meta-skills (Google Research 2026) and 4-Eyes symmetric quorum under supervision of Prof. DAYANG PAUL." }
+                    { num: "Pillar 01", title: "Hybrid Ingestion, SSE Streaming & Deep Research", desc: "Pure Python OLE2/CLX parser for legacy .doc archives (Word 97-2003) and 5-stage real-time SSE streaming visualizer for contemporary PDFs. Compact matrix Deep Research keeping token bandwidth <450 tokens." },
+                    { num: "Pillar 02", title: "Topological Neo4j 5.26 Graph & 3D Explorer", desc: "471 certified documents, 434 authors, 81 advisors/co-advisors, and 4,494 active relationships. 3 physical layout modes (Barnes-Hut, Hierarchical Top-Down, Radial LR) and autonomous no-code Cypher Copilot." },
+                    { num: "Pillar 03", title: "Neuro-Symbolic Advisor Matcher (Ideal Thesis Supervisor)", desc: "Recommendation engine coupling dense cosine topic similarity with Neo4j ontological co-occurrences. Rich advisor profiles across DMI's 4 laboratories (LARI, LAMAP, LAMEX, LASE) with AI affinity score % and 1-click actions." },
+                    { num: "Pillar 04", title: "OKF v0.2 SHA-256 No-LLM Certification & Waterfall Citation Audit", desc: "Deterministic Cypher SHA-256 certifier (tamper-proof Tiers 1/2/3) and Waterfall anti-hallucination auditor (DMI -> Semantic Scholar -> Crossref, DOI/arXiv O(1)). FAIR OAI-PMH v2.0 (Dublin Core, ETD-MS) and BibTeX exports." },
+                    { num: "Pillar 05", title: "High Availability, Industrial Resilience & Triple Observability", desc: "3-state Circuit Breaker with deterministic OKF fallback, role-based Admission Control, durable Redis Streams with DLQ, persistent PostgreSQL 16 checkpoints, OpenTelemetry spans to Jaeger (:16686), Prometheus metrics (:9090), and 4-Eyes symmetric quorum (KOA + AZIZ) validated across 192 tests (100%)." }
                 ],
                 impacts: [
-                    "Absolute elimination of academic hallucinations via deterministic OKF v0.2 SHA-256 No-LLM cryptographic verification.",
-                    "Intelligent Advisor Matcher: optimal guidance matching students with supervisors and laboratories (LARI, LAMAP, LAMEX, LASE) with explainable rationale.",
-                    "Interactive 3D/2D Barnes-Hut Visualizer & Natural Language Cypher queries to navigate 28 years of scientific assets (470 theses, 19 M1 projects).",
-                    "Continuous Self-Evolution via K1-WikiSkill & High Reliability: 77 automated unit tests (100% pass rate), Redis 7 fast cache (<20ms), and 4-Eyes security quorum."
+                    "100% test pass rate: comprehensive suite of 192 automated unit and integration tests covering resilience, concurrency, observability, and ontological integrity.",
+                    "Absolute elimination of academic hallucinations via deterministic OKF v0.2 SHA-256 No-LLM cryptographic certification and immediate Circuit Breaker fallback.",
+                    "Intelligent Advisor Matcher: explainable optimal student-to-supervisor matching across DMI laboratories (LARI, LAMAP, LAMEX, LASE) with AI affinity scoring %.",
+                    "Comprehensive preservation and valuation of 28 years of scientific assets: 471 documents, 4,494 active relationships, 3D Barnes-Hut visualizer, and international technical publication on DEV Community (Dev.to)."
                 ],
-                techs: ["FastAPI 0.115", "LangGraph 8 Agents", "Neo4j 5.26 GraphRAG", "Advisor Matcher", "Barnes-Hut 3D", "OKF v0.2 SHA-256", "K1-WikiSkill", "Redis 7 Lua (<20ms)", "PostgreSQL pgvector", "OAI-PMH Dublin Core"],
+                techs: ["FastAPI 0.115+", "LangGraph Stateless", "Neo4j 5.26 (4 494 rel)", "PostgreSQL 16 pgvector", "Redis 7 Streams & DLQ", "Circuit Breaker 3-State", "Nginx 1.27 SSE", "OpenTelemetry & Jaeger", "Prometheus", "OKF v0.2 SHA-256", "Advisor Matcher", "192 Tests (100%)", "Quorum 4 Yeux"],
                 github: "https://github.com/gervais-afk/k1-mathinfo"
             }
         }
@@ -500,9 +502,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <div class="project-links-row">
-                    <a href="${project.github}" target="_blank" class="btn btn-primary w-100">
+                    <a href="${project.github}" target="_blank" class="btn btn-primary">
                         ${activeHeader.github} <i class="fa-brands fa-github"></i>
                     </a>
+                    ${project.article ? `
+                    <a href="${project.article}" target="_blank" class="btn btn-icon">
+                        ${lang === 'fr' ? 'Article Dev.to' : 'Dev.to Article'} <i class="fa-brands fa-dev"></i>
+                    </a>
+                    ` : ''}
                 </div>
             </div>
         `;
