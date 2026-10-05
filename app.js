@@ -205,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 badge: "Usine MLOps Autonome & Dataset Engineering Factory (Google Cloud Hackathon)",
                 title: "Dataset Automator ⚙️",
                 subtitle: "Plateforme MLOps d'ingestion Zero-ETL, modélisation tabulaire de fondation, audits d'équité et gouvernance EU AI Act.",
+                article: "https://dev.to/gervais_marie/how-i-built-a-multi-agent-mlops-control-center-with-google-tabfm-gemma-2b-eu-ai-act-38c7",
                 pipeline: [
                     { num: "Étape 01", title: "Ingestion Serverless & Zero-ETL Profiling (<48ms)", desc: "BigQuery DataFrames (bigframes) pour le profiling statistique haute vitesse, typage réel automatisé, détection d'asymétrie et de valeurs manquantes." },
                     { num: "Étape 02", title: "Google TabFM & Adaptive Cascade Router", desc: "Modèle de fondation tabulaire TabFM (inférence zero-shot in-context learning) couplé à un routeur cascade (arbitrage de tokens 125x : TabFM -> SLM local 152ms -> Gemini 3.5 Flash)." },
@@ -262,25 +263,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 github: "https://github.com/gervais-afk/VigieSahel"
             },
             'k1-mathinfo': {
-                badge: "Système Souverain d'IA Multi-Agents, GraphRAG, Advisor Matcher, Certification OKF & Haute Disponibilité (DMI - Univ. Ngaoundéré)",
+                badge: "Système Souverain d'IA Agentique, GraphRAG Tri-Moteurs WRRF, LatentGate, vCache & Certification OKF (DMI - Univ. Ngaoundéré)",
                 title: "K1-MATHINFO (v3.2.0) 🏛️",
-                subtitle: "Infrastructure souveraine académique haute disponibilité : 5 Piliers d'ingénierie, réseau LangGraph Stateless (7 agents), graphe Neo4j 5.26 (471 documents, 4 494 relations), Circuit Breaker résilient, observabilité triple et 192 tests validés (100%).",
+                subtitle: "Infrastructure souveraine neuro-symbolique temps réel (<10ms) : 30 ans d'archives (471 documents, 4 494 relations), routeur LatentGate ACP k=16 (5,2 ms), vCache 3 étages (0% de faux positifs), recherche hybride WRRF (k=60), inférence S-GRPO anti-overthinking et 192 tests réussis (100%).",
                 infographic: "assets/images/k1_mathinfo_architecture_hd.png",
                 article: "https://dev.to/gervais_marie/building-a-zero-hallucination-academic-graphrag-1379-nodes-multi-agent-orchestration-local-4mfo",
                 pipeline: [
-                    { num: "Pilier 01", title: "Ingestion Hybride, Streaming SSE & Deep Research", desc: "Parseur OLE2/CLX pure Python pour archives historiques .doc (Word 97-2003) et visualiseur temps réel SSE en 5 étapes pour PDF contemporains. Projection matricielle compacte Deep Research limitant la bande passante à <450 tokens." },
-                    { num: "Pilier 02", title: "Graphe Topologique Neo4j 5.26 & Explorateur 3D", desc: "471 documents certifiés, 434 auteurs, 81 directeurs/co-directeurs et 4 494 relations actives. 3 modes physiques de disposition (Barnes-Hut, Hiérarchique Top-Down, Radial LR) et Copilot Cypher autonome sans code." },
-                    { num: "Pilier 03", title: "Advisor Matcher Neuro-Symbolique (Directeur Idéal)", desc: "Recommandation couplant similarité cosinus dense et co-occurrences ontologiques Neo4j. Fiches directeurs enrichies parmi les 4 labos DMI (LARI, LAMAP, LAMEX, LASE) avec score d'affinité IA % et actions 1-clic." },
-                    { num: "Pilier 04", title: "Certification OKF v0.2 SHA-256 No-LLM & Audit Bibliographique", desc: "Attesteur Cypher SHA-256 No-LLM (Tiers 1/2/3 inviolables) et audit bibliographique Waterfall (DMI -> Semantic Scholar -> Crossref, DOI/arXiv O(1)). Interopérabilité FAIR OAI-PMH v2.0 (Dublin Core, ETD-MS) et exports BibTeX." },
-                    { num: "Pilier 05", title: "Haute Disponibilité, Résilience & Observabilité Triple", desc: "Circuit Breaker 3 états avec repli déterministe OKF, Admission Control par rôles, Redis Streams durable avec DLQ, checkpoints persistants PostgreSQL 16, spans OpenTelemetry vers Jaeger (:16686), métriques Prometheus (:9090) et Quorum symétrique 4 Yeux (KOA + AZIZ) validé sur 192 tests (100%)." }
+                    { num: "Pilier 01", title: "Routeur Sémantique Non-Génératif LatentGate (5,2 - 13,8 ms)", desc: "Sonde linéaire entraînée sur représentations blanchies par ACP (k=16) résolvant l'anisotropie vectorielle des LLM (gain de séparabilité 48×). Classification instantanée sur 5 domaines sans génération de tokens." },
+                    { num: "Pilier 02", title: "Cache Sémantique Vérifié vCache (0% Faux Positifs)", desc: "Architecture d'intégrité à 3 étages : L1 exact SHA-256 en 0,13 ms, L2 candidat vectoriel cosinus (seuil >= 0,88), et L3 validation formelle par Reconnaissance d'Entités Nommées (NER strict) éliminant 100% des collisions factuelles." },
+                    { num: "Pilier 03", title: "Moteur de Recherche Hybride Tri-Source WRRF (k=60)", desc: "Weighted Reciprocal Rank Fusion combinant dense pgvector HNSW (w=1,0), sparse BM25 tsvector (w=0,8) et traversée relationnelle Neo4j 5.26 (w=1,2) avec masquage ontologique dur (P@5 = 96,4%, MRR = 0,942, traversée 3,8 ms)." },
+                    { num: "Pilier 04", title: "Inférence S-GRPO, Interface Réflexive & Entity Pills", desc: "Régulation d'inférence par directive <|high reward|> anti-overthinking. Accordéon réflexif <think> millisecondes temps réel et puces interactives (Entity Pills) déclenchant en 1-clic l'exploration topologique du graphe Neo4j." },
+                    { num: "Pilier 05", title: "Certification OKF v0.2 SHA-256 No-LLM & Gouvernance Quorum", desc: "Découplage strict LaTeX / sémantique formelle, vérification déterministe par empreinte SHA-256 inviolable, Circuit Breaker 3 états (<5s failover), et gouvernance symétrique à 4 Yeux (KOA + AZIZ) validée sur 192 tests automatisés (100%)." }
                 ],
                 impacts: [
-                    "100% de tests réussis : suite complète de 192 tests automatisés couvrant résilience, concurrence, observabilité et intégrité ontologique.",
-                    "Éradication absolue des hallucinations académiques par empreinte cryptographique déterministe SHA-256 (OKF v0.2 No-LLM Tiers 1/2/3) et repli immédiat par Circuit Breaker.",
-                    "Advisor Matcher Intelligent : orientation optimale et explicable des étudiants vers directeurs et laboratoires (LARI, LAMAP, LAMEX, LASE) avec justification d'affinité IA %.",
-                    "Valorisation exhaustive de 28 ans de patrimoine scientifique : 471 documents certifiés, 4 494 relations actives, visualiseur 3D Barnes-Hut et publication technique internationale sur DEV Community (Dev.to)."
+                    "100% de tests réussis : 192 tests automatisés validés selon un protocole épistémique découplé en 3 pistes (Piste A Déterministe Cypher 100%, Piste B Sémantique WRRF P@5 96,4%, Piste C Refus conforme adversariaux 100%).",
+                    "Éradication absolue des hallucinations académiques par empreinte cryptographique déterministe SHA-256 (OKF v0.2 No-LLM) et rejet immédiat des collisions sémantiques par vCache L3.",
+                    "Vitesse d'exécution temps réel : décision de routage en 5,2–13,8 ms (LatentGate) et réponse de cache en 0,13 ms sans consommer de tokens LLM.",
+                    "Valorisation exhaustive de 30 ans de patrimoine scientifique (1993–2026) : 471 documents certifiés, 438 auteurs, 81 directeurs, 4 494 relations actives, visualiseur 3D et publication technique sur DEV Community (Dev.to)."
                 ],
-                techs: ["FastAPI 0.115+", "LangGraph Stateless", "Neo4j 5.26 (4 494 rel)", "PostgreSQL 16 pgvector", "Redis 7 Streams & DLQ", "Circuit Breaker 3-State", "Nginx 1.27 SSE", "OpenTelemetry & Jaeger", "Prometheus", "OKF v0.2 SHA-256", "Advisor Matcher", "192 Tests (100%)", "Quorum 4 Yeux"],
+                techs: ["LatentGate Router (5.2ms)", "vCache 3-Tier (0% FP)", "Tri-Engine WRRF (k=60)", "Inférence S-GRPO", "Neo4j 5.26 (4 494 rel)", "PostgreSQL 16 pgvector", "Redis 7 Streams & DLQ", "FastAPI 0.115+", "OKF v0.2 SHA-256", "Advisor Matcher", "Circuit Breaker 3-State", "Quorum 4 Yeux", "192 Tests (100%)", "KaTeX déterministe"],
                 github: "https://github.com/gervais-afk/k1-mathinfo"
             }
         },
@@ -329,6 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 badge: "Agentic MLOps Platform & Dataset Engineering Factory (Google Cloud Hackathon)",
                 title: "Dataset Automator ⚙️",
                 subtitle: "Autonomous MLOps factory for Zero-ETL data ingestion, foundation tabular modeling, fairness auditing, and EU AI Act governance.",
+                article: "https://dev.to/gervais_marie/how-i-built-a-multi-agent-mlops-control-center-with-google-tabfm-gemma-2b-eu-ai-act-38c7",
                 pipeline: [
                     { num: "Step 01", title: "Serverless Ingestion & Zero-ETL Profiling (<48ms)", desc: "BigQuery DataFrames (bigframes) for high-speed statistical profiling, automated real-data typing, skewness detection, and missing-value analysis." },
                     { num: "Step 02", title: "Google TabFM & Adaptive Cascade Router", desc: "Tabular foundation model TabFM (zero-shot in-context learning) paired with an adaptive cascade router (125x token arbitrage: TabFM -> local SLM @ 152ms -> Gemini 3.5 Flash)." },
@@ -386,25 +388,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 github: "https://github.com/gervais-afk/VigieSahel"
             },
             'k1-mathinfo': {
-                badge: "Sovereign Multi-Agent AI System, GraphRAG, Advisor Matcher, OKF Certification & High Availability (DMI - Univ. of Ngaoundéré)",
+                badge: "Sovereign Multi-Agent AI System, Tri-Engine WRRF GraphRAG, LatentGate, vCache & OKF Certification (DMI - Univ. of Ngaoundéré)",
                 title: "K1-MATHINFO (v3.2.0) 🏛️",
-                subtitle: "High-availability sovereign academic AI infrastructure: 5 Engineering Pillars, LangGraph Stateless network (7 agents), Neo4j 5.26 graph (471 documents, 4,494 relationships), resilient Circuit Breaker, triple observability, and 192 tests passed (100%).",
+                subtitle: "Real-time sovereign neuro-symbolic AI infrastructure (<10ms): 30 years of scientific research assets (471 certified documents, 4,494 active relationships), LatentGate PCA k=16 router (5.2 ms), 3-tier verified vCache (0% false positives), tri-engine WRRF hybrid search (k=60), S-GRPO anti-overthinking inference, and 100% test pass rate across 192 automated tests.",
                 infographic: "assets/images/k1_mathinfo_architecture_hd.png",
                 article: "https://dev.to/gervais_marie/building-a-zero-hallucination-academic-graphrag-1379-nodes-multi-agent-orchestration-local-4mfo",
                 pipeline: [
-                    { num: "Pillar 01", title: "Hybrid Ingestion, SSE Streaming & Deep Research", desc: "Pure Python OLE2/CLX parser for legacy .doc archives (Word 97-2003) and 5-stage real-time SSE streaming visualizer for contemporary PDFs. Compact matrix Deep Research keeping token bandwidth <450 tokens." },
-                    { num: "Pillar 02", title: "Topological Neo4j 5.26 Graph & 3D Explorer", desc: "471 certified documents, 434 authors, 81 advisors/co-advisors, and 4,494 active relationships. 3 physical layout modes (Barnes-Hut, Hierarchical Top-Down, Radial LR) and autonomous no-code Cypher Copilot." },
-                    { num: "Pillar 03", title: "Neuro-Symbolic Advisor Matcher (Ideal Thesis Supervisor)", desc: "Recommendation engine coupling dense cosine topic similarity with Neo4j ontological co-occurrences. Rich advisor profiles across DMI's 4 laboratories (LARI, LAMAP, LAMEX, LASE) with AI affinity score % and 1-click actions." },
-                    { num: "Pillar 04", title: "OKF v0.2 SHA-256 No-LLM Certification & Waterfall Citation Audit", desc: "Deterministic Cypher SHA-256 certifier (tamper-proof Tiers 1/2/3) and Waterfall anti-hallucination auditor (DMI -> Semantic Scholar -> Crossref, DOI/arXiv O(1)). FAIR OAI-PMH v2.0 (Dublin Core, ETD-MS) and BibTeX exports." },
-                    { num: "Pillar 05", title: "High Availability, Industrial Resilience & Triple Observability", desc: "3-state Circuit Breaker with deterministic OKF fallback, role-based Admission Control, durable Redis Streams with DLQ, persistent PostgreSQL 16 checkpoints, OpenTelemetry spans to Jaeger (:16686), Prometheus metrics (:9090), and 4-Eyes symmetric quorum (KOA + AZIZ) validated across 192 tests (100%)." }
+                    { num: "Pillar 01", title: "Non-Generative LatentGate Semantic Router (5.2 - 13.8 ms)", desc: "Linear probe trained on PCA-whitened representations (k=16) eliminating SLM vector anisotropy (48x separability gain). Instant domain classification across 5 specialized domains without generating tokens." },
+                    { num: "Pillar 02", title: "3-Tier Verified Semantic Cache vCache (0% False Positives)", desc: "Rigorous 3-stage validation: L1 exact SHA-256 hash in 0.13 ms, L2 cosine similarity candidate (threshold >= 0.88), and L3 formal Named Entity Recognition (strict NER verification) rejecting 100% of factual collisions." },
+                    { num: "Pillar 03", title: "Tri-Engine Hybrid Search WRRF (k=60) with Hard Masking", desc: "Weighted Reciprocal Rank Fusion combining dense pgvector HNSW (w=1.0), sparse lexical BM25 tsvector (w=0.8), and multi-hop Neo4j 5.26 graph topology (w=1.2) with hard ontological masking (P@5 = 96.4%, MRR = 0.942, 2-hop traversal in 3.8 ms)." },
+                    { num: "Pillar 04", title: "S-GRPO Regulated Inference, Reflexive UI & Entity Pills", desc: "Inference control via <|high reward|> directive eliminating infinite overthinking loops. Real-time millisecond <think> reflexive accordion and interactive Entity Pills triggering 1-click topological exploration in Neo4j." },
+                    { num: "Pillar 05", title: "OKF v0.2 SHA-256 No-LLM Certification & Quorum Security", desc: "Strict presentation (LaTeX) vs formal semantics decoupling, deterministic SHA-256 mathematical proof certification, 3-state Circuit Breaker (<5s failover), and 4-Eyes symmetric governance (KOA + AZIZ) validated across 192 tests (100%)." }
                 ],
                 impacts: [
-                    "100% test pass rate: comprehensive suite of 192 automated unit and integration tests covering resilience, concurrency, observability, and ontological integrity.",
-                    "Absolute elimination of academic hallucinations via deterministic OKF v0.2 SHA-256 No-LLM cryptographic certification and immediate Circuit Breaker fallback.",
-                    "Intelligent Advisor Matcher: explainable optimal student-to-supervisor matching across DMI laboratories (LARI, LAMAP, LAMEX, LASE) with AI affinity scoring %.",
-                    "Comprehensive preservation and valuation of 28 years of scientific assets: 471 documents, 4,494 active relationships, 3D Barnes-Hut visualizer, and international technical publication on DEV Community (Dev.to)."
+                    "100% test pass rate: 192 automated tests validated across a 3-track epistemic protocol (Track A Deterministic Cypher 100%, Track B Dense & WRRF Semantic P@5 96.4%, Track C Adversarial Constraint Refusal 100%).",
+                    "Absolute elimination of academic hallucinations via deterministic OKF v0.2 SHA-256 No-LLM cryptographic certification and immediate factual collision rejection by vCache L3.",
+                    "Real-time sub-10ms response: 5.2–13.8 ms routing decisions (LatentGate) and 0.13 ms exact cache hits without consuming LLM token generation budgets.",
+                    "Comprehensive preservation and valuation of 30 years of scientific assets (1993–2026): 471 certified documents, 438 authors, 81 supervisors, 4,494 active relationships, 3D graph explorer, and international technical publication on DEV Community (Dev.to)."
                 ],
-                techs: ["FastAPI 0.115+", "LangGraph Stateless", "Neo4j 5.26 (4 494 rel)", "PostgreSQL 16 pgvector", "Redis 7 Streams & DLQ", "Circuit Breaker 3-State", "Nginx 1.27 SSE", "OpenTelemetry & Jaeger", "Prometheus", "OKF v0.2 SHA-256", "Advisor Matcher", "192 Tests (100%)", "Quorum 4 Yeux"],
+                techs: ["LatentGate Router (5.2ms)", "vCache 3-Tier (0% FP)", "Tri-Engine WRRF (k=60)", "S-GRPO Reasoning", "Neo4j 5.26 (4 494 rel)", "PostgreSQL 16 pgvector", "Redis 7 Streams & DLQ", "FastAPI 0.115+", "OKF v0.2 SHA-256", "Advisor Matcher", "3-State Circuit Breaker", "Quorum 4-Eyes", "192 Tests (100%)", "Deterministic KaTeX"],
                 github: "https://github.com/gervais-afk/k1-mathinfo"
             }
         }

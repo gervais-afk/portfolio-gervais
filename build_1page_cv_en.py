@@ -118,6 +118,7 @@ def generate_exact_user_1page_cv_en():
     sb_t(c0, "✆  +237 695 35 34 02")
     sb_t(c0, "⌂  Douala / Ngaoundéré, CM")
     sb_t(c0, "🐙  github.com/gervais-afk")
+    sb_t(c0, "✍  dev.to/gervais_marie")
     sb_t(c0, "💼  linkedin.com/in/marie-gervais-koa")
 
     sb_h(c0, "AI & LLM Stack")
@@ -182,7 +183,7 @@ def generate_exact_user_1page_cv_en():
 
     def mn_h(cell, title):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(2.2)
+        p.paragraph_format.space_before = Pt(1.5)
         p.paragraph_format.space_after  = Pt(0.1)
         r1 = p.add_run("◈  "); r1.font.bold = True; r1.font.size = Pt(8.0); r1.font.color.rgb = OCEAN
         r2 = p.add_run(title.upper())
@@ -190,7 +191,7 @@ def generate_exact_user_1page_cv_en():
         r2.font.size = Pt(9.8); r2.font.color.rgb = NAVY
         sep = cell.add_paragraph()
         sep.paragraph_format.space_before = Pt(0)
-        sep.paragraph_format.space_after  = Pt(1.0)
+        sep.paragraph_format.space_after  = Pt(0.6)
         rs1 = sep.add_run("━" * 18)
         rs1.font.size = Pt(4.5); rs1.font.color.rgb = OCEAN
         rs2 = sep.add_run("─" * 44)
@@ -198,7 +199,7 @@ def generate_exact_user_1page_cv_en():
 
     def entry(cell, title, badge):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(1.6)
+        p.paragraph_format.space_before = Pt(1.2)
         p.paragraph_format.space_after  = Pt(0.1)
         r1 = p.add_run(title); r1.font.bold = True; r1.font.size = Pt(9.4); r1.font.color.rgb = NAVY
         r2 = p.add_run(f"   —   {badge}")
@@ -214,7 +215,7 @@ def generate_exact_user_1page_cv_en():
     def bullet(cell, text):
         p = cell.add_paragraph()
         p.paragraph_format.space_before = Pt(0)
-        p.paragraph_format.space_after  = Pt(0.4)
+        p.paragraph_format.space_after  = Pt(0.25)
         p.paragraph_format.line_spacing = 1.05
         p.paragraph_format.left_indent  = Pt(10)
         rb = p.add_run("▸  ")
@@ -224,16 +225,16 @@ def generate_exact_user_1page_cv_en():
 
     def body(cell, text):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(0.4)
-        p.paragraph_format.space_after  = Pt(1.0)
+        p.paragraph_format.space_before = Pt(0.3)
+        p.paragraph_format.space_after  = Pt(0.7)
         p.paragraph_format.line_spacing = 1.05
         r = p.add_run(text)
-        r.font.size = Pt(8.5); r.font.color.rgb = BODY
+        r.font.size = Pt(8.4); r.font.color.rgb = BODY
 
     def award(cell, title, detail):
         p = cell.add_paragraph()
-        p.paragraph_format.space_before = Pt(1.2)
-        p.paragraph_format.space_after  = Pt(0.4)
+        p.paragraph_format.space_before = Pt(0.8)
+        p.paragraph_format.space_after  = Pt(0.25)
         p.paragraph_format.line_spacing = 1.05
         p.paragraph_format.left_indent  = Pt(10)
         r1 = p.add_run("◆  ")
@@ -255,16 +256,16 @@ def generate_exact_user_1page_cv_en():
     bullet(c1, "Instant generation of standardized BOQ estimates in <45s (99.2% time savings) and 3D architectural renders.")
     bullet(c1, "Deterministic zero-hallucination structural concrete validation enforcing strict compliance with urban planning codes.")
 
-    entry(c1, "K1-MATHINFO (v3.2.0)", "Sovereign Academic Research & Asset Platform")
-    bullet(c1, "Preservation, indexing, and semantic exploration across 28 years of research (471 Ph.D. & Master's docs, 4,494 relations).")
-    bullet(c1, "Neuro-symbolic Advisor Matcher, high availability with Circuit Breaker, and 192 automated unit/integration tests (100%).")
+    entry(c1, "K1-MATHINFO (v3.2.0)", "Sovereign Academic Research Platform")
+    bullet(c1, "GraphRAG over 30 yrs archives (471 theses DMI, 4,494 Neo4j relations), LatentGate (5.2ms) & vCache (0% FP).")
+    bullet(c1, "Tri-engine WRRF (P@5=96.4%), S-GRPO, OKF v0.2 SHA-256 No-LLM, 192 tests (100%), and Dev.to deep-dive.")
 
-    entry(c1, "Sovereign.BI Agentic", "Enterprise Business Intelligence & Strategic Decision Engine")
+    entry(c1, "Sovereign.BI Agentic", "Enterprise Business Intelligence & Decisions")
     bullet(c1, "Executive decision enablement: querying complex corporate data warehouses directly in natural language in under 5 seconds.")
     bullet(c1, "Total sovereign enterprise privacy with air-gapped local execution and mathematical explainability for every KPI.")
 
-    entry(c1, "Dataset Automator & VigieSahel", "Climate Resilience & Production MLOps Systems")
-    bullet(c1, "Dataset Automator: Autonomous data engineering factory for reliable dataset preparation, fairness audits, and compliance.")
+    entry(c1, "Dataset Automator & VigieSahel", "Climate Resilience & Production MLOps")
+    bullet(c1, "Dataset Automator: MLOps data factory (TabFM, PAIR WIT, EU AI Act RSASSA-PSS seals) and Dev.to publication.")
     bullet(c1, "VigieSahel: Sahelian resilience system cutting crop sowing failures by 35% and forecasting meningitis epidemics 14 days ahead.")
 
     # ── Professional Experience ──
@@ -296,6 +297,7 @@ def generate_exact_user_1page_cv_en():
     mn_h(c1, "Honors & Applied AI Distinctions")
 
     award(c1, "CCAA Attestation of Excellence & Integrity (2023)", "Awarded by the Director General for outstanding operational performance & ethics.")
+    award(c1, "Technical Publications on DEV Community (2026)", "Author of architectural deep-dives: Zero-Hallucination GraphRAG & Dataset Automator MLOps.")
     award(c1, "Google Cloud #AllThingsAgentic Hackathon", "Dataset Automator v4.0 (Google Antigravity, TabFM, BigQuery DataFrames, WIT).")
     award(c1, "Google Developer Program · AICC Accra", "Active member · Accra AI Community Centre & Google for Startups Accelerator Network.")
 

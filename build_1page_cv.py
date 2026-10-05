@@ -118,6 +118,7 @@ def generate_exact_user_1page_cv_fr():
     sb_t(c0, "✆  +237 695 35 34 02")
     sb_t(c0, "⌂  Douala / Ngaoundéré, CM")
     sb_t(c0, "🐙  github.com/gervais-afk")
+    sb_t(c0, "✍  dev.to/gervais_marie")
     sb_t(c0, "💼  linkedin.com/in/marie-gervais-koa")
 
     sb_h(c0, "IA & LLM Stack")
@@ -256,16 +257,16 @@ def generate_exact_user_1page_cv_fr():
     bullet(c1, "Calculs de structures béton armé déterministes zéro-hallucination conformes aux règles d'urbanisme.")
 
     entry(c1, "K1-MATHINFO (v3.2.0)", "Valorisation & Recherche Académique Souveraine")
-    bullet(c1, "Sauvegarde, indexation sémantique et valorisation de 28 ans de patrimoine (471 thèses & mémoires DMI, 4 494 relations).")
-    bullet(c1, "Advisor Matcher neuro-symbolique, haute disponibilité avec Circuit Breaker et 192 tests automatisés (100% succès).")
+    bullet(c1, "GraphRAG sur 30 ans d'archives (471 thèses DMI, 4 494 relations Neo4j), routage LatentGate (5,2 ms) et vCache (0% FP).")
+    bullet(c1, "WRRF tri-moteur (P@5=96,4%), inférence S-GRPO, certification OKF v0.2 SHA-256 No-LLM, 192 tests (100%) et article Dev.to.")
 
     entry(c1, "Sovereign.BI Agentic", "Pilotage Stratégique & Décisionnel d'Entreprise")
     bullet(c1, "Démocratisation de l'aide à la décision : interrogation des entrepôts de données en langage naturel en moins de 5s.")
     bullet(c1, "Étanchéité souveraine absolue en réseau fermé (zéro fuite) et audit mathématique de causalité de chaque KPI.")
 
     entry(c1, "Dataset Automator & VigieSahel", "IA à Fort Impact & Résilience Agro-Climatique")
-    bullet(c1, "Dataset Automator : Usine autonome accélérant la préparation de données fiables avec audit de conformité éthique.")
-    bullet(c1, "VigieSahel : Résilience sahélienne réduisant de 35% les échecs de semis et alertant 14 jours avant les flambées épidémiques.")
+    bullet(c1, "Dataset Automator : Usine MLOps autonome (TabFM, PAIR WIT, scellés EU AI Act RSASSA-PSS) et publication Dev.to.")
+    bullet(c1, "VigieSahel : Résilience sahélienne réduisant de 35% les échecs de semis et alertant 14 jours avant les flambées.")
 
     # ── Parcours Professionnel ──
     mn_h(c1, "Parcours Professionnel")
@@ -296,6 +297,7 @@ def generate_exact_user_1page_cv_fr():
     mn_h(c1, "Reconnaissances & Distinctions")
 
     award(c1, "Attestation d'Excellence & Intégrité CCAA (2023)", "Décernée par le Directeur Général pour performance et déontologie opérationnelle.")
+    award(c1, "Publications Techniques DEV Community (2026)", "Auteur d'articles deep-dive : Zero-Hallucination GraphRAG & Dataset Automator MLOps.")
     award(c1, "Google Cloud #AllThingsAgentic Hackathon", "Dataset Automator v4.0 (Google Antigravity, TabFM, BigQuery DataFrames, WIT).")
     award(c1, "Google Developer Program · AICC Accra", "Membre actif · Accra AI Community Centre & Google for Startups Accelerator Network.")
 

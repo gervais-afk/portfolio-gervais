@@ -52,6 +52,7 @@
                 <li><a href="#hero" class="active" data-i18n="nav_home">Accueil</a></li>
                 <li><a href="#about" data-i18n="nav_about">Parcours</a></li>
                 <li><a href="#projects" data-i18n="nav_projects">Projets</a></li>
+                <li><a href="#publications" data-i18n="nav_publications">Publications</a></li>
                 <li><a href="#skills" data-i18n="nav_skills">Compétences</a></li>
                 <li><a href="#stack" data-i18n="nav_stack">Tech Stack</a></li>
                 <li><a href="#certifications" data-i18n="nav_certifications">Certifications</a></li>
@@ -434,6 +435,7 @@
                     </p>
                     <div class="project-tags">
                         <span style="color:#60A5FA; border-color:rgba(96,165,250,0.4);"><i class="fa-brands fa-google"></i> Google Cloud Hackathon</span>
+                        <span style="color:#F59E0B; border-color:rgba(245,158,11,0.4);"><i class="fa-brands fa-dev"></i> Dev.to Article</span>
                         <span>Google TabFM</span>
                         <span>PAIR What-If Tool (WIT)</span>
                         <span>Model Card Toolkit (MCT)</span>
@@ -446,6 +448,7 @@
                     <div class="project-links project-links-row">
                         <button class="btn btn-primary open-modal-btn" data-project="dataset-automator"><i class="fa-solid fa-layer-group"></i> <span data-i18n="btn_architecture">Architecture</span></button>
                         <a href="https://github.com/gervais-afk/dataset-automator" target="_blank" class="btn btn-icon"><i class="fa-brands fa-github"></i> GitHub</a>
+                        <a href="https://dev.to/gervais_marie/how-i-built-a-multi-agent-mlops-control-center-with-google-tabfm-gemma-2b-eu-ai-act-38c7" target="_blank" class="btn btn-icon" title="Lire l'article d'ingénierie sur Dev.to"><i class="fa-brands fa-dev"></i> Dev.to</a>
                     </div>
                 </div>
 
@@ -513,19 +516,20 @@
                         <div class="project-icon"><i class="fa-solid fa-graduation-cap text-neon"></i></div>
                     </div>
                     <p class="project-description" data-i18n="p6_desc">
-                        Système Souverain d'IA Agentique Multi-Agents, GraphRAG &amp; Certification Scientifique pour le DMI (Université de Ngaoundéré), valorisant 28 ans de patrimoine (471 documents certifiés : 451 thèses/mémoires et 20 projets M1, 4 494 relations actives Neo4j 5.26). Architecture haute disponibilité articulée autour d'un réseau LangGraph Stateless (7 agents), d'une résilience industrielle (Circuit Breaker 3 états avec repli déterministe OKF v0.2 SHA-256 No-LLM, Admission Control multi-dimensionnel par rôles, Redis Streams avec DLQ &amp; idempotence), d'un Advisor Matcher neuro-symbolique (recommandation directeurs et labos LARI, LAMAP, LAMEX, LASE), d'un explorateur 3D/2D Barnes-Hut et d'une observabilité triple (OpenTelemetry, Jaeger, Prometheus). Suite validée à 100% sur 192 tests automatisés avec Quorum de sécurité symétrique à 4 Yeux (KOA + AZIZ) et publication technique internationale sur DEV Community (Dev.to).
+                        Système Souverain d'IA Agentique, GraphRAG Tri-Moteurs WRRF, Routage LatentGate, vCache &amp; Certification OKF pour le DMI (Université de Ngaoundéré), valorisant 30 ans de patrimoine scientifique (1993–2026, 471 documents certifiés : 39 thèses Ph.D, 412 mémoires Master et 20 projets M1, 4 494 relations actives Neo4j 5.26). Architecture industrielle haute vitesse &amp; zéro-hallucination articulée autour : 1) du routeur sémantique non-génératif LatentGate (blanchiment géométrique ACP k=16 résolvant l'anisotropie vectorielle des LLM, décision en 5,2–13,8 ms sans consommation de tokens) ; 2) du cache sémantique vérifié vCache à 3 étages (L1 exact SHA-256 en 0,13 ms, L2 candidat cosinus ≥ 0,88, L3 validation formelle NER strict rejetant 100% des collisions factuelles, 0% faux positifs) ; 3) du moteur de recherche hybride tri-source WRRF (k=60) combinant dense pgvector HNSW (w=1,0), sparse BM25 tsvector (w=0,8) et topologie Neo4j (w=1,2) avec masquage ontologique dur (P@5 = 96,4%, MRR = 0,942) ; 4) de l'inférence locale régulée S-GRPO anti-overthinking avec interface réflexive &lt;think&gt; (chronomètre milliseconde) et puces d'entités cliquables reliées au visualiseur de graphe Neo4j ; 5) de la formalisation mathématique OKF v0.2 SHA-256 No-LLM ; et 6) d'une suite de 192 tests automatisés validés à 100% sous gouvernance symétrique à 4 Yeux (KOA + AZIZ).
                     </p>
                     <div class="project-tags">
+                        <span style="color:#A855F7; border-color:rgba(168,85,247,0.4);"><i class="fa-solid fa-bolt"></i> LatentGate (5.2ms)</span>
+                        <span style="color:#10B981; border-color:rgba(16,185,129,0.4);"><i class="fa-solid fa-database"></i> vCache (0% FP)</span>
+                        <span style="color:#F97316; border-color:rgba(249,115,22,0.4);"><i class="fa-solid fa-magnifying-glass"></i> Tri-Moteur WRRF</span>
+                        <span style="color:#06B6D4; border-color:rgba(6,182,212,0.4);"><i class="fa-solid fa-brain"></i> Inférence S-GRPO</span>
                         <span style="color:var(--neon); border-color:rgba(0,242,254,0.4);"><i class="fa-solid fa-user-graduate"></i> Advisor Matcher</span>
-                        <span style="color:#10B981; border-color:rgba(16,185,129,0.4);"><i class="fa-solid fa-shield-halved"></i> Circuit Breaker &amp; HA</span>
                         <span style="color:#F59E0B; border-color:rgba(245,158,11,0.4);"><i class="fa-brands fa-dev"></i> Dev.to Article</span>
-                        <span>FastAPI 0.115</span>
-                        <span>LangGraph Stateless</span>
                         <span>Neo4j 5.26 (4 494 rel)</span>
+                        <span>Postgres pgvector</span>
                         <span>OKF v0.2 SHA-256</span>
                         <span>Redis 7 Streams &amp; DLQ</span>
-                        <span>Postgres pgvector</span>
-                        <span>OTel / Jaeger / Prom</span>
+                        <span>Circuit Breaker 3-State</span>
                         <span>Quorum 4 Yeux</span>
                         <span style="color:#10B981; border-color:rgba(16,185,129,0.5); font-weight:600;">192 Tests (100%)</span>
                     </div>
@@ -535,6 +539,134 @@
                         <a href="https://dev.to/gervais_marie/building-a-zero-hallucination-academic-graphrag-1379-nodes-multi-agent-orchestration-local-4mfo" target="_blank" class="btn btn-icon" title="Lire l'article d'ingénierie complet sur Dev.to"><i class="fa-brands fa-dev"></i> Dev.to</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Publications Section (Dev.to) -->
+    <section id="publications" class="section alt-bg">
+        <div class="container">
+            <h2 class="section-title text-center" data-i18n="pub_title">Publications &amp; <span class="text-neon">Écrits d'Ingénierie (Dev.to)</span></h2>
+            <p class="section-subtitle text-center" data-i18n="pub_subtitle">Articles techniques et démonstrations architecturales publiés sur DEV Community.</p>
+
+            <div class="publications-grid">
+                <!-- Article 1: K1-MATHINFO GraphRAG -->
+                <div class="publication-card glass" data-tilt>
+                    <div class="pub-badge-row">
+                        <span class="pub-badge pub-badge-graph"><i class="fa-solid fa-circle-nodes"></i> GraphRAG &amp; Sovereign AI</span>
+                        <span class="pub-platform"><i class="fa-brands fa-dev"></i> DEV Community</span>
+                    </div>
+                    <h3 class="pub-title">
+                        <a href="https://dev.to/gervais_marie/building-a-zero-hallucination-academic-graphrag-1379-nodes-multi-agent-orchestration-local-4mfo" target="_blank" rel="noopener noreferrer">
+                            Building a Zero-Hallucination Academic GraphRAG: 1,379 Nodes, Multi-Agent Orchestration &amp; Local SLMs
+                        </a>
+                    </h3>
+                    <p class="pub-desc" data-i18n="pub_k1_desc">
+                        Déconstruction approfondie de l'échec du RAG naïf sur 30 ans d'archives universitaires (471 thèses et mémoires) et implémentation complète de K1-MathInfo v3.2.0 : modélisation de graphe sous Neo4j 5.26 (4 494 relations), routeur sémantique non-génératif LatentGate avec blanchiment ACP k=16 (5,2 ms), cache sémantique vérifié vCache à 3 étages (0% de faux positifs), recherche hybride tri-source WRRF (k=60), inférence S-GRPO anti-overthinking et certification formelle sans LLM OKF v0.2 SHA-256.
+                    </p>
+                    <div class="pub-meta-grid">
+                        <div class="pub-meta-item">
+                            <span class="pub-meta-val">5.2 ms</span>
+                            <span class="pub-meta-lbl">Routeur LatentGate</span>
+                        </div>
+                        <div class="pub-meta-item">
+                            <span class="pub-meta-val">0.0% FP</span>
+                            <span class="pub-meta-lbl">vCache 3 Étages</span>
+                        </div>
+                        <div class="pub-meta-item">
+                            <span class="pub-meta-val">4 494 Rel</span>
+                            <span class="pub-meta-lbl">Neo4j 5.26 Graphe</span>
+                        </div>
+                        <div class="pub-meta-item">
+                            <span class="pub-meta-val">100% Tests</span>
+                            <span class="pub-meta-lbl">192 Tests Validés</span>
+                        </div>
+                    </div>
+                    <div class="pub-tags">
+                        <span>#graphrag</span>
+                        <span>#neo4j</span>
+                        <span>#latentgate</span>
+                        <span>#vcache</span>
+                        <span>#wrrf-fusion</span>
+                        <span>#s-grpo</span>
+                        <span>#okf-v0.2</span>
+                    </div>
+                    <div class="pub-actions">
+                        <a href="https://dev.to/gervais_marie/building-a-zero-hallucination-academic-graphrag-1379-nodes-multi-agent-orchestration-local-4mfo" target="_blank" class="btn btn-primary" rel="noopener noreferrer">
+                            <span data-i18n="pub_read_btn">Lire l'Article Complet</span> <i class="fa-brands fa-dev"></i>
+                        </a>
+                        <button class="btn btn-secondary open-modal-btn" data-project="k1-mathinfo">
+                            <i class="fa-solid fa-layer-group"></i> <span data-i18n="btn_architecture">Architecture</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Article 2: Dataset Automator -->
+                <div class="publication-card glass" data-tilt>
+                    <div class="pub-badge-row">
+                        <span class="pub-badge pub-badge-mlops"><i class="fa-brands fa-google"></i> Google Cloud Hackathon</span>
+                        <span class="pub-platform"><i class="fa-brands fa-dev"></i> DEV Community</span>
+                    </div>
+                    <h3 class="pub-title">
+                        <a href="https://dev.to/gervais_marie/how-i-built-a-multi-agent-mlops-control-center-with-google-tabfm-gemma-2b-eu-ai-act-38c7" target="_blank" rel="noopener noreferrer">
+                            How I Built a Multi-Agent MLOps Control Center with Google TabFM, Gemma 2B &amp; EU AI Act Cryptographic Attestations
+                        </a>
+                    </h3>
+                    <p class="pub-desc" data-i18n="pub_da_desc">
+                        Retour d'expérience et architecture de Dataset Automator v4.0 pour le Hackathon mondial Google Cloud #AllThingsAgentic : orchestration multi-agents avec Google Antigravity SDK, modèle fondation tabulaire zero-shot Google TabFM, audit d'équité et parité démographique via Google PAIR What-If Tool (WIT), profiling BigQuery DataFrames Zero-ETL en &lt;48ms, suivi de dérive (KS/PSI sous MLflow) et scellés cryptographiques RSASSA-PSS-SHA256 conformes EU AI Act (Art. 12 &amp; 26).
+                    </p>
+                    <div class="pub-meta-grid">
+                        <div class="pub-meta-item">
+                            <span class="pub-meta-val">&lt; 48 ms</span>
+                            <span class="pub-meta-lbl">Profiling BigQuery</span>
+                        </div>
+                        <div class="pub-meta-item">
+                            <span class="pub-meta-val">125x</span>
+                            <span class="pub-meta-lbl">Arbitrage Tokens</span>
+                        </div>
+                        <div class="pub-meta-item">
+                            <span class="pub-meta-val">100/100</span>
+                            <span class="pub-meta-lbl">CRISP-ML(Q) Score</span>
+                        </div>
+                        <div class="pub-meta-item">
+                            <span class="pub-meta-val">EU AI Act</span>
+                            <span class="pub-meta-lbl">Sceau RSASSA-PSS</span>
+                        </div>
+                    </div>
+                    <div class="pub-tags">
+                        <span>#googlecloud</span>
+                        <span>#tabfm</span>
+                        <span>#gemma2b</span>
+                        <span>#mlops</span>
+                        <span>#pair-wit</span>
+                        <span>#bigquery</span>
+                        <span>#eu-ai-act</span>
+                    </div>
+                    <div class="pub-actions">
+                        <a href="https://dev.to/gervais_marie/how-i-built-a-multi-agent-mlops-control-center-with-google-tabfm-gemma-2b-eu-ai-act-38c7" target="_blank" class="btn btn-primary" rel="noopener noreferrer">
+                            <span data-i18n="pub_read_btn">Lire l'Article Complet</span> <i class="fa-brands fa-dev"></i>
+                        </a>
+                        <button class="btn btn-secondary open-modal-btn" data-project="dataset-automator">
+                            <i class="fa-solid fa-layer-group"></i> <span data-i18n="btn_architecture">Architecture</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dev.to Author Callout Banner -->
+            <div class="pub-author-banner glass">
+                <div class="pub-author-info">
+                    <div class="pub-author-avatar">
+                        <i class="fa-brands fa-dev"></i>
+                    </div>
+                    <div>
+                        <h4 data-i18n="pub_profile_title">Suivre mes publications sur DEV Community</h4>
+                        <p data-i18n="pub_profile_desc">Retrouvez l'intégralité de mes analyses d'ingénierie, retours de hackathons Google Cloud et architecture deep-dives sur mon profil Dev.to officiel.</p>
+                    </div>
+                </div>
+                <a href="https://dev.to/gervais_marie" target="_blank" class="btn btn-primary" rel="noopener noreferrer">
+                    <span data-i18n="pub_profile_btn">Voir le Profil @gervais_marie</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
             </div>
         </div>
     </section>
