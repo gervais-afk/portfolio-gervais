@@ -22,7 +22,7 @@ const translations = {
         hero_desc: "Je conçois des architectures d'intelligence artificielle déterministes et auditables, calibrées pour les environnements à haute exigence. En combinant la rigueur structurelle du génie civil et la modélisation de données avancée, j'automatise les processus décisionnels complexes et garantis des résultats sans hallucination, mesurables et souverains.",
         hero_pill_1: "Zéro-Hallucination Garanti",
         hero_pill_2: "Algorithmes BAEL 91 & BIM 5D",
-        hero_pill_3: "Google Dev Program & AICC",
+        hero_pill_3: "Architectures Multi-Agents & GraphRAG",
         btn_cv_web: "Consulter le CV Web",
         btn_cv_pdf: "Télécharger CV PDF",
         btn_projects: "Découvrir mes Projets",
@@ -33,7 +33,7 @@ const translations = {
             "Architecte Multi-Agents & GraphRAG (Neo4j)",
             "Concepteur de Systèmes IA Zéro-Hallucination",
             "Expert Chiffrage BTP & Moteurs 5D BIM",
-            "Fondateur @ Archi Cam AI · Membre Google Dev"
+            "Fondateur @ Archi Cam AI · Architecte Systèmes IA"
         ],
 
         // Stats Counter
@@ -243,8 +243,8 @@ const translations = {
         footer_rights: "Tous droits réservés.",
 
         // CV Page (cv.html)
-        cv_title: "Lead AI Engineer & Consultant IA / Data | Fondateur @ Archi Cam AI",
-        cv_badge: '<i class="fa-solid fa-code"></i> Architecte IA & Fondateur - Archi Cam AI',
+        cv_title: "Architecte Systèmes IA & Consultant Data | Fondateur @ Archi Cam AI",
+        cv_badge: '<i class="fa-solid fa-code"></i> Architecte Systèmes IA & Fondateur - Archi Cam AI',
         cv_btn_back: "Retour au Portfolio",
         cv_btn_pdf: "Télécharger PDF (FR)",
         cv_btn_pdf_en: "Télécharger PDF (EN)",
@@ -261,7 +261,7 @@ const translations = {
         cv_asset_2: '<i class="fa-solid fa-check"></i> Gestion des risques & Sécurité (AVSEC)',
         cv_asset_3: '<i class="fa-solid fa-check"></i> Rigueur de calcul & Guardrails IA',
         cv_title_summary: '<i class="fa-solid fa-user-tie"></i> Résumé Professionnel',
-        cv_summary_text: "Consultant IA & Lead AI Engineer (Google Developer Program Member), j'utilise Google Antigravity pour concevoir et orchestrer des architectures Multi-Agents autonomes neuro-symboliques, du GraphRAG (Neo4j) et des plateformes MLOps souveraines. Spécialiste des systèmes d'IA étanches, déterministes et sans hallucination. Fondateur & Architecte d'Archi Cam AI (SaaS IA Agentique & 5D BIM), j'allie méthodologie d'ingénieur BTP, rigueur mathématique et vision produit.",
+        cv_summary_text: "Architecte Systèmes IA & Ingénieur Données, je conçois et déploie des architectures d'agents autonomes neuro-symboliques, des graphes de connaissances (Neo4j GraphRAG) et des pipelines MLOps souverains en environnement de production critique. Spécialiste des systèmes déterministes à zéro hallucination et de la confiance algorithmique vérifiable. Fondateur & Architecte d'Archi Cam AI (SaaS IA Agentique & BIM 5D), j'articule la rigueur structurelle du génie civil et l'ingénierie logicielle avancée pour créer des solutions à fort impact opérationnel et mesurable.",
         cv_title_projects: '<i class="fa-solid fa-code"></i> Projets IA Majeurs',
         cv_p1_title: "Archi Cam AI",
         cv_p1_company: "SaaS IA & Chiffrage BIM 5D pour le BTP",
@@ -312,7 +312,7 @@ const translations = {
         cv_e2_school: "ISTDI / IUC Douala",
         cv_e2_desc: "Dimensionnement de structures (BAEL 91), calculs de métrés et gestion de projets BTP.",
         cv_title_honors: '<i class="fa-solid fa-award"></i> Reconnaissances & Engagements',
-        cv_h1_text: "<strong>◈ Attestation d'Excellence de Performance & Intégrité CCAA (28 Avril 2023) :</strong> Décernée par Mme Paule ASSOUMOU KOKI, Directeur Général de la Cameroon Civil Aviation Authority, à M. Koa Gervais Marie (Division Opérationnelle de Sûreté - Yaoundé-Nsimalen) pour l'atteinte des objectifs et la promotion des valeurs d'éthique et de déontologie.<br><strong>◈ Publications Techniques DEV Community :</strong> Auteur d'articles d'architecture deep-dive (Zero-Hallucination GraphRAG K1 v3.2.0 & Dataset Automator v4.0 MLOps Control Center).<br><strong>◈ Hackathon Google Cloud #AllThingsAgentic :</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ Google Developer Program & AICC Accra :</strong> Membre actif · Accra AI Community Centre & Google for Startups Accelerator Network (Archi Cam AI)."
+        cv_h1_text: "<strong>◈ Attestation d'Excellence de Performance & Intégrité CCAA (28 Avril 2023) :</strong> Décernée par Mme Paule ASSOUMOU KOKI, Directeur Général de la Cameroon Civil Aviation Authority, à M. Koa Gervais Marie (Division Opérationnelle de Sûreté - Yaoundé-Nsimalen) pour l'atteinte des objectifs et la promotion des valeurs d'éthique et de déontologie.<br><strong>◈ Publications Techniques DEV Community :</strong> Auteur d'articles d'architecture deep-dive (Zero-Hallucination GraphRAG K1 v3.2.0 & Dataset Automator v4.0 MLOps Control Center).<br><strong>◈ Hackathon Google Cloud #AllThingsAgentic :</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ AICC Accra & Écosystème Startups :</strong> Membre actif · Accra AI Community Centre & Google for Startups Accelerator Network (Archi Cam AI)."
     },
 
     en: {
@@ -333,7 +333,7 @@ const translations = {
         hero_desc: "I build auditable, deterministic artificial intelligence architectures engineered for mission-critical operations. By uniting civil engineering structural rigor with advanced data modeling, I automate complex decision workflows and deliver zero-hallucination, sovereign, and measurable business outcomes.",
         hero_pill_1: "Guaranteed Zero-Hallucination",
         hero_pill_2: "BAEL 91 & 5D BIM Algorithms",
-        hero_pill_3: "Google Dev Program & AICC",
+        hero_pill_3: "Multi-Agent Architectures & GraphRAG",
         btn_cv_web: "View Web Resume",
         btn_cv_pdf: "Download PDF Resume",
         btn_projects: "Explore My Projects",
@@ -344,7 +344,7 @@ const translations = {
             "Multi-Agent & GraphRAG Architect (Neo4j)",
             "Zero-Hallucination AI System Designer",
             "BTP Costing & 5D BIM Engine Expert",
-            "Founder @ Archi Cam AI · Google Dev Member"
+            "Founder @ Archi Cam AI · AI Systems Architect"
         ],
 
         // Stats Counter
@@ -510,7 +510,7 @@ const translations = {
         certif_title: 'Certifications & <span class="text-neon">Honors</span>',
         certif_subtitle: "Academic, institutional, and industrial recognitions.",
         c1_date: "2026",
-        c1_title: "Lead AI Architect & Founder",
+        c1_title: "AI Systems Architect & Founder",
         c1_sub: "Archi Cam AI (archicam-ai.com)",
         c1_desc: "Sovereign 5D BIM & Agentic AI SaaS · Google for Startups Cloud Program & AICC Accra",
 
@@ -554,8 +554,8 @@ const translations = {
         footer_rights: "All Rights Reserved.",
 
         // CV Page (cv.html)
-        cv_title: "Lead AI Engineer & Data Architect | Founder @ Archi Cam AI",
-        cv_badge: '<i class="fa-solid fa-code"></i> Lead AI Architect & Founder - Archi Cam AI',
+        cv_title: "AI Systems Architect & Data Engineer | Founder @ Archi Cam AI",
+        cv_badge: '<i class="fa-solid fa-code"></i> AI Systems Architect & Founder - Archi Cam AI',
         cv_btn_back: "Back to Portfolio",
         cv_btn_pdf: "Download PDF (FR)",
         cv_btn_pdf_en: "Download PDF (EN)",
@@ -572,7 +572,7 @@ const translations = {
         cv_asset_2: '<i class="fa-solid fa-check"></i> Risk Management & Aviation Security (AVSEC)',
         cv_asset_3: '<i class="fa-solid fa-check"></i> Math Rigor & Strict AI Guardrails',
         cv_title_summary: '<i class="fa-solid fa-user-tie"></i> Executive Summary',
-        cv_summary_text: "Lead AI Engineer & Data Architect (Google Developer Program Member), leveraging Google Antigravity to design and orchestrate neuro-symbolic autonomous multi-agent systems, Neo4j GraphRAG, and sovereign production MLOps. Specialized in deterministic architectures and verifiable AI trust. Founder & Architect of Archi Cam AI (Agentic AI SaaS & 5D BIM), bridging civil engineering methodology, math rigor, and product vision.",
+        cv_summary_text: "AI Systems Architect & Data Engineer designing and orchestrating enterprise-grade autonomous multi-agent architectures, Neo4j GraphRAG, and sovereign production MLOps pipelines. Specialized in deterministic zero-hallucination systems, neuro-symbolic reasoning, and verifiable algorithmic trust. Founder & Architect of Archi Cam AI (Agentic AI SaaS & 5D BIM), bridging civil engineering structural rigor with modern systems engineering to deliver high-impact, measurable solutions.",
         cv_title_projects: '<i class="fa-solid fa-code"></i> Flagship AI Projects',
         cv_p1_title: "Archi Cam AI",
         cv_p1_company: "Agentic AI & 5D BIM Construction SaaS",
@@ -623,6 +623,6 @@ const translations = {
         cv_e2_school: "ISTDI / IUC Douala",
         cv_e2_desc: "Structural Calculations (BAEL 91), Quantity Surveying & Construction Project Management.",
         cv_title_honors: '<i class="fa-solid fa-award"></i> Honors & Applied AI Engagements',
-        cv_h1_text: "<strong>◈ CCAA Official Attestation of Excellence in Performance & Integrity (April 28, 2023):</strong> Awarded by Mrs. Paule ASSOUMOU KOKI, Director General of the Cameroon Civil Aviation Authority, to Mr. Koa Gervais Marie (Operational Security Division - Yaoundé-Nsimalen) for achieving objectives and upholding high ethical standards.<br><strong>◈ Technical Publications on DEV Community:</strong> Author of architectural deep-dive articles (Zero-Hallucination GraphRAG K1 v3.2.0 & Dataset Automator v4.0 MLOps Control Center).<br><strong>◈ Google Cloud #AllThingsAgentic Hackathon:</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ Google Developer Program & AICC Accra:</strong> Active Member · Accra AI Community Centre & Google for Startups Accelerator Network (Archi Cam AI)."
+        cv_h1_text: "<strong>◈ CCAA Official Attestation of Excellence in Performance & Integrity (April 28, 2023):</strong> Awarded by Mrs. Paule ASSOUMOU KOKI, Director General of the Cameroon Civil Aviation Authority, to Mr. Koa Gervais Marie (Operational Security Division - Yaoundé-Nsimalen) for achieving objectives and upholding high ethical standards.<br><strong>◈ Technical Publications on DEV Community:</strong> Author of architectural deep-dive articles (Zero-Hallucination GraphRAG K1 v3.2.0 & Dataset Automator v4.0 MLOps Control Center).<br><strong>◈ Google Cloud #AllThingsAgentic Hackathon:</strong> Dataset Automator v4.0 (Google TabFM, PAIR WIT, bigframes, MCT).<br><strong>◈ AICC Accra & AI Ecosystem:</strong> Active Member · Accra AI Community Centre & Google for Startups Accelerator Network (Archi Cam AI)."
     }
 };

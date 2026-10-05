@@ -172,7 +172,7 @@ def generate_exact_user_1page_cv_en():
     p_sub = c1.add_paragraph()
     p_sub.paragraph_format.space_before = Pt(0)
     p_sub.paragraph_format.space_after  = Pt(0.6)
-    rs = p_sub.add_run("Lead AI Engineer & Data Architect   │   Founder @ Archi Cam AI")
+    rs = p_sub.add_run("AI Systems Architect & Data Engineer   │   Founder @ Archi Cam AI")
     rs.font.size = Pt(9.4); rs.font.bold = True; rs.font.color.rgb = OCEAN
 
     p_rule = c1.add_paragraph()
@@ -246,7 +246,7 @@ def generate_exact_user_1page_cv_en():
 
     # ── Executive Summary ──
     mn_h(c1, "Executive Summary")
-    body(c1, "Applied AI Engineer specializing in autonomous agent architectures, I design deterministic, explainable, and sovereign zero-hallucination systems. Member of the Google Developer Program, I bridge civil engineering rigor with advanced data science to solve complex operational challenges. Founder of Archi Cam AI (5D BIM SaaS & predictive estimation), I build auditable, robust, and high-impact AI solutions.")
+    body(c1, "AI Systems Architect & Data Engineer designing and deploying mission-critical autonomous multi-agent architectures, Neo4j GraphRAG, and sovereign production MLOps pipelines. Specialized in deterministic zero-hallucination systems, neuro-symbolic reasoning, and verifiable algorithmic trust. Founder of Archi Cam AI (5D BIM), bridging structural engineering rigor with modern systems engineering for high-impact enterprise solutions.")
 
     # ── Flagship AI Projects ──
     mn_h(c1, "Flagship AI Projects")
@@ -299,7 +299,7 @@ def generate_exact_user_1page_cv_en():
     award(c1, "CCAA Attestation of Excellence & Integrity (2023)", "Awarded by the Director General for outstanding operational performance & ethics.")
     award(c1, "Technical Publications on DEV Community (2026)", "Author of architectural deep-dives: Zero-Hallucination GraphRAG & Dataset Automator MLOps.")
     award(c1, "Google Cloud #AllThingsAgentic Hackathon", "Dataset Automator v4.0 (Google Antigravity, TabFM, BigQuery DataFrames, WIT).")
-    award(c1, "Google Developer Program · AICC Accra", "Active member · Accra AI Community Centre & Google for Startups Accelerator Network.")
+    award(c1, "AICC Accra & Startup Ecosystem", "Active member · Accra AI Community Centre & Google for Startups Accelerator Network.")
 
     # ── Trailing 1pt paragraph ──
     p_tail = doc.add_paragraph()

@@ -172,7 +172,7 @@ def generate_exact_user_1page_cv_fr():
     p_sub = c1.add_paragraph()
     p_sub.paragraph_format.space_before = Pt(0)
     p_sub.paragraph_format.space_after  = Pt(0.6)
-    rs = p_sub.add_run("Lead AI Engineer & Spécialiste IA Appliquée   │   Fondateur @ Archi Cam AI")
+    rs = p_sub.add_run("Architecte Systèmes IA & Ingénieur Données   │   Fondateur @ Archi Cam AI")
     rs.font.size = Pt(9.4); rs.font.bold = True; rs.font.color.rgb = OCEAN
 
     p_rule = c1.add_paragraph()
@@ -246,7 +246,7 @@ def generate_exact_user_1page_cv_fr():
 
     # ── Résumé Professionnel ──
     mn_h(c1, "Résumé Professionnel")
-    body(c1, "Ingénieur spécialisé en IA appliquée et architectures d'agents autonomes, je conçois des systèmes déterministes, explicables et souverains à zéro hallucination. Membre du Google Developer Program, j'articule la rigueur mathématique du génie civil et la data science avancée pour résoudre des problématiques industrielles complexes. Fondateur d'Archi Cam AI (SaaS BIM 5D & estimation prédictive), je bâtis des solutions auditables, robustes et orientées vers un fort impact opérationnel.")
+    body(c1, "Architecte Systèmes IA & Ingénieur Données, je conçois et déploie des architectures d'agents autonomes neuro-symboliques, des graphes de connaissances (Neo4j GraphRAG) et des pipelines MLOps souverains en production critique. Spécialiste des systèmes déterministes à zéro hallucination et de la confiance algorithmique vérifiable. Fondateur d'Archi Cam AI (BIM 5D), j'articule rigueur du génie civil et ingénierie logicielle pour des solutions à fort impact.")
 
     # ── Projets IA Majeurs ──
     mn_h(c1, "Projets IA Majeurs")
@@ -299,7 +299,7 @@ def generate_exact_user_1page_cv_fr():
     award(c1, "Attestation d'Excellence & Intégrité CCAA (2023)", "Décernée par le Directeur Général pour performance et déontologie opérationnelle.")
     award(c1, "Publications Techniques DEV Community (2026)", "Auteur d'articles deep-dive : Zero-Hallucination GraphRAG & Dataset Automator MLOps.")
     award(c1, "Google Cloud #AllThingsAgentic Hackathon", "Dataset Automator v4.0 (Google Antigravity, TabFM, BigQuery DataFrames, WIT).")
-    award(c1, "Google Developer Program · AICC Accra", "Membre actif · Accra AI Community Centre & Google for Startups Accelerator Network.")
+    award(c1, "AICC Accra & Écosystème Startups", "Membre actif · Accra AI Community Centre & Google for Startups Accelerator Network.")
 
     # ── Trailing 1pt paragraph ──
     p_tail = doc.add_paragraph()
