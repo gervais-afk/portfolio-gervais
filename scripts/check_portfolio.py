@@ -128,7 +128,18 @@ with sync_playwright() as pw:
         text = re.sub(r'\s+', '', unicodedata.normalize('NFKC', reader.pages[0].extract_text())).lower()
         profile = json.loads((ROOT / 'profile.json').read_text(encoding='utf-8'))
         data = profile['cv'][lang]
-        expected = [profile['identity']['name'], data['title'], data['summary'], data['languages'], data['award']]
+        assert page.locator('#download-ats').get_attribute('href') == data['files']['atsPdf']
+        assert page.locator('#download-ats').get_attribute('aria-describedby') == 'download-note'
+        for selector in ['#download-ats', '#download-pdf']:
+            assert page.locator(selector).inner_text() in page.locator(selector).get_attribute('aria-label')
+        assert page.locator('#heading-award + p').inner_text() == data['award']
+        assert page.locator('.project-details').count() == 3
+        assert page.locator('.project-details li').count() == sum(len(item['details']) for item in data['projects'])
+        for key in ['pdf', 'atsPdf', 'docx']:
+            response = page.request.get(BASE + '/' + data['files'][key])
+            assert response.status == 200, f'{lang}: {key} download unavailable'
+            assert response.body() == (ROOT / data['files'][key]).read_bytes(), f'{lang}: stale {key} download'
+        expected = [profile['identity']['name'], data['title'], data['summary'], data['languages'], data['award'], *data['labels'].values()]
         for key in ['projects', 'experience', 'education']:
             for entry in data[key]:
                 expected.extend([entry['title'], *entry['details']])
@@ -138,9 +149,17 @@ with sync_playwright() as pw:
             assert re.sub(r'\s+', '', unicodedata.normalize('NFKC', value)).lower() in text, f'{lang}: Web print missing {value}'
         images = reader.pages[0]['/Resources']['/XObject'].get_object()
         assert any(obj.get_object().get('/Subtype') == '/Image' for obj in images.values())
-        for width in [320, 390, 768]:
+        assert page.locator('.project-index').count() == 0
+        for width in [320, 390, 600, 640, 641, 768, 840, 1024]:
             page.set_viewport_size({'width': width, 'height': 844})
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), f'CV overflow {width}'
+            main = page.locator('.cv-main').bounding_box()
+            sidebar = page.locator('.cv-sidebar').bounding_box()
+            if width <= 640:
+                assert sidebar['y'] >= main['y'] + main['height'], f'{lang}: mobile columns overlap'
+            else:
+                assert sidebar['x'] + sidebar['width'] <= main['x'], f'{lang}: desktop columns overlap'
+            assert page.locator('#heading-projects').evaluate('(el)=>getComputedStyle(el,"::before").content') == 'none'
         page.set_viewport_size({'width':390,'height':844})
         page.screenshot(path=str(OUT / f'cv_{lang}_mobile.png'), full_page=True)
         record('CV Web responsive, embedded portrait and full A4 single-page content', lang)

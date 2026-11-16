@@ -23,11 +23,12 @@ window.PORTFOLIO_PROFILE = {
       "title": "Ingénieur IA & Architecte Data",
       "summary": "Je développe des outils de recherche documentaire et d’automatisation Data. En Master d’IA appliquée, je combine développement logiciel, génie civil et rigueur issue de la sûreté aéroportuaire.",
       "labels": {
-        "experience": "Expérience",
-        "projects": "Projets sélectionnés",
+        "experience": "Expérience professionnelle",
+        "projects": "Projets IA & Data",
         "skills": "Compétences techniques",
         "education": "Formation",
-        "additional": "Langues & distinction"
+        "additional": "Langues",
+        "award": "Distinction"
       },
       "experience": [
         {
@@ -50,7 +51,8 @@ window.PORTFOLIO_PROFILE = {
           "title": "K1-MathInfo",
           "context": "Projet Master pour le département de mathématiques et informatique de l’Université de Ngaoundéré. En binôme avec ABDOUL AZIZ Hamadou ; contribution personnelle transversale.",
           "details": [
-            "525 travaux (2010–2026) : recherche hybride avec références et abstention ; recommandations explicables par Jaccard pondéré ; entrepôt en étoile à six dimensions pour l’OLAP."
+            "525 travaux (2010–2026) : recherche hybride avec références et abstention ; recommandations explicables par Jaccard pondéré.",
+            "Entrepôt en étoile à six dimensions pour l’OLAP."
           ]
         },
         {
@@ -64,7 +66,8 @@ window.PORTFOLIO_PROFILE = {
           "title": "Dataset Automator",
           "context": "Prototype individuel développé dans le cadre du Google Cloud #AllThingsAgentic Hackathon.",
           "details": [
-            "Orchestration TypeScript/Python avec Genkit et MCP/FastMCP : profilage et nettoyage CSV, comparaison de modèles classiques avec Optuna, règles Neo4j et suivi MLflow ; génération de notebooks et validation Zod."
+            "Orchestration TypeScript/Python avec Genkit et MCP/FastMCP : profilage et nettoyage CSV, comparaison de modèles classiques avec Optuna.",
+            "Règles Neo4j et suivi MLflow ; génération de notebooks et validation Zod."
           ]
         }
       ],
@@ -102,18 +105,20 @@ window.PORTFOLIO_PROFILE = {
       "award": "Attestation d’Excellence & Intégrité · CCAA, 2023.",
       "files": {
         "pdf": "KOA_MARIE_GERVAIS_NELLY_CV_FR.pdf",
-        "docx": "KOA_MARIE_GERVAIS_NELLY_CV_FR.docx"
+        "docx": "KOA_MARIE_GERVAIS_NELLY_CV_FR.docx",
+        "atsPdf": "KOA_MARIE_GERVAIS_NELLY_CV_ATS_FR.pdf"
       }
     },
     "en": {
       "title": "AI Engineer & Data Architect",
       "summary": "I develop information retrieval and data automation tools. Pursuing a professional Master’s in applied AI, I combine software development, civil engineering knowledge and aviation security discipline.",
       "labels": {
-        "experience": "Experience",
-        "projects": "Selected projects",
+        "experience": "Professional experience",
+        "projects": "AI & Data projects",
         "skills": "Technical skills",
         "education": "Education",
-        "additional": "Languages & distinction"
+        "additional": "Languages",
+        "award": "Distinction"
       },
       "experience": [
         {
@@ -136,7 +141,8 @@ window.PORTFOLIO_PROFILE = {
           "title": "K1-MathInfo",
           "context": "Master’s project for the Department of Mathematics and Computer Science, University of Ngaoundéré. Two-person team with ABDOUL AZIZ Hamadou; cross-functional development contribution.",
           "details": [
-            "525 works (2010–2026): hybrid search with references and abstention; explainable weighted Jaccard recommendations; six-dimension star-schema warehouse for OLAP."
+            "525 works (2010–2026): hybrid search with references and abstention; explainable weighted Jaccard recommendations.",
+            "Six-dimension star-schema warehouse for OLAP."
           ]
         },
         {
@@ -150,7 +156,8 @@ window.PORTFOLIO_PROFILE = {
           "title": "Dataset Automator",
           "context": "Individual prototype developed for the Google Cloud #AllThingsAgentic Hackathon.",
           "details": [
-            "TypeScript/Python orchestration with Genkit and MCP/FastMCP: CSV profiling and cleaning, classical model comparison with Optuna, Neo4j rules and MLflow tracking; notebook generation and Zod validation."
+            "TypeScript/Python orchestration with Genkit and MCP/FastMCP: CSV profiling and cleaning, classical model comparison with Optuna.",
+            "Neo4j rules and MLflow tracking; notebook generation and Zod validation."
           ]
         }
       ],
@@ -188,7 +195,8 @@ window.PORTFOLIO_PROFILE = {
       "award": "Attestation of Excellence & Integrity · CCAA, 2023.",
       "files": {
         "pdf": "KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf",
-        "docx": "KOA_MARIE_GERVAIS_NELLY_CV_EN.docx"
+        "docx": "KOA_MARIE_GERVAIS_NELLY_CV_EN.docx",
+        "atsPdf": "KOA_MARIE_GERVAIS_NELLY_CV_ATS_EN.pdf"
       }
     }
   }

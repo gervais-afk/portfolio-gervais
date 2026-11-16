@@ -27,12 +27,19 @@ Le générateur `build_cv.py` produit :
 
 - `profile.js` pour la page `cv.html` ;
 - `KOA_MARIE_GERVAIS_NELLY_CV_FR.pdf` et `KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf` ;
-- les deux DOCX correspondants ;
+- `KOA_MARIE_GERVAIS_NELLY_CV_ATS_FR.pdf` et `KOA_MARIE_GERVAIS_NELLY_CV_ATS_EN.pdf`, versions candidature complémentaires ;
+- les deux DOCX correspondants à la présentation, variante linéaire éditable avec photo ;
 - l’alias historique français `KOA_MARIE_GERVAIS_NELLY_CV FR.pdf`, identique au PDF français canonique.
 
-Seconde itération : bandeau navy avec portrait, nom sur deux niveaux, projets avant l’expérience, sections numérotées et K1 mis en relief. À la demande de l’utilisateur, les PDF utilisent désormais des accents gris foncé en gras (titres, numéros et libellés techniques), des fonds gris neutres et un sous-titre gris clair sur navy pour le contraste. Le CV Web et les DOCX conservent leurs couleurs mint/teal. Dernier ajustement : icônes de contact bleues (`#1765A3`) dans les PDF et le CV Web ; première ligne email/téléphone/localisation répartie sur la largeur, liens GitHub/LinkedIn puis DEV/portfolio alignés en deux colonnes (repli mobile). Les titres gris foncé du PDF sont préservés. Le nouveau titre partagé par les CV FR/EN est « Ingénieur IA & Architecte Data » / « AI Engineer & Data Architect » : il s’agit du positionnement professionnel demandé, sans ajout de diplôme ni modification de la formation. La photo `assets/images/cv_portrait.jpg` (480 × 600, environ 66 Ko) est dérivée du portrait original, préservé. Elle est intégrée aux PDF, au CV Web et aux DOCX. Sauvegarde avant cette itération : `scratch/cv_before_portrait_20261116_105250.zip`.
+Finition actuelle des CV de présentation : bleu nuit `#172B3A`, titres graphite `#30363D`, texte anthracite `#343A40`, contextes/dates ardoise `#52606D`, icônes bleues `#2167A5`, fond latéral gris perle `#F3F5F7`. Le CV Web est aligné sur cette palette ; les couleurs du portfolio lui-même ne sont pas modifiées. Bandeau PDF réduit de 135 à 112 pt, photo dans un cadre clair fin de 0,8 pt avec espace intérieur et angles discrets, sans ombre ni retouche du portrait. Les grands encadrés de projet disparaissent, remplacés par des filets légers et des points de description ; les rubriques LANGUES et DISTINCTION sont séparées. Les réalisations et contextes restent identiques sur le fond.
 
-Les PDF utilisent une colonne principale, du texte sélectionnable, un corps de **10,5 pt**, des coordonnées/contextes de **9,5 pt**, des icônes vectorielles et six liens cliquables. Génération en zone temporaire puis validation de toutes les langues demandées avant remplacement des fichiers publiés. Le générateur échoue en cas de débordement ; il ne réduit pas silencieusement la police.
+Le titre partagé par les CV FR/EN est « Ingénieur IA & Architecte Data » / « AI Engineer & Data Architect » : il s’agit du positionnement professionnel demandé, sans ajout de diplôme ni modification de la formation. La photo `assets/images/cv_portrait.jpg` (480 × 600, environ 66 Ko) est dérivée du portrait original, préservé. Elle est intégrée aux PDF de présentation, au CV Web et aux DOCX, jamais aux PDF candidature. Sauvegardes : `scratch/cv_before_portrait_20261116_105250.zip` et, avant la finition et l’ajout candidature, `scratch/cv_before_polish_ats_20261116_124920.zip`.
+
+Nouvelle répartition approuvée, inspirée de la structure du CV sûreté consulté en lecture seule : deux colonnes PDF, environ 31 % pour les compétences/formation/langues/distinction à gauche et 64 % pour les projets/expérience à droite, séparées par une gouttière. Aucun contenu métier du CV sûreté importé. Grands titres sans numéros : « PROJETS IA & DATA » / « EXPÉRIENCE PROFESSIONNELLE », et équivalents anglais. Les numéros des projets sont aussi retirés. Le CV Web reprend les deux colonnes au-dessus de 640 px et une lecture verticale projets/expérience puis informations complémentaires sur mobile. Le DOM conserve cet ordre de lecture ; aucune promesse de compatibilité universelle des logiciels de recrutement n’est faite. Les DOCX restent une variante linéaire éditable, au contenu synchronisé et sans numéros.
+
+Les PDF de présentation conservent du texte sélectionnable, un corps de **10,5 pt** (compétences/langues : **10 pt**), des titres de rubrique de **12 pt** dans la colonne principale et **11 pt** dans la colonne latérale, des coordonnées/contextes de **9,5 pt**, des icônes vectorielles et six liens cliquables. Génération en zone temporaire puis validation de toutes les langues demandées avant remplacement des fichiers publiés. Le générateur échoue en cas de débordement ; il ne réduit pas silencieusement la police.
+
+Les PDF candidature sont en une colonne, sans photo, icône, fond coloré ou tracé décoratif. Même contenu factuel, source `profile.json` commune ; titres standards PROFIL/PROJETS/EXPÉRIENCE PROFESSIONNELLE/COMPÉTENCES TECHNIQUES/FORMATION/LANGUES/DISTINCTION et équivalents anglais. Corps de 10,5 pt, contextes/contacts à 9,5 pt, six contacts cliquables et ordre d’extraction linéaire contrôlé. Aucun ATS commercial n’a été testé et aucun classement ou taux d’acceptation n’est garanti. La barre du CV Web distingue les boutons « PDF présentation » et « PDF candidature » dans les deux langues ; les téléchargements sont vérifiés octet par octet contre les fichiers locaux.
 
 Niveau d’anglais corrigé selon la déclaration de l’utilisateur : « Anglais intermédiaire : lecture et compréhension orale ; expression orale simple. » Équivalent anglais : « Intermediate English: reading and listening comprehension; basic spoken communication. » Aucun niveau CECRL ni aisance écrite revendiqués.
 
@@ -72,24 +79,25 @@ Commandes de régression, serveur local démarré :
 
 ```powershell
 & 'C:\Users\HP\anaconda3\python.exe' -B -X utf8 scripts/check_portfolio.py
+& 'C:\Users\HP\anaconda3\python.exe' -B -X utf8 scripts/check_cv_variants.py
 & 'C:\Users\HP\anaconda3\python.exe' -B -X utf8 scripts/check_cv_word.py
 ```
 
-La première utilise Playwright et Microsoft Edge installé ; la seconde est un contrôle optionnel nécessitant Microsoft Word et pywin32.
+La première utilise Playwright et Microsoft Edge installé ; la deuxième contrôle les quatre PDF avec pypdf ; la troisième est un contrôle optionnel nécessitant Microsoft Word et pywin32.
 
-- Deux PDF canoniques : une page A4 chacun ; texte complet et six liens vérifiés avec pypdf.
+- Quatre PDF canoniques (présentation et candidature FR/EN) : une page A4 chacun ; texte complet et six liens vérifiés avec pypdf. Présence de photo vérifiée dans la présentation, absence de photo/décoration et ordre de lecture linéaire vérifiés dans la candidature.
 - Deux impressions du CV Web : une page A4 chacune, portrait embarqué et texte intégral comparé à la source éditoriale ; projets en tête et nouveau niveau d’anglais vérifiés.
 - Deux DOCX : une page chacun dans Microsoft Word ; export et texte intégral contrôlés.
-- Sept largeurs du portfolio : 320, 375, 390, 768, 1 024, 1 440 et 1 920 px, sans débordement horizontal. CV mobile vérifié à 320, 390 et 768 px.
+- Sept largeurs du portfolio : 320, 375, 390, 768, 1 024, 1 440 et 1 920 px, sans débordement horizontal. CV vérifié à 320, 390, 600, 640, 641, 768, 840 et 1 024 px, avec absence de chevauchement des colonnes.
 - Six fiches dans chacune des deux langues, navigation clavier avant/arrière, focus contenu/restitution, fermetures et navigation mobile.
 - Aucun message d’erreur JavaScript ni HTTP sur les ressources locales utilisées.
 - Rendu français des sections principales disponible sans JavaScript ; téléchargements PDF accessibles.
 - Bascule FR/EN du portfolio et du CV testée aussi en `file://`.
 - Portrait WebP d’environ 36 Ko ; aucune dépendance réseau tierce au chargement initial ; zéro requête audio initiale.
-- Audit Lighthouse local en français : accessibilité, bonnes pratiques et SEO à 100/100 pour le portfolio et le CV Web ; nouvel audit du CV avec photo également à 100/100, sans échec. Rapports conservés dans `scratch/qa/`. Ce n’est ni une certification d’accessibilité ni un benchmark de performances réseau réel.
+- Audits Lighthouse antérieurs : accessibilité, bonnes pratiques et SEO à 100/100 pour le portfolio et le CV Web à deux colonnes. Sur la finition actuelle, premier passage à 100/100 dans ces catégories, avec un avertissement sur la correspondance texte visible/nom accessible des nouveaux liens PDF. Les noms ont été corrigés et leur correspondance est désormais couverte par Playwright FR/EN. La relance Lighthouse après correction a expiré avec `ERR_NETWORK_IO_SUSPENDED` dans le navigateur de Review ; aucun résultat final sans avertissement n’est revendiqué pour cette relance. Le site fonctionne dans Edge/Playwright et tous les contrôles locaux passent. Rapports conservés dans `scratch/qa/`, dont `lighthouse_cv_polish_fr_pre_label_fix.*`. Ce n’est ni une certification d’accessibilité ni un benchmark de performances réseau réel.
 - Contrôle visuel des versions desktop/mobile et des deux PDF.
 
-Les captures et sorties de contrôle sont dans `scratch/qa/` et les aperçus PDF dans `scratch/cv_fr_preview.png` et `scratch/cv_en_preview.png`. Le dossier `scratch/` est déjà ignoré par Git.
+Les captures et sorties de contrôle sont dans `scratch/qa/` et les aperçus PDF dans `scratch/cv_fr_preview.png`, `scratch/cv_en_preview.png`, `scratch/cv_fr_ats_preview.png` et `scratch/cv_en_ats_preview.png`. Le dossier `scratch/` est déjà ignoré par Git.
 
 ## Liens publics à rétablir après vérification
 

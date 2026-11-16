@@ -18,15 +18,15 @@
     "fr": {
       "title": "Ingénieur IA & Architecte Data",
       "summary": "Je développe des outils de recherche documentaire et d’automatisation Data. En Master d’IA appliquée, je combine développement logiciel, génie civil et rigueur issue de la sûreté aéroportuaire.",
-      "labels": {"experience": "Expérience", "projects": "Projets sélectionnés", "skills": "Compétences techniques", "education": "Formation", "additional": "Langues & distinction"},
+      "labels": {"experience": "Expérience professionnelle", "projects": "Projets IA & Data", "skills": "Compétences techniques", "education": "Formation", "additional": "Langues", "award": "Distinction"},
       "experience": [
         {"title": "Consultant IA & Data indépendant", "date": "Mars 2026 – présent", "details": ["Activité indépendante : missions clients et développement de projets IA & Data."]},
         {"title": "Agent de sûreté aéroportuaire (AVSEC) · CCAA", "date": "2018 – présent", "details": ["Contrôle des accès, analyse des risques et rédaction de rapports de sûreté."]}
       ],
       "projects": [
-        {"title": "K1-MathInfo", "context": "Projet Master pour le département de mathématiques et informatique de l’Université de Ngaoundéré. En binôme avec ABDOUL AZIZ Hamadou ; contribution personnelle transversale.", "details": ["525 travaux (2010–2026) : recherche hybride avec références et abstention ; recommandations explicables par Jaccard pondéré ; entrepôt en étoile à six dimensions pour l’OLAP."]},
+        {"title": "K1-MathInfo", "context": "Projet Master pour le département de mathématiques et informatique de l’Université de Ngaoundéré. En binôme avec ABDOUL AZIZ Hamadou ; contribution personnelle transversale.", "details": ["525 travaux (2010–2026) : recherche hybride avec références et abstention ; recommandations explicables par Jaccard pondéré.", "Entrepôt en étoile à six dimensions pour l’OLAP."]},
         {"title": "Archi Cam AI", "context": "Projet personnel · IA appliquée au BTP · Développé dans le cadre de Google Applied Africa AI Lab.", "details": ["Chiffrage, métrés, DQE et calculs métier : développement d’outils en lien direct avec ma formation en génie civil."]},
-        {"title": "Dataset Automator", "context": "Prototype individuel développé dans le cadre du Google Cloud #AllThingsAgentic Hackathon.", "details": ["Orchestration TypeScript/Python avec Genkit et MCP/FastMCP : profilage et nettoyage CSV, comparaison de modèles classiques avec Optuna, règles Neo4j et suivi MLflow ; génération de notebooks et validation Zod."]}
+        {"title": "Dataset Automator", "context": "Prototype individuel développé dans le cadre du Google Cloud #AllThingsAgentic Hackathon.", "details": ["Orchestration TypeScript/Python avec Genkit et MCP/FastMCP : profilage et nettoyage CSV, comparaison de modèles classiques avec Optuna.", "Règles Neo4j et suivi MLflow ; génération de notebooks et validation Zod."]}
       ],
       "skills": [
         {"label": "Développement", "text": "Python, TypeScript, FastAPI, Genkit, MCP/FastMCP, Docker, pytest"},
@@ -39,20 +39,20 @@
       ],
       "languages": "Français natif · Anglais intermédiaire : lecture et compréhension orale ; expression orale simple.",
       "award": "Attestation d’Excellence & Intégrité · CCAA, 2023.",
-      "files": {"pdf": "KOA_MARIE_GERVAIS_NELLY_CV_FR.pdf", "docx": "KOA_MARIE_GERVAIS_NELLY_CV_FR.docx"}
+      "files": {"pdf": "KOA_MARIE_GERVAIS_NELLY_CV_FR.pdf", "docx": "KOA_MARIE_GERVAIS_NELLY_CV_FR.docx", "atsPdf": "KOA_MARIE_GERVAIS_NELLY_CV_ATS_FR.pdf"}
     },
     "en": {
       "title": "AI Engineer & Data Architect",
       "summary": "I develop information retrieval and data automation tools. Pursuing a professional Master’s in applied AI, I combine software development, civil engineering knowledge and aviation security discipline.",
-      "labels": {"experience": "Experience", "projects": "Selected projects", "skills": "Technical skills", "education": "Education", "additional": "Languages & distinction"},
+      "labels": {"experience": "Professional experience", "projects": "AI & Data projects", "skills": "Technical skills", "education": "Education", "additional": "Languages", "award": "Distinction"},
       "experience": [
         {"title": "Independent AI & Data Consultant", "date": "March 2026 – present", "details": ["Independent activity: client assignments and development of AI & Data projects."]},
         {"title": "Aviation Security Agent (AVSEC) · CCAA", "date": "2018 – present", "details": ["Access control, risk analysis and security report writing."]}
       ],
       "projects": [
-        {"title": "K1-MathInfo", "context": "Master’s project for the Department of Mathematics and Computer Science, University of Ngaoundéré. Two-person team with ABDOUL AZIZ Hamadou; cross-functional development contribution.", "details": ["525 works (2010–2026): hybrid search with references and abstention; explainable weighted Jaccard recommendations; six-dimension star-schema warehouse for OLAP."]},
+        {"title": "K1-MathInfo", "context": "Master’s project for the Department of Mathematics and Computer Science, University of Ngaoundéré. Two-person team with ABDOUL AZIZ Hamadou; cross-functional development contribution.", "details": ["525 works (2010–2026): hybrid search with references and abstention; explainable weighted Jaccard recommendations.", "Six-dimension star-schema warehouse for OLAP."]},
         {"title": "Archi Cam AI", "context": "Personal project · AI applied to construction · Developed as part of Google Applied Africa AI Lab.", "details": ["Cost estimation, quantity takeoff, bills of quantities (DQE) and domain calculations: developing tools directly informed by my civil engineering education."]},
-        {"title": "Dataset Automator", "context": "Individual prototype developed for the Google Cloud #AllThingsAgentic Hackathon.", "details": ["TypeScript/Python orchestration with Genkit and MCP/FastMCP: CSV profiling and cleaning, classical model comparison with Optuna, Neo4j rules and MLflow tracking; notebook generation and Zod validation."]}
+        {"title": "Dataset Automator", "context": "Individual prototype developed for the Google Cloud #AllThingsAgentic Hackathon.", "details": ["TypeScript/Python orchestration with Genkit and MCP/FastMCP: CSV profiling and cleaning, classical model comparison with Optuna.", "Neo4j rules and MLflow tracking; notebook generation and Zod validation."]}
       ],
       "skills": [
         {"label": "Development", "text": "Python, TypeScript, FastAPI, Genkit, MCP/FastMCP, Docker, pytest"},
@@ -65,7 +65,7 @@
       ],
       "languages": "Native French · Intermediate English: reading and listening comprehension; basic spoken communication.",
       "award": "Attestation of Excellence & Integrity · CCAA, 2023.",
-      "files": {"pdf": "KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf", "docx": "KOA_MARIE_GERVAIS_NELLY_CV_EN.docx"}
+      "files": {"pdf": "KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf", "docx": "KOA_MARIE_GERVAIS_NELLY_CV_EN.docx", "atsPdf": "KOA_MARIE_GERVAIS_NELLY_CV_ATS_EN.pdf"}
     }
   }
 }
