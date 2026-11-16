@@ -1,36 +1,21 @@
-' ============================================================
-' export_cv_pdf.vbs
-' Double-click this file to export both CV DOCX files to PDF
-' ============================================================
-
-Dim oWord, oDoc
-Dim sFolder
-
-sFolder = "c:\Users\HP\Desktop\portfolio-gervais\"
-
-Dim files(1)
-files(0) = sFolder & "KOA_MARIE_GERVAIS_NELLY_CV_FR.docx"
-files(1) = sFolder & "KOA_MARIE_GERVAIS_NELLY_CV_EN.docx"
-
-Dim pdfs(1)
-pdfs(0) = sFolder & "KOA_MARIE_GERVAIS_NELLY_CV FR.pdf"
-pdfs(1) = sFolder & "KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf"
-
-Set oWord = CreateObject("Word.Application")
-oWord.Visible = False
-oWord.DisplayAlerts = 0
-
-Dim i
-For i = 0 To 1
-    If CreateObject("Scripting.FileSystemObject").FileExists(files(i)) Then
-        Set oDoc = oWord.Documents.Open(files(i), False, True) ' ReadOnly
-        oDoc.ExportAsFixedFormat pdfs(i), 17, False, 0  ' 17 = wdExportFormatPDF
-        oDoc.Close False
-        MsgBox "Exported: " & pdfs(i), 64, "CV Export"
-    Else
-        MsgBox "File not found: " & files(i), 48, "CV Export"
-    End If
-Next
-
-oWord.Quit
-MsgBox "Both CVs exported to PDF successfully!", 64, "CV Export Done"
+' Compatibility launcher: regenerate from profile.json, validate, then publish PDFs/DOCX.
+' Never exports an independently edited DOCX over the canonical PDFs.
+Option Explicit
+Dim shell, fs, folder, python, command, result
+Set shell = CreateObject("WScript.Shell")
+Set fs = CreateObject("Scripting.FileSystemObject")
+folder = fs.GetParentFolderName(WScript.ScriptFullName)
+python = shell.ExpandEnvironmentStrings("%USERPROFILE%") & "\anaconda3\python.exe"
+If fs.FileExists(python) Then
+    command = Chr(34) & python & Chr(34)
+Else
+    command = "py -3"
+End If
+command = command & " -B -X utf8 " & Chr(34) & folder & "\build_cv.py" & Chr(34)
+result = shell.Run(command, 1, True)
+If result = 0 Then
+    MsgBox "CV FR/EN regenerated and validated: one A4 page per PDF. DOCX files updated from profile.json.", 64, "CV export"
+Else
+    MsgBox "CV generation failed. See the Python output. Existing published assets are preserved if validation fails.", 16, "CV export"
+End If
+WScript.Quit result

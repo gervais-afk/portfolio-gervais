@@ -1,640 +1,148 @@
-/* ==========================================
-   PORTFOLIO INTERACTIVE LOGIC & ANIMATIONS
-   ========================================== */
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    // 1. Typewriter Effect (Dynamically localized)
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const typewriterElement = document.getElementById('typewriter');
-    const typingSpeed = 90;
-    const deletingSpeed = 45;
-    const delayBetweenWords = 2200;
-
-    window.resetTypewriter = function() {
-        wordIndex = 0;
-        charIndex = 0;
-        isDeleting = false;
-        if (typewriterElement) typewriterElement.textContent = '';
-    };
-
-    function getActiveRoles() {
-        const lang = window.currentAppLang || localStorage.getItem('preferredLang') || 'fr';
-        if (typeof translations !== 'undefined' && translations[lang] && translations[lang].typewriter_roles) {
-            return translations[lang].typewriter_roles;
-        }
-        return [
-            "Architecte Multi-Agents & GraphRAG (Neo4j)",
-            "Concepteur de Systèmes IA Zéro-Hallucination",
-            "Expert Chiffrage BTP & Moteurs 5D BIM",
-            "Fondateur @ Archi Cam AI · Membre Google Dev"
-        ];
-    }
-
-    function type() {
-        const roles = getActiveRoles();
-        if (!roles || roles.length === 0) return;
-        if (wordIndex >= roles.length) wordIndex = 0;
-        const currentWord = roles[wordIndex];
-        
-        if (isDeleting) {
-            typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
-            charIndex++;
-        }
-
-        let currentSpeed = isDeleting ? deletingSpeed : typingSpeed;
-
-        if (!isDeleting && charIndex === currentWord.length) {
-            currentSpeed = delayBetweenWords;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % roles.length;
-            currentSpeed = 400;
-        }
-
-        setTimeout(type, currentSpeed);
-    }
-    
-    if (typewriterElement) {
-        type();
-    }
-
-    // 2. 3D Tilt Effect on Project Cards
-    const cards = document.querySelectorAll('.project-card');
-    
-    cards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; // Mouse position inside card
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            // Calculate tilt degrees (max 10 degrees)
-            const rotateX = ((centerY - y) / centerY) * 10;
-            const rotateY = ((x - centerX) / centerX) * 10;
-            
-            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        });
-    });
-
-    // 3. Scroll Entrance Animations (Intersection Observer)
-    const animatableElements = document.querySelectorAll('.animate-on-scroll, .timeline-item, .project-card, .about-card, .contact-info, .contact-form, .section-title, .stat-item, .techstack-category, .cert-card');
-    
-    animatableElements.forEach(el => {
-        el.classList.add('animate-on-scroll');
-    });
-
-    const observerOptions = {
-        threshold: 0.05,
-        rootMargin: '0px 0px 20px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('appear');
-                observer.unobserve(entry.target); // Trigger only once
-            }
-        });
-    }, observerOptions);
-
-    animatableElements.forEach(el => observer.observe(el));
-
-    // 4. Skills Interactive Filtering
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const skillTags = document.querySelectorAll('.skill-tag');
-
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active from all
-            filterButtons.forEach(b => b.classList.remove('active'));
-            // Add active to current
-            btn.classList.add('active');
-
-            const filterValue = btn.getAttribute('data-filter');
-
-            skillTags.forEach(tag => {
-                const category = tag.getAttribute('data-category');
-                
-                if (filterValue === 'all' || category === filterValue) {
-                    tag.classList.remove('fade-out');
-                } else {
-                    tag.classList.add('fade-out');
-                }
-            });
-        });
-    });
-
-    // 5. Active Navbar Link on Scroll
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-links a');
-
-    window.addEventListener('scroll', () => {
-        let currentSectionId = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= (sectionTop - 250)) {
-                currentSectionId = section.getAttribute('id');
-            }
-        });
-
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === `#${currentSectionId}`) {
-                item.classList.add('active');
-            }
-        });
-    });    // 6. Interactive Architecture Modals System
-    const projectsData = {
-        fr: {
-            'archi-cam-ai': {
-                badge: "Plateforme Souveraine BIM 5D & Multi-Agents BTP",
-                title: "Archi Cam AI 🏛️",
-                subtitle: "Plateforme IA souveraine de modélisation BIM 5D, calcul de structures & devis estimatifs normés pour le BTP africain (7 microservices découplés).",
-                pipeline: [
-                    { num: "Étape 01", title: "Entrée Multimodale & YOLO FastAPI (port 8000)", desc: "Scan 2D/3D, plans DWG/PDF, maquettes IFC et requêtes vocales. Segmentation sémantique par YOLO pour détecter murs, ouvertures et pièces." },
-                    { num: "Étape 02", title: "VIM TopologyBuilder (port 8001) & CAD Annotator (port 8002)", desc: "Reconstruction géométrique polygonale via Shapely (snapping 15cm tolérance, calcul des surfaces exactes en m²), cotations architecturales CAD et cartouche automatisé sous Pillow/PIL." },
-                    { num: "Étape 03", title: "ADK SCoT Orchestrator (port 8080) & Neo4j 5.20 GraphRAG", desc: "Chain-of-Thought spatial appliquant les normes réglementaires POS et ONAC. RAG de connaissances sur les mercuriales MINMAP 2026 et prix des matériaux." },
-                    { num: "Étape 04", title: "Sandbox Déterministe BAEL 91 & BIM 5D", desc: "Calculs d'ingénierie BAEL 91 (armatures, charges), déductions d'ouvertures >0.50m² et exports IFC C++ via IfcOpenShell sans risque d'hallucination." },
-                    { num: "Étape 05", title: "Génération Visuelle 3D & Livrables Conformes EU AI Act", desc: "Rendus photoréalistes Fal.ai (SDXL/ControlNet), teasers vidéo drone Veo 3, DQE Excel 6 onglets en <45s, et horodatage cryptographique EXIF SHA-256." }
-                ],
-                impacts: [
-                    "Accélération de +99,2% : génération complète des devis estimatifs (DQE 6 onglets) en <45 secondes (contre 3 à 7 jours manuellement).",
-                    "Zéro Hallucination & Conformité Légale : isolation neuro-symbolique stricte (LLM orchestrateur, calculs déterministes Python BAEL 91 + mercuriales MINMAP 2026).",
-                    "Reconstruction Topologique Robuste : snapping Shapely à tolérance 15cm fermant automatiquement les lignes brisées et calculant les surfaces en m².",
-                    "Haute Précision MLOps (R² = 0,9872) : modèles d'estimation entraînés et surveillés sous MLflow sur plus de 400 projets réels de construction."
-                ],
-                techs: ["Next.js 14", "FastAPI (ports 8000/8001/8002/8080)", "IfcOpenShell C++", "Shapely (Geometry)", "YOLO Vision", "Neo4j 5.20 GraphRAG", "Python BAEL 91", "Fal.ai / Veo 3", "DuckDB & Prisma", "MLflow MLOps", "EU AI Act SHA-256"],
-                github: "https://github.com/gervais-afk/archi-cam-ai"
-            },
-            'sovereign-bi': {
-                badge: "Business Intelligence Agentique & Gouvernance Souveraine",
-                title: "Sovereign.BI Agentic 📊",
-                subtitle: "Moteur décisionnel d'IA Agentique souveraine permettant d'interroger un Data Warehouse d'entreprise en langage naturel sans aucune fuite de données.",
-                pipeline: [
-                    { num: "Étape 01", title: "Requête NL, FastMCP Gateway & Garde-fous Zod", desc: "Interface React 18 + Vite transmettant les requêtes exécutives au Gateway FastMCP (Model Context Protocol). Validation stricte des schémas via Zod et contrôle d'accès multi-tenant ABAC." },
-                    { num: "Étape 02", title: "Moteur Hybride Dual RAG (Neo4j N10S + pgvector)", desc: "Graphe de connaissances Neo4j 5.20 enrichi d'ontologies RDF (neosemantics n10s) et requêtes hybrides couplées à Apache AGE et PostgreSQL 16 pgvector HNSW (<5s)." },
-                    { num: "Étape 03", title: "Moteur Analytique Python FastAPI & CrewAI", desc: "Sandbox REPL isolée exécutant le code d'agrégation statistique, assainissement et masquage automatique des données à caractère personnel (PII)." },
-                    { num: "Étape 04", title: "Auditeur de Risque SHAP Sentinel (Théorie des Jeux)", desc: "Attribution d'importance des variables selon les valeurs de Shapley (sentinel_rules.yaml), détection proactive des anomalies de calcul et des injections." },
-                    { num: "Étape 05", title: "Inférence Locale Google Gemma 12B QAT (Air-Gapped)", desc: "Exécution 100% hors-ligne via LM Studio / Ollama (port 1234), zéro fuite de données vers des tiers, et synchronisation contextuelle OKF." }
-                ],
-                impacts: [
-                    "Interrogation instantanée (<5s) de Data Warehouses massifs sans exiger de compétences en programmation SQL ou Cypher.",
-                    "Étanchéité Souveraine Absolue : données confidentielles traitées en mémoire locale sans transit vers des serveurs externes.",
-                    "Auditabilité et Transparence Totale : chaque chiffre et KPI est retracé mathématiquement par l'auditeur d'explicabilité SHAP Sentinel.",
-                    "Architecture Découplée & Modulaire : passerelle FastMCP et règles ABAC garantissant l'étanchéité multi-tenant pour les grandes organisations."
-                ],
-                techs: ["React 18 + Vite", "FastAPI Python", "TypeScript Genkit", "FastMCP Gateway", "Neo4j 5.20 N10S", "Apache AGE", "PostgreSQL pgvector", "CrewAI", "Google Gemma 12B QAT", "SHAP Sentinel", "Zod & ABAC"],
-                github: "https://github.com/gervais-afk/-sovereign-bi-agentic"
-            },
-            'dataset-automator': {
-                badge: "Usine MLOps Autonome & Dataset Engineering Factory (Google Cloud Hackathon)",
-                title: "Dataset Automator ⚙️",
-                subtitle: "Plateforme MLOps d'ingestion Zero-ETL, modélisation tabulaire de fondation, audits d'équité et gouvernance EU AI Act.",
-                article: "https://dev.to/gervais_marie/how-i-built-a-multi-agent-mlops-control-center-with-google-tabfm-gemma-2b-eu-ai-act-38c7",
-                pipeline: [
-                    { num: "Étape 01", title: "Ingestion Serverless & Zero-ETL Profiling (<48ms)", desc: "BigQuery DataFrames (bigframes) pour le profiling statistique haute vitesse, typage réel automatisé, détection d'asymétrie et de valeurs manquantes." },
-                    { num: "Étape 02", title: "Google TabFM & Adaptive Cascade Router", desc: "Modèle de fondation tabulaire TabFM (inférence zero-shot in-context learning) couplé à un routeur cascade (arbitrage de tokens 125x : TabFM -> SLM local 152ms -> Gemini 3.5 Flash)." },
-                    { num: "Étape 03", title: "Audit d'Équité Google PAIR What-If Tool (WIT)", desc: "Exploration contre-factuelle multidimensionnelle, analyse de sensibilité et contrôle de la parité démographique entre sous-populations." },
-                    { num: "Étape 04", title: "Observabilité MLOps & Détection de Dérive (KS/PSI)", desc: "Tests statistiques continus de Kolmogorov-Smirnov et Population Stability Index (PSI > 30%), alertes automatisées et versionnage complet sous MLflow UI." },
-                    { num: "Étape 05", title: "Gouvernance Model Card Toolkit (MCT) & Signatures RSASSA-PSS", desc: "Génération de fiches modèles Material Design, export de notebooks forensiques CRISP-ML(Q) de 55 cellules (score 100/100) et signature cryptographique EU AI Act Art. 12 & 26." }
-                ],
-                impacts: [
-                    "Automatisation de bout en bout du cycle de vie des données : de l'ingestion brute à la production de notebooks de qualité certifiée.",
-                    "Arbitrage de Coûts Énergétiques et Tokens (125x) grâce au routage adaptatif et à l'exploitation du modèle tabulaire TabFM.",
-                    "Conformité Légale Garantie pour l'EU AI Act : fiches de gouvernance MCT et empreintes cryptographiques RSASSA-PSS-SHA256 infalsifiables.",
-                    "Visualiseur Spatial DAG GPU SVG 60 FPS permettant de suivre visuellement en temps réel chaque nœud d'exécution de la pipeline."
-                ],
-                techs: ["Google TabFM", "PAIR What-If Tool (WIT)", "Model Card Toolkit (MCT)", "BigQuery DataFrames", "TypeScript Genkit", "Neo4j GraphRAG", "MLflow", "RSASSA-PSS-SHA256", "CRISP-ML(Q)", "Streamlit", "Pytest"],
-                github: "https://github.com/gervais-afk/dataset-automator"
-            },
-            'asu-audit-ready': {
-                badge: "Système Souverain d'Aide au Commandement, Conformité OACI & Ingénierie Documentaire V4 (CCAA)",
-                title: "ASU-Audit-Ready 🛡️",
-                subtitle: "Plateforme d'intelligence normative pour la Division Opérationnelle de Sûreté (DOS) : génération Word V4 en <2s, auditabilité Zéro Défaut et simulateur d'inspection 100 points.",
-                pipeline: [
-                    { num: "Pilier 01", title: "Ingestion & Diagnostic Zéro Défaut (PIF & ZSAR)", desc: "Ingestion et monitoring continu des indicateurs d'exploitation terrain : taux de détection aux Points d'Inspection Filtrage, contrôles d'accès ZSAR, patrouilles de clôture et calibrations rayons X." },
-                    { num: "Pilier 02", title: "Moteur d'Ingénierie Documentaire Word V4 (python-docx)", desc: "Compilation automatisée du rapport officiel d'activités mensuel en <2 secondes au format normé .docx paginé et scellé, réduisant la charge administrative de 40h/mois à 2 secondes (-95%)." },
-                    { num: "Pilier 03", title: "Analyse Numérique des Défaillances (Pareto & Spider Radar)", desc: "Modélisation des compétences en Spider Radar multidimensionnel et diagrammes de Pareto des défaillances de fouille pour identifier pro-activement les vulnérabilités avant le passage des inspecteurs de l'OACI." },
-                    { num: "Pilier 04", title: "Scanner d'Audit & Contrôle de Complétude Règlementaire", desc: "Vérification déterministe de 100 points de contrôle, garantissant qu'aucune pièce justificative ou registre n'est omis dans le dossier d'audit international." },
-                    { num: "Pilier 05", title: "Simulateur d'Audition Interactive AVSEC (Scoring 100 Pts)", desc: "Moteur d'entraînement confrontant les superviseurs aux questions pièges des auditeurs de l'OACI avec notation temps réel et plan d'action correctif immédiat." }
-                ],
-                impacts: [
-                    "Réduction prouvée de 95% du temps de reporting (de 40 heures de saisie manuelle à moins de 2 secondes en un clic).",
-                    "Architecture Souveraine 100% On-Premise / Edge (zéro appel cloud distant, étanchéité mémoire totale pour la sûreté de défense aéroportuaire).",
-                    "Auditabilité Zéro Défaut certifiée OACI Annexe 17 & Programme National de Sûreté de l'Aviation Civile (PNSAC).",
-                    "Moteur de templating Word dynamique V4 (docxtpl) permettant l'apposition manuelle de visas hiérarchiques avant scellement officiel."
-                ],
-                techs: ["Streamlit 1.45+", "Python 3.11", "python-docx V4", "docxtpl", "Spider Radar (Matplotlib)", "Diagrammes Pareto", "Simulateur AVSEC 100 Pts", "OACI Annexe 17", "Sovereign Air-Gapped", "openpyxl"],
-                github: "https://github.com/gervais-afk/ASU-Audit-Ready"
-            },
-            'vigie-sahel': {
-                badge: "Plateforme MLOps Décisionnelle, Résilience Climat-Santé & Optimisation Agricole au Sahel",
-                title: "VigieSahel 🌾",
-                subtitle: "Système prédictif ensembliste (R² > 94%) réduisant de 35% les échecs de semis et anticipant les épidémies de méningite à J-14 via le suivi des poussières d'Harmattan (PM2.5).",
-                pipeline: [
-                    { num: "Pilier 01", title: "Ingestion Spatio-Temporelle Multi-Sources & IoT MQTT", desc: "Streaming continu des flux satellites agrométéorologiques (humidité des sols, pluviométrie) et capteurs de qualité de l'air (concentration minérale PM2.5 d'Harmattan) sur 12 régions sahélo-sahariennes." },
-                    { num: "Pilier 02", title: "Moteur Prédictif Ensembliste Climat-Santé (R² > 94%)", desc: "Modélisation couplant XGBoost, CatBoost et Random Forest, reliant mathématiquement les pics d'inhalation minérale et la réactivation de la ceinture de méningite pour déclencher des alertes sanitaires 2 semaines en avance." },
-                    { num: "Pilier 03", title: "Optimiseur Déterministe de Calendrier Agricole", desc: "Calcul algorithmique de la fenêtre de semis idéale au jour près pour le coton et les cultures vivrières, réduisant de 35% à 40% les pertes par desséchement précoce des plantules." },
-                    { num: "Pilier 04", title: "Observabilité MLOps Active sous MLflow & Supabase", desc: "Lineage complet des données, registre de modèles versionnés, détection continue de dérive de données (Concept Drift via KS-Test & PSI) et base relationnelle PostgreSQL / Supabase Realtime avec contrôle ABAC." },
-                    { num: "Pilier 05", title: "Déploiement Conteneurisé Docker Edge & PWA Offline-First", desc: "Architecture ultra-légère et résiliente, conçue pour opérer directement sur le terrain en zone rurale sahélienne sous connectivité réseau intermittente." }
-                ],
-                impacts: [
-                    "Réduction prouvée de 35% des pertes agricoles de semis de coton et de mil face au dérèglement pluviométrique.",
-                    "Anticipation épidémiologique précoce à J-14 permettant le pré-positionnement stratégique des stocks de vaccins méningite.",
-                    "Explicabilité totale (0% hallucination) : modèles tabulaires déterministes validés pour les politiques publiques de santé et d'agriculture.",
-                    "Souveraineté des données africaines : conteneurisation Docker Edge et persistance PostgreSQL / Supabase sécurisée."
-                ],
-                techs: ["Streamlit Core", "Python 3.11", "XGBoost", "CatBoost", "Scikit-Learn (R² > 94%)", "Supabase PostgreSQL", "MLflow Registry", "Docker Edge", "MQTT & WebSockets", "Harmattan PM2.5"],
-                github: "https://github.com/gervais-afk/VigieSahel"
-            },
-            'k1-mathinfo': {
-                badge: "Système Souverain d'IA Agentique, GraphRAG Tri-Moteurs WRRF, LatentGate, vCache & Certification OKF (DMI - Univ. Ngaoundéré)",
-                title: "K1-MATHINFO (v3.2.0) 🏛️",
-                subtitle: "Infrastructure souveraine neuro-symbolique temps réel (<10ms) : 30 ans d'archives (471 documents, 4 494 relations), routeur LatentGate ACP k=16 (5,2 ms), vCache 3 étages (0% de faux positifs), recherche hybride WRRF (k=60), inférence S-GRPO anti-overthinking et 192 tests réussis (100%).",
-                infographic: "assets/images/k1_mathinfo_architecture_hd.png",
-                article: "https://dev.to/gervais_marie/building-a-zero-hallucination-academic-graphrag-1379-nodes-multi-agent-orchestration-local-4mfo",
-                pipeline: [
-                    { num: "Pilier 01", title: "Routeur Sémantique Non-Génératif LatentGate (5,2 - 13,8 ms)", desc: "Sonde linéaire entraînée sur représentations blanchies par ACP (k=16) résolvant l'anisotropie vectorielle des LLM (gain de séparabilité 48×). Classification instantanée sur 5 domaines sans génération de tokens." },
-                    { num: "Pilier 02", title: "Cache Sémantique Vérifié vCache (0% Faux Positifs)", desc: "Architecture d'intégrité à 3 étages : L1 exact SHA-256 en 0,13 ms, L2 candidat vectoriel cosinus (seuil >= 0,88), et L3 validation formelle par Reconnaissance d'Entités Nommées (NER strict) éliminant 100% des collisions factuelles." },
-                    { num: "Pilier 03", title: "Moteur de Recherche Hybride Tri-Source WRRF (k=60)", desc: "Weighted Reciprocal Rank Fusion combinant dense pgvector HNSW (w=1,0), sparse BM25 tsvector (w=0,8) et traversée relationnelle Neo4j 5.26 (w=1,2) avec masquage ontologique dur (P@5 = 96,4%, MRR = 0,942, traversée 3,8 ms)." },
-                    { num: "Pilier 04", title: "Inférence S-GRPO, Interface Réflexive & Entity Pills", desc: "Régulation d'inférence par directive <|high reward|> anti-overthinking. Accordéon réflexif <think> millisecondes temps réel et puces interactives (Entity Pills) déclenchant en 1-clic l'exploration topologique du graphe Neo4j." },
-                    { num: "Pilier 05", title: "Certification OKF v0.2 SHA-256 No-LLM & Gouvernance Quorum", desc: "Découplage strict LaTeX / sémantique formelle, vérification déterministe par empreinte SHA-256 inviolable, Circuit Breaker 3 états (<5s failover), et gouvernance symétrique à 4 Yeux (KOA + AZIZ) validée sur 192 tests automatisés (100%)." }
-                ],
-                impacts: [
-                    "100% de tests réussis : 192 tests automatisés validés selon un protocole épistémique découplé en 3 pistes (Piste A Déterministe Cypher 100%, Piste B Sémantique WRRF P@5 96,4%, Piste C Refus conforme adversariaux 100%).",
-                    "Éradication absolue des hallucinations académiques par empreinte cryptographique déterministe SHA-256 (OKF v0.2 No-LLM) et rejet immédiat des collisions sémantiques par vCache L3.",
-                    "Vitesse d'exécution temps réel : décision de routage en 5,2–13,8 ms (LatentGate) et réponse de cache en 0,13 ms sans consommer de tokens LLM.",
-                    "Valorisation exhaustive de 30 ans de patrimoine scientifique (1993–2026) : 471 documents certifiés, 438 auteurs, 81 directeurs, 4 494 relations actives, visualiseur 3D et publication technique sur DEV Community (Dev.to)."
-                ],
-                techs: ["LatentGate Router (5.2ms)", "vCache 3-Tier (0% FP)", "Tri-Engine WRRF (k=60)", "Inférence S-GRPO", "Neo4j 5.26 (4 494 rel)", "PostgreSQL 16 pgvector", "Redis 7 Streams & DLQ", "FastAPI 0.115+", "OKF v0.2 SHA-256", "Advisor Matcher", "Circuit Breaker 3-State", "Quorum 4 Yeux", "192 Tests (100%)", "KaTeX déterministe"],
-                github: "https://github.com/gervais-afk/k1-mathinfo"
-            }
-        },
-        en: {
-            'archi-cam-ai': {
-                badge: "Sovereign 5D BIM & Agentic AI SaaS",
-                title: "Archi Cam AI 🏛️",
-                subtitle: "Sovereign 5D BIM & Agentic AI platform for automated structural engineering & quantity surveying in African construction (7 decoupled microservices).",
-                pipeline: [
-                    { num: "Step 01", title: "Multimodal Input & YOLO FastAPI (port 8000)", desc: "2D/3D scans, DWG/PDF drawings, IFC models & vocal prompts. Semantic segmentation via YOLO to detect walls, openings, and spaces." },
-                    { num: "Step 02", title: "VIM TopologyBuilder (port 8001) & CAD Annotator (port 8002)", desc: "Geometric polygon reconstruction via Shapely (snapping with 15cm tolerance, computing exact room areas in m²), automated CAD dimensioning and title block via Pillow/PIL." },
-                    { num: "Step 03", title: "ADK SCoT Orchestrator (port 8080) & Neo4j 5.20 GraphRAG", desc: "Spatial Chain-of-Thought agent enforcing POS and ONAC regulations. Knowledge graph for MINMAP 2026 pricing mercurials and construction materials." },
-                    { num: "Step 04", title: "Deterministic Python Sandbox BAEL 91 & 5D BIM", desc: "Deterministic BAEL 91 structural calculations (rebar, load bearing), >0.50m² opening deductions, and IFC C++ exports via IfcOpenShell with zero hallucination." },
-                    { num: "Step 05", title: "3D Visual Synthesis & EU AI Act Compliance", desc: "Photorealistic Fal.ai renders (SDXL/ControlNet), Veo 3 3D drone teaser videos, 6-sheet Excel BOQs in <45s, and SHA-256 EXIF cryptographic watermarking." }
-                ],
-                impacts: [
-                    "99.2% speedup: Complete Bill of Quantities (6-sheet BOQs) generated in <45 seconds (down from 3 to 7 days manually).",
-                    "Zero Hallucination & Regulatory Compliance: strict neuro-symbolic isolation (LLM orchestrator + deterministic BAEL 91 Python engine + MINMAP 2026).",
-                    "Robust Topological Reconstruction: Shapely snapping with 15cm tolerance automatically closing broken lines and computing exact room areas.",
-                    "MLOps Production Precision (R² = 0.9872): estimating model trained and evaluated under MLflow across 400 African construction projects."
-                ],
-                techs: ["Next.js 14", "FastAPI (ports 8000/8001/8002/8080)", "IfcOpenShell C++", "Shapely (Geometry)", "YOLO Vision", "Neo4j 5.20 GraphRAG", "Python BAEL 91", "Fal.ai / Veo 3", "DuckDB & Prisma", "MLflow MLOps", "EU AI Act SHA-256"],
-                github: "https://github.com/gervais-afk/archi-cam-ai"
-            },
-            'sovereign-bi': {
-                badge: "Agentic Business Intelligence & Security",
-                title: "Sovereign.BI Agentic 📊",
-                subtitle: "Sovereign agentic enterprise BI engine empowering executives to query massive Data Warehouses in natural language with zero data leakage.",
-                pipeline: [
-                    { num: "Step 01", title: "NL Query, FastMCP Gateway & Zod Guardrails", desc: "React 18 + Vite interface routing executive queries through FastMCP Gateway (Model Context Protocol). Strict schema validation via Zod and multi-tenant ABAC permissions." },
-                    { num: "Step 02", title: "Hybrid Dual RAG Engine (Neo4j N10S + pgvector)", desc: "Neo4j 5.20 knowledge graph enriched with RDF ontologies (neosemantics n10s) and hybrid queries coupled with Apache AGE and PostgreSQL 16 pgvector HNSW (<5s)." },
-                    { num: "Step 03", title: "Python FastAPI Analytics Engine & CrewAI", desc: "Sandboxed REPL environment executing analytical statistical aggregations, automated PII sanitization, and data masking." },
-                    { num: "Step 04", title: "SHAP Sentinel Risk Auditor (Game Theory)", desc: "Feature importance attribution via Shapley values (sentinel_rules.yaml), proactive detection of query anomalies, and injection defense." },
-                    { num: "Step 05", title: "Local Sovereign Google Gemma 12B QAT (Air-Gapped)", desc: "100% offline local inference via LM Studio / Ollama (port 1234), zero third-party data leakage, and OKF contextual synchrony." }
-                ],
-                impacts: [
-                    "Instant querying (<5s) of massive Data Warehouses without requiring SQL or Cypher programming expertise.",
-                    "Absolute Sovereign Security: confidential enterprise data processed in local memory with zero external transmission.",
-                    "Complete Auditability & Transparency: every number and KPI mathematically verified by the SHAP Sentinel explainability auditor.",
-                    "Decoupled & Modular Architecture: FastMCP gateway and ABAC policies enforcing strict multi-tenant data isolation."
-                ],
-                techs: ["React 18 + Vite", "FastAPI Python", "TypeScript Genkit", "FastMCP Gateway", "Neo4j 5.20 N10S", "Apache AGE", "PostgreSQL pgvector", "CrewAI", "Google Gemma 12B QAT", "SHAP Sentinel", "Zod & ABAC"],
-                github: "https://github.com/gervais-afk/-sovereign-bi-agentic"
-            },
-            'dataset-automator': {
-                badge: "Agentic MLOps Platform & Dataset Engineering Factory (Google Cloud Hackathon)",
-                title: "Dataset Automator ⚙️",
-                subtitle: "Autonomous MLOps factory for Zero-ETL data ingestion, foundation tabular modeling, fairness auditing, and EU AI Act governance.",
-                article: "https://dev.to/gervais_marie/how-i-built-a-multi-agent-mlops-control-center-with-google-tabfm-gemma-2b-eu-ai-act-38c7",
-                pipeline: [
-                    { num: "Step 01", title: "Serverless Ingestion & Zero-ETL Profiling (<48ms)", desc: "BigQuery DataFrames (bigframes) for high-speed statistical profiling, automated real-data typing, skewness detection, and missing-value analysis." },
-                    { num: "Step 02", title: "Google TabFM & Adaptive Cascade Router", desc: "Tabular foundation model TabFM (zero-shot in-context learning) paired with an adaptive cascade router (125x token arbitrage: TabFM -> local SLM @ 152ms -> Gemini 3.5 Flash)." },
-                    { num: "Step 03", title: "Fairness Audit via Google PAIR What-If Tool (WIT)", desc: "Multidimensional counterfactual exploration, sensitivity analysis, and demographic parity verification across sub-populations." },
-                    { num: "Step 04", title: "MLOps Observability & Drift Tracking (KS/PSI)", desc: "Continuous statistical Kolmogorov-Smirnov and Population Stability Index (PSI > 30%) drift tests, automated alerts, and MLflow tracking." },
-                    { num: "Step 05", title: "Model Card Toolkit (MCT) Governance & RSASSA-PSS", desc: "Automated Material Design governance cards, 55-cell forensic CRISP-ML(Q) notebook generator (100/100 score), and EU AI Act Art. 12 & 26 signatures." }
-                ],
-                impacts: [
-                    "End-to-end automation of data preparation cycles, quality audits, and certified MLOps notebook generation.",
-                    "125x Token & Energy Cost Arbitrage leveraging adaptive routing and Google's TabFM foundation tabular model.",
-                    "Guaranteed Regulatory Compliance for EU AI Act: MCT governance cards and tamper-proof RSASSA-PSS-SHA256 signatures.",
-                    "60 FPS GPU SVG DAG Spatial Visualizer enabling real-time animated tracking of every execution step across the pipeline."
-                ],
-                techs: ["Google TabFM", "PAIR What-If Tool (WIT)", "Model Card Toolkit (MCT)", "BigQuery DataFrames", "TypeScript Genkit", "Neo4j GraphRAG", "MLflow", "RSASSA-PSS-SHA256", "CRISP-ML(Q)", "Streamlit", "Pytest"],
-                github: "https://github.com/gervais-afk/dataset-automator"
-            },
-            'asu-audit-ready': {
-                badge: "Sovereign Command System, ICAO Compliance & Normative V4 Document Engine (CCAA)",
-                title: "ASU-Audit-Ready 🛡️",
-                subtitle: "Normative compliance platform for the Operational Security Division (DOS): <2s automated Word V4 generation, Zero-Defect auditability, and 100-point inspection exam simulator.",
-                pipeline: [
-                    { num: "Pillar 01", title: "Ingestion & Zero-Defect Diagnostics (PIF & ZSAR)", desc: "Continuous ingestion and monitoring of field operational metrics: detection rates at Passenger Screening Checkpoints (PIF), Airside Security Restricted Area (ZSAR) access controls, perimeter patrols, and X-ray calibration logs." },
-                    { num: "Pillar 02", title: "Normative Word V4 Document Engine (python-docx)", desc: "Automated compilation of official monthly activity reports in <2 seconds in standardized .docx format, dynamically paginated and sealed, reducing administrative workload from 40h/month to 2 seconds (-95%)." },
-                    { num: "Pillar 03", title: "Numerical Failure Analytics (Pareto & Spider Radar)", desc: "Multidimensional Spider Radar competency modeling and Pareto failure distribution charts to proactively identify operational vulnerabilities before ICAO international inspection audits." },
-                    { num: "Pillar 04", title: "Regulatory Compliance Scanner & Evidence Auditor", desc: "Deterministic audit across 100 verification checkpoints, ensuring zero omission of evidentiary dossiers, interception logs, or equipment calibration records." },
-                    { num: "Pillar 05", title: "Interactive AVSEC Oral Exam Simulator (100-Point Scoring)", desc: "Interactive training engine confronting supervisors with unannounced ICAO inspection scenarios featuring real-time scoring and instant corrective remediation plans." }
-                ],
-                impacts: [
-                    "Proven 95% reduction in audit reporting time (from 40 hours of manual paperwork down to <2 seconds in a single click).",
-                    "100% On-Premise / Sovereign Edge Architecture (zero cloud leakage, total in-memory isolation for national aviation defense security).",
-                    "Zero-Defect Auditability certified compliant with ICAO Annex 17 and Cameroon National Civil Aviation Security Program (PNSAC).",
-                    "Dynamic Word V4 templating engine (docxtpl) enabling manual executive sign-off visas prior to official sealing."
-                ],
-                techs: ["Streamlit 1.45+", "Python 3.11", "python-docx V4", "docxtpl", "Spider Radar (Matplotlib)", "Pareto Charts", "AVSEC 100-Pt Simulator", "ICAO Annex 17", "Sovereign Air-Gapped", "openpyxl"],
-                github: "https://github.com/gervais-afk/ASU-Audit-Ready"
-            },
-            'vigie-sahel': {
-                badge: "Predictive MLOps Platform, Climate-Health Resilience & Agricultural Optimization in the Sahel",
-                title: "VigieSahel 🌾",
-                subtitle: "Ensemble predictive system (R² > 94%) cutting crop sowing losses by 35% and forecasting meningitis outbreaks 14 days in advance by tracking Harmattan dust (PM2.5).",
-                pipeline: [
-                    { num: "Pillar 01", title: "Multi-Source Spatio-Temporal Ingestion & IoT MQTT", desc: "Continuous streaming of agrometeorological satellite telemetry (soil moisture, rainfall, drought index) and air quality sensors (PM2.5 mineral dust / Harmattan winds) across 12 strategic Sahelian regions." },
-                    { num: "Pillar 02", title: "Ensemble Climate-Health Predictive Engine (R² > 94%)", desc: "XGBoost, CatBoost, and Random Forest ensemble models mathematically linking desert dust inhalation to meningitis belt reactivation for proactive red alerts 2 weeks in advance." },
-                    { num: "Pillar 03", title: "Deterministic Agricultural Sowing Optimizer", desc: "Algorithmic daily prescription of the optimal sowing window for cotton and staple food crops, preventing 35% to 40% seedling loss from premature desiccation." },
-                    { num: "Pillar 04", title: "Active MLOps Observability under MLflow & Supabase", desc: "End-to-end data lineage, versioned model registry, continuous concept drift detection (KS-Test & PSI), and sovereign PostgreSQL / Supabase Realtime backend with ABAC access controls." },
-                    { num: "Pillar 05", title: "Docker Edge Containerization & Offline-First PWA", desc: "Ultra-lightweight, resilient edge deployment engineered to operate locally in remote rural Sahelian environments with intermittent or zero internet connectivity." }
-                ],
-                impacts: [
-                    "Proven 35% reduction in crop failure for cotton and millet facing violent rainfall variability.",
-                    "14-day early epidemiological warning enabling strategic pre-positioning of meningitis vaccine reserves.",
-                    "100% Explainability (0% Hallucination): deterministic tabular ensemble models approved for public health and agricultural policies.",
-                    "African Data Sovereignty: Docker Edge containerization and secure PostgreSQL / Supabase persistence."
-                ],
-                techs: ["Streamlit Core", "Python 3.11", "XGBoost", "CatBoost", "Scikit-Learn (R² > 94%)", "Supabase PostgreSQL", "MLflow Registry", "Docker Edge", "MQTT & WebSockets", "Harmattan PM2.5"],
-                github: "https://github.com/gervais-afk/VigieSahel"
-            },
-            'k1-mathinfo': {
-                badge: "Sovereign Multi-Agent AI System, Tri-Engine WRRF GraphRAG, LatentGate, vCache & OKF Certification (DMI - Univ. of Ngaoundéré)",
-                title: "K1-MATHINFO (v3.2.0) 🏛️",
-                subtitle: "Real-time sovereign neuro-symbolic AI infrastructure (<10ms): 30 years of scientific research assets (471 certified documents, 4,494 active relationships), LatentGate PCA k=16 router (5.2 ms), 3-tier verified vCache (0% false positives), tri-engine WRRF hybrid search (k=60), S-GRPO anti-overthinking inference, and 100% test pass rate across 192 automated tests.",
-                infographic: "assets/images/k1_mathinfo_architecture_hd.png",
-                article: "https://dev.to/gervais_marie/building-a-zero-hallucination-academic-graphrag-1379-nodes-multi-agent-orchestration-local-4mfo",
-                pipeline: [
-                    { num: "Pillar 01", title: "Non-Generative LatentGate Semantic Router (5.2 - 13.8 ms)", desc: "Linear probe trained on PCA-whitened representations (k=16) eliminating SLM vector anisotropy (48x separability gain). Instant domain classification across 5 specialized domains without generating tokens." },
-                    { num: "Pillar 02", title: "3-Tier Verified Semantic Cache vCache (0% False Positives)", desc: "Rigorous 3-stage validation: L1 exact SHA-256 hash in 0.13 ms, L2 cosine similarity candidate (threshold >= 0.88), and L3 formal Named Entity Recognition (strict NER verification) rejecting 100% of factual collisions." },
-                    { num: "Pillar 03", title: "Tri-Engine Hybrid Search WRRF (k=60) with Hard Masking", desc: "Weighted Reciprocal Rank Fusion combining dense pgvector HNSW (w=1.0), sparse lexical BM25 tsvector (w=0.8), and multi-hop Neo4j 5.26 graph topology (w=1.2) with hard ontological masking (P@5 = 96.4%, MRR = 0.942, 2-hop traversal in 3.8 ms)." },
-                    { num: "Pillar 04", title: "S-GRPO Regulated Inference, Reflexive UI & Entity Pills", desc: "Inference control via <|high reward|> directive eliminating infinite overthinking loops. Real-time millisecond <think> reflexive accordion and interactive Entity Pills triggering 1-click topological exploration in Neo4j." },
-                    { num: "Pillar 05", title: "OKF v0.2 SHA-256 No-LLM Certification & Quorum Security", desc: "Strict presentation (LaTeX) vs formal semantics decoupling, deterministic SHA-256 mathematical proof certification, 3-state Circuit Breaker (<5s failover), and 4-Eyes symmetric governance (KOA + AZIZ) validated across 192 tests (100%)." }
-                ],
-                impacts: [
-                    "100% test pass rate: 192 automated tests validated across a 3-track epistemic protocol (Track A Deterministic Cypher 100%, Track B Dense & WRRF Semantic P@5 96.4%, Track C Adversarial Constraint Refusal 100%).",
-                    "Absolute elimination of academic hallucinations via deterministic OKF v0.2 SHA-256 No-LLM cryptographic certification and immediate factual collision rejection by vCache L3.",
-                    "Real-time sub-10ms response: 5.2–13.8 ms routing decisions (LatentGate) and 0.13 ms exact cache hits without consuming LLM token generation budgets.",
-                    "Comprehensive preservation and valuation of 30 years of scientific assets (1993–2026): 471 certified documents, 438 authors, 81 supervisors, 4,494 active relationships, 3D graph explorer, and international technical publication on DEV Community (Dev.to)."
-                ],
-                techs: ["LatentGate Router (5.2ms)", "vCache 3-Tier (0% FP)", "Tri-Engine WRRF (k=60)", "S-GRPO Reasoning", "Neo4j 5.26 (4 494 rel)", "PostgreSQL 16 pgvector", "Redis 7 Streams & DLQ", "FastAPI 0.115+", "OKF v0.2 SHA-256", "Advisor Matcher", "3-State Circuit Breaker", "Quorum 4-Eyes", "192 Tests (100%)", "Deterministic KaTeX"],
-                github: "https://github.com/gervais-afk/k1-mathinfo"
-            }
-        }
-    };
-
-    const modalOverlay = document.getElementById('projectModal');
-    const modalCloseBtn = document.getElementById('modalClose');
-    const modalBadge = document.getElementById('modalBadge');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalSubtitle = document.getElementById('modalSubtitle');
-    const modalContent = document.getElementById('modalContent');
-    const openModalBtns = document.querySelectorAll('.open-modal-btn');
-
-    function openModal(projectId) {
-        const lang = localStorage.getItem('preferredLang') || 'fr';
-        const project = projectsData[lang] ? projectsData[lang][projectId] : null;
-        if (!project) return;
-
-        modalBadge.textContent = project.badge;
-        modalTitle.textContent = project.title;
-        modalSubtitle.textContent = project.subtitle;
-
-        // Build Pipeline Steps HTML
-        const pipelineHTML = project.pipeline.map(step => `
-            <div class="pipeline-step">
-                <span class="pipeline-step-num">${step.num}</span>
-                <h5 class="pipeline-step-title">${step.title}</h5>
-                <p class="pipeline-step-desc">${step.desc}</p>
-            </div>
-        `).join('');
-
-        // Build Impacts List HTML
-        const impactsHTML = project.impacts.map(imp => `
-            <li><i class="fa-solid fa-circle-check"></i> <span>${imp}</span></li>
-        `).join('');
-
-        // Build Tech Pills HTML
-        const techsHTML = project.techs.map(tech => `
-            <span>${tech}</span>
-        `).join('');
-
-        const headers = {
-            fr: {
-                arch: "Architecture System &amp; Flux de Données",
-                impact: "Valeur Ajoutée &amp; Impacts Clés",
-                tech: "Technologies &amp; Frameworks",
-                github: "Accéder au Dépôt GitHub"
-            },
-            en: {
-                arch: "System Architecture &amp; Data Flow",
-                impact: "Value Added &amp; Key Impacts",
-                tech: "Technologies &amp; Frameworks",
-                github: "Access GitHub Repository"
-            }
-        };
-
-        const activeHeader = headers[lang] || headers.fr;
-
-        const infographicHTML = project.infographic ? `
-            <div class="arch-section" style="grid-column: 1 / -1; margin-bottom: 0.8rem;">
-                <h4><i class="fa-solid fa-image"></i> ${lang === 'fr' ? 'Infographie Officielle — Vue Globale du Système' : 'Official Infographic — Global System Overview'}</h4>
-                <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 242, 254, 0.35); background: rgba(0,0,0,0.5); text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
-                    <a href="${project.infographic}" target="_blank" title="${lang === 'fr' ? 'Cliquer pour agrandir' : 'Click to enlarge'}">
-                        <img src="${project.infographic}" alt="Infographie ${project.title}" style="width: 100%; max-height: 480px; object-fit: contain; display: block; margin: 0 auto; transition: transform 0.3s ease;">
-                    </a>
-                    <div style="padding: 0.5rem; font-size: 0.8rem; color: var(--text-muted); background: rgba(10, 15, 30, 0.7);">
-                        <i class="fa-solid fa-magnifying-glass-plus text-neon"></i> ${lang === 'fr' ? 'Cliquer sur l\'image pour afficher en pleine résolution HD' : 'Click image to open high-resolution HD view'}
-                    </div>
-                </div>
-            </div>
-        ` : '';
-
-        modalContent.innerHTML = `
-            <div class="modal-grid">
-                ${infographicHTML}
-                <div class="arch-section">
-                    <h4><i class="fa-solid fa-diagram-project"></i> ${activeHeader.arch}</h4>
-                    <div class="pipeline-flow">
-                        ${pipelineHTML}
-                    </div>
-                </div>
-
-                <div class="arch-section">
-                    <h4><i class="fa-solid fa-bullseye"></i> ${activeHeader.impact}</h4>
-                    <ul class="impact-list">
-                        ${impactsHTML}
-                    </ul>
-                </div>
-
-                <div class="arch-section">
-                    <h4><i class="fa-solid fa-code"></i> ${activeHeader.tech}</h4>
-                    <div class="tech-pills">
-                        ${techsHTML}
-                    </div>
-                </div>
-
-                <div class="project-links-row">
-                    <a href="${project.github}" target="_blank" class="btn btn-primary">
-                        ${activeHeader.github} <i class="fa-brands fa-github"></i>
-                    </a>
-                    ${project.article ? `
-                    <a href="${project.article}" target="_blank" class="btn btn-icon">
-                        ${lang === 'fr' ? 'Article Dev.to' : 'Dev.to Article'} <i class="fa-brands fa-dev"></i>
-                    </a>
-                    ` : ''}
-                </div>
-            </div>
-        `;
-
-        modalOverlay.classList.add('active');
-        modalOverlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-        modalOverlay.classList.remove('active');
-        modalOverlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = 'auto';
-    }
-
-    openModalBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const projectId = btn.getAttribute('data-project');
-            openModal(projectId);
-        });
-    });
-
-    if (modalCloseBtn) {
-        modalCloseBtn.addEventListener('click', closeModal);
-    }
-
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                closeModal();
-            }
-        });
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-            closeModal();
-        }
-    });
-});
-
-/* ==========================================
-   PODCAST HUB PLAYER LOGIC
-   ========================================== */
-window.playPodcastTrack = function(index, audioSrc, titleKey, tagKey, descKey) {
-    const player = document.getElementById('podcastAudioPlayer');
-    const source = document.getElementById('podcastAudioSource');
-    const titleEl = document.getElementById('mainTrackTitle');
-    const tagEl = document.getElementById('mainTrackTag');
-    const descEl = document.getElementById('mainTrackDesc');
-
-    if (!player || !source) return;
-
-    // Update active card style
-    const cards = document.querySelectorAll('.podcast-track-card');
-    cards.forEach((c, idx) => c.classList.toggle('active', idx === index));
-
-    // Update audio source & play
-    source.src = audioSrc;
-    player.load();
-    player.play().catch(e => console.log('Playback started:', e));
-
-    // Update data-i18n attributes
-    if (titleEl) titleEl.setAttribute('data-i18n', titleKey);
-    if (tagEl) tagEl.setAttribute('data-i18n', tagKey);
-    if (descEl) descEl.setAttribute('data-i18n', descKey);
-
-    // Refresh active language translation for main player
-    const lang = localStorage.getItem('preferredLang') || 'fr';
-    if (typeof translations !== 'undefined' && translations[lang]) {
-        if (titleEl && translations[lang][titleKey]) titleEl.innerHTML = translations[lang][titleKey];
-        if (tagEl && translations[lang][tagKey]) tagEl.innerHTML = translations[lang][tagKey];
-        if (descEl && translations[lang][descKey]) descEl.innerHTML = translations[lang][descKey];
-    }
-};
-
-/* ==========================================
-   i18n LANGUAGE SWITCHER ENGINE
-   ========================================== */
-window.currentAppLang = localStorage.getItem('preferredLang') || 'fr';
-
-window.switchLanguage = function(lang) {
-    window.currentAppLang = lang;
-    localStorage.setItem('preferredLang', lang);
-
-    const btnNavFr = document.getElementById('btnNavFr');
-    const btnNavEn = document.getElementById('btnNavEn');
-    if (btnNavFr && btnNavEn) {
-        btnNavFr.classList.toggle('active', lang === 'fr');
-        btnNavEn.classList.toggle('active', lang === 'en');
-    }
-
-    if (typeof translations === 'undefined') return;
-    const t = translations[lang];
-    if (!t) return;
-
-    // Translate elements with data-i18n
+/* Progressive enhancement. French core content is statically rendered. */
+(() => {
+  'use strict';
+  const content = window.PORTFOLIO_CONTENT;
+  const render = window.PORTFOLIO_RENDER;
+  if (!content || !render) return;
+  const $ = selector => document.querySelector(selector);
+  let lang = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'fr';
+  let openProject = null;
+  let opener = null;
+  const dialog = $('#project-dialog');
+  const menu = $('.menu-toggle');
+  const nav = $('#main-nav');
+  const targets = {secondary: '#secondary-projects', journey: '#journey', skills: '#skill-cards', articles: '#article-cards'};
+  function closeMenu(returnFocus = false) {
+    menu.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-label', content[lang].ui.menu);
+    nav.classList.remove('is-open');
+    if (returnFocus) menu.focus();
+  }
+  function translate(nextLang, updateUrl = false) {
+    lang = nextLang;
+    const data = content[lang], ui = data.ui;
+    document.documentElement.lang = lang;
+    document.title = ui.page_title;
+    $('meta[name="description"]').content = ui.page_description;
     document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (t[key]) {
-            el.innerHTML = t[key];
-        }
+      if (ui[el.dataset.i18n] !== undefined) el.textContent = ui[el.dataset.i18n];
     });
-
-    // Update dynamic CV download link if present
-    const heroDownloadCv = document.getElementById('heroDownloadCv');
-    if (heroDownloadCv) {
-        if (lang === 'fr') {
-            heroDownloadCv.setAttribute('href', 'KOA_MARIE_GERVAIS_NELLY_CV%20FR.pdf');
-        } else {
-            heroDownloadCv.setAttribute('href', 'KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf');
+    Object.entries(targets).forEach(([key, selector]) => {$(selector).innerHTML = render[key](data);});
+    ['k1','archi','dataset'].forEach(id => {$('#project-' + id).innerHTML = render.projectText(data, id);});
+    document.querySelectorAll('[data-lang]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === lang)));
+    document.querySelectorAll('[data-cv-page]').forEach(link => {link.href = 'cv.html?lang=' + lang;});
+    document.querySelectorAll('[data-cv-download]').forEach(link => {link.href = `KOA_MARIE_GERVAIS_NELLY_CV_${lang.toUpperCase()}.pdf`;});
+    $('.dialog-close').setAttribute('aria-label', ui.close);
+    menu.setAttribute('aria-label', menu.getAttribute('aria-expanded') === 'true' ? ui.close_menu : ui.menu);
+    nav.setAttribute('aria-label', lang === 'fr' ? 'Navigation principale' : 'Main navigation');
+    $('.portrait-frame img').alt = (lang === 'fr' ? 'Portrait de ' : 'Portrait of ') + 'KOA Marie Gervais Nelly';
+    $('#archive-player').setAttribute('aria-label', lang === 'fr' ? 'Synthèse audio NotebookLM' : 'NotebookLM audio summary');
+    $('#copy-status').textContent = '';
+    if (openProject) $('#project-dialog-content').innerHTML = render.detail(data, openProject);
+    if (updateUrl) {
+      const url = new URL(location.href);
+      url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url);
+    }
+  }
+  translate(lang);
+  document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => translate(button.dataset.lang, true)));
+  menu.addEventListener('click', () => {
+    const expanded = menu.getAttribute('aria-expanded') !== 'true';
+    menu.setAttribute('aria-expanded', String(expanded));
+    menu.setAttribute('aria-label', expanded ? content[lang].ui.close_menu : content[lang].ui.menu);
+    nav.classList.toggle('is-open', expanded);
+  });
+  nav.addEventListener('click', event => {if (event.target.closest('a')) closeMenu();});
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') closeMenu(true);
+  });
+  document.addEventListener('click', event => {
+    if (menu.getAttribute('aria-expanded') === 'true' && !event.target.closest('.site-header')) closeMenu();
+    const button = event.target.closest('.project-open');
+    if (!button) return;
+    const id = button.dataset.project;
+    if (!content[lang].projects[id]) return;
+    opener = button;
+    openProject = id;
+    $('#project-dialog-content').innerHTML = render.detail(content[lang], id);
+    $('#dialog-index').textContent = String(['k1','archi','dataset','sovereign','asu','vigie'].indexOf(id) + 1).padStart(2,'0');
+    dialog.showModal();
+    dialog.scrollTop = 0;
+    document.body.classList.add('modal-open');
+    $('#project-dialog-title').focus({preventScroll: true});
+  });
+  // Keep keyboard navigation within the modal, including at browser chrome boundaries.
+  dialog.addEventListener('keydown', event => {
+    if (event.key !== 'Tab') return;
+    const focusable = Array.from(dialog.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"]'));
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (event.shiftKey && (document.activeElement === first || document.activeElement.id === 'project-dialog-title')) {
+      event.preventDefault(); last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault(); first.focus();
+    }
+  });
+  $('.dialog-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    if (event.target !== dialog) return;
+    const box = dialog.getBoundingClientRect();
+    if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close();
+  });
+  dialog.addEventListener('close', () => {
+    document.body.classList.remove('modal-open');
+    openProject = null;
+    if (opener && opener.isConnected) opener.focus({preventScroll:true});
+  });
+  $('.copy-email').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('contact@archicam-ai.com');
+      $('#copy-status').textContent = content[lang].ui.copied;
+    } catch {
+      $('#copy-status').textContent = content[lang].ui.copy_failed;
+    }
+  });
+  // No audio source or request until the visitor explicitly opens the archive.
+  const audioFiles = [
+    'podcast_notebooklm_deep_dive.m4a',
+    'Bâtir_une_IA_souveraine_sans_hallucinations.m4a',
+    'IA_sans_cloud_du_BTP_au_Sahel.m4a',
+    'L’IA_souveraine_et_déterministe_sans_cloud.m4a',
+    'Offline_AI_for_African_Construction_and_Health.m4a',
+    'Sovereign_AI_for_air-gapped_aviation_security.m4a'
+  ];
+  const audio = $('#archive-player');
+  function selectAudio() {
+    audio.pause();
+    audio.src = 'assets/audio/' + encodeURIComponent(audioFiles[Number($('#audio-select').value)]);
+    $('.audio-status').textContent = '';
+    audio.load();
+  }
+  $('#audio-details').addEventListener('toggle', event => {
+    if (event.target.open && !audio.getAttribute('src')) selectAudio();
+    if (!event.target.open) audio.pause();
+  });
+  $('#audio-select').addEventListener('change', selectAudio);
+  audio.addEventListener('error', () => {$('.audio-status').textContent = content[lang].ui.audio_error;});
+  $('#year').textContent = new Date().getFullYear();
+  if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        nav.querySelectorAll('a').forEach(link => link.classList.toggle('active', link.hash === '#' + entry.target.id));
+      });
+    }, {rootMargin: '-15% 0px -55% 0px', threshold: 0});
+    document.querySelectorAll('main>section[id]').forEach(section => sectionObserver.observe(section));
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
         }
+      }), {threshold: .07});
+      document.querySelectorAll('.project-card, .about-intro, .skills-grid, .articles-grid, .contact-grid').forEach(el => {
+        el.classList.add('reveal-ready'); observer.observe(el);
+      });
     }
-
-    // Reset typewriter with new language roles immediately
-    if (typeof window.resetTypewriter === 'function') {
-        window.resetTypewriter();
-    }
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('preferredLang') || 'fr';
-    window.switchLanguage(savedLang);
-});
-
-
+  }
+})();
