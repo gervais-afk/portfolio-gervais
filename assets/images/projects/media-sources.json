@@ -1,0 +1,52 @@
+{
+  "archi-site": {
+    "source": "archi cameroun ai.png",
+    "sourceSha256": "662c1033f55a9c31bd3d1790be6d54e1f0dd5875f299d3bdf265a196472ba14e",
+    "originalSize": [
+      1914,
+      877
+    ],
+    "processing": "WebP conversion; original proportions retained.",
+    "output": "archi-site.webp"
+  },
+  "archi-building": {
+    "source": "enleve_la_zone_de_selection_202605290101.jpeg",
+    "sourceSha256": "107bf5635d8ff1442799975c110c35879cbf4351d97188f0ab1bd0c6f8211fc3",
+    "originalSize": [
+      2752,
+      1536
+    ],
+    "processing": "Crop y=29%..87%: architectural illustration only; no original headline/contact/footer.",
+    "output": "archi-building.webp"
+  },
+  "k1-interface": {
+    "source": "capture k1 interface princi.png",
+    "sourceSha256": "5347cd8bc5570730293cfcfeb1303aced8005617141cf341ce4f41fe9a755ca8",
+    "originalSize": [
+      1279,
+      553
+    ],
+    "processing": "WebP conversion; original proportions retained.",
+    "output": "k1-interface.webp"
+  },
+  "k1-graph": {
+    "source": "capture graph k1.png",
+    "sourceSha256": "9327a76e8e138b97c1f2c0f5db2c702bbc3014054a95c3ea34c388be9a28d1bd",
+    "originalSize": [
+      1275,
+      554
+    ],
+    "processing": "Graph label area blurred for privacy; no nodes or results added.",
+    "output": "k1-graph.webp"
+  },
+  "dataset-interface": {
+    "source": "DATASET AUTOMATOR.png",
+    "sourceSha256": "f9e0edf4c4ac388f80a45beed8d339b995db87186789f476b19cdd2e25780605",
+    "originalSize": [
+      1902,
+      871
+    ],
+    "processing": "WebP conversion; original proportions retained.",
+    "output": "dataset-interface.webp"
+  }
+}

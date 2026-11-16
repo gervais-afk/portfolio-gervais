@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" fill="none">
+  <defs>
+    <radialGradient id="night"><stop stop-color="#233e49"/><stop offset="1" stop-color="#10232e"/></radialGradient>
+    <linearGradient id="concrete" x1="250" y1="170" x2="401" y2="392" gradientUnits="userSpaceOnUse"><stop stop-color="#f2efe0"/><stop offset="1" stop-color="#bdbfae"/></linearGradient>
+    <linearGradient id="shade" x1="423" y1="224" x2="580" y2="321" gradientUnits="userSpaceOnUse"><stop stop-color="#bfc7b9"/><stop offset="1" stop-color="#8daba4"/></linearGradient>
+    <linearGradient id="glass" x1="428" y1="254" x2="558" y2="325" gradientUnits="userSpaceOnUse"><stop stop-color="#4c9b98"/><stop offset=".48" stop-color="#24575d"/><stop offset="1" stop-color="#173e49"/></linearGradient>
+    <linearGradient id="glassLight" x1="240" y1="216" x2="391" y2="337" gradientUnits="userSpaceOnUse"><stop stop-color="#739e99"/><stop offset=".5" stop-color="#427b7b"/><stop offset="1" stop-color="#28575e"/></linearGradient>
+    <linearGradient id="roof" x1="297" y1="135" x2="457" y2="259" gradientUnits="userSpaceOnUse"><stop stop-color="#fcf8e9"/><stop offset="1" stop-color="#d8ddcc"/></linearGradient>
+    <linearGradient id="ground" x1="300" y1="216" x2="466" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#6c827f"/><stop offset="1" stop-color="#3d5b60"/></linearGradient>
+    <filter id="shadow" x="-40%" y="-90%" width="180%" height="280%"><feGaussianBlur stdDeviation="12"/></filter>
+    <clipPath id="rightPane"><path d="m431 291 145-84v72l-145 84Z"/></clipPath>
+    <clipPath id="leftPane"><path d="m243 213 145 84v64l-145-84Z"/></clipPath>
+  </defs>
+  <path fill="#10232e" d="M0 0h800v480H0z"/>
+  <ellipse cx="405" cy="243" rx="368" ry="237" fill="url(#night)"/>
+  <!-- The fine construction lines are intentionally unnumbered. -->
+  <g stroke="#87aaa8" stroke-width=".8" stroke-opacity=".15">
+    <path d="M56 285 399 87l348 201M56 316l343-198 348 201M89 336l343-198M129 359l343-198M169 382l343-198M209 405l343-198M249 428l343-198M289 451l343-198"/>
+    <path d="m106 256 348 201M146 233l348 201M186 210l348 201M226 187l348 201M266 164l348 201M306 141l348 201M346 118l348 201"/>
+  </g>
+  <ellipse cx="410" cy="365" rx="258" ry="69" fill="#06151e" opacity=".75" filter="url(#shadow)"/>
+  <path d="m106 284 279-161 316 182v17L422 483 106 301Z" fill="#233f48"/>
+  <path d="m106 284 279-161 316 182-279 161Z" fill="url(#ground)" stroke="#75928d" stroke-width="1.2"/>
+  <path d="M422 466v17" stroke="#7e9b94" stroke-opacity=".45"/>
+  <path d="m136 284 249-144 286 165-249 144Z" stroke="#a9bcb0" stroke-opacity=".35"/>
+  <g stroke="#a9bcb0" stroke-width=".7" stroke-opacity=".22">
+    <path d="m172 306 249-144M211 329l249-144M250 352l249-144M289 375l249-144M328 398l249-144M367 421l249-144"/>
+    <path d="m180 258 286 165M222 234l286 165M264 210l286 165M306 186l286 165M348 162l286 165"/>
+  </g>
+  <!-- A thin raised terrace and three shallow entry treads. -->
+  <path d="m187 284 217-125 228 132v12L415 428 187 296Z" fill="#879a92"/>
+  <path d="m187 284 217-125 228 132-217 125Z" fill="#c7cdbb" stroke="#dde0ce"/>
+  <path d="m277 366 73 42-15 9-73-42Z" fill="#e2e0cb"/>
+  <path d="m262 375 73 42v6l-73-42Z" fill="#9dac9d"/>
+  <path d="m262 381 73 42-15 9-73-42Z" fill="#cdd2be"/>
+  <path d="m247 390 73 42v5l-73-42Z" fill="#82998e"/>
+  <path d="m247 395 73 42-15 9-73-42Z" fill="#b5c2ad"/>
+  <path d="m232 404 73 42v4l-73-42Z" fill="#6e887f"/>
+  <!-- Main architectural mass. -->
+  <path d="m223 187 192 111v103L223 290Z" fill="url(#concrete)"/>
+  <path d="m415 298 177-102v103L415 401Z" fill="url(#shade)"/>
+  <path d="m223 187 177-102 192 111-177 102Z" fill="url(#roof)"/>
+  <path d="m223 187 192 111v10L223 197Z" fill="#e9e7d6"/>
+  <path d="m415 298 177-102v10L415 308Z" fill="#becbbb"/>
+  <path d="m223 187 177-102 192 111-177 102Z" stroke="#fff9e7" stroke-width="1.2"/>
+  <path d="m237 186 163-94 178 103-163 94Z" stroke="#b3bdab"/>
+  <path d="m249 187 151-87 166 96-151 87Z" fill="#d5dccb"/>
+  <!-- Curtain wall, recessed between ivory structural fins. -->
+  <path d="m243 213 145 84v64l-145-84Z" fill="url(#glassLight)"/>
+  <g clip-path="url(#leftPane)">
+    <path d="m245 195 24 14 78 179-24-14Zm65 27 10 6 64 150-10-6Z" fill="#d2e8d7" opacity=".12"/>
+    <path d="m236 246 159 92" stroke="#162f38" stroke-width="3"/>
+    <path d="M267 220v86m24-72v86m24-72v86m24-72v86m24-72v86" stroke="#c4d2be" stroke-width="3"/>
+    <path d="m241 273 150 87" stroke="#113b43" stroke-width="7"/>
+  </g>
+  <path d="m243 213 145 84v64l-145-84Z" stroke="#9bb5aa" stroke-width="1.1"/>
+  <path d="m431 291 145-84v72l-145 84Z" fill="url(#glass)"/>
+  <g clip-path="url(#rightPane)">
+    <path d="m438 261 22-13-18 142-22 13Zm75-43 39-22-18 142-39 22Z" fill="#c4e8d9" opacity=".16"/>
+    <path d="m424 330 160-92" stroke="#132f39" stroke-width="3"/>
+    <path d="M455 264v101m24-115v101m24-115v101m24-115v101m24-115v101" stroke="#b5c8b7" stroke-width="3"/>
+    <path d="m427 363 155-90" stroke="#153c42" stroke-width="7"/>
+  </g>
+  <path d="m431 291 145-84v72l-145 84Z" stroke="#a4bfb0" stroke-width="1.1"/>
+  <path d="M405 304v88" stroke="#f4efdc" stroke-width="5"/>
+  <path d="m223 281 192 111 177-102" stroke="#879e92"/>
+  <path d="m223 290 192 111 177-102" stroke="#dbe0cc" stroke-width="1.5"/>
+  <!-- Roof pavilion with a softly shaded concrete cap. -->
+  <path d="m309 153 88 51v41l-88-51Z" fill="#bec7b7"/>
+  <path d="m397 204 91-53v41l-91 53Z" fill="#73978f"/>
+  <path d="m409 207 67-39v20l-67 39Z" fill="#28545b"/>
+  <path d="M431 194v21m23-34v21" stroke="#afc5b5" stroke-width="2"/>
+  <path d="m301 145 97-56 98 57-97 56Z" fill="#f4f0df" stroke="#fff8e7"/>
+  <path d="m301 145 98 57v9l-98-57Z" fill="#d4d8c5"/>
+  <path d="m399 202 97-56v9l-97 56Z" fill="#a6baad"/>
+  <path d="m316 145 82-47 82 48-81 47Z" stroke="#c2cab7"/>
+  <!-- Terrace slats and delicate perimeter rail. -->
+  <g stroke="#a5b39e" stroke-width="1.5">
+    <path d="m265 198 122 70m-111-77 122 71m-111-77 122 71m-111-77 122 71m-111-77 122 71"/>
+  </g>
+  <g stroke="#627e77" stroke-width="1.2">
+    <path d="m253 178 162 94 150-87M253 178v11m27 5v11m27 5v11m27 5v11m27 5v11m27 5v11m27 5v11m25-26v11m25-26v11m25-26v11m25-26v11m25-26v11m25-26v11"/>
+  </g>
+  <!-- Restrained landscape inserts, abstract planted trays. -->
+  <path d="m525 343 57-33 20 12-57 33Z" fill="#354f48"/>
+  <path d="m525 343 20 12v10l-20-12Z" fill="#809683"/>
+  <path d="m545 355 57-33v10l-57 33Z" fill="#607e70"/>
+  <path d="m533 341 48-27 12 7-48 27Z" fill="#6e9076"/>
+  <g stroke="#a3b79a" stroke-width="1.3" stroke-linecap="round"><path d="m544 335-1-9m10 4 2-11m8 5-1-10m10 5 2-10m8 5-1-9"/></g>
+  <path d="m194 300 19-11 35 20-19 11Z" fill="#6e8979" stroke="#a0b19a"/>
+  <path d="m194 300 35 20v7l-35-20Z" fill="#42645a"/>
+  <path d="m229 320 19-11v7l-19 11Z" fill="#35564f"/>
+  <g stroke="#b9c9b6" stroke-width=".9" stroke-opacity=".55">
+    <path d="m123 256 258-149m-264 140 12 18m246-167 12 18M460 444l203-117m-209 108 12 18m191-135 12 18"/>
+    <path d="m119 261 8-12m249-133 8-12m72 344 8-12m192-104 8-12"/>
+  </g>
+  <g stroke="#a2bdb2" stroke-opacity=".6"><path d="M112 205v15m-7-7h14M652 233v15m-7-7h14"/></g>
+</svg>

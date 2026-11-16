@@ -133,16 +133,28 @@
       });
     }, {rootMargin: '-15% 0px -55% 0px', threshold: 0});
     document.querySelectorAll('main>section[id]').forEach(section => sectionObserver.observe(section));
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    const revealTargets = document.querySelectorAll('.project-card, .about-intro, .skill-card, .article-card, .contact-grid');
+    let entranceObserver;
+    function showAll() {
+      if (entranceObserver) entranceObserver.disconnect();
+      revealTargets.forEach(el => {
+        el.classList.remove('reveal-ready');
+        el.classList.add('is-visible');
+      });
+    }
+    if (!motion.matches) {
+      entranceObserver = new IntersectionObserver(entries => entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+          entranceObserver.unobserve(entry.target);
         }
       }), {threshold: .07});
-      document.querySelectorAll('.project-card, .about-intro, .skills-grid, .articles-grid, .contact-grid').forEach(el => {
-        el.classList.add('reveal-ready'); observer.observe(el);
+      revealTargets.forEach(el => {
+        el.classList.add('reveal-ready'); entranceObserver.observe(el);
       });
+      // Do not leave content hidden if the preference changes during the visit.
+      motion.addEventListener('change', event => { if (event.matches) showAll(); });
     }
   }
 })();

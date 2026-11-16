@@ -35,6 +35,18 @@ with sync_playwright() as pw:
     assert not page.locator('audio').get_attribute('src')
     assert page.evaluate("performance.getEntriesByType('resource').filter(r=>r.name.includes('/audio/')).length") == 0
     record('Initial audio requests', 0)
+    page.evaluate('document.fonts.ready')
+    assert page.evaluate('document.fonts.check(\'600 16px "Manrope"\')')
+    assert page.evaluate('document.fonts.check(\'italic 400 32px "Newsreader"\')')
+    assert page.locator('.project-art').count() == 3
+    for art in page.locator('.project-art').all():
+        art.scroll_into_view_if_needed()
+        art.evaluate('(el)=>el.decode()')
+        assert art.get_attribute('alt') == ''
+        assert art.evaluate('(el)=>el.naturalWidth > 0')
+    assert page.locator('.art-caption').count() == 3
+    assert not page.evaluate("performance.getEntriesByType('resource').some(r=>/fonts\\.(googleapis|gstatic)\\.com/.test(r.name))")
+    record('Local fonts and three labelled project compositions', 'OK')
     # All internal resources, assets and in-document destinations resolve.
     paths = page.locator('[href], [src]').evaluate_all('(els)=>els.map(el=>el.getAttribute("href")||el.getAttribute("src"))')
     for path in paths:
@@ -48,13 +60,20 @@ with sync_playwright() as pw:
         page.locator(f'[data-lang="{lang}"]').click()
         assert page.locator('html').get_attribute('lang') == lang
         assert page.locator('[data-i18n]').evaluate_all('(els)=>els.every(el=>el.textContent===window.PORTFOLIO_CONTENT[document.documentElement.lang].ui[el.dataset.i18n])')
-        assert page.locator('[data-cv-download]').get_attribute('href').endswith(f'_{lang.upper()}.pdf')
+        assert page.locator('.hero-buttons [data-cv-page]').get_attribute('href') == f'cv.html?lang={lang}'
         assert page.locator('[data-cv-page]').first.get_attribute('href') == f'cv.html?lang={lang}'
         for project in ['k1', 'archi', 'dataset', 'sovereign', 'asu', 'vigie']:
             button = page.locator(f'[data-project="{project}"]')
             button.click()
             assert page.locator('dialog').evaluate('(el)=>el.open')
             assert page.locator('#project-dialog-title').evaluate('(el)=>el===document.activeElement')
+            expected_images = {'k1':2,'archi':2,'dataset':1}.get(project,0)
+            assert page.locator('.project-gallery img').count() == expected_images
+            for image in page.locator('.project-gallery img').all():
+                image.scroll_into_view_if_needed()
+                image.evaluate('(el)=>el.decode()')
+                assert image.get_attribute('alt')
+                assert image.evaluate('(el)=>el.naturalWidth > 0')
             assert page.locator('#project-dialog-content .scope-note').is_visible() or page.locator('#project-dialog-content .scope-note').count() == 1
             for key in ['Tab'] * 10 + ['Shift+Tab'] * 10:
                 page.keyboard.press(key)
@@ -91,15 +110,23 @@ with sync_playwright() as pw:
             page.locator('#main-nav a[href="#contact"]').click()
             assert toggle.get_attribute('aria-expanded') == 'false'
         record('Responsive viewport', width)
-    # Full-page shots with reduced motion; no hidden one-shot entrances.
+    # Changing the motion preference during a visit must reveal every entrance.
     page.emulate_media(reduced_motion='reduce')
+    assert page.locator('.reveal-ready:not(.is-visible)').count() == 0
+    # Full-page shots with reduced motion; no hidden one-shot entrances.
     for lang in ['fr', 'en']:
         page.set_viewport_size({'width': 1440, 'height': 1000})
         page.goto(BASE + '/?lang=' + lang)
         assert page.locator('.reveal-ready').count() == 0
+        for image in page.locator('.project-art').all():
+            image.evaluate('(el)=>{el.loading="eager";}')
+            image.evaluate('(el)=>el.decode()')
         page.screenshot(path=str(OUT / f'portfolio_{lang}_desktop.png'), full_page=True)
     page.set_viewport_size({'width': 390, 'height': 844})
     page.goto(BASE)
+    for image in page.locator('.project-art').all():
+        image.evaluate('(el)=>{el.loading="eager";}')
+        image.evaluate('(el)=>el.decode()')
     page.screenshot(path=str(OUT / 'portfolio_fr_mobile.png'), full_page=True)
     # Audio selection never auto-plays or preloads media.
     page.locator('#audio-details summary').click()

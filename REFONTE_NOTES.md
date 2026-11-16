@@ -6,9 +6,34 @@ Modifications limitées à `C:\Users\HP\Desktop\portfolio-gervais`. Aucun commit
 
 Sauvegarde initiale des sources et CV : `scratch/portfolio_before_refresh_20261116_100831.zip`. Les images, podcasts et lettres de motivation d’origine sont préservés. Les anciennes bannières restent sur disque, mais ne sont plus utilisées dans le parcours principal.
 
+## Illustrations à partir des cinq images fournies (16 novembre 2026)
+
+État actuel des cartes : les trois SVG conceptuels de l’itération précédente sont remplacés par des compositions basées sur les images de l’utilisateur. Les SVG restent sur disque. Sauvegarde : `scratch/portfolio_before_project_photos_20261116_135307.zip`.
+
+- **K1** : capture principale complète et détail du graphe dans un montage ; zone des noms/libellés du graphe floutée dans les dérivés publics. La copie principale n’est pas modifiée, ni aucun chiffre ajouté. Les noms du graphe ne sont pas nécessaires pour expliquer la structure.
+- **Archi Cam AI** : extrait du triptyque structure/BIM/rendu du bâtiment associé à la capture du site. Recadrage de l’infographie à 29–87 % de sa hauteur pour exclure les bandeaux et anciennes coordonnées. Le bâtiment reste explicitement une illustration conceptuelle, jamais un chantier réalisé. La capture du site conserve ses textes d’origine ; la légende précise que ses promesses commerciales ne sont pas une validation des fonctionnalités.
+- **Dataset Automator** : capture du prototype mise en cadre ; statut prototype et vues/métriques partiellement simulées indiqués sur la carte et dans la galerie.
+- `scripts/build_project_media.py` produit uniquement des dérivés dans `assets/images/projects/` : compositions 800/1 440 px en WebP, cinq vues séparées et `media-sources.json` avec traitements et SHA-256 des originaux. Les cinq fichiers source à la racine sont préservés octet pour octet. Les compositions 800 px pèsent environ 22–65 Ko ; variantes 1 440 px environ 48–159 Ko.
+- Chaque carte permet d’agrandir sa composition dans un nouvel onglet. Les fiches comprennent une galerie (2 vues K1, 2 Archi, 1 Dataset) ; chaque image s’ouvre aussi séparément. Légendes FR/EN, interfaces conservées dans leur langue d’origine, alternatives textuelles dans les galeries. Aucun nouveau contenu fonctionnel ou résultat inventé.
+- Vérifications relancées : 22 combinaisons langue/largeur, galeries FR/EN à 320/768/1 440 px, ouverture du lien d’agrandissement, décodage de chaque image, empreintes des cinq originaux, clavier et six modales par langue, CV et téléchargements inchangés. Zéro violation automatique axe dans les 18 états contrôlés après relance (premier démarrage de l’audit : connexion locale refusée transitoire). Pas de certification d’accessibilité revendiquée.
+- Aperçu : `scratch/qa/refresh_fr_projects.png`. Aucun commit, push ou déploiement. Serveur local d’aperçu relancé sur `127.0.0.1:4173` après son arrêt par le redémarrage du serveur de l’outil.
+
+## Sublimation visuelle — atelier IA & Data (16 novembre 2026, itération initiale)
+
+Direction approuvée et appliquée localement, sans commit, push ou déploiement. Sauvegarde avant cette passe : `scratch/portfolio_before_sublimation_20261116_131958.zip`.
+
+- `style.css` réorganisé : ivoire `#F8F6F0`, navy `#142E3C`, teal `#126B63`, grille technique discrète, portrait architectural conservant l’image originale, cartes et section contact retravaillées. Texte courant au moins 14 px dans les zones testées, légendes 11 px.
+- Manrope variable 200–800 et Newsreader italique 400 auto-hébergées en WOFF2 ; environ 57 Ko au total. Sources, conversion et licences SIL OFL dans `assets/fonts/`. Aucun CDN ou service de polices pendant la visite. CV inchangés par cette passe.
+- Trois SVG originaux dans `assets/images/editorial/` : documents/graphe K1, maquette architecturale Archi Cam AI et données/notebook Dataset Automator. Créations vectorielles avec profondeur et gradients, **pas des images générées photoréalistes, captures de logiciel ou preuves de résultats**. Moins de 9 Ko chacun. Légende conceptuelle sur chaque carte, aucune ressource externe embarquée.
+- Positionnement du hero aligné sur le CV (« Ingénieur IA & Architecte Data » / « AI Engineer & Data Architect »), sans modification de diplôme. Le bouton « Consulter mon CV » ouvre les versions Web et leurs téléchargements. Contextes de projets affichés sur les cartes ; limites, statuts de prototype et avertissements éditoriaux préservés.
+- Entrées courtes du hero, illustrations et étapes ; aucune animation permanente ni défilement forcé. Réduction des mouvements respectée au chargement et si la préférence change pendant la visite. Contenu visible sans JavaScript.
+- Contrôles : `scripts/check_visual_refresh.py` passe sur 22 combinaisons langue/largeur (FR/EN, 320 à 1 920 px), mode fichier et mobile sans JS. `scripts/check_portfolio.py` passe : six fiches par langue, clavier/focus, menus, absence de requête audio initiale, téléchargements CV et absence d’erreurs JS/HTTP locales.
+- Audit axe-core 4.10.3 : contraste des numéros de projet corrigé, puis zéro violation automatique dans les 18 états testés (pages FR/EN, six modales dans chaque langue sur desktop, page et modale Dataset sur mobile FR/EN). Rapport `scratch/qa/axe_visual_refresh.json`. Ce contrôle automatisé n’est pas une certification WCAG et conserve des éléments nécessitant une revue humaine. La dépendance axe n’est utilisée que pour l’audit local dans `scratch/qa/`, jamais chargée par le portfolio.
+- Aperçus : `scratch/qa/refresh_fr_hero.png`, `refresh_fr_projects.png`, `refresh_fr_contact.png`, variantes EN et captures mobiles du contrôle principal. Aucun score de performance réseau réel revendiqué pour cette passe.
+
 ## Livraison
 
-- Portfolio statique HTML/CSS/JS, thème ivoire/navy/teal, portrait WebP optimisé, sans framework ni CDN.
+- Portfolio statique HTML/CSS/JS, thème atelier ivoire/navy/teal, polices WOFF2 locales, portrait WebP optimisé et illustrations SVG originales, sans framework ni CDN.
 - Français/anglais : titres, navigation, sections, fiches projet, coordonnées et téléchargements. La langue passe au CV par `?lang=fr` ou `?lang=en`.
 - Trois projets principaux : K1-MathInfo, Archi Cam AI et Dataset Automator. Les trois autres réalisations restent consultables.
 - Schémas éditoriaux identifiés comme tels, sans les faire passer pour des captures de logiciel.
