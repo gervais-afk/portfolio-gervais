@@ -1,0 +1,526 @@
+import os
+import subprocess
+import pypdf
+
+os.chdir(r'c:\Users\HP\Desktop\portfolio-gervais')
+
+def update_files():
+    # ── 1. UPDATE EN FILE ──
+    with open('KOA_MARIE_GERVAIS_NELLY_CV_EN.tex', 'r', encoding='utf-8') as f:
+        en = f.read()
+    
+    # Fine tune vertical spacing in EN to be perfectly balanced at the bottom
+    en_new = r'''\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[margin=0.34in,top=0.20in,bottom=0.20in]{geometry}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+% ── Palette Harmonieuse & Élégante ──
+\definecolor{primaryDark}{HTML}{0F172A}    % Slate 900
+\definecolor{sectionNavy}{HTML}{1E3A5F}    % Oxford Navy
+\definecolor{subheading}{HTML}{334155}     % Slate 700
+\definecolor{bodyText}{HTML}{1E293B}       % Slate 800
+\definecolor{mutedSlate}{HTML}{64748B}     % Slate 500
+\definecolor{accentGold}{HTML}{92400E}     % Ambre doré
+\definecolor{subtleRule}{HTML}{CBD5E1}     % Filet discret
+\definecolor{sidebarBg}{HTML}{F0F4F8}      % Fond ardoise bleutée colonne gauche
+
+% ── Couleurs d'En-tête & Marges ──
+\definecolor{headerBg}{HTML}{E8EFF7}       % Fond bleu cassé doux
+\definecolor{headerBorder}{HTML}{CBDCEB}   % Liseré discret
+\definecolor{marginBlue}{HTML}{E2EDF8}     % Bleu clair dilué 4 marges
+\definecolor{marginBorder}{HTML}{BFD5EC}   % Filet intérieur
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=sectionNavy,
+    urlcolor=sectionNavy,
+    pdfauthor={KOA Marie Gervais Nelly},
+    pdftitle={Curriculum Vitae - KOA Marie Gervais Nelly}
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.01}
+
+\newcommand{\secTitle}[1]{%
+    \vspace{2.5pt}%
+    {\fontsize{9.3}{11.4}\selectfont\textbf{\color{sectionNavy}#1}}\\[1.4pt]%
+    {\color{sectionNavy}\hrule height 0.65pt}\vspace{2.6pt}%
+}
+
+\newcommand{\sideSecTitle}[1]{%
+    \vspace{5.5pt}%
+    {\fontsize{9.4}{12.0}\selectfont\textbf{\color{sectionNavy}#1}}\\[1.8pt]%
+    {\color{sectionNavy}\hrule height 0.65pt}\vspace{4.5pt}%
+}
+
+\setlist[itemize]{leftmargin=*,labelsep=3.5pt,itemsep=1.0pt,topsep=0.4pt,parsep=0pt}
+\newcommand{\bulletItem}[2]{%
+    \item \textbf{\color{primaryDark}#1} {\fontsize{8.2}{9.9}\selectfont\color{bodyText}#2}%
+}
+
+\begin{document}
+
+% ══════════════════════════════════════════════════════════════════
+% CADRE 4 MARGES & BANDE LATÉRALE GAUCHE PLEINE HAUTEUR (TIKZ)
+% ══════════════════════════════════════════════════════════════════
+\begin{tikzpicture}[remember picture, overlay]
+    % 1. Teinte des 4 marges extérieures :
+    \fill[marginBlue] (current page.south west) rectangle (current page.north east);
+    % 2. Conteneur blanc intérieur :
+    \fill[white] ([xshift=4.5mm,yshift=4.5mm]current page.south west) rectangle ([xshift=-4.5mm,yshift=-4.5mm]current page.north east);
+    
+    % 3. BANDE ARDOISE BLEUTÉE QUI DESCEND JUSQU'AU TOUT BAS DE LA PAGE :
+    \fill[sidebarBg] ([xshift=4.5mm, yshift=4.5mm]current page.south west) rectangle ([xshift=73.5mm, yshift=-31.5mm]current page.north west);
+    
+    % 4. Filet intérieur de finition :
+    \draw[marginBorder, line width=0.75pt] ([xshift=4.5mm,yshift=4.5mm]current page.south west) rectangle ([xshift=-4.5mm,yshift=-4.5mm]current page.north east);
+\end{tikzpicture}
+
+% ══════════════════════════════════════════════════════════════════
+% EN-TÊTE ÉLÉGANT : FOND BLEU CASSÉ, PHOTO AGRANDIE & VRAIES ICÔNES
+% ══════════════════════════════════════════════════════════════════
+\setlength{\fboxsep}{3.2pt}%
+\noindent\fcolorbox{headerBorder}{headerBg}{%
+\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+    % Photo officielle (2.15cm) dans un médaillon circulaire
+    \begin{minipage}[c]{0.145\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \clip (0,0) circle (1.08cm);
+            \node at (0,0) {\includegraphics[width=2.16cm]{profile_headshot_clean.png}};
+            \draw[headerBorder, line width=1.1pt] (0,0) circle (1.08cm);
+        \end{tikzpicture}
+    \end{minipage}%
+    \hspace{0.015\textwidth}%
+    % Nom, Titre & Coordonnées
+    \begin{minipage}[c]{0.540\textwidth}
+        {\fontsize{16.8}{19.2}\selectfont\textbf{\color{primaryDark} KOA MARIE GERVAIS NELLY}}\\[1.8pt]
+        {\fontsize{9.3}{11.4}\selectfont\textbf{\color{sectionNavy} AI Systems Engineer \& Operational Risk Specialist (AVSEC)}}\\[2.8pt]
+        {\fontsize{7.7}{9.6}\selectfont
+        \raisebox{-0.8pt}{\includegraphics[height=6.8pt]{icons/icon_location.png}}\hspace{2.0pt}{\color{bodyText}Ngaound\'er\'e / Douala, CM}
+        \quad{\color{mutedSlate}$|$}\quad
+        \raisebox{-0.8pt}{\includegraphics[height=6.5pt]{icons/icon_phone.png}}\hspace{2.0pt}{\color{bodyText}+237 695 35 34 02}\\[1.5pt]
+        \raisebox{-0.8pt}{\includegraphics[height=6.5pt]{icons/icon_email.png}}\hspace{2.0pt}\href{mailto:contact@archicam-ai.com}{\color{primaryDark}\textbf{contact@archicam-ai.com}}
+        }
+    \end{minipage}%
+    \hfill
+    % Liens professionnels
+    \begin{minipage}[c]{0.29\textwidth}
+        \raggedleft
+        {\fontsize{7.7}{9.6}\selectfont
+        \raisebox{-0.8pt}{\includegraphics[height=6.7pt]{icons/icon_globe.png}}\hspace{2.0pt}\href{https://portfolio-gervais.vercel.app}{\textbf{\color{primaryDark}portfolio-gervais.vercel.app}}\\[1.8pt]
+        \raisebox{-0.8pt}{\includegraphics[height=6.7pt]{icons/icon_github.png}}\hspace{2.0pt}\href{https://github.com/gervais-afk}{\color{bodyText}github.com/gervais-afk}\\[1.8pt]
+        \raisebox{-0.8pt}{\includegraphics[height=6.7pt]{icons/icon_linkedin.png}}\hspace{2.0pt}\href{https://linkedin.com/in/marie-gervais-koa}{\color{bodyText}linkedin.com/in/marie-gervais-koa}
+        }
+    \end{minipage}
+\end{minipage}%
+}
+
+\vspace{1.5pt}
+
+% ══════════════════════════════════════════════════════════════════
+% DEUX COLONNES VERTICALES (TITRES AGRANDIS & 1 TIRET PAR PROJET)
+% ══════════════════════════════════════════════════════════════════
+\begin{minipage}[t]{0.325\textwidth}
+\vspace{0.5pt}%
+
+    % ── AI GOVERNANCE & SAFETY ──
+    \sideSecTitle{AI GOVERNANCE \& SAFETY}
+    {\fontsize{8.5}{11.2}\selectfont
+    \begin{itemize}[leftmargin=7pt,label={\color{sectionNavy}\scriptsize$\blacktriangleright$},itemsep=5.5pt]
+        \item \textbf{Operational Risk Modeling:} ICAO Annex 17 \& Doc 8973 multilateral safety standards.
+        \item \textbf{Incident Forensics:} Root-cause analysis, anomaly reporting, zero-failure mitigation.
+        \item \textbf{Epistemic Abstention:} Thresholds to prevent hallucinations under low confidence.
+        \item \textbf{Verifiable Workflows:} Deterministic schema verification \& graph rule compliance.
+        \item \textbf{Red-Teaming \& Inspection:} Crisis protocols, drill design, vulnerability screening.
+    \end{itemize}
+    }
+
+    \vspace{14.0pt}
+
+    % ── EDUCATION ──
+    \sideSecTitle{EDUCATION}
+    {\fontsize{8.45}{11.0}\selectfont
+    \textbf{\color{primaryDark}Professional Master's in Applied AI}\\[1.4pt]
+    {\color{sectionNavy}\textit{University of Ngaoundéré (DMI)}} \hfill {\fontsize{8.0}{9.5}\selectfont\color{mutedSlate}2025--2027}\\[2.0pt]
+    {\fontsize{7.9}{10.3}\selectfont\textbf{\color{accentGold}In progress} \ -- \ \color{bodyText}Advanced curriculum in designing production AI architectures, knowledge graphs, and verifiable retrieval pipelines. Equips to build automated compliance auditing systems, epistemic abstention engines, and computer vision models for threat detection.}\\[7.5pt]
+    \textbf{\color{primaryDark}B.Sc. \& HND in Civil Engineering}\\[1.4pt]
+    {\color{sectionNavy}\textit{IUC Douala (Institut Univ. de la Côte)}} \hfill {\fontsize{8.0}{9.5}\selectfont\color{mutedSlate}2015--2016}\\[2.0pt]
+    {\fontsize{7.9}{10.3}\selectfont\color{bodyText}Building specialization. Grounding in structural mechanics, physical risk modeling, and metrology.}
+    }
+
+    \vspace{14.0pt}
+
+    % ── TECHNICAL TOOLING ──
+    \sideSecTitle{TECHNICAL TOOLING}
+    {\fontsize{8.45}{11.2}\selectfont
+    \textbf{\color{sectionNavy}Languages \& Back-End:}\\[1.8pt]
+    Python, TypeScript, FastAPI, Docker, pytest, Git.\\[6.5pt]
+    \textbf{\color{sectionNavy}AI, Data \& Verification:}\\[1.8pt]
+    FastMCP, Genkit, Neo4j (Cypher), MLflow, Optuna, Zod, PostgreSQL, pgvector, SQLite, OLAP.
+    }
+
+    \vspace{14.0pt}
+
+    % ── CERTIFICATIONS ──
+    \sideSecTitle{CERTIFICATIONS \& CLEARANCES}
+    {\fontsize{8.45}{11.2}\selectfont
+    \begin{itemize}[leftmargin=7pt,label={\color{sectionNavy}\scriptsize$\blacktriangleright$},itemsep=5.2pt]
+        \item \textbf{Certified AVSEC Supervisor \& Agent} (CCAA / ICAO Annex 17 compliant).
+        \item \textbf{Active Airside Security Clearance (ZSAR)}.
+        \item \textbf{X-ray Radioscopy Threat Specialist}.
+    \end{itemize}
+    }
+
+    \vspace{14.0pt}
+
+    % ── LANGUAGES ──
+    \sideSecTitle{LANGUAGES}
+    {\fontsize{8.5}{11.4}\selectfont
+    \textbf{French:} Native / Bilingual operational.\\[5.5pt]
+    \textbf{English:} Technical, Aviation \& Academic.
+    }
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.650\textwidth}
+\vspace{0.5pt}%
+
+    % ── EXECUTIVE PROFILE ──
+    \secTitle{EXECUTIVE PROFILE}
+    {\fontsize{8.2}{10.2}\selectfont\color{bodyText}
+    Applied AI Systems Engineer and Certified Aviation Security (AVSEC) Supervisor combining 8+ years of frontline risk governance in high-stakes infrastructure with hands-on machine learning architecture. Developer of \textit{ASU (Airport Security Unit) Audit-Ready} and verifiable agentic pipelines. Bridges zero-tolerance operational defense protocols, multi-stakeholder auditability, and epistemic abstention with frontier AI safety governance.
+    }
+
+    % ── OPERATIONAL RISK EXPERIENCE ──
+    \secTitle{HIGH-CONSEQUENCE OPERATIONAL RISK LEADERSHIP}
+
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}Operational Security Supervisor (Shift Lead AVSEC)}} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}Jan. 2025 -- Present}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Cameroon Civil Aviation Authority (CCAA) $|$ Ngaoundéré Airport (DOS)}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{Command of Shift:}{Lead frontline security personnel across PIF checkpoints, access portals, and airside zones (ZSAR); enforced 100\% compliance with ICAO Annex 17.}
+        \bulletItem{Safety-Critical Diagnostics:}{Supervise daily calibration of metal detectors, trace detectors, and dual-view X-ray imaging systems with zero operational downtime.}
+        \bulletItem{Airside Threat Defense:}{Enforce perimeter security, access control, and anti-intrusion protocols with unbroken compliance across external ICAO and national oversight inspections.}
+    \end{itemize}
+    \vspace{4.0pt}
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}Aviation Security Agent \& Shift Supervisor}} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}2018 -- Jan. 2025}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Cameroon Civil Aviation Authority (CCAA) $|$ Yaoundé-Nsimalen Int. Airport}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{Lead Radioscopy Analyst:}{Screened 100,000+ passengers and hold baggage, detecting concealed prohibited threats and resolving high-consequence security anomalies.}
+        \bulletItem{Incident Forensics \& Audit Trails:}{Authored statutory 24h incident briefs, risk evaluations, and chain-of-custody dossiers for official international audit panels.}
+    \end{itemize}
+
+    % ── APPLIED AI & VERIFICATION PROJECTS (1 TIRET PAR RUBRIQUE) ──
+    \secTitle{APPLIED AI, VERIFICATION \& AUDITING PROJECTS}
+
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}ASU (Airport Security Unit) Audit-Ready --- Compliance \& Inspection Simulator}}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Conceived for CCAA Operational Security Division (DOS)} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}2025 -- Present}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{95\% Reporting Automation:}{Eliminated 40h of monthly paperwork down to 2 seconds, generating signed audit-compliant dossiers ready for multilateral ICAO inspectors.}
+    \end{itemize}
+    \vspace{3.5pt}
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}Dataset Automator --- Agentic Pipeline with Deterministic Rules}}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Google Cloud \#AllThingsAgentic Hackathon Prototype} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}2026}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{Deterministic Schema Verification:}{Architected autonomous data profiling and model validation agents enforcing sanity checks via Zod schemas and Neo4j graph rules.}
+    \end{itemize}
+    \vspace{3.5pt}
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}K1-MathInfo --- Hybrid Retrieval Engine with Epistemic Abstention}}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Academic Repository System $|$ Dept. of Mathematics \& Computer Science (Univ. of Ngaoundéré)} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}2026}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{Hallucination Defense:}{Engineered hybrid search with explicit abstention thresholds and weighted Jaccard explainability across 525 works---refusing to generate speculative claims.}
+    \end{itemize}
+    \vspace{3.5pt}
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}Archi Cam AI --- Computational Intelligence for Construction}}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Google Applied Africa AI Lab $|$ Applied AI Project} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}2026}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{Domain Calculation Integrity:}{Developed automated cost estimation (DQE) and quantity takeoff algorithms, preventing budgetary misestimations.}
+    \end{itemize}
+
+    % ── HONOURS & DISTINCTIONS ──
+    \secTitle{HONOURS \& DISTINCTIONS}
+    {\fontsize{8.5}{10.6}\selectfont
+    \textbf{\color{accentGold}$\bigstar$ CCAA Excellence \& Integrity Award (April 2023)} --- \textbf{\color{sectionNavy}Cameroon Civil Aviation Authority}\\[1.2pt]
+    {\fontsize{7.9}{9.6}\selectfont\color{bodyText}
+    Solemnly awarded by Director General Mme Paule Assoumou Koki for exceptional operational integrity, incident reporting rigor, and 100\% compliance in civil aviation security operations.
+    }
+    }
+
+\end{minipage}
+
+\end{document}
+'''
+    with open('KOA_MARIE_GERVAIS_NELLY_CV_EN.tex', 'w', encoding='utf-8') as f:
+        f.write(en_new)
+    print("Rewrote KOA_MARIE_GERVAIS_NELLY_CV_EN.tex.")
+
+    # ── 2. UPDATE FR FILE ──
+    fr_new = r'''\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[margin=0.34in,top=0.20in,bottom=0.20in]{geometry}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+% ── Palette Harmonieuse & Élégante ──
+\definecolor{primaryDark}{HTML}{0F172A}    % Slate 900
+\definecolor{sectionNavy}{HTML}{1E3A5F}    % Oxford Navy
+\definecolor{subheading}{HTML}{334155}     % Slate 700
+\definecolor{bodyText}{HTML}{1E293B}       % Slate 800
+\definecolor{mutedSlate}{HTML}{64748B}     % Slate 500
+\definecolor{accentGold}{HTML}{92400E}     % Ambre doré
+\definecolor{subtleRule}{HTML}{CBD5E1}     % Filet discret
+\definecolor{sidebarBg}{HTML}{F0F4F8}      % Fond ardoise bleutée colonne gauche
+
+% ── Couleurs d'En-tête & Marges ──
+\definecolor{headerBg}{HTML}{E8EFF7}       % Fond bleu cassé doux
+\definecolor{headerBorder}{HTML}{CBDCEB}   % Liseré discret
+\definecolor{marginBlue}{HTML}{E2EDF8}     % Bleu clair dilué 4 marges
+\definecolor{marginBorder}{HTML}{BFD5EC}   % Filet intérieur
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=sectionNavy,
+    urlcolor=sectionNavy,
+    pdfauthor={KOA Marie Gervais Nelly},
+    pdftitle={Curriculum Vitae - KOA Marie Gervais Nelly}
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.01}
+
+\newcommand{\secTitle}[1]{%
+    \vspace{2.5pt}%
+    {\fontsize{9.3}{11.4}\selectfont\textbf{\color{sectionNavy}#1}}\\[1.4pt]%
+    {\color{sectionNavy}\hrule height 0.65pt}\vspace{2.6pt}%
+}
+
+\newcommand{\sideSecTitle}[1]{%
+    \vspace{5.5pt}%
+    {\fontsize{9.4}{12.0}\selectfont\textbf{\color{sectionNavy}#1}}\\[1.8pt]%
+    {\color{sectionNavy}\hrule height 0.65pt}\vspace{4.5pt}%
+}
+
+\setlist[itemize]{leftmargin=*,labelsep=3.5pt,itemsep=1.0pt,topsep=0.4pt,parsep=0pt}
+\newcommand{\bulletItem}[2]{%
+    \item \textbf{\color{primaryDark}#1} {\fontsize{8.2}{9.9}\selectfont\color{bodyText}#2}%
+}
+
+\begin{document}
+
+% ══════════════════════════════════════════════════════════════════
+% CADRE 4 MARGES & BANDE LATÉRALE GAUCHE PLEINE HAUTEUR (TIKZ)
+% ══════════════════════════════════════════════════════════════════
+\begin{tikzpicture}[remember picture, overlay]
+    % 1. Teinte des 4 marges extérieures :
+    \fill[marginBlue] (current page.south west) rectangle (current page.north east);
+    % 2. Conteneur blanc intérieur :
+    \fill[white] ([xshift=4.5mm,yshift=4.5mm]current page.south west) rectangle ([xshift=-4.5mm,yshift=-4.5mm]current page.north east);
+    
+    % 3. BANDE ARDOISE BLEUTÉE QUI DESCEND JUSQU'AU TOUT BAS DE LA PAGE :
+    \fill[sidebarBg] ([xshift=4.5mm, yshift=4.5mm]current page.south west) rectangle ([xshift=73.5mm, yshift=-31.5mm]current page.north west);
+    
+    % 4. Filet intérieur de finition :
+    \draw[marginBorder, line width=0.75pt] ([xshift=4.5mm,yshift=4.5mm]current page.south west) rectangle ([xshift=-4.5mm,yshift=-4.5mm]current page.north east);
+\end{tikzpicture}
+
+% ══════════════════════════════════════════════════════════════════
+% EN-TÊTE ÉLÉGANT : FOND BLEU CASSÉ, PHOTO AGRANDIE & VRAIES ICÔNES
+% ══════════════════════════════════════════════════════════════════
+\setlength{\fboxsep}{3.2pt}%
+\noindent\fcolorbox{headerBorder}{headerBg}{%
+\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+    % Photo officielle (2.15cm) dans un médaillon circulaire
+    \begin{minipage}[c]{0.145\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \clip (0,0) circle (1.08cm);
+            \node at (0,0) {\includegraphics[width=2.16cm]{profile_headshot_clean.png}};
+            \draw[headerBorder, line width=1.1pt] (0,0) circle (1.08cm);
+        \end{tikzpicture}
+    \end{minipage}%
+    \hspace{0.015\textwidth}%
+    % Nom, Titre & Coordonnées
+    \begin{minipage}[c]{0.540\textwidth}
+        {\fontsize{16.8}{19.2}\selectfont\textbf{\color{primaryDark} KOA MARIE GERVAIS NELLY}}\\[1.8pt]
+        {\fontsize{9.1}{11.1}\selectfont\textbf{\color{sectionNavy} Ingénieur Systèmes IA \& Spécialiste Risques Opérationnels (AVSEC)}}\\[2.8pt]
+        {\fontsize{7.7}{9.6}\selectfont
+        \raisebox{-0.8pt}{\includegraphics[height=6.8pt]{icons/icon_location.png}}\hspace{2.0pt}{\color{bodyText}Ngaound\'er\'e / Douala, CM}
+        \quad{\color{mutedSlate}$|$}\quad
+        \raisebox{-0.8pt}{\includegraphics[height=6.5pt]{icons/icon_phone.png}}\hspace{2.0pt}{\color{bodyText}+237 695 35 34 02}\\[1.5pt]
+        \raisebox{-0.8pt}{\includegraphics[height=6.5pt]{icons/icon_email.png}}\hspace{2.0pt}\href{mailto:contact@archicam-ai.com}{\color{primaryDark}\textbf{contact@archicam-ai.com}}
+        }
+    \end{minipage}%
+    \hfill
+    % Liens professionnels
+    \begin{minipage}[c]{0.29\textwidth}
+        \raggedleft
+        {\fontsize{7.7}{9.6}\selectfont
+        \raisebox{-0.8pt}{\includegraphics[height=6.7pt]{icons/icon_globe.png}}\hspace{2.0pt}\href{https://portfolio-gervais.vercel.app}{\textbf{\color{primaryDark}portfolio-gervais.vercel.app}}\\[1.8pt]
+        \raisebox{-0.8pt}{\includegraphics[height=6.7pt]{icons/icon_github.png}}\hspace{2.0pt}\href{https://github.com/gervais-afk}{\color{bodyText}github.com/gervais-afk}\\[1.8pt]
+        \raisebox{-0.8pt}{\includegraphics[height=6.7pt]{icons/icon_linkedin.png}}\hspace{2.0pt}\href{https://linkedin.com/in/marie-gervais-koa}{\color{bodyText}linkedin.com/in/marie-gervais-koa}
+        }
+    \end{minipage}
+\end{minipage}%
+}
+
+\vspace{1.5pt}
+
+% ══════════════════════════════════════════════════════════════════
+% DEUX COLONNES VERTICALES (TITRES AGRANDIS & 1 TIRET PAR PROJET)
+% ══════════════════════════════════════════════════════════════════
+\begin{minipage}[t]{0.325\textwidth}
+\vspace{0.5pt}%
+
+    % ── SÛRETÉ & GOUVERNANCE IA ──
+    \sideSecTitle{SÛRETÉ \& GOUVERNANCE IA}
+    {\fontsize{8.5}{11.2}\selectfont
+    \begin{itemize}[leftmargin=7pt,label={\color{sectionNavy}\scriptsize$\blacktriangleright$},itemsep=5.5pt]
+        \item \textbf{Modélisation Risques :} Standards multilatéraux OACI Annexe 17 \& Doc 8973.
+        \item \textbf{Analyse d'Incidents :} Causes racines, reporting d'anomalies, atténuation zéro défaillance.
+        \item \textbf{Abstention Épistémique :} Seuils de refus prévenant les hallucinations sous incertitude.
+        \item \textbf{Pipelines Vérifiables :} Schémas Zod déterministes et règles de graphes Neo4j.
+        \item \textbf{Red-Teaming \& Inspection :} Exercices de crise, audits de vulnérabilité et filtrage.
+    \end{itemize}
+    }
+
+    \vspace{14.0pt}
+
+    % ── FORMATIONS ACADÉMIQUES ──
+    \sideSecTitle{FORMATIONS ACADÉMIQUES}
+    {\fontsize{8.45}{11.0}\selectfont
+    \textbf{\color{primaryDark}Master Pro en IA Appliquée}\\[1.4pt]
+    {\color{sectionNavy}\textit{Univ. de Ngaoundéré (DMI)}} \hfill {\fontsize{8.0}{9.5}\selectfont\color{mutedSlate}2025--2027}\\[2.0pt]
+    {\fontsize{7.85}{10.3}\selectfont\textbf{\color{accentGold}En cours} \ -- \ \color{bodyText}Cursus avancé en conception d'architectures IA de production, graphes de connaissances et pipelines vérifiables. Préparation aux audits de conformité automatisés et abstention épistémique.}\\[7.5pt]
+    \textbf{\color{primaryDark}Licence \& BTS Génie Civil}\\[1.4pt]
+    {\color{sectionNavy}\textit{IUC Douala (Institut Univ. de la Côte)}} \hfill {\fontsize{8.0}{9.5}\selectfont\color{mutedSlate}2015--2016}\\[2.0pt]
+    {\fontsize{7.85}{10.3}\selectfont\color{bodyText}Option Bâtiment. Calcul de structures, rigueur métrologique et modélisation physique du risque matériel.}
+    }
+
+    \vspace{14.0pt}
+
+    % ── OUTILS & STACK TECHNIQUE ──
+    \sideSecTitle{OUTILS \& STACK TECHNIQUE}
+    {\fontsize{8.45}{11.2}\selectfont
+    \textbf{\color{sectionNavy}Langages \& Backend :}\\[1.8pt]
+    Python, TypeScript, FastAPI, Docker, pytest, Git.\\[6.5pt]
+    \textbf{\color{sectionNavy}IA, Données \& Vérification :}\\[1.8pt]
+    FastMCP, Genkit, Neo4j (Cypher), MLflow, Optuna, Zod, PostgreSQL, pgvector, SQLite, OLAP.
+    }
+
+    \vspace{14.0pt}
+
+    % ── HABILITATIONS & CERTIFICATIONS ──
+    \sideSecTitle{HABILITATIONS \& CERTIFICATIONS}
+    {\fontsize{8.45}{11.2}\selectfont
+    \begin{itemize}[leftmargin=7pt,label={\color{sectionNavy}\scriptsize$\blacktriangleright$},itemsep=5.2pt]
+        \item \textbf{Superviseur \& Agent AVSEC certifié} (CCAA / Conforme OACI Annexe 17).
+        \item \textbf{Habilitation ZSAR Active} (Accès permanent zone réservée).
+        \item \textbf{Spécialiste Imagerie Radioscopique RX}.
+    \end{itemize}
+    }
+
+    \vspace{14.0pt}
+
+    % ── LANGUES ──
+    \sideSecTitle{LANGUES}
+    {\fontsize{8.5}{11.4}\selectfont
+    \textbf{Français :} Langue maternelle / Courant.\\[5.5pt]
+    \textbf{Anglais :} Technique, Aéronautique \& Académique.
+    }
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.650\textwidth}
+\vspace{0.5pt}%
+
+    % ── PROFIL PROFESSIONNEL ──
+    \secTitle{PROFIL PROFESSIONNEL}
+    {\fontsize{8.2}{10.2}\selectfont\color{bodyText}
+    Ingénieur Systèmes IA Appliquée et Superviseur de Sûreté Aéroportuaire (AVSEC) certifié, cumulant plus de 8 années de gouvernance des risques à fort impact en environnement d'infrastructure critique (OACI Annexe 17 / Doc 8973) et de conception machine learning. Développeur de la solution \textit{ASU (Airport Security Unit) Audit-Ready} et d'architectures agentiques vérifiables. Rapprochement des protocoles de défense zéro défaillance et de l'auditabilité des systèmes d'IA de frontière.
+    }
+
+    % ── LEADERSHIP OPÉRATIONNEL & SÛRETÉ ──
+    \secTitle{LEADERSHIP OPÉRATIONNEL \& SÛRETÉ EN MILIEU CRITIQUE}
+
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}Chef de Groupe AVSEC (Shift Lead)}} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}Janv. 2025 -- Présent}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Autorité Aéronautique du Cameroun (CCAA) $|$ Aéroport de Ngaoundéré (DOS)}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{Commandement Opérationnel de Quart :}{Conduite des équipes aux postes de filtrage (PIF) et accès ZSAR ; garantie absolue de conformité 100\% aux normes OACI Annexe 17.}
+        \bulletItem{Diagnostics de Sûreté Critique :}{Supervision du calibrage quotidien des portiques magnétomètres, détecteurs de traces et équipements RX double vue sans interruption.}
+        \bulletItem{Défense Périmétrique \& Accès Airside :}{Contrôle strict des accès véhicules/personnels et patrouilles anti-intrusion avec conformité sans faille aux inspections OACI.}
+    \end{itemize}
+    \vspace{4.0pt}
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}Agent de Sûreté \& Chef de Groupe AVSEC}} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}2018 -- Janv. 2025}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Autorité Aéronautique du Cameroun (CCAA) $|$ Aéroport Int. de Yaoundé-Nsimalen}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{Analyste Radioscopique RX :}{Inspection de plus de 100\,000 passagers et bagages de soute, détection d'articles prohibés et neutralisation d'anomalies critiques.}
+        \bulletItem{Gestion d'Événements \& Traçabilité :}{Rédaction sous 24h des comptes rendus d'incidents statutaires, fiches de suivi et dossiers de traçabilité pour les comités d'inspection.}
+    \end{itemize}
+
+    % ── PROJETS D'INGÉNIERIE IA (1 TIRET PAR RUBRIQUE) ──
+    \secTitle{PROJETS D'INGÉNIERIE IA, VÉRIFICATION \& AUDIT}
+
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}ASU (Airport Security Unit) Audit-Ready --- Préparation aux Audits \& Inspection}}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Conçu pour la Division Opérationnelle de Sûreté (CCAA DOS)} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}2025 -- Présent}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{Automatisation des Rapports (95\%) :}{Réduction de 40h de travail manuel mensuel à 2 secondes, génération de dossiers d'audit prêts pour signatures des inspecteurs multilatéraux OACI.}
+    \end{itemize}
+    \vspace{3.5pt}
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}Dataset Automator --- Pipeline Agentique avec Règles Déterministes}}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Google Cloud \#AllThingsAgentic Hackathon Prototype} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}2026}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{Vérification Déterministe de Schémas :}{Agents autonomes de profilage et validation imposant des tests de cohérence stricts via schémas Zod et règles de graphe Neo4j.}
+    \end{itemize}
+    \vspace{3.5pt}
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}K1-MathInfo --- Moteur de Recherche Hybride avec Abstention Épistémique}}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Dépôt académique $|$ Dép. de Mathématiques et Informatique (Univ. de Ngaoundéré)} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}2026}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{Protection Anti-Hallucination :}{Recherche hybride avec seuils d'abstention stricts et explicabilité Jaccard pondérée sur 525 mémoires (refus des requêtes hors corpus).}
+    \end{itemize}
+    \vspace{3.5pt}
+    {\fontsize{9.6}{12.0}\selectfont\textbf{\color{primaryDark}Archi Cam AI --- Intelligence Computationnelle pour le BTP \& Métrés}}\\[1.2pt]
+    {\fontsize{8.6}{10.8}\selectfont\textit{\color{sectionNavy}Google Applied Africa AI Lab $|$ Projet IA Appliquée} \hfill {\fontsize{8.2}{10.0}\selectfont\color{mutedSlate}2026}}\\[1.5pt]
+    \begin{itemize}
+        \bulletItem{Intégrité des Calculs Métier :}{Algorithmes automatisés d'estimation des coûts (DQE) et métrés quantitatifs, éliminant tout risque d'erreur budgétaire sur chantier.}
+    \end{itemize}
+
+    % ── DISTINCTIONS & MENTIONS D'HONNEUR ──
+    \secTitle{DISTINCTIONS \& MENTIONS D'HONNEUR}
+    {\fontsize{8.5}{10.6}\selectfont
+    \textbf{\color{accentGold}$\bigstar$ Prix de l'Excellence \& de l'Intégrité CCAA (Avril 2023)} --- \textbf{\color{sectionNavy}Autorité Aéronautique du Cameroun (CCAA)}\\[1.2pt]
+    {\fontsize{7.9}{9.6}\selectfont\color{bodyText}
+    Solennellement décerné par Mme Paule Assoumou Koki, Directeur Général de la CCAA, pour intégrité opérationnelle exemplaire, rigueur de traçabilité et 100\% de conformité dans les opérations de sûreté.
+    }
+    }
+
+\end{minipage}
+
+\end{document}
+'''
+    with open('KOA_MARIE_GERVAIS_NELLY_CV_FR.tex', 'w', encoding='utf-8') as f:
+        f.write(fr_new)
+    print("Rewrote KOA_MARIE_GERVAIS_NELLY_CV_FR.tex.")
+
+update_files()

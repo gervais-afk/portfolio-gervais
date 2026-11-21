@@ -12,3 +12,15 @@ Desktop.ini
 __pycache__/
 *.pyc
 scratch/
+
+# LaTeX intermediate build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Heavy video & Remotion workspace
+video-cv/
+*.mp4
