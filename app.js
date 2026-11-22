@@ -25,6 +25,10 @@
     document.documentElement.lang = lang;
     document.title = ui.page_title;
     $('meta[name="description"]').content = ui.page_description;
+    const canonical = $('link[rel="canonical"]');
+    if (canonical) canonical.href = 'https://portfolio-gervais.vercel.app/' + (lang === 'en' ? '?lang=en' : '');
+    const locale = $('meta[property="og:locale"]');
+    if (locale) locale.content = lang === 'en' ? 'en_US' : 'fr_FR';
     document.querySelectorAll('[data-i18n]').forEach(el => {
       if (ui[el.dataset.i18n] !== undefined) el.textContent = ui[el.dataset.i18n];
     });
@@ -78,16 +82,48 @@
     if (menu.getAttribute('aria-expanded') === 'true' && !event.target.closest('.site-header')) closeMenu();
     const button = event.target.closest('.project-open');
     if (!button) return;
-    const id = button.dataset.project;
+    openDialog(button.dataset.project, button);
+  });
+  // Each project sheet has a shareable address: #project-k1, #project-archi…
+  // Without JavaScript the same anchor still scrolls to the matching card.
+  const projectIds = ['k1','archi','dataset','sovereign','asu','vigie'];
+  function setProjectHash(id) {
+    const url = new URL(location.href);
+    url.hash = id ? 'project-' + id : '';
+    history.replaceState(null, '', url.href.replace(/#$/, ''));
+  }
+  function openDialog(id, from) {
     if (!content[lang].projects[id]) return;
-    opener = button;
+    const wasOpen = dialog.open;
+    dialog.classList.remove('is-closing');
+    if (!wasOpen) opener = from || null;
     openProject = id;
+    setProjectHash(id);
+    $('#share-status').textContent = '';
     $('#project-dialog-content').innerHTML = render.detail(content[lang], id);
-    $('#dialog-index').textContent = String(['k1','archi','dataset','sovereign','asu','vigie'].indexOf(id) + 1).padStart(2,'0');
-    dialog.showModal();
+    $('#dialog-index').textContent = String(projectIds.indexOf(id) + 1).padStart(2,'0');
+    if (!wasOpen) dialog.showModal();
     dialog.scrollTop = 0;
     document.body.classList.add('modal-open');
     $('#project-dialog-title').focus({preventScroll: true});
+  }
+  function projectFromHash() {
+    const match = /^#project-([a-z0-9]+)$/.exec(location.hash);
+    return match && projectIds.includes(match[1]) ? match[1] : null;
+  }
+  const initialProject = projectFromHash();
+  if (initialProject) openDialog(initialProject, document.querySelector('.project-open[data-project="' + initialProject + '"]'));
+  addEventListener('hashchange', () => { const id = projectFromHash(); if (id && id !== openProject) openDialog(id); });
+  $('.dialog-share').addEventListener('click', async () => {
+    const status = $('#share-status');
+    try {
+      await navigator.clipboard.writeText(location.href);
+      status.textContent = content[lang].ui.link_copied;
+      $('.dialog-share').classList.add('is-done');
+      setTimeout(() => $('.dialog-share').classList.remove('is-done'), 1800);
+    } catch {
+      status.textContent = location.href;
+    }
   });
   // Keep keyboard navigation within the modal, including at browser chrome boundaries.
   dialog.addEventListener('keydown', event => {
@@ -120,6 +156,7 @@
     dialog.classList.remove('is-closing');
     document.body.classList.remove('modal-open');
     openProject = null;
+    if (projectFromHash()) setProjectHash(null);
     if (opener && opener.isConnected) opener.focus({preventScroll:true});
   });
   $('.copy-email').addEventListener('click', async () => {
@@ -153,6 +190,14 @@
   $('#audio-select').addEventListener('change', selectAudio);
   audio.addEventListener('error', () => {$('.audio-status').textContent = content[lang].ui.audio_error;});
   $('#year').textContent = new Date().getFullYear();
+  // Vercel Web Analytics (cookieless page views), only on the Vercel deployment.
+  if (location.hostname.endsWith('.vercel.app')) {
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    const insights = document.createElement('script');
+    insights.defer = true;
+    insights.src = '/_vercel/insights/script.js';
+    document.head.appendChild(insights);
+  }
   // Sliding navigation indicator: follows the hovered link, rests on the active section.
   const indicator = nav.querySelector('.nav-indicator');
   let hoveredLink = null;

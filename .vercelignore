@@ -1,0 +1,25 @@
+# Allowlist: only the public site is deployed. Notes, scripts, sources,
+# cover letters and raw data stay in the repository, never on the website.
+/*
+!index.html
+!cv.html
+!style.css
+!cv.css
+!app.js
+!renderers.js
+!translations.js
+!cv.js
+!profile.js
+!robots.txt
+!sitemap.xml
+!assets
+!KOA_MARIE_GERVAIS_NELLY_CV_FR.pdf
+!KOA_MARIE_GERVAIS_NELLY_CV_EN.pdf
+!KOA_MARIE_GERVAIS_NELLY_CV_ATS_FR.pdf
+!KOA_MARIE_GERVAIS_NELLY_CV_ATS_EN.pdf
+!KOA_MARIE_GERVAIS_NELLY_CV FR.pdf
+!KOA_MARIE_GERVAIS_NELLY_CV_FR.docx
+!KOA_MARIE_GERVAIS_NELLY_CV_EN.docx
+assets/audio/*.md
+assets/fonts/README.md
+assets/images/projects/media-sources.json
