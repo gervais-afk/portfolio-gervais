@@ -9,6 +9,7 @@
   let openProject = null;
   let opener = null;
   const dialog = $('#project-dialog');
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const menu = $('.menu-toggle');
   const nav = $('#main-nav');
   const targets = {secondary: '#secondary-projects', journey: '#journey', skills: '#skill-cards', articles: '#article-cards'};
@@ -46,7 +47,23 @@
     }
   }
   translate(lang);
-  document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => translate(button.dataset.lang, true)));
+  let pendingLang = null, langTransition = null;
+  function applyPendingLang() {
+    if (!pendingLang) return;
+    translate(pendingLang, true);
+    pendingLang = null;
+    requestAnimationFrame(placeIndicator);
+  }
+  document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => {
+    const next = button.dataset.lang;
+    if (next === (pendingLang || lang)) return;
+    pendingLang = next;
+    // A second click during a transition applies immediately, so the last choice always wins.
+    if (langTransition || !document.startViewTransition || motion.matches) { applyPendingLang(); return; }
+    langTransition = document.startViewTransition(applyPendingLang);
+    langTransition.ready.catch(() => {});
+    langTransition.finished.catch(() => {}).then(() => { langTransition = null; });
+  }));
   menu.addEventListener('click', () => {
     const expanded = menu.getAttribute('aria-expanded') !== 'true';
     menu.setAttribute('aria-expanded', String(expanded));
@@ -83,13 +100,24 @@
       event.preventDefault(); first.focus();
     }
   });
-  $('.dialog-close').addEventListener('click', () => dialog.close());
+  function closeDialog() {
+    if (!dialog.open || dialog.classList.contains('is-closing')) return;
+    if (motion.matches || typeof dialog.getAnimations !== 'function') { dialog.close(); return; }
+    dialog.classList.add('is-closing');
+    let done = false;
+    const finish = () => { if (done) return; done = true; dialog.classList.remove('is-closing'); dialog.close(); };
+    dialog.addEventListener('animationend', event => { if (event.target === dialog) finish(); }, {once: true});
+    setTimeout(finish, 400);
+  }
+  dialog.addEventListener('cancel', event => { event.preventDefault(); closeDialog(); });
+  $('.dialog-close').addEventListener('click', closeDialog);
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
     const box = dialog.getBoundingClientRect();
-    if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close();
+    if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) closeDialog();
   });
   dialog.addEventListener('close', () => {
+    dialog.classList.remove('is-closing');
     document.body.classList.remove('modal-open');
     openProject = null;
     if (opener && opener.isConnected) opener.focus({preventScroll:true});
@@ -125,16 +153,77 @@
   $('#audio-select').addEventListener('change', selectAudio);
   audio.addEventListener('error', () => {$('.audio-status').textContent = content[lang].ui.audio_error;});
   $('#year').textContent = new Date().getFullYear();
+  // Sliding navigation indicator: follows the hovered link, rests on the active section.
+  const indicator = nav.querySelector('.nav-indicator');
+  let hoveredLink = null;
+  function placeIndicator() {
+    if (!indicator) return;
+    const link = hoveredLink || nav.querySelector('a.active');
+    if (!link || getComputedStyle(indicator).display === 'none') { nav.style.setProperty('--nav-o', '0'); return; }
+    nav.style.setProperty('--nav-x', link.offsetLeft + 'px');
+    nav.style.setProperty('--nav-w', link.offsetWidth + 'px');
+    nav.style.setProperty('--nav-o', hoveredLink && !hoveredLink.classList.contains('active') ? '.45' : '1');
+  }
+  if (indicator) {
+    nav.classList.add('has-indicator');
+    nav.addEventListener('pointerover', event => { const a = event.target.closest('a'); if (a) { hoveredLink = a; placeIndicator(); } });
+    nav.addEventListener('pointerleave', () => { hoveredLink = null; placeIndicator(); });
+    addEventListener('resize', placeIndicator, {passive: true});
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeIndicator);
+  }
+
+  // Pointer light on cards (fine pointers only, delegated so re-rendered cards keep it).
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.addEventListener('pointermove', event => {
+      const card = event.target.closest && event.target.closest('.project-card, .secondary-card, .skill-card, .article-card');
+      if (!card) return;
+      const box = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (event.clientX - box.left) + 'px');
+      card.style.setProperty('--my', (event.clientY - box.top) + 'px');
+    }, {passive: true});
+  }
+
+  // One scroll loop for header state, reading progress, timeline drawing and gentle parallax.
+  const header = $('.site-header');
+  const journey = $('.journey');
+  const portraitFrame = $('.portrait-frame');
+  const hero = $('.hero');
+  let ticking = false;
+  function onScroll() {
+    ticking = false;
+    const y = scrollY, vh = innerHeight;
+    const max = document.documentElement.scrollHeight - vh;
+    header.classList.toggle('is-scrolled', y > 8);
+    header.style.setProperty('--progress', max > 0 ? Math.min(1, y / max).toFixed(4) : '0');
+    if (motion.matches) return;
+    if (journey) {
+      const box = journey.getBoundingClientRect();
+      const ratio = (vh * .62 - box.top) / box.height;
+      journey.style.setProperty('--journey', Math.max(0, Math.min(1, ratio)).toFixed(3));
+    }
+    if (portraitFrame && hero && y < hero.offsetHeight + 200) {
+      portraitFrame.style.setProperty('--portrait-shift', (y * -0.045).toFixed(1) + 'px');
+      hero.style.setProperty('--grid-shift', (y * 0.12).toFixed(1) + 'px');
+    }
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+  addEventListener('resize', onScroll, {passive: true});
+  onScroll();
+
   if ('IntersectionObserver' in window) {
     const sectionObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         nav.querySelectorAll('a').forEach(link => link.classList.toggle('active', link.hash === '#' + entry.target.id));
+        placeIndicator();
       });
     }, {rootMargin: '-15% 0px -55% 0px', threshold: 0});
     document.querySelectorAll('main>section[id]').forEach(section => sectionObserver.observe(section));
-    const motion = matchMedia('(prefers-reduced-motion: reduce)');
-    const revealTargets = document.querySelectorAll('.project-card, .about-intro, .skill-card, .article-card, .contact-grid');
+    const revealTargets = document.querySelectorAll([
+      '.section-heading', '.discipline-rail', '.project-card', '.other-heading', '.secondary-card',
+      '.about-intro', '.journey-item', '.skill-card', '.learning-note', '.article-card',
+      '.audio-archive', '.contact-grid > div'
+    ].join(','));
     let entranceObserver;
     function showAll() {
       if (entranceObserver) entranceObserver.disconnect();
@@ -149,9 +238,14 @@
           entry.target.classList.add('is-visible');
           entranceObserver.unobserve(entry.target);
         }
-      }), {threshold: .07});
+      }), {threshold: 0, rootMargin: '0px 0px -12% 0px'});
       revealTargets.forEach(el => {
-        el.classList.add('reveal-ready'); entranceObserver.observe(el);
+        // Siblings in the same grid arrive one after another, never more than ~0.4 s apart.
+        const siblings = Array.from(el.parentElement.children).filter(child => child.matches && Array.prototype.includes.call(revealTargets, child));
+        const index = Math.max(0, siblings.indexOf(el));
+        if (index) el.style.setProperty('--delay', Math.min(index * 0.11, 0.44) + 's');
+        el.classList.add('reveal-ready');
+        entranceObserver.observe(el);
       });
       // Do not leave content hidden if the preference changes during the visit.
       motion.addEventListener('change', event => { if (event.matches) showAll(); });
