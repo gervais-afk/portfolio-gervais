@@ -21,7 +21,8 @@ window.PORTFOLIO_PROFILE = {
   "cv": {
     "fr": {
       "title": "Ingénieur IA & Architecte Data",
-      "summary": "Je développe des outils de recherche documentaire et d’automatisation Data. En Master d’IA appliquée, je combine développement logiciel, génie civil et rigueur issue de la sûreté aéroportuaire.",
+      "subtitle": "Systèmes RAG, Orchestration Agentique & Données",
+      "summary": "Ingénieur IA & Architecte Data, titulaire d’un Master professionnel en Intelligence Artificielle Appliquée : je conçois des systèmes de recherche documentaire (RAG, graphes), d’orchestration agentique et d’automatisation Data, avec une rigueur issue du génie civil et de la sûreté aéroportuaire.",
       "labels": {
         "experience": "Expérience professionnelle",
         "projects": "Projets IA & Data",
@@ -35,21 +36,21 @@ window.PORTFOLIO_PROFILE = {
           "title": "Consultant IA & Data indépendant",
           "date": "Mars 2026 – présent",
           "details": [
-            "Activité indépendante : missions clients et développement de projets IA & Data."
+            "Conception de pipelines IA & Data et accompagnement technique sur des besoins métier."
           ]
         },
         {
-          "title": "Agent de sûreté aéroportuaire (AVSEC) · CCAA",
+          "title": "Agent puis Chef de Groupe sûreté aéroportuaire (AVSEC) · CCAA",
           "date": "2018 – présent",
           "details": [
-            "Contrôle des accès, analyse des risques et rédaction de rapports de sûreté."
+            "Analyse des risques opérationnels, contrôle qualité des équipements de détection, traçabilité et rédaction de rapports d’incidents."
           ]
         }
       ],
       "projects": [
         {
           "title": "K1-MathInfo",
-          "context": "Projet Master pour le département de mathématiques et informatique de l’Université de Ngaoundéré. En binôme avec ABDOUL AZIZ Hamadou ; contribution personnelle transversale.",
+          "context": "Projet Master pour le département de mathématiques et informatique de l’Université de Ngaoundéré (en binôme ; contribution personnelle transversale).",
           "details": [
             "525 travaux (2010–2026) : recherche hybride avec références et abstention ; recommandations explicables par Jaccard pondéré.",
             "Entrepôt en étoile à six dimensions pour l’OLAP."
@@ -66,23 +67,23 @@ window.PORTFOLIO_PROFILE = {
           "title": "Dataset Automator",
           "context": "Prototype individuel développé dans le cadre du Google Cloud #AllThingsAgentic Hackathon.",
           "details": [
-            "Orchestration TypeScript/Python avec Genkit et MCP/FastMCP : profilage et nettoyage CSV, comparaison de modèles classiques avec Optuna.",
-            "Règles Neo4j et suivi MLflow ; génération de notebooks et validation Zod."
+            "Automatisation du profilage, du nettoyage de fichiers CSV et de la comparaison de modèles tabulaires sur un flux reproductible.",
+            "Application de règles métier, suivi des expériences et génération de notebooks Jupyter documentés et prêts à l’exécution."
           ]
         }
       ],
       "skills": [
         {
-          "label": "Développement",
-          "text": "Python, TypeScript, FastAPI, Genkit, MCP/FastMCP, Docker, pytest"
+          "label": "IA & Recherche",
+          "text": "PyTorch, RAG / recherche hybride, Adversarial ML (FGSM), Antigravity, Claude, Codex, Motion design avec IA"
         },
         {
-          "label": "Données & recherche",
-          "text": "SQL, SQLite, PostgreSQL/pgvector, Neo4j/Cypher, recherche hybride, OLAP"
+          "label": "Ingénierie & Agents",
+          "text": "Python, TypeScript, FastAPI, Genkit, CrewAI, MCP/FastMCP, Docker, pytest, Zod"
         },
         {
-          "label": "ML & qualité",
-          "text": "Modèles classiques, Optuna, MLflow, nbformat, Zod"
+          "label": "Données & MLOps",
+          "text": "SQL, PostgreSQL/pgvector, SQLite, Neo4j/Cypher, Cassandra, MongoDB, OLAP, scikit-learn, Optuna, MLflow, nbformat, SHA-256"
         }
       ],
       "education": [
@@ -90,14 +91,14 @@ window.PORTFOLIO_PROFILE = {
           "title": "Master Professionnel · Intelligence Artificielle Appliquée",
           "date": "Déc. 2025–2027 · en cours",
           "details": [
-            "Université de Ngaoundéré · Cameroun"
+            "Univ. de Ngaoundéré · Cours : ML, Big Data, Vision, NoSQL, Ontologies, Cybersécurité, Droit & Éthique IA, Prompt Engineering, Comm. des organisations, Entrepreneuriat."
           ]
         },
         {
           "title": "Licence & BTS · Génie Civil, option bâtiment",
           "date": "2015–2016",
           "details": [
-            "ISTDI / IUC Douala · Cameroun"
+            "ISTDI / IUC Douala · Cameroun · Cours : Résistance des matériaux, calcul de structures, métrés et gestion de chantier."
           ]
         }
       ],
@@ -111,7 +112,8 @@ window.PORTFOLIO_PROFILE = {
     },
     "en": {
       "title": "AI Engineer & Data Architect",
-      "summary": "I develop information retrieval and data automation tools. Pursuing a professional Master’s in applied AI, I combine software development, civil engineering knowledge and aviation security discipline.",
+      "subtitle": "RAG Systems, Agentic Orchestration & Data",
+      "summary": "AI Engineer & Data Architect holding a Professional Master’s in Applied Artificial Intelligence: I build document retrieval (RAG, graphs), agentic orchestration and data automation tools, backed by civil engineering and aviation security discipline.",
       "labels": {
         "experience": "Professional experience",
         "projects": "AI & Data projects",
@@ -125,21 +127,21 @@ window.PORTFOLIO_PROFILE = {
           "title": "Independent AI & Data Consultant",
           "date": "March 2026 – present",
           "details": [
-            "Independent activity: client assignments and development of AI & Data projects."
+            "Designing AI & Data pipelines and providing technical support for business needs."
           ]
         },
         {
-          "title": "Aviation Security Agent (AVSEC) · CCAA",
+          "title": "Aviation Security Officer & Shift Lead (AVSEC) · CCAA",
           "date": "2018 – present",
           "details": [
-            "Access control, risk analysis and security report writing."
+            "Operational risk analysis, detection equipment quality checks, traceability and security incident reporting."
           ]
         }
       ],
       "projects": [
         {
           "title": "K1-MathInfo",
-          "context": "Master’s project for the Department of Mathematics and Computer Science, University of Ngaoundéré. Two-person team with ABDOUL AZIZ Hamadou; cross-functional development contribution.",
+          "context": "Master’s project for the Department of Mathematics and Computer Science, University of Ngaoundéré (two-person team; cross-functional development contribution).",
           "details": [
             "525 works (2010–2026): hybrid search with references and abstention; explainable weighted Jaccard recommendations.",
             "Six-dimension star-schema warehouse for OLAP."
@@ -156,23 +158,23 @@ window.PORTFOLIO_PROFILE = {
           "title": "Dataset Automator",
           "context": "Individual prototype developed for the Google Cloud #AllThingsAgentic Hackathon.",
           "details": [
-            "TypeScript/Python orchestration with Genkit and MCP/FastMCP: CSV profiling and cleaning, classical model comparison with Optuna.",
-            "Neo4j rules and MLflow tracking; notebook generation and Zod validation."
+            "Automated CSV profiling, cleaning and classical model comparison within a reproducible workflow.",
+            "Business rule application, experiment tracking and generation of documented, execution-ready Jupyter notebooks."
           ]
         }
       ],
       "skills": [
         {
-          "label": "Development",
-          "text": "Python, TypeScript, FastAPI, Genkit, MCP/FastMCP, Docker, pytest"
+          "label": "AI & Retrieval",
+          "text": "PyTorch, RAG / hybrid search, Adversarial ML (FGSM), Antigravity, Claude, Codex, AI motion design"
         },
         {
-          "label": "Data & retrieval",
-          "text": "SQL, SQLite, PostgreSQL/pgvector, Neo4j/Cypher, hybrid search, OLAP"
+          "label": "Engineering & Agents",
+          "text": "Python, TypeScript, FastAPI, Genkit, CrewAI, MCP/FastMCP, Docker, pytest, Zod"
         },
         {
-          "label": "ML & quality",
-          "text": "Classical models, Optuna, MLflow, nbformat, Zod"
+          "label": "Data & MLOps",
+          "text": "SQL, PostgreSQL/pgvector, SQLite, Neo4j/Cypher, Cassandra, MongoDB, OLAP, scikit-learn, Optuna, MLflow, nbformat, SHA-256"
         }
       ],
       "education": [
@@ -180,14 +182,14 @@ window.PORTFOLIO_PROFILE = {
           "title": "Master Professionnel · Applied Artificial Intelligence",
           "date": "Dec. 2025–2027 · in progress",
           "details": [
-            "University of Ngaoundéré · Cameroon"
+            "Univ. of Ngaoundéré · Coursework: ML, Big Data, Vision, NoSQL, Ontologies, AI Security, Law & Ethics, Prompt Engineering, Org. Comm. & Entrepreneurship."
           ]
         },
         {
           "title": "Licence & BTS · Civil Engineering, building specialisation",
           "date": "2015–2016",
           "details": [
-            "ISTDI / IUC Douala · Cameroon"
+            "ISTDI / IUC Douala · Cameroon · Coursework: Structural mechanics, building design, quantity surveying and site management."
           ]
         }
       ],

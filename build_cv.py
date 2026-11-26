@@ -137,14 +137,14 @@ class PDFLayout:
         self.y -= after
 
     def heading(self, title):
-        self.y -= 5 if self.plain else 9
+        self.y -= 1.5 if self.plain else (3.5 if self.sidebar else 9)
         self.text(html.escape(title.upper()), size=11 if self.sidebar or self.plain else 12,
-                  bold=True, color=PDF_ACCENT, after=4 if self.plain else 6)
+                  bold=True, color=PDF_ACCENT, after=1.5 if self.plain else (3 if self.sidebar else 6))
         if not self.plain:
             self.c.setStrokeColor(colors.HexColor(LINE))
             self.c.setLineWidth(.6)
             self.c.line(self.x, self.y, self.x + self.width, self.y)
-            self.y -= 9
+            self.y -= 4.5 if self.sidebar else 9
 
     def entry(self, entry, project_index=None):
         project = project_index is not None
@@ -168,7 +168,7 @@ class PDFLayout:
             self.y -= 4
         for text, size, bold, color, after in rows:
             self.text(text, size=size, bold=bold, color=color, after=after, indent=indent)
-        self.y -= 8 if project else 4
+        self.y -= 8 if project else (2 if self.sidebar else 4)
 
 def build_pdf(profile, lang):
     data = profile['cv'][lang]
@@ -230,7 +230,7 @@ def build_pdf(profile, lang):
     p.y = H - 182
     p.text(html.escape(data['summary']), after=2)
     top = p.y - 4
-    sidebar_width, gutter = 164, 24
+    sidebar_width, gutter = 178, 20
     main_x = MARGIN + sidebar_width + gutter
     p.c.setFillColor(colors.HexColor(PEARL))
     p.c.roundRect(MARGIN - 9, MARGIN, sidebar_width + 18, top - MARGIN + 3, 5, fill=1, stroke=0)
@@ -246,8 +246,8 @@ def build_pdf(profile, lang):
     p.frame(MARGIN, sidebar_width, top, sidebar=True)
     p.heading(data['labels']['skills'])
     for item in data['skills']:
-        p.text(html.escape(item['label']), size=10, bold=True, color=PDF_ACCENT, after=3)
-        p.text(html.escape(item['text']), size=10, after=8)
+        p.text(html.escape(item['label']), size=10, bold=True, color=PDF_ACCENT, after=1.5)
+        p.text(html.escape(item['text']), size=10, after=3.5)
     p.heading(data['labels']['education'])
     for entry in data['education']:
         p.entry(entry)
@@ -266,42 +266,43 @@ def build_ats_pdf(profile, lang):
     p = PDFLayout(OUTPUT / data['files']['atsPdf'], plain=True)
     p.c.setTitle(identity['name'] + ' | ' + data['title'] + ' | Application')
     p.c.setAuthor(identity['name'])
-    p.text(html.escape(identity['name']), size=20, bold=True, after=4)
-    p.text(html.escape(data['title']), size=12, bold=True, after=7)
+    p.text(html.escape(identity['name']), size=20, bold=True, after=3)
+    p.text(html.escape(data['title']), size=12, bold=True, after=2 if data.get('subtitle') else 5)
+    if data.get('subtitle'):
+        p.text(html.escape(data['subtitle']), size=10, color=MUTED, after=4)
     all_contacts = contacts(profile, lang)
     for row in [all_contacts[:3], all_contacts[3:5], all_contacts[5:]]:
         values = []
         for _, label, href in row:
             label = html.escape(label)
             values.append(f'<link href="{html.escape(href, quote=True)}">{label}</link>' if href else label)
-        p.text(' | '.join(values), size=9.5, after=3)
+        p.text(' | '.join(values), size=9.5, after=2)
     p.heading(ATS_LABELS[lang]['profile'])
-    p.text(html.escape(data['summary']), after=2)
+    p.text(html.escape(data['summary']), after=1)
     for key in ['projects', 'experience']:
         p.heading(ATS_LABELS[lang].get(key, data['labels'][key]))
         for entry in data[key]:
             title = html.escape(entry['title'])
             if 'date' in entry:
                 title += ' <font size="9.5"> | ' + html.escape(entry['date']) + '</font>'
-            p.text(title, bold=True, after=2)
+            p.text(title, bold=True, after=0.5)
             if 'context' in entry:
-                p.text(html.escape(entry['context']), size=9.5, after=2)
+                p.text(html.escape(entry['context']), size=9.5, after=0.5)
             for detail in entry['details']:
-                p.text(html.escape(detail), after=2)
+                p.text(html.escape(detail), after=0.5)
             if 'stack' in entry:
-                p.text(html.escape(entry['stack']), size=9.5, after=2)
-            p.y -= 3
+                p.text(html.escape(entry['stack']), size=9.5, after=0.5)
     p.heading(data['labels']['skills'])
     for item in data['skills']:
-        p.text('<b>' + html.escape(item['label']) + '</b> : ' + html.escape(item['text']), after=3)
+        p.text('<b>' + html.escape(item['label']) + '</b> : ' + html.escape(item['text']), after=1)
     p.heading(data['labels']['education'])
     for entry in data['education']:
         title = html.escape(entry['title']) + ' <font size="9.5"> | ' + html.escape(entry['date']) + '</font>'
-        p.text(title, bold=True, after=2)
+        p.text(title, bold=True, after=0.5)
         for detail in entry['details']:
-            p.text(html.escape(detail), after=3)
+            p.text(html.escape(detail), after=1)
     p.heading(data['labels']['additional'])
-    p.text(html.escape(data['languages']), after=2)
+    p.text(html.escape(data['languages']), after=1)
     p.heading(data['labels']['award'])
     p.text(html.escape(data['award']), after=0)
     p.c.save()
@@ -324,16 +325,16 @@ def build_docx(profile, lang):
     doc = Document()
     section = doc.sections[0]
     section.page_width, section.page_height = Mm(210), Mm(297)
-    section.top_margin = section.bottom_margin = Mm(11)
+    section.top_margin = section.bottom_margin = Mm(9.5)
     section.left_margin = section.right_margin = Mm(12)
     normal = doc.styles['Normal']
     normal.font.name = 'Arial'
     normal.font.size = Pt(BODY)
     normal.font.color.rgb = RGBColor.from_string(TEXT[1:])
-    normal.paragraph_format.space_after = Pt(1)
-    normal.paragraph_format.line_spacing = Pt(13.5)
+    normal.paragraph_format.space_after = Pt(0.5)
+    normal.paragraph_format.line_spacing = Pt(12.6)
     # Body content is in ordinary paragraphs; only the photographic masthead uses a table.
-    def para(text='', bold=False, size=BODY, color=TEXT, after=1, before=0):
+    def para(text='', bold=False, size=BODY, color=TEXT, after=0.5, before=0):
         p = doc.add_paragraph()
         p.paragraph_format.space_after = Pt(after)
         p.paragraph_format.space_before = Pt(before)
@@ -342,11 +343,11 @@ def build_docx(profile, lang):
         r.font.color.rgb = RGBColor.from_string(color[1:])
         return p
     def heading(key):
-        p = para(data['labels'][key].upper(), bold=True, size=11, color=PDF_ACCENT, before=6, after=4)
+        p = para(data['labels'][key].upper(), bold=True, size=11, color=PDF_ACCENT, before=4.5, after=2.5)
         p.paragraph_format.keep_with_next = True
         border = OxmlElement('w:pBdr')
         bottom = OxmlElement('w:bottom')
-        for key, value in [('val', 'single'), ('sz', '4'), ('color', LINE[1:]), ('space', '4')]: bottom.set(qn('w:' + key), value)
+        for key, value in [('val', 'single'), ('sz', '4'), ('color', LINE[1:]), ('space', '3')]: bottom.set(qn('w:' + key), value)
         border.append(bottom); p._p.get_or_add_pPr().append(border)
     def entry(e, project_index=None):
         text = e['title'] + (' · ' + e['date'] if 'date' in e else '')
@@ -355,7 +356,7 @@ def build_docx(profile, lang):
         if 'context' in e:
             para(e['context'], size=9.5, color=MUTED)
         for text in e['details']:
-            para(text, after=2)
+            para(text, after=1)
         if 'stack' in e:
             para(e['stack'], size=9.5, color=MUTED)
     from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -372,22 +373,22 @@ def build_docx(profile, lang):
     name.paragraph_format.space_after = Pt(4)
     for text, size, bold in [(profile['identity']['familyName'] + '\n', 28, True), (profile['identity']['givenNames'], 20, False)]:
         run = name.add_run(text); run.font.size = Pt(size); run.bold = bold; run.font.color.rgb = RGBColor(255,255,255)
-    role = left.add_paragraph(data['title'])
-    role.paragraph_format.space_after = Pt(8)
+    role = left.add_paragraph(data['title'] + (' · ' + data['subtitle'] if data.get('subtitle') else ''))
+    role.paragraph_format.space_after = Pt(5)
     for run in role.runs: run.font.size = Pt(13); run.font.color.rgb = RGBColor.from_string('E3E9EF')
     picture = right.paragraphs[0]
     picture.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    picture.paragraph_format.space_before = picture.paragraph_format.space_after = Pt(5)
+    picture.paragraph_format.space_before = picture.paragraph_format.space_after = Pt(3)
     picture.add_run().add_picture(str(ROOT / profile['identity']['photo']), width=Mm(26), height=Mm(32.5))
     all_contacts = contacts(profile, lang)
     for row in [all_contacts[:3], all_contacts[3:5], all_contacts[5:]]:
         p = doc.add_paragraph()
-        p.paragraph_format.space_after = Pt(2)
+        p.paragraph_format.space_after = Pt(1.5)
         for index, (_, label, href) in enumerate(row):
             if index: p.add_run('  ·  ').font.size = Pt(9.5)
             if href: docx_hyperlink(p, label, href)
             else: p.add_run(label).font.size = Pt(9.5)
-    para(data['summary'], before=4, after=3)
+    para(data['summary'], before=3, after=2)
     for key in ['projects', 'experience']:
         heading(key)
         for index, e in enumerate(data[key], start=1): entry(e, index if key == 'projects' else None)
