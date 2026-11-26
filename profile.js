@@ -58,7 +58,7 @@ window.PORTFOLIO_PROFILE = {
         },
         {
           "title": "Archi Cam AI",
-          "context": "Projet personnel · IA appliquée au BTP · Développé dans le cadre de Google Applied Africa AI Lab.",
+          "context": "Projet personnel · IA appliquée au BTP · Préparé pour la candidature au Google Africa Applied AI Lab.",
           "details": [
             "Chiffrage, métrés, DQE et calculs métier : développement d’outils en lien direct avec ma formation en génie civil."
           ]
@@ -149,7 +149,7 @@ window.PORTFOLIO_PROFILE = {
         },
         {
           "title": "Archi Cam AI",
-          "context": "Personal project · AI applied to construction · Developed as part of Google Applied Africa AI Lab.",
+          "context": "Personal project · AI applied to construction · Prepared for the Google Africa Applied AI Lab application.",
           "details": [
             "Cost estimation, quantity takeoff, bills of quantities (DQE) and domain calculations: developing tools directly informed by my civil engineering education."
           ]

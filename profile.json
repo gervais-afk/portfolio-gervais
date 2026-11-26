@@ -26,7 +26,7 @@
       ],
       "projects": [
         {"title": "K1-MathInfo", "context": "Projet Master pour le département de mathématiques et informatique de l’Université de Ngaoundéré (en binôme ; contribution personnelle transversale).", "details": ["525 travaux (2010–2026) : recherche hybride avec références et abstention ; recommandations explicables par Jaccard pondéré.", "Entrepôt en étoile à six dimensions pour l’OLAP."]},
-        {"title": "Archi Cam AI", "context": "Projet personnel · IA appliquée au BTP · Développé dans le cadre de Google Applied Africa AI Lab.", "details": ["Chiffrage, métrés, DQE et calculs métier : développement d’outils en lien direct avec ma formation en génie civil."]},
+        {"title": "Archi Cam AI", "context": "Projet personnel · IA appliquée au BTP · Préparé pour la candidature au Google Africa Applied AI Lab.", "details": ["Chiffrage, métrés, DQE et calculs métier : développement d’outils en lien direct avec ma formation en génie civil."]},
         {"title": "Dataset Automator", "context": "Prototype individuel développé dans le cadre du Google Cloud #AllThingsAgentic Hackathon.", "details": ["Automatisation du profilage, du nettoyage de fichiers CSV et de la comparaison de modèles tabulaires sur un flux reproductible.", "Application de règles métier, suivi des expériences et génération de notebooks Jupyter documentés et prêts à l’exécution."]}
       ],
       "skills": [
@@ -53,7 +53,7 @@
       ],
       "projects": [
         {"title": "K1-MathInfo", "context": "Master’s project for the Department of Mathematics and Computer Science, University of Ngaoundéré (two-person team; cross-functional development contribution).", "details": ["525 works (2010–2026): hybrid search with references and abstention; explainable weighted Jaccard recommendations.", "Six-dimension star-schema warehouse for OLAP."]},
-        {"title": "Archi Cam AI", "context": "Personal project · AI applied to construction · Developed as part of Google Applied Africa AI Lab.", "details": ["Cost estimation, quantity takeoff, bills of quantities (DQE) and domain calculations: developing tools directly informed by my civil engineering education."]},
+        {"title": "Archi Cam AI", "context": "Personal project · AI applied to construction · Prepared for the Google Africa Applied AI Lab application.", "details": ["Cost estimation, quantity takeoff, bills of quantities (DQE) and domain calculations: developing tools directly informed by my civil engineering education."]},
         {"title": "Dataset Automator", "context": "Individual prototype developed for the Google Cloud #AllThingsAgentic Hackathon.", "details": ["Automated CSV profiling, cleaning and classical model comparison within a reproducible workflow.", "Business rule application, experiment tracking and generation of documented, execution-ready Jupyter notebooks."]}
       ],
       "skills": [
